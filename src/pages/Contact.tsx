@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter, Youtube, AtSign, MessagesSquare, MessageSquare } from "lucide-react";
+import { Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter, Youtube, AtSign, MessagesSquare, MessageSquare, Navigation, Map, Compass } from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -75,6 +75,27 @@ const Contact = () => {
     { icon: <MessagesSquare size={24} />, name: "کانال تلگرام", url: "https://t.me/Channel_ARMINSOFT", color: "bg-blue-400" },
     { icon: <MessagesSquare size={24} />, name: "تلگرام", url: "https://t.me/ARMIN_SOFT", color: "bg-blue-400" },
     { icon: <AtSign size={24} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-red-500" },
+  ];
+
+  const mapLinks = [
+    {
+      name: "نشان",
+      icon: <Navigation className="h-6 w-6" />,
+      url: "https://neshan.org/maps/places/9ccb5e03124ff1b45606ee6e8abf6504#c34.337-47.081-15z-0p",
+      color: "bg-blue-500 hover:bg-blue-600"
+    },
+    {
+      name: "بلد",
+      icon: <Compass className="h-6 w-6" />,
+      url: "https://balad.ir/p/%D8%A2%D8%B1%D9%85%DB%8C%D9%86-%D8%B3%D8%A7%D9%81%D8%AA_engineering-33prhHcvJ6CoDF#15/35.48845/51.68181",
+      color: "bg-green-500 hover:bg-green-600"
+    },
+    {
+      name: "گوگل مپ",
+      icon: <Map className="h-6 w-6" />,
+      url: "https://www.google.com/maps/place/ARMIN-SOFT/@35.4876278,51.6769236,17z/data=!3m1!4b1!4m6!3m5!1s0x3f91eb2b6c71c453:0x7908be7f77a9ab27!8m2!3d35.4876278!4d51.6769236!16s%2Fg%2F11nmrmzj6b?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D",
+      color: "bg-red-500 hover:bg-red-600"
+    }
   ];
 
   return (
@@ -235,25 +256,79 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Google Map */}
+      {/* Map Navigation Links */}
       <section className="py-10 bg-muted/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold">موقعیت مکانی</h2>
-            <p className="text-muted-foreground mt-2">برای ملاقات حضوری، موقعیت مکانی آرمین سافت</p>
+            <p className="text-muted-foreground mt-2">برای ملاقات حضوری و مسیریابی، از لینک‌های زیر استفاده کنید</p>
           </div>
           
-          <div className="rounded-lg overflow-hidden h-[400px] border-4 border-white shadow-xl">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207254.46391850397!2d51.249158366220615!3d35.70531294947146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00491ff3dcd9%3A0xf0b3697c567024bc!2sTehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1653389178128!5m2!1sen!2s" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="نقشه دفتر آرمین سافت"
-            ></iframe>
+          <div className="flex flex-col space-y-6">
+            {/* Map Navigation Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {mapLinks.map((mapLink, index) => (
+                <a 
+                  key={index}
+                  href={mapLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <Card className="h-full overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border-2 border-transparent hover:border-arminred-500/30">
+                    <CardContent className="p-0">
+                      <div className={`flex flex-col items-center justify-center p-8 text-white ${mapLink.color}`}>
+                        <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mb-4 
+                          transform transition-all duration-300 group-hover:scale-110">
+                          {mapLink.icon}
+                        </div>
+                        <h3 className="text-xl font-bold">مسیریابی با {mapLink.name}</h3>
+                        <p className="mt-2 text-sm opacity-90">برای مشاهده موقعیت آرمین سافت در {mapLink.name} کلیک کنید</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              ))}
+            </div>
+            
+            {/* Google Map */}
+            <div className="rounded-lg overflow-hidden h-[400px] border-4 border-white shadow-xl">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207254.46391850397!2d51.249158366220615!3d35.70531294947146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00491ff3dcd9%3A0xf0b3697c567024bc!2sTehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1653389178128!5m2!1sen!2s" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="نقشه دفتر آرمین سافت"
+              ></iframe>
+            </div>
+            
+            {/* Extra information about location */}
+            <div className="bg-card p-6 rounded-lg shadow-md border border-border">
+              <div className="flex items-start space-x-4 space-x-reverse">
+                <div className="p-3 rounded-full bg-arminred-500/10">
+                  <MapPin className="h-6 w-6 text-arminred-500" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">آدرس دقیق آرمین سافت</h3>
+                  <p className="text-muted-foreground mb-4">
+                    ایران، تهران، پاکدشت، خیابان شهید مطهری، کوچه شهید حیدری 8، پلاک 125، طبقه دوم
+                  </p>
+                  <div className="flex flex-wrap gap-4 text-sm">
+                    <span className="inline-flex items-center bg-muted px-3 py-1 rounded-full">
+                      <span className="text-foreground ml-1">کد پستی:</span>
+                      <span className="text-muted-foreground">۳۳۶۱۶۵۴۷۵۱</span>
+                    </span>
+                    <span className="inline-flex items-center bg-muted px-3 py-1 rounded-full">
+                      <span className="text-foreground ml-1">ساعات کاری:</span>
+                      <span className="text-muted-foreground">شنبه تا پنجشنبه ۹ الی ۱۸</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

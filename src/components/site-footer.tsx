@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Github, Instagram, Twitter, Youtube, MessageCircle, Phone, AtSign, Mail, MapPin, Linkedin, ArrowRight, MessageSquare } from "lucide-react";
+import { Facebook, Github, Instagram, Twitter, Youtube, MessageCircle, Phone, AtSign, Mail, MapPin, Linkedin, ArrowRight, MessageSquare, Navigation, Map, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -31,6 +31,24 @@ export function SiteFooter() {
     { icon: <MessageCircle size={18} />, url: "https://t.me/Channel_ARMINSOFT", label: "کانال تلگرام", color: "hover:bg-blue-400" },
     { icon: <MessageCircle size={18} />, url: "https://t.me/ARMIN_SOFT", label: "تلگرام", color: "hover:bg-blue-400" },
     { icon: <AtSign size={18} />, url: "https://www.aparat.com/ARMIN_SOFT", label: "آپارات", color: "hover:bg-red-500" },
+  ];
+
+  const mapLinks = [
+    {
+      name: "نشان",
+      icon: <Navigation className="h-4 w-4" />,
+      url: "https://neshan.org/maps/places/9ccb5e03124ff1b45606ee6e8abf6504#c34.337-47.081-15z-0p",
+    },
+    {
+      name: "بلد",
+      icon: <Compass className="h-4 w-4" />,
+      url: "https://balad.ir/p/%D8%A2%D8%B1%D9%85%DB%8C%D9%86-%D8%B3%D8%A7%D9%81%D8%AA_engineering-33prhHcvJ6CoDF#15/35.48845/51.68181",
+    },
+    {
+      name: "گوگل مپ",
+      icon: <Map className="h-4 w-4" />,
+      url: "https://www.google.com/maps/place/ARMIN-SOFT/@35.4876278,51.6769236,17z/data=!3m1!4b1!4m6!3m5!1s0x3f91eb2b6c71c453:0x7908be7f77a9ab27!8m2!3d35.4876278!4d51.6769236!16s%2Fg%2F11nmrmzj6b?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D",
+    }
   ];
 
   const footerLinks = [
@@ -119,6 +137,22 @@ export function SiteFooter() {
                 </div>
                 <span className="text-gray-300 text-sm">ایران، تهران، پاکدشت</span>
               </div>
+            </div>
+            
+            {/* Map Links */}
+            <div className="flex flex-wrap gap-2 mt-2">
+              {mapLinks.map((link, index) => (
+                <a 
+                  key={index}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 space-x-reverse bg-black/30 hover:bg-black text-sm py-1 px-3 rounded-full transition-colors"
+                >
+                  {link.icon}
+                  <span>مسیریابی با {link.name}</span>
+                </a>
+              ))}
             </div>
           </div>
           

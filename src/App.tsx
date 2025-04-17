@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -43,58 +43,56 @@ const App = () => {
         {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
         
         {!isLoading && (
-          <BrowserRouter>
-            <Routes>
-              {/* Main Pages */}
-              <Route path="/" element={<Home />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="/service" element={<Service />} />
-              <Route path="/work-sample" element={<WorkSample />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/about" element={<About />} />
-              
-              {/* Error Pages */}
-              <Route path="/error/:code" element={<ErrorPage />} />
-              
-              {/* Error Routes (Redirects to ErrorPage) */}
-              {/* 4xx Client Errors */}
-              <Route path="/400" element={<Navigate to="/error/400" replace />} />
-              <Route path="/401" element={<Navigate to="/error/401" replace />} />
-              <Route path="/402" element={<Navigate to="/error/402" replace />} />
-              <Route path="/403" element={<Navigate to="/error/403" replace />} />
-              <Route path="/404" element={<Navigate to="/error/404" replace />} />
-              <Route path="/405" element={<Navigate to="/error/405" replace />} />
-              <Route path="/406" element={<Navigate to="/error/406" replace />} />
-              <Route path="/407" element={<Navigate to="/error/407" replace />} />
-              <Route path="/408" element={<Navigate to="/error/408" replace />} />
-              <Route path="/409" element={<Navigate to="/error/409" replace />} />
-              <Route path="/410" element={<Navigate to="/error/410" replace />} />
-              <Route path="/411" element={<Navigate to="/error/411" replace />} />
-              <Route path="/412" element={<Navigate to="/error/412" replace />} />
-              <Route path="/413" element={<Navigate to="/error/413" replace />} />
-              <Route path="/414" element={<Navigate to="/error/414" replace />} />
-              <Route path="/415" element={<Navigate to="/error/415" replace />} />
-              <Route path="/416" element={<Navigate to="/error/416" replace />} />
-              <Route path="/417" element={<Navigate to="/error/417" replace />} />
-              <Route path="/422" element={<Navigate to="/error/422" replace />} />
-              <Route path="/423" element={<Navigate to="/error/423" replace />} />
-              <Route path="/424" element={<Navigate to="/error/424" replace />} />
-              
-              {/* 5xx Server Errors */}
-              <Route path="/500" element={<Navigate to="/error/500" replace />} />
-              <Route path="/501" element={<Navigate to="/error/501" replace />} />
-              <Route path="/502" element={<Navigate to="/error/502" replace />} />
-              <Route path="/503" element={<Navigate to="/error/503" replace />} />
-              <Route path="/504" element={<Navigate to="/error/504" replace />} />
-              <Route path="/505" element={<Navigate to="/error/505" replace />} />
-              <Route path="/506" element={<Navigate to="/error/506" replace />} />
-              <Route path="/507" element={<Navigate to="/error/507" replace />} />
-              <Route path="/510" element={<Navigate to="/error/510" replace />} />
-              
-              {/* 404 Catch All */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+          <Routes>
+            {/* Main Pages */}
+            <Route path="/" element={<Home />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/service" element={<Service />} />
+            <Route path="/work-sample" element={<WorkSample />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            
+            {/* Error Pages */}
+            <Route path="/error/:code" element={<ErrorPage />} />
+            
+            {/* Error Routes (Redirects to ErrorPage) */}
+            {/* 4xx Client Errors */}
+            <Route path="/400" element={<Navigate to="/error/400" replace />} />
+            <Route path="/401" element={<Navigate to="/error/401" replace />} />
+            <Route path="/402" element={<Navigate to="/error/402" replace />} />
+            <Route path="/403" element={<Navigate to="/error/403" replace />} />
+            <Route path="/404" element={<Navigate to="/error/404" replace />} />
+            <Route path="/405" element={<Navigate to="/error/405" replace />} />
+            <Route path="/406" element={<Navigate to="/error/406" replace />} />
+            <Route path="/407" element={<Navigate to="/error/407" replace />} />
+            <Route path="/408" element={<Navigate to="/error/408" replace />} />
+            <Route path="/409" element={<Navigate to="/error/409" replace />} />
+            <Route path="/410" element={<Navigate to="/error/410" replace />} />
+            <Route path="/411" element={<Navigate to="/error/411" replace />} />
+            <Route path="/412" element={<Navigate to="/error/412" replace />} />
+            <Route path="/413" element={<Navigate to="/error/413" replace />} />
+            <Route path="/414" element={<Navigate to="/error/414" replace />} />
+            <Route path="/415" element={<Navigate to="/error/415" replace />} />
+            <Route path="/416" element={<Navigate to="/error/416" replace />} />
+            <Route path="/417" element={<Navigate to="/error/417" replace />} />
+            <Route path="/422" element={<Navigate to="/error/422" replace />} />
+            <Route path="/423" element={<Navigate to="/error/423" replace />} />
+            <Route path="/424" element={<Navigate to="/error/424" replace />} />
+            
+            {/* 5xx Server Errors */}
+            <Route path="/500" element={<Navigate to="/error/500" replace />} />
+            <Route path="/501" element={<Navigate to="/error/501" replace />} />
+            <Route path="/502" element={<Navigate to="/error/502" replace />} />
+            <Route path="/503" element={<Navigate to="/error/503" replace />} />
+            <Route path="/504" element={<Navigate to="/error/504" replace />} />
+            <Route path="/505" element={<Navigate to="/error/505" replace />} />
+            <Route path="/506" element={<Navigate to="/error/506" replace />} />
+            <Route path="/507" element={<Navigate to="/error/507" replace />} />
+            <Route path="/510" element={<Navigate to="/error/510" replace />} />
+            
+            {/* 404 Catch All */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         )}
       </TooltipProvider>
     </QueryClientProvider>

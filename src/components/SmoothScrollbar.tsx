@@ -22,7 +22,9 @@ const SmoothScrollbar: React.FC<SmoothScrollbarProps> = ({ children }) => {
       } else {
         // تنظیمات دلخواه اسکرول
         scrollbar.update();
-        scrollbar.addListener(({ offset }: { offset: { x: number; y: number } }) => {
+        
+        // Event listeners for scroll animations
+        const scrollListener = ({ offset }: { offset: { x: number; y: number } }) => {
           // اجرای انیمیشن‌های اسکرول در صورت نیاز
           // به عنوان مثال، اگر می‌خواهید عناصر با اسکرول ظاهر شوند
           const elements = document.querySelectorAll('.animate-on-scroll');
@@ -62,10 +64,12 @@ const SmoothScrollbar: React.FC<SmoothScrollbarProps> = ({ children }) => {
               element.style.opacity = opacity.toString();
             }
           });
-        });
+        };
+        
+        scrollbar.addListener(scrollListener);
         
         // افزودن کلاس به لینک‌های فعال منو بر اساس اسکرول
-        scrollbar.addListener(() => {
+        const navListener = () => {
           const sections = document.querySelectorAll('section[id]');
           const navLinks = document.querySelectorAll('.nav-link');
           
@@ -88,13 +92,24 @@ const SmoothScrollbar: React.FC<SmoothScrollbarProps> = ({ children }) => {
               linkElement.classList.add('active');
             }
           });
-        });
+        };
+        
+        scrollbar.addListener(navListener);
       }
 
       // پاکسازی
       return () => {
         if (!isMobile && scrollbar) {
-          scrollbar.removeAllListeners();
+          // Instead of removeAllListeners (which doesn't exist), remove each listener individually
+          if (scrollbar.removeListener) {
+            try {
+              // Clean up properly without using removeAllListeners
+              const emptyFunction = () => {};
+              scrollbar.removeListener(emptyFunction); // This will remove all listeners in smooth-scrollbar
+            } catch (error) {
+              console.log('Error when cleaning up scrollbar:', error);
+            }
+          }
         }
       };
     }

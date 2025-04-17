@@ -11,7 +11,15 @@ interface SiteLayoutProps {
 }
 
 export function SiteLayout({ children }: SiteLayoutProps) {
-  const { pathname } = useLocation();
+  // Using try-catch to handle case when SiteLayout is used outside Router context
+  let pathname = '/';
+  try {
+    // Only execute useLocation if we're inside a Router context
+    pathname = useLocation().pathname;
+  } catch (error) {
+    console.log('SiteLayout: useLocation cannot be used outside Router context');
+  }
+  
   const isMobile = useIsMobile();
 
   // اسکرول به بالای صفحه در هنگام تغییر مسیر

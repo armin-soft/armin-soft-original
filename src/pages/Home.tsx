@@ -69,9 +69,7 @@ const Home = () => {
             </div>
             <div className="hidden lg:block relative">
               <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-transparent z-10"></div>
-              <div className="animated-border w-full h-[450px] overflow-hidden rounded-lg">
-                
-              </div>
+              
             </div>
           </div>
         </div>

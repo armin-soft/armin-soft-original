@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import React, { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -294,7 +293,7 @@ const Contact = () => {
             {/* Google Map */}
             <div className="rounded-lg overflow-hidden h-[400px] border-4 border-white shadow-xl">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207254.46391850397!2d51.249158366220615!3d35.70531294947146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00491ff3dcd9%3A0xf0b3697c567024bc!2sTehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1653389178128!5m2!1sen!2s" 
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBm_g6KmjMPbqMv-5sRZmr7JRGkIiwRVsU&q=ARMIN-SOFT,Tehran,Iran" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 

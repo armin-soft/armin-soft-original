@@ -17,9 +17,9 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SiteHeader />
-      <main className="flex-grow pt-20">{children}</main>
+      <main className="flex-grow pt-24 md:pt-28">{children}</main>
       <SiteFooter />
     </div>
   );

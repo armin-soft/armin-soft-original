@@ -227,27 +227,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Add CSS for floating animation */}
-      <style jsx="true">{`
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          100% { transform: translateY(-10px); }
-        }
-        
-        @keyframes spin-slow {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-        
-        .glass-card {
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-        }
-      `}</style>
+      {/* CSS styles added in index.css file */}
     </SiteLayout>;
 };
 

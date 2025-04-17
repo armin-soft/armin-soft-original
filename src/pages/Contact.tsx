@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter, Youtube, AtSign, MessagesSquare } from "lucide-react";
+import { Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter, Youtube, AtSign, MessagesSquare, MessageSquare } from "lucide-react";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -68,9 +68,11 @@ const Contact = () => {
   const socialLinks = [
     { icon: <Instagram size={24} />, name: "اینستاگرام", url: "https://instagram.com/ARMIN_SOFT", color: "bg-gradient-to-br from-purple-600 to-pink-500" },
     { icon: <Twitter size={24} />, name: "توییتر", url: "https://twitter.com/@ARMIN_SOFT", color: "bg-blue-500" },
+    { icon: <MessageSquare size={24} />, name: "واتساپ", url: "https://wa.me/989358983854", color: "bg-green-500" },
     { icon: <Facebook size={24} />, name: "فیسبوک", url: "https://www.facebook.com/@ARMINSOFT0", color: "bg-blue-600" },
     { icon: <Github size={24} />, name: "گیت‌هاب", url: "https://github.com/ARMIN-SOFT", color: "bg-gray-800" },
     { icon: <Youtube size={24} />, name: "یوتیوب", url: "https://www.youtube.com/@ARMIN_SOFT", color: "bg-red-600" },
+    { icon: <MessagesSquare size={24} />, name: "کانال تلگرام", url: "https://t.me/Channel_ARMINSOFT", color: "bg-blue-400" },
     { icon: <MessagesSquare size={24} />, name: "تلگرام", url: "https://t.me/ARMIN_SOFT", color: "bg-blue-400" },
     { icon: <AtSign size={24} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-red-500" },
   ];

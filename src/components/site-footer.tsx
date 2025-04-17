@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Github, Instagram, Twitter, Youtube, MessageCircle, Phone, AtSign, Mail, MapPin, Linkedin, ArrowRight } from "lucide-react";
+import { Facebook, Github, Instagram, Twitter, Youtube, MessageCircle, Phone, AtSign, Mail, MapPin, Linkedin, ArrowRight, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -24,11 +24,13 @@ export function SiteFooter() {
   const socialLinks = [
     { icon: <Instagram size={18} />, url: "https://instagram.com/ARMIN_SOFT", label: "اینستاگرام", color: "hover:bg-gradient-to-tr hover:from-yellow-500 hover:to-pink-600" },
     { icon: <Twitter size={18} />, url: "https://twitter.com/@ARMIN_SOFT", label: "توییتر", color: "hover:bg-blue-500" },
+    { icon: <MessageSquare size={18} />, url: "https://wa.me/989358983854", label: "واتساپ", color: "hover:bg-green-500" },
     { icon: <Facebook size={18} />, url: "https://www.facebook.com/@ARMINSOFT0", label: "فیسبوک", color: "hover:bg-blue-600" },
-    { icon: <Linkedin size={18} />, url: "https://linkedin.com/in/armin-soft", label: "لینکدین", color: "hover:bg-blue-700" },
     { icon: <Github size={18} />, url: "https://github.com/ARMIN-SOFT", label: "گیت‌هاب", color: "hover:bg-gray-700" },
     { icon: <Youtube size={18} />, url: "https://www.youtube.com/@ARMIN_SOFT", label: "یوتیوب", color: "hover:bg-red-600" },
+    { icon: <MessageCircle size={18} />, url: "https://t.me/Channel_ARMINSOFT", label: "کانال تلگرام", color: "hover:bg-blue-400" },
     { icon: <MessageCircle size={18} />, url: "https://t.me/ARMIN_SOFT", label: "تلگرام", color: "hover:bg-blue-400" },
+    { icon: <AtSign size={18} />, url: "https://www.aparat.com/ARMIN_SOFT", label: "آپارات", color: "hover:bg-red-500" },
   ];
 
   const footerLinks = [

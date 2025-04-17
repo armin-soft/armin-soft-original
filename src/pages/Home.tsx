@@ -1,45 +1,34 @@
-
 import { ArrowLeft, Code, Shield, Server, Cpu, Bot, Database } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
-
 const Home = () => {
-  const services = [
-    {
-      icon: <Code className="h-10 w-10 text-arminred-500" />,
-      title: "توسعه نرم‌افزار",
-      description: "طراحی و توسعه نرم‌افزارهای تخصصی برای سیستم‌عامل‌های مختلف"
-    },
-    {
-      icon: <Shield className="h-10 w-10 text-arminred-500" />,
-      title: "امنیت و هک اخلاقی",
-      description: "تحلیل امنیتی و تست نفوذ سیستم‌ها و نرم‌افزارها"
-    },
-    {
-      icon: <Server className="h-10 w-10 text-arminred-500" />,
-      title: "توسعه وب‌سرویس",
-      description: "طراحی و پیاده‌سازی API‌ها و وب‌سرویس‌های توانمند"
-    },
-    {
-      icon: <Bot className="h-10 w-10 text-arminred-500" />,
-      title: "ربات‌ها و هوش مصنوعی",
-      description: "توسعه ربات‌های هوشمند و سیستم‌های مبتنی بر هوش مصنوعی"
-    },
-    {
-      icon: <Database className="h-10 w-10 text-arminred-500" />,
-      title: "مدیریت دیتابیس",
-      description: "طراحی، بهینه‌سازی و مدیریت پایگاه‌های داده"
-    },
-    {
-      icon: <Cpu className="h-10 w-10 text-arminred-500" />,
-      title: "اتوماسیون هوشمند",
-      description: "پیاده‌سازی سیستم‌های اتوماسیون و اسکریپت‌های خودکار"
-    }
-  ];
-
-  return (
-    <SiteLayout>
+  const services = [{
+    icon: <Code className="h-10 w-10 text-arminred-500" />,
+    title: "توسعه نرم‌افزار",
+    description: "طراحی و توسعه نرم‌افزارهای تخصصی برای سیستم‌عامل‌های مختلف"
+  }, {
+    icon: <Shield className="h-10 w-10 text-arminred-500" />,
+    title: "امنیت و هک اخلاقی",
+    description: "تحلیل امنیتی و تست نفوذ سیستم‌ها و نرم‌افزارها"
+  }, {
+    icon: <Server className="h-10 w-10 text-arminred-500" />,
+    title: "توسعه وب‌سرویس",
+    description: "طراحی و پیاده‌سازی API‌ها و وب‌سرویس‌های توانمند"
+  }, {
+    icon: <Bot className="h-10 w-10 text-arminred-500" />,
+    title: "ربات‌ها و هوش مصنوعی",
+    description: "توسعه ربات‌های هوشمند و سیستم‌های مبتنی بر هوش مصنوعی"
+  }, {
+    icon: <Database className="h-10 w-10 text-arminred-500" />,
+    title: "مدیریت دیتابیس",
+    description: "طراحی، بهینه‌سازی و مدیریت پایگاه‌های داده"
+  }, {
+    icon: <Cpu className="h-10 w-10 text-arminred-500" />,
+    title: "اتوماسیون هوشمند",
+    description: "پیاده‌سازی سیستم‌های اتوماسیون و اسکریپت‌های خودکار"
+  }];
+  return <SiteLayout>
       {/* Hero Section */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900">
         <div className="absolute inset-0 z-0">
@@ -47,7 +36,9 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-20 h-20 bg-arminred-500/30 rounded-full filter blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-10 right-10 w-40 h-40 bg-arminred-600/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+            <div className="absolute bottom-10 right-10 w-40 h-40 bg-arminred-600/20 rounded-full filter blur-3xl animate-pulse" style={{
+            animationDelay: "1s"
+          }}></div>
           </div>
         </div>
 
@@ -79,75 +70,7 @@ const Home = () => {
             <div className="hidden lg:block relative">
               <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-transparent z-10"></div>
               <div className="animated-border w-full h-[450px] overflow-hidden rounded-lg">
-                <div className="w-full h-full bg-gradient-to-br from-gray-800 to-black p-6 rounded-lg flex flex-col justify-center items-center text-center">
-                  <div className="space-y-2 w-full">
-                    <pre className="text-left overflow-hidden text-gray-400 text-xs md:text-sm h-[400px] overflow-y-auto">
-                      <code>
-{`//  ______    ______   __    __   __   __   __  __   
-/\\  ___\\  /\\  == \\ /\\ "-./  \\ /\\ \\ /\\ "-.\\ \\/\\ \\  
-\\ \\  __\\  \\ \\  __< \\ \\ \\-./\\ \\\\ \\ \\\\ \\ \\-.  \\ \\ \\
- \\ \\_____\\ \\ \\_\\ \\_\\\\ \\_\\ \\ \\_\\\\ \\_\\\\ \\_\\\\"\\_\\ \\_\\
-  \\/_____/  \\/_/ /_/ \\/_/  \\/_/ \\/_/ \\/_/ \\/_/\\/_/
-                                                   
-// خالق هوشمند، نوآور در دنیای دیجیتال
-
-// کد زندگی من
-class ArminSoft {
-  constructor() {
-    this.name = "آرمین اسکندری";
-    this.title = "توسعه‌دهنده نرم‌افزار و متخصص امنیت";
-    this.location = "ایران، تهران";
-    this.skills = [
-      "برنامه‌نویسی", "امنیت و هک اخلاقی", 
-      "توسعه بک‌اند", "هوش مصنوعی"
-    ];
-  }
-  
-  async buildSolution(idea) {
-    if (!idea) throw new Error("ایده‌ای وارد نشده است");
-    
-    const plan = await this.analyze(idea);
-    const design = this.createArchitecture(plan);
-    const product = this.develop(design);
-    
-    return this.deliver(product);
-  }
-  
-  analyze(idea) {
-    console.log("تحلیل نیازمندی‌ها...");
-    return Promise.resolve(idea + "_analyzed");
-  }
-  
-  createArchitecture(plan) {
-    console.log("طراحی معماری...");
-    return plan + "_designed";
-  }
-  
-  develop(design) {
-    console.log("توسعه و پیاده‌سازی...");
-    return design + "_developed";
-  }
-  
-  deliver(product) {
-    console.log("تحویل محصول نهایی");
-    return {
-      product,
-      security: "تضمین شده",
-      quality: "بالا",
-      support: "24/7"
-    };
-  }
-}
-
-// شروع مسیر با آرمین سافت
-const armin = new ArminSoft();
-armin.buildSolution("پروژه هوشمند شما")
-  .then(result => console.log("نتیجه:", result))
-  .catch(err => console.error("خطا:", err));`}
-                      </code>
-                    </pre>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -163,18 +86,13 @@ armin.buildSolution("پروژه هوشمند شما")
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-card border border-border rounded-lg p-6 card-gradient-hover group"
-              >
+            {services.map((service, index) => <div key={index} className="bg-card border border-border rounded-lg p-6 card-gradient-hover group">
                 <div className="mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-3 group-hover:text-arminred-600 transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground">{service.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
 
           <div className="text-center mt-10">
@@ -206,7 +124,9 @@ armin.buildSolution("پروژه هوشمند شما")
             <div className="md:w-1/3 flex justify-center items-center">
               <div className="relative w-40 h-40 md:w-56 md:h-56 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border-4 border-white/30">
                 <span className="text-white text-4xl md:text-6xl font-bold">AS</span>
-                <div className="absolute -inset-2 border-2 border-dashed border-white/25 rounded-full animate-spin-slow" style={{ animationDuration: '20s' }}></div>
+                <div className="absolute -inset-2 border-2 border-dashed border-white/25 rounded-full animate-spin-slow" style={{
+                animationDuration: '20s'
+              }}></div>
               </div>
             </div>
           </div>
@@ -238,8 +158,6 @@ armin.buildSolution("پروژه هوشمند شما")
           </div>
         </div>
       </section>
-    </SiteLayout>
-  );
+    </SiteLayout>;
 };
-
 export default Home;

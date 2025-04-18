@@ -45,17 +45,6 @@ export function SiteHeader() {
             >
               <DesktopNavigation currentPath={currentPath} />
             </motion.div>
-            
-            <motion.div 
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="flex items-center gap-2 border-r border-gray-200 dark:border-gray-700 pr-4"
-            >
-              <div className="glass-effect p-1 rounded-lg">
-                <ThemeToggle />
-              </div>
-            </motion.div>
           </div>
 
           <motion.div 
@@ -64,9 +53,6 @@ export function SiteHeader() {
             transition={{ delay: 0.2 }}
             className="flex items-center md:hidden gap-2"
           >
-            <div className="glass-effect p-1 rounded-lg">
-              <ThemeToggle />
-            </div>
             <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
           </motion.div>
         </div>
@@ -81,3 +67,4 @@ export function SiteHeader() {
     </header>
   );
 }
+

@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { Code, Shield, Bot, Server, Database, Monitor, Cloud, Smartphone } from "lucide-react";
+import { Code, Shield, Bot, Server, Database, Monitor, Cloud, Smartphone, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const ServiceOverview = () => {

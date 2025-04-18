@@ -1,3 +1,4 @@
+
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { getPersonSchema } from "@/components/seo/schemas";
@@ -8,7 +9,7 @@ import { ResumeHero } from "@/components/resume/ResumeHero";
 import { SkillCard } from "@/components/resume/SkillCard";
 import { ExperienceCard } from "@/components/resume/ExperienceCard";
 import { EducationCard } from "@/components/resume/EducationCard";
-import { Download, ArrowRight, Code, Shield, Bot, Layout, Monitor, Smartphone, FileCode, Database, BookCode, Server, Award } from "lucide-react";
+import { Download, ArrowRight, Code, Shield, Bot, Layout, Monitor, Smartphone, FileCode, Database, BookOpen, Server, Award } from "lucide-react";
 
 const Resume = () => {
   const skills = [
@@ -40,7 +41,7 @@ const Resume = () => {
     { name: "جاوا", level: 68, icon: <Code className="h-5 w-5 text-arminred-600" /> },
     { name: "لوا", level: 91, icon: <Code className="h-5 w-5 text-arminred-600" /> },
     { name: "پایتون", level: 98, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "پرل", level: 98, icon: <BookCode className="h-5 w-5 text-arminred-600" /> },
+    { name: "پرل", level: 98, icon: <BookOpen className="h-5 w-5 text-arminred-600" /> },
     { name: "شل", level: 98, icon: <FileCode className="h-5 w-5 text-arminred-600" /> },
   ];
 

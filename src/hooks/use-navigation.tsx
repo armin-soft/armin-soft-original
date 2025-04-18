@@ -9,11 +9,11 @@ interface MenuItem {
 
 export const menuItems = [
   { name: "صفحه اصلی", path: "/" },
-  { name: "رزومه", path: "/resume" },
-  { name: "خدمات", path: "/service" },
-  { name: "نمونه کار", path: "/work-sample" },
-  { name: "تماس", path: "/contact" },
-  { name: "درباره", path: "/about" }
+  { name: "رزومه", path: "/Resume" },
+  { name: "خدمات", path: "/Service" },
+  { name: "نمونه کار", path: "/Work-Sample" },
+  { name: "تماس", path: "/Contact" },
+  { name: "درباره", path: "/About" }
 ];
 
 export function useNavigation() {

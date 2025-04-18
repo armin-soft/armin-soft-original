@@ -8,15 +8,40 @@ import { ResumeHero } from "@/components/resume/ResumeHero";
 import { SkillCard } from "@/components/resume/SkillCard";
 import { ExperienceCard } from "@/components/resume/ExperienceCard";
 import { EducationCard } from "@/components/resume/EducationCard";
-import { Download, ArrowRight, Code, Shield, Bot, Server, Database, Award } from "lucide-react";
+import { Download, ArrowRight, Code, Shield, Bot, Layout, Monitor, Smartphone, FileCode, Database, BookCode, Server, Award } from "lucide-react";
 
 const Resume = () => {
   const skills = [
-    { name: "برنامه‌نویسی وب", level: 95, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "امنیت و هک", level: 90, icon: <Shield className="h-5 w-5 text-arminred-600" /> },
-    { name: "هوش مصنوعی", level: 85, icon: <Bot className="h-5 w-5 text-arminred-600" /> },
-    { name: "توسعه API", level: 88, icon: <Server className="h-5 w-5 text-arminred-600" /> },
-    { name: "مدیریت دیتابیس", level: 92, icon: <Database className="h-5 w-5 text-arminred-600" /> },
+    // Security & AI
+    { name: "هک و امنیت", level: 99, icon: <Shield className="h-5 w-5 text-arminred-600" /> },
+    { name: "طراحی هوش مصنوعی", level: 90, icon: <Bot className="h-5 w-5 text-arminred-600" /> },
+    
+    // Design & Development
+    { name: "طراحی دیزاین", level: 18, icon: <Layout className="h-5 w-5 text-arminred-600" /> },
+    { name: "طراحی سایت", level: 100, icon: <Monitor className="h-5 w-5 text-arminred-600" /> },
+    { name: "طراحی وب سرویس", level: 95, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "طراحی اسکریپت", level: 100, icon: <FileCode className="h-5 w-5 text-arminred-600" /> },
+    { name: "طراحی نرم افزار", level: 70, icon: <Monitor className="h-5 w-5 text-arminred-600" /> },
+    { name: "طراحی اپلیکیشن", level: 59, icon: <Smartphone className="h-5 w-5 text-arminred-600" /> },
+    
+    // Web Technologies
+    { name: "اچ تی ام ال", level: 100, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "سی اس اس", level: 35, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "جاوا اسکریپت", level: 64, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "جی‌ کوئری", level: 60, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "پی اچ پی", level: 90, icon: <Database className="h-5 w-5 text-arminred-600" /> },
+    
+    // Programming Languages
+    { name: "سی پلاس پلاس", level: 51, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "سی پلاس", level: 52, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "سی شارپ", level: 57, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "سی", level: 63, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "سوئیفت", level: 63, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "جاوا", level: 68, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "لوا", level: 91, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "پایتون", level: 98, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "پرل", level: 98, icon: <BookCode className="h-5 w-5 text-arminred-600" /> },
+    { name: "شل", level: 98, icon: <FileCode className="h-5 w-5 text-arminred-600" /> },
   ];
 
   const education = [
@@ -78,12 +103,12 @@ const Resume = () => {
     <SiteLayout>
       <SEOHead 
         title="رزومه"
-        description="رزومه حرفه‌ای آرمین سافت - متخصص امنیت و برنامه‌نویس با بیش از ۵ سال تجربه"
+        description="رزومه حرفه‌ای آرمین سافت - متخصص برنامه‌نویسی و امنیت با تجربه در زمینه‌های مختلف فناوری"
         canonical="/Resume"
         keywords="رزومه آرمین سافت, سوابق کاری, تجربیات, مهارت‌ها, گواهینامه‌ها"
         schema={getPersonSchema()}
       />
-
+      
       <ResumeHero />
 
       <div className="min-h-screen bg-gradient-to-b from-black to-gray-900">
@@ -101,7 +126,13 @@ const Resume = () => {
                 مهارت‌های تخصصی
               </h2>
               {skills.map((skill, index) => (
-                <SkillCard key={index} {...skill} index={index} />
+                <SkillCard
+                  key={index}
+                  name={skill.name}
+                  level={skill.level}
+                  icon={skill.icon}
+                  index={index}
+                />
               ))}
             </motion.div>
 

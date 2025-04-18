@@ -1,7 +1,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/90 dark:bg-black/60 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg;
+    @apply bg-black/60 backdrop-blur-md border border-white/10 shadow-lg;
   }
   
   .button-primary {
@@ -9,19 +9,18 @@
   }
   
   .button-secondary {
-    @apply bg-white/10 hover:bg-white/20 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 font-medium py-2 px-4 rounded-md transition-colors;
+    @apply bg-white/10 hover:bg-white/20 text-white border border-gray-700 font-medium py-2 px-4 rounded-md transition-colors;
   }
   
   .input-field {
-    @apply w-full p-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-arminred-500;
+    @apply w-full p-3 rounded-md border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-arminred-500;
   }
   
-  /* بهبود خوانایی در حالت روشن */
-  .light .card {
-    @apply bg-white shadow-md border border-gray-200;
+  .card {
+    @apply bg-gray-900 shadow-md border border-gray-800;
   }
   
-  .light .card-content {
-    @apply text-gray-800;
+  .card-content {
+    @apply text-white;
   }
 }

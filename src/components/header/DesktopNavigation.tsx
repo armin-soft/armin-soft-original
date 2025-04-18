@@ -17,7 +17,7 @@ interface DesktopNavigationProps {
 
 export function DesktopNavigation({ currentPath }: DesktopNavigationProps) {
   return (
-    <NavigationMenu className="hidden md:flex" dir="ltr">
+    <NavigationMenu className="hidden md:flex" dir="rtl">
       <NavigationMenuList className="space-x-1">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -31,7 +31,7 @@ export function DesktopNavigation({ currentPath }: DesktopNavigationProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             className="w-56 bg-black/90 backdrop-blur-xl border border-white/10" 
-            align="start"
+            align="end"
           >
             {menuItems.map((item, index) => (
               <motion.div

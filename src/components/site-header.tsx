@@ -34,16 +34,16 @@ export function SiteHeader() {
             <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
           </div>
 
-          {/* Desktop Navigation Menu - Left side */}
-          <DesktopNavigation currentPath={currentPath} />
+          {/* Logo - Left side */}
+          <Logo />
 
           {/* DateTime - Center */}
           <div className="flex-1 flex justify-center">
             <LiveDateTime />
           </div>
 
-          {/* Logo - Right side */}
-          <Logo />
+          {/* Desktop Navigation Menu - Right side */}
+          <DesktopNavigation currentPath={currentPath} />
         </div>
       </motion.div>
 

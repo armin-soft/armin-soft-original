@@ -18,20 +18,45 @@ const SeasonIcon = ({ season }: { season: string }) => {
   const getSeasonIcon = () => {
     switch (season) {
       case 'بهار':
-        return <Flower className="h-4 w-4 text-pink-400" />;
+        return (
+          <div className="relative">
+            <Flower strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400 rounded-full" />
+          </div>
+        );
       case 'تابستان':
-        return <Sun className="h-4 w-4 text-yellow-400" />;
+        return (
+          <div className="relative">
+            <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+          </div>
+        );
       case 'پاییز':
-        return <Leaf className="h-4 w-4 text-orange-400" />;
+        return (
+          <div className="relative">
+            <Leaf strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400 rounded-full" />
+          </div>
+        );
       case 'زمستان':
-        return <Snowflake className="h-4 w-4 text-blue-400" />;
+        return (
+          <div className="relative">
+            <Snowflake strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full" />
+          </div>
+        );
       default:
-        return <Sun className="h-4 w-4 text-gray-400" />;
+        return (
+          <div className="relative">
+            <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+          </div>
+        );
     }
   };
 
   return (
-    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-white/10 to-white/5 shadow-lg flex items-center justify-center">
+    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-black/40 to-black/80 border border-white/10 shadow-lg flex items-center justify-center">
       {getSeasonIcon()}
     </div>
   );
@@ -41,24 +66,59 @@ const TimeBasedIcon = ({ timeBased }: { timeBased: string }) => {
   const getTimeIcon = () => {
     switch (timeBased) {
       case 'صبح':
-        return <Sunrise className="h-4 w-4 text-yellow-400" />;
+        return (
+          <div className="relative">
+            <Sunrise strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+          </div>
+        );
       case 'ظهر':
-        return <Sun className="h-4 w-4 text-yellow-500" />;
+        return (
+          <div className="relative">
+            <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-500 rounded-full" />
+          </div>
+        );
       case 'بعد از ظهر':
-        return <CloudSun className="h-4 w-4 text-orange-400" />;
+        return (
+          <div className="relative">
+            <CloudSun strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400 rounded-full" />
+          </div>
+        );
       case 'عصر':
-        return <Sunset className="h-4 w-4 text-pink-400" />;
+        return (
+          <div className="relative">
+            <Sunset strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400 rounded-full" />
+          </div>
+        );
       case 'غروب':
-        return <Sunset className="h-4 w-4 text-red-400" />;
+        return (
+          <div className="relative">
+            <Sunset strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-red-400 rounded-full" />
+          </div>
+        );
       case 'شب':
-        return <Moon className="h-4 w-4 text-blue-400" />;
+        return (
+          <div className="relative">
+            <Moon strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full" />
+          </div>
+        );
       default:
-        return <Clock className="h-4 w-4 text-gray-400" />;
+        return (
+          <div className="relative">
+            <Clock strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+          </div>
+        );
     }
   };
 
   return (
-    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-white/10 to-white/5 shadow-lg flex items-center justify-center">
+    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-black/40 to-black/80 border border-white/10 shadow-lg flex items-center justify-center">
       {getTimeIcon()}
     </div>
   );
@@ -93,7 +153,7 @@ export function LiveDateTime() {
 
   if (loading) {
     return (
-      <div className="animate-pulse flex items-center space-x-2 space-x-reverse bg-white/5 rounded-full px-4 py-2">
+      <div className="animate-pulse flex items-center space-x-2 space-x-reverse bg-black/30 backdrop-blur-md border-gray-800 rounded-full px-4 py-2">
         <div className="w-4 h-4 rounded-full bg-gray-700" />
         <div className="h-4 w-24 bg-gray-700 rounded" />
       </div>
@@ -110,10 +170,12 @@ export function LiveDateTime() {
       animate={{ opacity: 1, y: 0 }}
       className="hidden md:block"
     >
-      <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
+      <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300 shadow-lg">
         <div className="flex items-center gap-6 px-6 py-3">
-          <div className="flex items-center gap-3 border-l border-gray-700 pl-6">
-            <Calendar className="h-4 w-4 text-arminred-500" />
+          <div className="flex items-center gap-3 border-l border-gray-700/50 pl-6">
+            <div className="p-1.5 rounded-full bg-arminred-500/10">
+              <Calendar className="h-3.5 w-3.5 text-arminred-500" />
+            </div>
             <div className="flex items-center gap-3">
               <span className="text-sm font-medium text-gray-200">{dateTime.Shamsi_Date}</span>
               <div className="flex items-center gap-2">
@@ -124,13 +186,16 @@ export function LiveDateTime() {
           </div>
           
           <div className="flex items-center gap-3">
-            <Clock className="h-4 w-4 text-arminred-500" />
+            <div className="p-1.5 rounded-full bg-arminred-500/10">
+              <Clock className="h-3.5 w-3.5 text-arminred-500" />
+            </div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={dateTime.Time}
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
+                transition={{ duration: 0.2 }}
                 className="flex items-center gap-3"
               >
                 <span className="text-sm font-medium text-gray-200 farsi-numbers">{dateTime.Time}</span>

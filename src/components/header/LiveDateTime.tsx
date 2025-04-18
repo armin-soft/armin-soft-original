@@ -65,7 +65,7 @@ export function LiveDateTime() {
           <div className="flex items-center gap-2 border-l border-gray-700 pl-4">
             <Calendar className="h-4 w-4 text-arminred-500" />
             <div className="flex items-center gap-2">
-              <span className="text-sm farsi-numbers">{dateTime.Shamsi_Date}</span>
+              <span className="text-sm farsi-numbers">{dateTime.Season}</span>
               <span className="text-base">{dateTime.Season_Emoji}</span>
             </div>
           </div>
@@ -80,7 +80,7 @@ export function LiveDateTime() {
                 exit={{ opacity: 0, y: -5 }}
                 className="flex items-center gap-2"
               >
-                <span className="text-sm farsi-numbers">{dateTime.Time}</span>
+                <span className="text-sm farsi-numbers">{dateTime.Time_Based}</span>
                 <span className="text-base">{dateTime.Time_Based_Emoji}</span>
               </motion.div>
             </AnimatePresence>

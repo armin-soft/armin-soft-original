@@ -6,6 +6,9 @@ import { ServiceOverview } from "@/components/home/ServiceOverview";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
 import { CTASection } from "@/components/home/CTASection";
+import { HomeStats } from "@/components/home/HomeStats";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { ProcessSection } from "@/components/home/ProcessSection";
 
 const Home = () => {
   return (
@@ -17,9 +20,12 @@ const Home = () => {
         keywords="برنامه نویس بک اند, توسعه API, پایتون, جاوا, پی اچ پی, مدیریت سرور, امنیت وب, برنامه نویسی سمت سرور"
       />
       <HomeHero />
+      <HomeStats />
       <ServiceOverview />
+      <ProcessSection />
       <FeaturedProjects />
       <SkillsShowcase />
+      <TestimonialsSection />
       <CTASection />
     </SiteLayout>
   );

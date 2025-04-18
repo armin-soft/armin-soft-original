@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -65,15 +66,16 @@ export function LiveDateTime() {
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="hidden md:block"
+      className="block" // Show on both mobile and desktop
     >
       <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300 shadow-lg">
-        <div className="flex items-center gap-6 px-6 py-3">
+        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 px-3 md:px-6 py-2 md:py-3">
           <DateDisplay 
             date={dateTime.date}
             season={dateTime.season}
             seasonEmoji={dateTime.seasonEmoji}
           />
+          <div className="hidden md:block w-px h-6 bg-gray-700/50" />
           <TimeDisplay 
             time={dateTime.time}
             timeBased={dateTime.timeBased}

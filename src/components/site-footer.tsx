@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { toast } from "@/components/ui/use-toast";
+import { motion } from "framer-motion";
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,6 @@ export function SiteFooter() {
   const { register, handleSubmit, reset } = useForm<{ email: string }>();
   
   const onSubmit = (data: { email: string }) => {
-    // Here you would typically send this to your API
     console.log("Subscription email:", data.email);
     toast({
       title: "ایمیل شما ثبت شد",
@@ -31,24 +31,6 @@ export function SiteFooter() {
     { icon: <MessageCircle size={18} />, url: "https://t.me/Channel_ARMINSOFT", label: "کانال تلگرام", color: "hover:bg-blue-400" },
     { icon: <MessageCircle size={18} />, url: "https://t.me/ARMIN_SOFT", label: "تلگرام", color: "hover:bg-blue-400" },
     { icon: <AtSign size={18} />, url: "https://www.aparat.com/ARMIN_SOFT", label: "آپارات", color: "hover:bg-red-500" },
-  ];
-
-  const mapLinks = [
-    {
-      name: "نشان",
-      icon: <Navigation className="h-4 w-4" />,
-      url: "https://neshan.org/maps/places/9ccb5e03124ff1b45606ee6e8abf6504#c34.337-47.081-15z-0p",
-    },
-    {
-      name: "بلد",
-      icon: <Compass className="h-4 w-4" />,
-      url: "https://balad.ir/p/%D8%A2%D8%B1%D9%85%DB%8C%D9%86-%D8%B3%D8%A7%D9%81%D8%AA_engineering-33prhHcvJ6CoDF#15/35.48845/51.68181",
-    },
-    {
-      name: "گوگل مپ",
-      icon: <Map className="h-4 w-4" />,
-      url: "https://www.google.com/maps/place/ARMIN-SOFT/@35.4876278,51.6769236,17z/data=!3m1!4b1!4m6!3m5!1s0x3f91eb2b6c71c453:0x7908be7f77a9ab27!8m2!3d35.4876278!4d51.6769236!16s%2Fg%2F11nmrmzj6b?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D",
-    }
   ];
 
   const footerLinks = [
@@ -76,86 +58,112 @@ export function SiteFooter() {
     }
   ];
 
+  const containerAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <footer className="bg-black/95 text-white pt-16 pb-6 mt-16 farsi-numbers">
       <div className="container mx-auto px-4 md:px-6">
         {/* Top Section with Newsletter */}
-        <div className="relative overflow-hidden mb-12 bg-gradient-to-r from-arminred-700 to-black p-6 md:p-8 rounded-2xl shadow-xl border border-arminred-800/50">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          variants={containerAnimation}
+          className="relative overflow-hidden mb-12 bg-gradient-to-r from-arminred-700 to-black p-6 md:p-8 rounded-2xl shadow-xl border border-arminred-800/50"
+        >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="max-w-md">
-              <h3 className="text-xl md:text-2xl font-bold mb-2">عضویت در خبرنامه</h3>
-              <p className="text-white/80 mb-4">برای دریافت آخرین اخبار و مقالات تخصصی در زمینه برنامه‌نویسی و امنیت در خبرنامه ما عضو شوید.</p>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex w-full max-w-md">
+            <motion.div 
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="max-w-md"
+            >
+              <h3 className="text-xl md:text-2xl font-bold mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                عضویت در خبرنامه
+              </h3>
+              <p className="text-white/80">
+                برای دریافت آخرین اخبار و مقالات تخصصی در زمینه برنامه‌نویسی و امنیت در خبرنامه ما عضو شوید.
+              </p>
+            </motion.div>
+
+            <motion.form 
+              initial={{ x: 20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex w-full max-w-md group"
+            >
               <Input
                 type="email"
                 placeholder="ایمیل خود را وارد کنید..."
-                className="text-right rounded-r-md rounded-l-none border-0 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-arminred-500"
+                className="text-right rounded-r-md rounded-l-none border-0 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-arminred-500 transition-all hover:bg-white/20"
                 {...register("email", { required: true })}
               />
-              <Button type="submit" className="rounded-l-md rounded-r-none bg-white text-arminred-600 hover:bg-white/90 hover:text-arminred-700">
+              <Button 
+                type="submit" 
+                className="rounded-l-md rounded-r-none bg-white text-arminred-600 hover:bg-white/90 hover:text-arminred-700 transition-all duration-300"
+              >
                 اشتراک
-                <ArrowRight className="mr-1 h-4 w-4" />
+                <ArrowRight className="mr-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
-            </form>
+            </motion.form>
           </div>
-          
+
           {/* Decorative elements */}
           <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-arminred-600/20 rounded-full blur-3xl"></div>
           <div className="absolute -top-20 -right-20 w-60 h-60 bg-arminred-700/10 rounded-full blur-3xl"></div>
-        </div>
-        
+        </motion.div>
+
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
-          {/* Company Info Column */}
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8"
+        >
+          {/* Company Info */}
           <div className="md:col-span-4 space-y-6">
             <Link to="/" className="flex items-center space-x-2 space-x-reverse text-2xl font-bold">
               <span className="bg-arminred-600 text-white px-2 py-1 rounded">آرمین</span>
               <span>سافت</span>
             </Link>
+            
             <p className="text-gray-400 text-sm leading-relaxed">
-              توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی با تمرکز بر ارائه راهکارهای هوشمند و امن. هر آنچه در ذهن شماست، با آرمین سافت به واقعیت تبدیل می‌شود.
+              توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی با تمرکز بر ارائه راهکارهای هوشمند و امن.
+              هر آنچه در ذهن شماست، با آرمین سافت به واقعیت تبدیل می‌شود.
             </p>
             
-            {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 space-x-reverse">
+              <div className="flex items-center space-x-3 space-x-reverse transition-transform hover:translate-x-2">
                 <div className="p-2 bg-arminred-600/20 rounded-full">
                   <Phone size={16} className="text-arminred-500" />
                 </div>
                 <span className="text-gray-300 text-sm">۰۹۳۵۸۹۸۳۸۵۴</span>
               </div>
-              <div className="flex items-center space-x-3 space-x-reverse">
+              
+              <div className="flex items-center space-x-3 space-x-reverse transition-transform hover:translate-x-2">
                 <div className="p-2 bg-arminred-600/20 rounded-full">
                   <Mail size={16} className="text-arminred-500" />
                 </div>
                 <span className="text-gray-300 text-sm">info@armin-soft.ir</span>
               </div>
-              <div className="flex items-center space-x-3 space-x-reverse">
+              
+              <div className="flex items-center space-x-3 space-x-reverse transition-transform hover:translate-x-2">
                 <div className="p-2 bg-arminred-600/20 rounded-full">
                   <MapPin size={16} className="text-arminred-500" />
                 </div>
                 <span className="text-gray-300 text-sm">ایران، تهران، پاکدشت</span>
               </div>
             </div>
-            
-            {/* Map Links */}
-            <div className="flex flex-wrap gap-2 mt-2">
-              {mapLinks.map((link, index) => (
-                <a 
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-1 space-x-reverse bg-black/30 hover:bg-black text-sm py-1 px-3 rounded-full transition-colors"
-                >
-                  {link.icon}
-                  <span>مسیریابی با {link.name}</span>
-                </a>
-              ))}
-            </div>
           </div>
-          
+
           {/* Links Columns */}
           {footerLinks.map((section, idx) => (
             <div key={idx} className="md:col-span-2">
@@ -167,59 +175,55 @@ export function SiteFooter() {
                   <Link 
                     key={linkIdx} 
                     to={link.path} 
-                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center"
+                    className="text-gray-400 hover:text-white transition-colors text-sm flex items-center group"
                   >
-                    <span className="h-1 w-1 bg-arminred-500 rounded-full ml-2 opacity-60"></span>
+                    <motion.span 
+                      initial={{ scale: 0.8 }}
+                      whileHover={{ scale: 1 }}
+                      className="h-1 w-1 bg-arminred-500 rounded-full ml-2 opacity-60 group-hover:opacity-100"
+                    />
                     {link.name}
                   </Link>
                 ))}
               </nav>
             </div>
           ))}
-          
-          {/* Contact Form Column */}
-          <div className="md:col-span-4 space-y-4">
+
+          {/* Social Links */}
+          <div className="md:col-span-4">
             <h3 className="text-lg font-bold mb-4 relative pr-3 before:content-[''] before:absolute before:top-0 before:right-0 before:h-full before:w-1 before:bg-arminred-600">
-              ارتباط با ما
+              شبکه‌های اجتماعی
             </h3>
-            <p className="text-gray-400 text-sm">برای مشاوره رایگان و یا درخواست همکاری با ما در ارتباط باشید.</p>
-            <Link to="/contact">
-              <Button className="w-full bg-arminred-600 hover:bg-arminred-700">
-                تماس با ما
-              </Button>
-            </Link>
-            
-            {/* Social Media Links */}
-            <div>
-              <h4 className="text-sm font-medium mb-3 text-gray-300">ما را در شبکه‌های اجتماعی دنبال کنید:</h4>
-              <div className="flex flex-wrap gap-2">
-                {socialLinks.map((link, index) => (
-                  <Button 
-                    key={index} 
-                    asChild
-                    variant="outline" 
-                    size="icon" 
-                    className={`bg-black/50 border-gray-800 group ${link.color} hover:border-transparent rounded-md h-10 w-10 transition-all duration-300`}
-                  >
-                    <a 
-                      href={link.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      aria-label={link.label}
-                    >
-                      {link.icon}
-                    </a>
-                  </Button>
-                ))}
-              </div>
+            <div className="grid grid-cols-3 gap-3">
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-center p-3 rounded-lg bg-black/50 border border-gray-800 transition-colors ${link.color}`}
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
             </div>
           </div>
-        </div>
-        
+        </motion.div>
+
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500 text-sm">
-          <p>تمامی حقوق این وب‌سایت متعلق به آرمین سافت می‌باشد &copy; {currentYear}</p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.8 }}
+          className="border-t border-gray-800 mt-8 pt-6 text-center"
+        >
+          <p className="text-gray-500 text-sm">
+            تمامی حقوق این وب‌سایت متعلق به آرمین سافت می‌باشد &copy; {currentYear}
+          </p>
+        </motion.div>
       </div>
     </footer>
   );

@@ -2,6 +2,8 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { Logo } from "./header/Logo";
+import { motion } from "framer-motion";
+import "./header/header.css";
 import { MobileMenu } from "./header/MobileMenu";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MenuToggle } from "./header/MenuToggle";
@@ -19,26 +21,56 @@ export function SiteHeader() {
           : "py-4 bg-transparent"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6 w-full">
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="container mx-auto px-4 md:px-6 w-full"
+      >
         <div className="flex items-center justify-between w-full">
-          <div className="flex items-center">
+          <motion.div 
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center"
+          >
             <Logo />
+          </motion.div>
+
+          <div className="hidden md:flex items-center gap-6">
+            <motion.div
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <DesktopNavigation currentPath={currentPath} />
+            </motion.div>
+            
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex items-center gap-2 border-r border-gray-200 dark:border-gray-700 pr-4"
+            >
+              <div className="glass-effect p-1 rounded-lg">
+                <ThemeToggle />
+              </div>
+            </motion.div>
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
-            <DesktopNavigation currentPath={currentPath} />
-            
-            <div className="flex items-center gap-2 border-r border-gray-200 dark:border-gray-700 pr-4">
+          <motion.div 
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center md:hidden gap-2"
+          >
+            <div className="glass-effect p-1 rounded-lg">
               <ThemeToggle />
             </div>
-          </div>
-
-          <div className="flex items-center md:hidden">
-            <ThemeToggle />
             <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <MobileMenu 
         isOpen={isMenuOpen}

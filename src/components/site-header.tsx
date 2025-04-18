@@ -1,50 +1,14 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
 import { Logo } from "./header/Logo";
-import { NavigationItem } from "./header/NavigationItem";
 import { MobileMenu } from "./header/MobileMenu";
+import { DesktopNavigation } from "./header/DesktopNavigation";
+import { MenuToggle } from "./header/MenuToggle";
+import { useNavigation, menuItems } from "@/hooks/use-navigation";
 
 export function SiteHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMenu = () => setIsMenuOpen(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    closeMenu();
-  }, [location.pathname]);
-
-  const menuItems = [
-    { name: "صفحه اصلی", path: "/" },
-    { name: "رزومه", path: "/resume" },
-    { name: "خدمات", path: "/service" },
-    { name: "نمونه کار", path: "/work-sample" },
-    { name: "تماس", path: "/contact" },
-    { name: "درباره", path: "/about" }
-  ];
+  const { isMenuOpen, scrolled, toggleMenu, currentPath } = useNavigation();
 
   return (
     <header
@@ -62,17 +26,7 @@ export function SiteHeader() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <NavigationMenu className="hidden md:flex" dir="rtl">
-              <NavigationMenuList className="space-x-reverse">
-                {menuItems.map((item) => (
-                  <NavigationItem 
-                    key={item.path}
-                    item={item}
-                    currentPath={location.pathname}
-                  />
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
+            <DesktopNavigation currentPath={currentPath} />
             
             <div className="flex items-center gap-2 border-r border-gray-200 dark:border-gray-700 pr-4">
               <ThemeToggle />
@@ -81,31 +35,7 @@ export function SiteHeader() {
 
           <div className="flex items-center md:hidden">
             <ThemeToggle />
-            
-            <Button
-              variant="ghost"
-              size="icon"
-              className="mr-2 rounded-full relative"
-              onClick={toggleMenu}
-              aria-label={isMenuOpen ? "بستن منو" : "باز کردن منو"}
-            >
-              <div className="size-6 flex items-center justify-center">
-                <span
-                  className={`absolute inset-0 transition-opacity ${
-                    isMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
-                >
-                  <Menu className="h-6 w-6" />
-                </span>
-                <span
-                  className={`absolute inset-0 transition-opacity ${
-                    !isMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
-                >
-                  <X className="h-6 w-6 text-arminred-500" />
-                </span>
-              </div>
-            </Button>
+            <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
           </div>
         </div>
       </div>
@@ -113,8 +43,8 @@ export function SiteHeader() {
       <MobileMenu 
         isOpen={isMenuOpen}
         items={menuItems}
-        currentPath={location.pathname}
-        onItemClick={closeMenu}
+        currentPath={currentPath}
+        onItemClick={toggleMenu}
       />
     </header>
   );

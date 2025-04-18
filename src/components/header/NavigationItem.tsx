@@ -1,18 +1,12 @@
 
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenuItem } from "@/components/ui/navigation-menu";
 
 interface NavigationItemProps {
   item: {
     name: string;
     path: string;
-    submenu?: { name: string; path: string; }[];
   };
   currentPath: string;
 }

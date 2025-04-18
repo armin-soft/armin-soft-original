@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Flower, Sun, Leaf, Snowflake } from "lucide-react";
+import { Flower2, Sun, Leaf, Snowflake } from "lucide-react";
 
 interface SeasonIconProps {
   season: string;
@@ -10,7 +10,7 @@ export function SeasonIcon({ season }: SeasonIconProps) {
   const getSeasonIcon = () => {
     switch (season) {
       case 'بهار':
-        return <Flower strokeWidth={1.5} className="h-4 w-4 text-green-400" />;
+        return <Flower2 strokeWidth={1.5} className="h-4 w-4 text-green-400" />;
       case 'تابستان':
         return <Sun strokeWidth={1.5} className="h-4 w-4 text-yellow-500" />;
       case 'پاییز':

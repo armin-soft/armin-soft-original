@@ -59,9 +59,18 @@ export function SiteFooter() {
   ];
 
   const licenses = [
-    { name: "نماد اعتماد الکترونیکی", image: "/images/enamad.png", link: "https://enamad.ir/YOUR_ENAMAD_VERIFICATION_LINK" },
-    { name: "پروانه کسب", image: "/images/license.png", link: "#" },
-    { name: "مجوز وزارت ارتباطات", image: "/images/ministry-license.png", link: "#" }
+    { 
+      name: "نماد اعتماد الکترونیکی", 
+      image: "https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg",
+      link: "https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg",
+      id: "jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+    },
+    {
+      name: "نماد ساماندهی",
+      image: "https://logo.samandehi.ir/logo.aspx?id=146772&p=nbpdshwlwlbqyndtyndtodrf",
+      link: "https://logo.samandehi.ir/Verify.aspx?id=146772&p=rfthaodsgvkajyoejyoeuiwk",
+      id: "jxlzwlaofukzjzpejzpenbqe"
+    }
   ];
 
   const containerAnimation = {
@@ -219,31 +228,44 @@ export function SiteFooter() {
           transition={{ duration: 0.6 }}
           className="mt-8 border-t border-gray-800 pt-8"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 space-x-reverse mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center space-x-4 space-x-reverse">
               <Shield className="text-arminred-500" size={24} />
               <h3 className="text-lg font-bold">مجوزها و گواهینامه‌ها</h3>
             </div>
             
-            <div className="flex space-x-4 space-x-reverse">
+            <div className="flex items-center space-x-6 space-x-reverse">
               {licenses.map((license, index) => (
-                <motion.a
+                <motion.div
                   key={index}
-                  href={license.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex flex-col items-center space-y-2 group"
                 >
                   <img 
-                    src={license.image} 
-                    alt={license.name} 
-                    className="h-16 w-16 object-contain grayscale group-hover:grayscale-0 transition-all"
+                    src={license.image}
+                    alt={license.name}
+                    id={license.id}
+                    onClick={() => window.open(license.link, '_blank')}
+                    className="h-20 w-20 object-contain cursor-pointer"
+                    referrerPolicy="origin"
                   />
-                  <span className="text-xs text-gray-400 group-hover:text-white transition-colors">{license.name}</span>
-                </motion.a>
+                  <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
+                    {license.name}
+                  </span>
+                </motion.div>
               ))}
+              {/* ZarinPal Trust Badge */}
+              <div 
+                id="zarinpal-trust-badge"
+                className="flex flex-col items-center space-y-2 group"
+              >
+                <script 
+                  src="https://www.zarinpal.com/webservice/TrustCode" 
+                  type="text/javascript"
+                  async
+                />
+              </div>
             </div>
           </div>
         </motion.div>

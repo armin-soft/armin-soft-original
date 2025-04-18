@@ -91,27 +91,28 @@ const Service = () => {
       <ServiceHero />
 
       {/* Main Services */}
-      <section className="py-16 md:py-24 bg-muted/30 farsi-numbers">
+      <section className="py-24 md:py-32 bg-black relative overflow-hidden farsi-numbers">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="container mx-auto px-4 md:px-6"
+          className="container mx-auto px-4 md:px-6 relative z-10"
         >
           <div className="text-center mb-16">
             <motion.h2 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400"
             >
-              خدمات <span className="text-arminred-600">اصلی</span>
+              خدمات <span className="text-arminred-500">اصلی</span>
             </motion.h2>
             <motion.p 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-muted-foreground max-w-2xl mx-auto"
+              className="text-gray-400 max-w-2xl mx-auto text-lg"
             >
               تخصص‌های کلیدی آرمین سافت در زمینه برنامه‌نویسی، امنیت و فناوری‌های هوشمند
             </motion.p>
@@ -126,7 +127,7 @@ const Service = () => {
       </section>
 
       {/* Platforms Support */}
-      <section className="py-16 bg-gradient-to-br from-arminred-600 to-arminred-700 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-arminred-900 to-black text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -135,13 +136,15 @@ const Service = () => {
           className="container mx-auto px-4 md:px-6 relative z-10"
         >
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">پشتیبانی از تمامی پلتفرم‌ها</h2>
-            <p className="text-white/80 mt-2">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
+              پشتیبانی از تمامی پلتفرم‌ها
+            </h2>
+            <p className="text-gray-300 text-lg">
               خدمات ما روی تمام سیستم‌عامل‌ها و پلتفرم‌های اصلی قابل ارائه است
             </p>
           </div>
           
-          <div className="flex flex-wrap justify-center items-center gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-4 max-w-4xl mx-auto">
             {platforms.map((platform, index) => (
               <PlatformBadge key={index} {...platform} index={index} />
             ))}
@@ -150,7 +153,7 @@ const Service = () => {
       </section>
 
       {/* Additional Services */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-24 md:py-32 bg-black">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -158,8 +161,10 @@ const Service = () => {
           className="container mx-auto px-4 md:px-6"
         >
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">سایر <span className="text-arminred-600">خدمات</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400">
+              سایر <span className="text-arminred-500">خدمات</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
               علاوه بر خدمات اصلی، آرمین سافت مجموعه‌ای از خدمات تخصصی دیگر را نیز ارائه می‌دهد
             </p>
           </div>
@@ -173,12 +178,12 @@ const Service = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-black relative overflow-hidden">
+      <section className="py-16 bg-gradient-to-br from-black to-arminred-950 relative overflow-hidden">
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="absolute inset-0 bg-gradient-to-br from-arminred-900/20 to-transparent"
+          className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"
         />
         <motion.div 
           initial={{ y: 20, opacity: 0 }}
@@ -186,41 +191,22 @@ const Service = () => {
           transition={{ delay: 0.2 }}
           className="container mx-auto px-4 md:px-6 relative z-10"
         >
-          <div className="glass-card max-w-3xl mx-auto p-8 md:p-10 backdrop-blur-xl bg-black/40 border border-white/10">
+          <div className="backdrop-blur-xl bg-black/40 border border-arminred-500/10 max-w-4xl mx-auto p-8 md:p-12 rounded-2xl">
             <div className="text-center">
-              <motion.h2 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-2xl md:text-3xl font-bold mb-6 text-white"
-              >
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
                 آماده همکاری در پروژه شما هستم
-              </motion.h2>
-              <motion.p 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-white/80 mb-8 max-w-xl mx-auto"
-              >
+              </h2>
+              <p className="text-gray-300 mb-8 text-lg max-w-2xl mx-auto">
                 هر آنچه در ذهن شما باشد، توسط آرمین سافت طراحی و پیاده‌سازی خواهد شد. کافیست درخواست خود را با من در میان بگذارید.
-              </motion.p>
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex flex-col sm:flex-row justify-center gap-4"
-              >
-                
-                  <Link to="/contact">
-                    تماس با من
-                  </Link>
-                
-                
-                  <Link to="/work-sample">
-                    مشاهده نمونه کارها
-                  </Link>
-                
-              </motion.div>
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800">
+                  <Link to="/contact">تماس با من</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-arminred-500/50 hover:bg-arminred-500/10">
+                  <Link to="/work-sample">مشاهده نمونه کارها</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </motion.div>

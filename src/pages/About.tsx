@@ -13,11 +13,13 @@ import {
   Cpu,
   ArrowRight,
   Download,
-  ExternalLink
+  ExternalLink,
+  BadgeCheck
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { getPersonSchema } from "@/components/seo/schemas";
+import { motion } from "framer-motion";
 
 const About = () => {
   const skills = [
@@ -50,11 +52,24 @@ const About = () => {
         <div className="container relative z-10 px-4 md:px-6">
           <div className="flex flex-col items-center text-center">
             <div className="relative mb-8">
-              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-arminred-600 to-arminred-800 p-1">
-                <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-white">
-                  <Cpu className="w-16 h-16 text-arminred-400" />
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="p-3 rounded-full bg-white/5 backdrop-blur border border-white/10">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-arminred-400 to-arminred-600 flex items-center justify-center">
+                      <motion.div whileHover={{ scale: 1.2 }} className="text-white">
+                        <BadgeCheck className="w-16 h-16" />
+                      </motion.div>
+                    </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
               <div className="absolute -inset-4 border-2 border-dashed border-arminred-500/30 rounded-full animate-spin-slow"></div>
             </div>
             

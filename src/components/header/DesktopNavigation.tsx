@@ -3,13 +3,13 @@ import { NavigationMenu, NavigationMenuList } from "@/components/ui/navigation-m
 import { NavigationItem } from "./NavigationItem";
 import { menuItems } from "@/hooks/use-navigation";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
 
 interface DesktopNavigationProps {
   currentPath: string;
@@ -17,8 +17,8 @@ interface DesktopNavigationProps {
 
 export function DesktopNavigation({ currentPath }: DesktopNavigationProps) {
   return (
-    <NavigationMenu className="hidden md:flex" dir="rtl">
-      <NavigationMenuList className="space-x-reverse space-x-1">
+    <NavigationMenu className="hidden md:flex" dir="ltr">
+      <NavigationMenuList className="space-x-1">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
@@ -31,7 +31,7 @@ export function DesktopNavigation({ currentPath }: DesktopNavigationProps) {
           </DropdownMenuTrigger>
           <DropdownMenuContent 
             className="w-56 bg-black/90 backdrop-blur-xl border border-white/10" 
-            align="end"
+            align="start"
           >
             {menuItems.map((item, index) => (
               <motion.div

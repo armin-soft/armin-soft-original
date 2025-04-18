@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Facebook, Github, Instagram, Mail, MapPin, Phone, Twitter, Youtube, AtSign, MessagesSquare, MessageSquare, Navigation, Map, Compass } from "lucide-react";
+import { 
+  Facebook, Github, Instagram, Mail, MapPin, Phone, 
+  Twitter, Youtube, AtSign, MessagesSquare, 
+  MessageSquare, Navigation, Map, Compass, 
+  BadgeCheck 
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -110,6 +117,29 @@ const Contact = () => {
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
+            {/* New Logo Section */}
+            <div className="relative mb-8 flex justify-center">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="p-3 rounded-full bg-white/5 backdrop-blur border border-white/10">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  >
+                    <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-arminred-400 to-arminred-600 flex items-center justify-center">
+                      <motion.div whileHover={{ scale: 1.2 }} className="text-white">
+                        <BadgeCheck className="w-16 h-16" />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+              <div className="absolute -inset-4 border-2 border-dashed border-arminred-500/30 rounded-full animate-spin-slow"></div>
+            </div>
+
             <h1 className="text-3xl md:text-5xl font-bold mb-6">تماس با آرمین سافت</h1>
             <p className="text-lg text-gray-300 mb-8">
               برای ارتباط با من و صحبت درباره پروژه‌ها و همکاری‌های احتمالی، از راه‌های زیر استفاده کنید

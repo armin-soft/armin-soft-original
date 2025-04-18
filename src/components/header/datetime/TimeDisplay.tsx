@@ -1,13 +1,13 @@
 
 import { Clock } from "lucide-react";
-import { TimeBasedIcon } from "./TimeBasedIcon";
 
 interface TimeDisplayProps {
   time: string;
   timeBased: string;
+  timeBasedEmoji: string;
 }
 
-export function TimeDisplay({ time, timeBased }: TimeDisplayProps) {
+export function TimeDisplay({ time, timeBased, timeBasedEmoji }: TimeDisplayProps) {
   return (
     <div className="flex items-center gap-3">
       <div className="p-1.5 rounded-full bg-arminred-500/10">
@@ -17,7 +17,7 @@ export function TimeDisplay({ time, timeBased }: TimeDisplayProps) {
         <span className="text-sm font-medium text-gray-200 farsi-numbers">{time}</span>
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium text-gray-300">{timeBased}</span>
-          <TimeBasedIcon timeBased={timeBased} />
+          <span className="text-lg">{timeBasedEmoji}</span>
         </div>
       </div>
     </div>

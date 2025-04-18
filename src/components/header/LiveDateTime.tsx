@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -9,14 +8,14 @@ import { getShamsiDate } from "@/services/dateService";
 interface DateTimeData {
   date: string;
   season: string;
+  seasonEmoji: string;
   time: string;
   timeBased: string;
+  timeBasedEmoji: string;
 }
 
-const months = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
-
 const getIranDateTime = async (): Promise<DateTimeData> => {
-  const shamsiDate = await getShamsiDate();
+  const result = await getShamsiDate();
   
   // Get current time
   const now = new Date();
@@ -29,30 +28,14 @@ const getIranDateTime = async (): Promise<DateTimeData> => {
   });
 
   const time = timeFormatter.format(now);
-  
-  // تعیین فصل بر اساس ماه
-  const month = parseInt(shamsiDate.date.split('/')[1]);
-  let season = '';
-  if (month >= 1 && month <= 3) season = 'بهار';
-  else if (month >= 4 && month <= 6) season = 'تابستان';
-  else if (month >= 7 && month <= 9) season = 'پاییز';
-  else season = 'زمستان';
-
-  // تعیین زمان روز
-  const hour = now.getHours();
-  let timeBased = '';
-  if (hour >= 5 && hour < 11) timeBased = 'صبح';
-  else if (hour >= 11 && hour < 13) timeBased = 'ظهر';
-  else if (hour >= 13 && hour < 16) timeBased = 'بعد از ظهر';
-  else if (hour >= 16 && hour < 18) timeBased = 'عصر';
-  else if (hour >= 18 && hour < 20) timeBased = 'غروب';
-  else timeBased = 'شب';
 
   return { 
-    date: shamsiDate.date,
-    season, 
-    time, 
-    timeBased 
+    date: result.Shamsi_Date,
+    season: result.Season,
+    seasonEmoji: result.Season_Emoji,
+    time,
+    timeBased: result.Time_Based,
+    timeBasedEmoji: result.Time_Based_Emoji
   };
 };
 
@@ -60,8 +43,10 @@ export function LiveDateTime() {
   const [dateTime, setDateTime] = useState<DateTimeData>({
     date: '',
     season: '',
+    seasonEmoji: '',
     time: '',
-    timeBased: ''
+    timeBased: '',
+    timeBasedEmoji: ''
   });
 
   useEffect(() => {
@@ -87,10 +72,12 @@ export function LiveDateTime() {
           <DateDisplay 
             date={dateTime.date}
             season={dateTime.season}
+            seasonEmoji={dateTime.seasonEmoji}
           />
           <TimeDisplay 
             time={dateTime.time}
             timeBased={dateTime.timeBased}
+            timeBasedEmoji={dateTime.timeBasedEmoji}
           />
         </div>
       </Card>

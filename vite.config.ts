@@ -5,6 +5,9 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 8080
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -16,29 +19,31 @@ export default defineConfig({
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'Assets/Other/[name][extname]';
+          
           const info = assetInfo.name.split('.');
           const extType = info[info.length - 1];
           
-          if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)) {
-            return `Assets/Media/[name]-[hash][extname]`;
+          if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)$/i.test(assetInfo.name)) {
+            return `Assets/Media/[name][extname]`;
           }
           
-          if (/\.(png|jpe?g|gif|svg|ico|webp)(\?.*)?$/i.test(assetInfo.name)) {
-            return `Assets/Image/[name]-[hash][extname]`;
+          if (/\.(png|jpe?g|gif|svg|ico|webp)$/i.test(assetInfo.name)) {
+            return `Assets/Image/[name][extname]`;
           }
           
           if (/\.(css)$/i.test(assetInfo.name)) {
-            return `Assets/Style/[name]-[hash][extname]`;
+            return `Assets/Style/[name][extname]`;
           }
           
           if (/\.(js)$/i.test(assetInfo.name)) {
-            return `Assets/Script/[name]-[hash][extname]`;
+            return `Assets/Script/[name][extname]`;
           }
           
-          return `Assets/Other/[name]-[hash][extname]`;
+          return `Assets/Other/[name][extname]`;
         },
-        chunkFileNames: 'Assets/Script/[name]-[hash].js',
-        entryFileNames: 'Assets/Script/[name]-[hash].js',
+        chunkFileNames: 'Assets/Script/[name].js',
+        entryFileNames: 'Assets/Script/[name].js',
       },
     },
   },

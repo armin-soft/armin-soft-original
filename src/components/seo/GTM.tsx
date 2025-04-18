@@ -2,12 +2,8 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// Define the window.dataLayer type to avoid TypeScript errors
-declare global {
-  interface Window {
-    dataLayer: any[];
-  }
-}
+// We'll remove the global declaration since it's already defined in vite-env.d.ts
+// This avoids the duplicate declaration error
 
 export const GTMPageTracker: React.FC = () => {
   const location = useLocation();

@@ -1,7 +1,7 @@
 
 /// <reference types="vite/client" />
 
-// تعریف interface برای window با dataLayer
+// Define interface for window with dataLayer
 interface Window {
   dataLayer?: any[];
 }

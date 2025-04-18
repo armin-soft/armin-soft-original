@@ -8,7 +8,7 @@ interface MenuItem {
 }
 
 export const menuItems = [
-  { name: "خانه", path: "/" },  // Updated from "صفحه اصلی"
+  { name: "صفحه اصلی", path: "/" },
   { name: "رزومه", path: "/Resume" },
   { name: "خدمات", path: "/Service" },
   { name: "نمونه کار", path: "/Work-Sample" },

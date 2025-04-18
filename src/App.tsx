@@ -16,7 +16,6 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
-import Khaneh from "./pages/Khaneh";
 
 const queryClient = new QueryClient();
 
@@ -58,7 +57,7 @@ const App = () => {
         {!isLoading && (
           <Routes>
             {/* Main Pages */}
-            <Route path="/" element={<Khaneh />} />
+            <Route path="/" element={<Home />} />
             <Route path="/Resume" element={<Resume />} />
             <Route path="/Service" element={<Service />} />
             <Route path="/Work-Sample" element={<WorkSample />} />

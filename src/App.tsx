@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +16,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
+import Khaneh from "./pages/Khaneh";
 
 const queryClient = new QueryClient();
 
@@ -58,7 +58,7 @@ const App = () => {
         {!isLoading && (
           <Routes>
             {/* Main Pages */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Khaneh />} />
             <Route path="/Resume" element={<Resume />} />
             <Route path="/Service" element={<Service />} />
             <Route path="/Work-Sample" element={<WorkSample />} />

@@ -20,6 +20,9 @@ import ErrorPage from "./pages/ErrorPage";
 
 const queryClient = new QueryClient();
 
+// Define GTM ID - Replace with your actual GTM ID when in production
+const GTM_ID = 'GTM-XXXXXXX'; // Replace with your actual GTM ID
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,9 +30,9 @@ const App = () => {
     setIsLoading(false);
   };
 
-  // راه‌اندازی Google Tag Manager
+  // Initialize Google Tag Manager
   useEffect(() => {
-    initGTM('GTM-XXXXXXX'); // جایگزین کردن با ID واقعی GTM
+    initGTM(GTM_ID);
   }, []);
 
   // Force dark mode on document element

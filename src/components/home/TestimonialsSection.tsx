@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Quote } from "lucide-react";
@@ -10,19 +9,19 @@ export const TestimonialsSection = () => {
       text: "همکاری با آرمین سافت یکی از بهترین تصمیم‌های کسب و کار ما بود. سایت شرکت ما با دقت و کیفیت بالا طراحی و پیاده‌سازی شد و امنیت فوق‌العاده‌ای دارد.",
       author: "محمد رضایی",
       role: "مدیرعامل شرکت پارس تک",
-      avatar: "/Assets/Image/placeholder.svg",
+      avatar: "./Assets/Image/placeholder.svg",
     },
     {
       text: "تخصص و تعهد آرمین سافت در زمینه امنیت سایبری واقعاً چشمگیر است. مشاوره‌های ایشان باعث شد سیستم ما از حملات سایبری محافظت شود.",
       author: "سارا محمدی",
       role: "مدیر فناوری اطلاعات گروه مالی نوین",
-      avatar: "/Assets/Image/placeholder.svg",
+      avatar: "./Assets/Image/placeholder.svg",
     },
     {
       text: "سرعت، دقت و کیفیت کار آرمین سافت در توسعه API و سیستم پشتیبانی ما بسیار عالی بود. همیشه پاسخگو و منعطف در برابر تغییرات درخواستی ما بودند.",
       author: "علی کریمی",
       role: "بنیانگذار استارتاپ داده‌پرداز",
-      avatar: "/Assets/Image/placeholder.svg",
+      avatar: "./Assets/Image/placeholder.svg",
     }
   ];
 

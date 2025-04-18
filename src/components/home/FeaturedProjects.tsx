@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +14,7 @@ export const FeaturedProjects = () => {
       description: "طراحی و پیاده‌سازی یک سیستم مدیریت کسب و کار با هوش مصنوعی و پنل ادمین حرفه‌ای",
       tags: ["React.js", "Node.js", "AI", "TypeScript"],
       link: "/work-sample#project1",
-      image: "/Assets/Image/placeholder.svg",
+      image: "./Assets/Image/placeholder.svg",
       github: "https://github.com/arminsoft/smart-management-system",
       preview: "https://demo.armin-soft.ir/sms"
     },
@@ -24,7 +23,7 @@ export const FeaturedProjects = () => {
       description: "توسعه نرم‌افزار تخصصی تست نفوذ و ارزیابی امنیتی با قابلیت شناسایی آسیب‌پذیری‌ها",
       tags: ["Python", "React", "Security", "API"],
       link: "/work-sample#project2",
-      image: "/Assets/Image/placeholder.svg",
+      image: "./Assets/Image/placeholder.svg",
       github: "https://github.com/arminsoft/security-scanner",
       preview: "https://demo.armin-soft.ir/scanner"
     },
@@ -33,7 +32,7 @@ export const FeaturedProjects = () => {
       description: "طراحی و توسعه سیستم جامع آموزش مجازی با قابلیت‌های پیشرفته برگزاری کلاس و آزمون",
       tags: ["Next.js", "MongoDB", "WebRTC", "AWS"],
       link: "/work-sample#project3",
-      image: "/Assets/Image/placeholder.svg",
+      image: "./Assets/Image/placeholder.svg",
       github: "https://github.com/arminsoft/online-learning",
       preview: "https://demo.armin-soft.ir/elearning"
     }

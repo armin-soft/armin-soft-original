@@ -1,6 +1,6 @@
-
+import React from 'react';
 import { Link } from "react-router-dom";
-import { Facebook, Github, Instagram, Twitter, Youtube, MessageCircle, Phone, AtSign, Mail, MapPin, Linkedin, ArrowRight, MessageSquare, Navigation, Map, Compass } from "lucide-react";
+import { Facebook, Github, Instagram, Twitter, Youtube, MessageCircle, Phone, AtSign, Mail, MapPin, Linkedin, ArrowRight, MessageSquare, Navigation, Map, Compass, Shield, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -58,6 +58,12 @@ export function SiteFooter() {
     }
   ];
 
+  const licenses = [
+    { name: "نماد اعتماد الکترونیکی", image: "/images/enamad.png", link: "https://enamad.ir/YOUR_ENAMAD_VERIFICATION_LINK" },
+    { name: "پروانه کسب", image: "/images/license.png", link: "#" },
+    { name: "مجوز وزارت ارتباطات", image: "/images/ministry-license.png", link: "#" }
+  ];
+
   const containerAnimation = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -66,7 +72,6 @@ export function SiteFooter() {
   return (
     <footer className="bg-black/95 text-white pt-16 pb-6 mt-16 farsi-numbers">
       <div className="container mx-auto px-4 md:px-6">
-        {/* Top Section with Newsletter */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -115,12 +120,10 @@ export function SiteFooter() {
             </motion.form>
           </div>
 
-          {/* Decorative elements */}
           <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-arminred-600/20 rounded-full blur-3xl"></div>
           <div className="absolute -top-20 -right-20 w-60 h-60 bg-arminred-700/10 rounded-full blur-3xl"></div>
         </motion.div>
 
-        {/* Main Footer Grid */}
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -128,7 +131,6 @@ export function SiteFooter() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8"
         >
-          {/* Company Info */}
           <div className="md:col-span-4 space-y-6">
             <Link to="/" className="flex items-center space-x-2 space-x-reverse text-2xl font-bold">
               <span className="bg-arminred-600 text-white px-2 py-1 rounded">آرمین</span>
@@ -164,7 +166,6 @@ export function SiteFooter() {
             </div>
           </div>
 
-          {/* Links Columns */}
           {footerLinks.map((section, idx) => (
             <div key={idx} className="md:col-span-2">
               <h3 className="text-lg font-bold mb-4 relative pr-3 before:content-[''] before:absolute before:top-0 before:right-0 before:h-full before:w-1 before:bg-arminred-600">
@@ -189,7 +190,6 @@ export function SiteFooter() {
             </div>
           ))}
 
-          {/* Social Links */}
           <div className="md:col-span-4">
             <h3 className="text-lg font-bold mb-4 relative pr-3 before:content-[''] before:absolute before:top-0 before:right-0 before:h-full before:w-1 before:bg-arminred-600">
               شبکه‌های اجتماعی
@@ -212,7 +212,42 @@ export function SiteFooter() {
           </div>
         </motion.div>
 
-        {/* Copyright */}
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-8 border-t border-gray-800 pt-8"
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-3 space-x-reverse mb-4 md:mb-0">
+              <Shield className="text-arminred-500" size={24} />
+              <h3 className="text-lg font-bold">مجوزها و گواهینامه‌ها</h3>
+            </div>
+            
+            <div className="flex space-x-4 space-x-reverse">
+              {licenses.map((license, index) => (
+                <motion.a
+                  key={index}
+                  href={license.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex flex-col items-center space-y-2 group"
+                >
+                  <img 
+                    src={license.image} 
+                    alt={license.name} 
+                    className="h-16 w-16 object-contain grayscale group-hover:grayscale-0 transition-all"
+                  />
+                  <span className="text-xs text-gray-400 group-hover:text-white transition-colors">{license.name}</span>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

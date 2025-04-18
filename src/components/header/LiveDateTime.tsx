@@ -14,6 +14,56 @@ interface DateTimeData {
   Time_Based_Emoji: string;
 }
 
+const SeasonIcon = ({ season }: { season: string }) => {
+  const getSeasonColors = () => {
+    switch (season) {
+      case 'بهار':
+        return 'from-green-300 to-pink-200';
+      case 'تابستان':
+        return 'from-yellow-300 to-orange-300';
+      case 'پاییز':
+        return 'from-orange-400 to-red-400';
+      case 'زمستان':
+        return 'from-blue-200 to-slate-300';
+      default:
+        return 'from-gray-300 to-gray-400';
+    }
+  };
+
+  return (
+    <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${getSeasonColors()} shadow-lg flex items-center justify-center`}>
+      <div className="w-4 h-4 rounded-full bg-white/20 backdrop-blur-sm" />
+    </div>
+  );
+};
+
+const TimeBasedIcon = ({ timeBased }: { timeBased: string }) => {
+  const getTimeColors = () => {
+    switch (timeBased) {
+      case 'صبح':
+        return 'from-yellow-200 to-orange-200';
+      case 'ظهر':
+        return 'from-yellow-400 to-orange-400';
+      case 'بعد از ظهر':
+        return 'from-orange-300 to-red-300';
+      case 'عصر':
+        return 'from-purple-300 to-pink-300';
+      case 'غروب':
+        return 'from-purple-400 to-red-400';
+      case 'شب':
+        return 'from-blue-400 to-purple-400';
+      default:
+        return 'from-gray-300 to-gray-400';
+    }
+  };
+
+  return (
+    <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${getTimeColors()} shadow-lg flex items-center justify-center`}>
+      <div className="w-4 h-4 rounded-full bg-white/20 backdrop-blur-sm" />
+    </div>
+  );
+};
+
 export function LiveDateTime() {
   const [dateTime, setDateTime] = useState<DateTimeData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -61,16 +111,19 @@ export function LiveDateTime() {
       className="hidden md:block"
     >
       <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
-        <div className="flex items-center gap-4 px-4 py-2">
-          <div className="flex items-center gap-2 border-l border-gray-700 pl-4">
+        <div className="flex items-center gap-6 px-6 py-3">
+          <div className="flex items-center gap-3 border-l border-gray-700 pl-6">
             <Calendar className="h-4 w-4 text-arminred-500" />
-            <div className="flex items-center gap-2">
-              <span className="text-sm farsi-numbers">{dateTime.Season}</span>
-              <span className="text-base">{dateTime.Season_Emoji}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-medium text-gray-200">{dateTime.Shamsi_Date}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-300">{dateTime.Season}</span>
+                <SeasonIcon season={dateTime.Season} />
+              </div>
             </div>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Clock className="h-4 w-4 text-arminred-500" />
             <AnimatePresence mode="wait">
               <motion.div
@@ -78,10 +131,13 @@ export function LiveDateTime() {
                 initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -5 }}
-                className="flex items-center gap-2"
+                className="flex items-center gap-3"
               >
-                <span className="text-sm farsi-numbers">{dateTime.Time_Based}</span>
-                <span className="text-base">{dateTime.Time_Based_Emoji}</span>
+                <span className="text-sm font-medium text-gray-200 farsi-numbers">{dateTime.Time}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-gray-300">{dateTime.Time_Based}</span>
+                  <TimeBasedIcon timeBased={dateTime.Time_Based} />
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>

@@ -2,253 +2,194 @@
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BadgeCheck, Book, Brain, Calendar, Code, Database, Download, FileText, Cpu, Network, Shield } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import {
+  Download,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Star,
+  Code,
+  Shield,
+  Bot,
+  Server,
+  Database,
+  Cpu,
+  ArrowRight,
+} from "lucide-react";
 
 const Resume = () => {
-  // اطلاعات رزومه
-  const personalInfo = {
-    name: "آرمین اسکندری",
-    title: "آرمین سافت",
-    location: "ایران، تهران، پاکدشت",
-    birthDate: "۲۸ خرداد ۱۳۷۸",
-    phone: "۰۹۳۵۸۹۸۳۸۵۴",
-  };
-
   const skills = [
-    { name: "برنامه‌نویسی بک‌اند", level: 95 },
-    { name: "امنیت و هک اخلاقی", level: 90 },
-    { name: "طراحی نرم‌افزار", level: 85 },
-    { name: "توسعه هوش مصنوعی", level: 80 },
-    { name: "مدیریت دیتابیس", level: 88 },
-    { name: "توسعه اپلیکیشن موبایل", level: 75 },
-  ];
-
-  const specialties = [
-    { icon: <Code />, title: "طراحی نرم‌افزار", description: "توسعه نرم‌افزار برای سیستم‌عامل‌های مختلف از جمله ویندوز، مک، لینوکس، داس" },
-    { icon: <Brain />, title: "هوش مصنوعی", description: "طراحی و توسعه ربات‌ها و سیستم‌های مبتنی بر هوش مصنوعی" },
-    { icon: <Database />, title: "مدیریت دیتابیس", description: "طراحی و مدیریت انواع پایگاه‌های داده و ذخیره‌سازی اطلاعات" },
-    { icon: <Shield />, title: "امنیت و هک اخلاقی", description: "تحلیل امنیتی سرورها و نرم‌افزارها، کشف و گزارش باگ‌ها" },
-    { icon: <Cpu />, title: "طراحی وب‌سرویس", description: "توسعه API‌ها و وب‌سرویس‌های قدرتمند و کارآمد" },
-    { icon: <Network />, title: "توسعه درگاه‌های ارتباطی", description: "ایجاد پل‌های ارتباطی بین سیستم‌ها و سرویس‌های مختلف" },
+    { name: "برنامه‌نویسی", level: 95, icon: <Code className="h-5 w-5" /> },
+    { name: "هک و امنیت", level: 90, icon: <Shield className="h-5 w-5" /> },
+    { name: "هوش مصنوعی", level: 85, icon: <Bot className="h-5 w-5" /> },
+    { name: "طراحی API", level: 88, icon: <Server className="h-5 w-5" /> },
+    { name: "مدیریت دیتابیس", level: 92, icon: <Database className="h-5 w-5" /> },
+    { name: "اتوماسیون", level: 87, icon: <Cpu className="h-5 w-5" /> },
   ];
 
   const experiences = [
     {
-      title: "توسعه‌دهنده ارشد نرم‌افزار",
+      title: "توسعه‌دهنده ارشد",
       company: "هوشمند پرداز",
-      period: "۱۳۹۹ - اکنون",
-      description: "طراحی و توسعه سیستم‌های نرم‌افزاری با تمرکز بر امنیت و کارایی، مدیریت تیم‌های توسعه و پیاده‌سازی راهکارهای پیشرفته",
+      duration: "۱۴۰۲ - اکنون",
+      description: "طراحی و توسعه نرم‌افزارهای هوشمند و سیستم‌های امنیتی پیشرفته"
     },
     {
-      title: "متخصص امنیت سایبری",
-      company: "آژانس امنیت دیجیتال",
-      period: "۱۳۹۷ - ۱۳۹۹",
-      description: "انجام تست نفوذ و ارزیابی آسیب‌پذیری‌های امنیتی، شناسایی و گزارش باگ‌ها، ارائه راهکارهای امنیتی",
+      title: "متخصص امنیت",
+      company: "امن‌افزار",
+      duration: "۱۴۰۰ - ۱۴۰۲",
+      description: "تست نفوذ و ارزیابی امنیتی سیستم‌ها"
     },
     {
-      title: "توسعه‌دهنده بک‌اند",
-      company: "داده‌پردازان نوین",
-      period: "۱۳۹۵ - ۱۳۹۷",
-      description: "طراحی و پیاده‌سازی API‌ها و وب‌سرویس‌ها، توسعه سیستم‌های مدیریت پایگاه داده",
-    },
+      title: "برنامه‌نویس",
+      company: "داده‌پردازان",
+      duration: "۱۳۹۸ - ۱۴۰۰",
+      description: "توسعه نرم‌افزارهای تحت وب و موبایل"
+    }
   ];
 
-  const educations = [
+  const education = [
     {
-      degree: "کارشناسی مهندسی کامپیوتر",
+      degree: "کارشناسی مهندسی نرم‌افزار",
       school: "دانشگاه تهران",
-      period: "۱۳۹۶ - ۱۴۰۰",
-      description: "تمرکز بر نرم‌افزار و امنیت اطلاعات",
-    },
-    {
-      degree: "کارشناسی ارشد امنیت سایبری",
-      school: "دانشگاه امیرکبیر",
-      period: "۱۴۰۰ - ۱۴۰۲",
-      description: "پژوهش در زمینه روش‌های پیشرفته تست نفوذ و امنیت سیستم‌های توزیع‌شده",
-    },
+      duration: "۱۳۹۶ - ۱۴۰۰",
+      description: "تمرکز بر هوش مصنوعی و امنیت سایبری"
+    }
   ];
 
   const certifications = [
-    "Certified Ethical Hacker (CEH)",
-    "CompTIA Security+",
-    "Certified Information Systems Security Professional (CISSP)",
-    "Microsoft Certified: Azure Developer Associate",
-    "Oracle Certified Professional, Java SE Developer",
+    "CEH (Certified Ethical Hacker)",
+    "CISSP (Certified Information Systems Security Professional)",
+    "AWS Certified Solutions Architect",
+    "Microsoft Certified: Azure Developer Associate"
   ];
 
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-black to-gray-900 py-16 text-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">رزومه حرفه‌ای</h1>
-            <p className="text-gray-300 text-lg mb-8">
-              مهارت‌ها، تجربیات و دستاوردهای من در زمینه توسعه نرم‌افزار، امنیت و هک اخلاقی
+      <section className="relative py-20 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-arminred-500/20 rounded-full filter blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-56 h-56 bg-arminred-600/10 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+          </div>
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-3xl mx-auto text-center text-white">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6">رزومه آرمین سافت</h1>
+            <p className="text-lg text-gray-300 mb-8">
+              توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی
             </p>
-            <Button variant="outline" size="lg" className="bg-transparent border-white hover:bg-white/10">
-              <Download className="ml-2 h-5 w-5" />
+            <Button className="bg-arminred-600 hover:bg-arminred-700">
+              <Download className="ml-2 h-4 w-4" />
               دانلود رزومه
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-12 md:py-16 farsi-numbers">
+      {/* Main Content */}
+      <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* اطلاعات فردی و مهارت‌ها */}
-            <div className="space-y-8">
-              {/* اطلاعات فردی */}
-              <Card className="border-2 border-arminred-500/20 bg-card shadow-lg overflow-hidden">
-                <div className="bg-arminred-600 py-6 text-center text-white">
-                  <div className="w-24 h-24 rounded-full bg-white/15 mx-auto flex items-center justify-center text-3xl font-bold">
-                    AS
-                  </div>
-                  <h2 className="text-2xl font-bold mt-4">{personalInfo.name}</h2>
-                  <p className="text-white/80">{personalInfo.title}</p>
-                </div>
-                <CardContent className="p-6 pt-8">
-                  <ul className="space-y-4">
-                    <li className="flex items-center text-muted-foreground">
-                      <Calendar className="ml-2 h-5 w-5 text-arminred-500" />
-                      <span className="text-sm">متولد: {personalInfo.birthDate}</span>
-                    </li>
-                    <li className="flex items-center text-muted-foreground">
-                      <FileText className="ml-2 h-5 w-5 text-arminred-500" />
-                      <span className="text-sm">محل سکونت: {personalInfo.location}</span>
-                    </li>
-                    <li className="flex items-center text-muted-foreground">
-                      <Book className="ml-2 h-5 w-5 text-arminred-500" />
-                      <span className="text-sm">شماره تماس: {personalInfo.phone}</span>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
-
-              {/* مهارت‌ها */}
-              <Card className="border border-border bg-card overflow-hidden">
-                <div className="bg-black p-4">
-                  <h3 className="text-xl font-bold text-white flex items-center">
-                    <BadgeCheck className="ml-2 h-5 w-5 text-arminred-500" />
-                    مهارت‌های تخصصی
-                  </h3>
-                </div>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    {skills.map((skill, index) => (
-                      <div key={index}>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span>{skill.name}</span>
-                          <span className="text-arminred-600 font-medium">{skill.level}%</span>
+            {/* Skills Section */}
+            <Card className="lg:col-span-1 bg-black/50 backdrop-blur-xl border-gray-800">
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold mb-6 flex items-center">
+                  <Star className="ml-2 h-5 w-5 text-arminred-500" />
+                  مهارت‌ها
+                </h2>
+                <div className="space-y-6">
+                  {skills.map((skill, index) => (
+                    <div key={index}>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center">
+                          {skill.icon}
+                          <span className="mr-2">{skill.name}</span>
                         </div>
-                        <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-gradient-to-r from-arminred-700 to-arminred-500 rounded-full"
-                            style={{ width: `${skill.level}%` }}
-                          ></div>
-                        </div>
+                        <span className="text-sm text-muted-foreground farsi-numbers">{skill.level}%</span>
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* گواهی‌نامه‌ها */}
-              <Card className="border border-border bg-card overflow-hidden">
-                <div className="bg-black p-4">
-                  <h3 className="text-xl font-bold text-white flex items-center">
-                    <BadgeCheck className="ml-2 h-5 w-5 text-arminred-500" />
-                    گواهی‌نامه‌ها
-                  </h3>
+                      <Progress value={skill.level} className="h-2" />
+                    </div>
+                  ))}
                 </div>
-                <CardContent className="p-6">
-                  <ul className="space-y-3">
-                    {certifications.map((cert, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="w-2 h-2 mt-2 rounded-full bg-arminred-500 ml-2"></div>
-                        <span className="text-sm text-foreground">{cert}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+              </CardContent>
+            </Card>
 
-            {/* تجربیات، تحصیلات و تخصص‌ها */}
+            {/* Experience Section */}
             <div className="lg:col-span-2 space-y-8">
-              {/* تخصص‌ها */}
-              <div>
-                <h3 className="section-title mb-8">تخصص‌ها و خدمات</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {specialties.map((specialty, index) => (
-                    <Card key={index} className="bg-card hover:shadow-md transition-all duration-300 border border-border hover:border-arminred-500/30">
-                      <CardContent className="p-6">
-                        <div className="w-12 h-12 rounded-lg bg-arminred-600/10 flex items-center justify-center text-arminred-600 mb-4">
-                          {specialty.icon}
+              <Card className="bg-black/50 backdrop-blur-xl border-gray-800">
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-6 flex items-center">
+                    <Briefcase className="ml-2 h-5 w-5 text-arminred-500" />
+                    تجربیات کاری
+                  </h2>
+                  <div className="space-y-8">
+                    {experiences.map((exp, index) => (
+                      <div key={index} className="relative pr-6 pb-8 group">
+                        <div className="absolute right-0 top-0 w-px h-full bg-gray-800 group-last:h-6"></div>
+                        <div className="absolute right-0 top-0 w-6 h-6 -translate-x-2 -translate-y-1">
+                          <div className="w-3 h-3 rounded-full bg-arminred-500 ring-4 ring-black"></div>
                         </div>
-                        <h4 className="text-lg font-bold mb-2">{specialty.title}</h4>
-                        <p className="text-sm text-muted-foreground">{specialty.description}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-
-              {/* تجربیات کاری */}
-              <div>
-                <h3 className="section-title mb-8">تجربیات کاری</h3>
-                <div className="space-y-6">
-                  {experiences.map((experience, index) => (
-                    <div key={index} className="relative pr-8 before:content-[''] before:absolute before:top-0 before:right-3 before:w-[1px] before:h-full before:bg-arminred-500/50 after:content-[''] after:absolute after:top-0 after:right-0 after:w-6 after:h-6 after:rounded-full after:border-2 after:border-arminred-500 after:bg-background">
-                      <div className="mb-2">
-                        <h4 className="text-xl font-bold">{experience.title}</h4>
-                        <div className="flex items-center text-muted-foreground mt-1">
-                          <span className="font-medium">{experience.company}</span>
-                          <span className="mx-2">|</span>
-                          <span>{experience.period}</span>
+                        <div className="pr-4">
+                          <h3 className="text-lg font-semibold">{exp.title}</h3>
+                          <div className="flex items-center text-sm text-muted-foreground mt-1">
+                            <span>{exp.company}</span>
+                            <span className="mx-2">•</span>
+                            <span className="farsi-numbers">{exp.duration}</span>
+                          </div>
+                          <p className="mt-2 text-muted-foreground">{exp.description}</p>
                         </div>
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        {experience.description}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
-              {/* تحصیلات */}
-              <div>
-                <h3 className="section-title mb-8">تحصیلات</h3>
-                <div className="space-y-6">
-                  {educations.map((education, index) => (
-                    <div key={index} className="relative pr-8 before:content-[''] before:absolute before:top-0 before:right-3 before:w-[1px] before:h-full before:bg-arminred-500/50 after:content-[''] after:absolute after:top-0 after:right-0 after:w-6 after:h-6 after:rounded-full after:border-2 after:border-arminred-500 after:bg-background">
-                      <div className="mb-2">
-                        <h4 className="text-xl font-bold">{education.degree}</h4>
-                        <div className="flex items-center text-muted-foreground mt-1">
-                          <span className="font-medium">{education.school}</span>
-                          <span className="mx-2">|</span>
-                          <span>{education.period}</span>
-                        </div>
+              {/* Education Section */}
+              <Card className="bg-black/50 backdrop-blur-xl border-gray-800">
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-6 flex items-center">
+                    <GraduationCap className="ml-2 h-5 w-5 text-arminred-500" />
+                    تحصیلات
+                  </h2>
+                  {education.map((edu, index) => (
+                    <div key={index} className="relative pr-6 pb-4">
+                      <div className="absolute right-0 top-0 w-px h-full bg-gray-800"></div>
+                      <div className="absolute right-0 top-0 w-6 h-6 -translate-x-2 -translate-y-1">
+                        <div className="w-3 h-3 rounded-full bg-arminred-500 ring-4 ring-black"></div>
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        {education.description}
-                      </p>
+                      <div className="pr-4">
+                        <h3 className="text-lg font-semibold">{edu.degree}</h3>
+                        <div className="flex items-center text-sm text-muted-foreground mt-1">
+                          <span>{edu.school}</span>
+                          <span className="mx-2">•</span>
+                          <span className="farsi-numbers">{edu.duration}</span>
+                        </div>
+                        <p className="mt-2 text-muted-foreground">{edu.description}</p>
+                      </div>
                     </div>
                   ))}
-                </div>
-              </div>
+                </CardContent>
+              </Card>
 
-              {/* باور ذهنی و مسیر حرفه‌ای */}
-              <Card className="bg-gradient-to-br from-gray-900 to-black text-white border-none shadow-xl overflow-hidden">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-4 text-arminred-500">باور ذهنی و مسیر حرفه‌ای</h3>
-                  <p className="text-gray-300 mb-4 leading-relaxed">
-                    هر آنچه در ذهن شما باشد، توسط آرمین سافت طراحی و پیاده‌سازی خواهد شد.
-                  </p>
-                  <p className="text-xl font-medium text-white">
-                    ✨آرمین سافت، خالق "هوشمند پرداز"، با قدرت در مسیر نوآوری و پیشرفت قدم بر می‌دارد.
-                  </p>
+              {/* Certifications Section */}
+              <Card className="bg-black/50 backdrop-blur-xl border-gray-800">
+                <CardContent className="p-6">
+                  <h2 className="text-xl font-bold mb-6 flex items-center">
+                    <Award className="ml-2 h-5 w-5 text-arminred-500" />
+                    گواهینامه‌ها
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {certifications.map((cert, index) => (
+                      <div key={index} className="flex items-center space-x-2 space-x-reverse bg-black/30 p-3 rounded-lg border border-gray-800">
+                        <ArrowRight className="h-4 w-4 text-arminred-500" />
+                        <span>{cert}</span>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -260,3 +201,4 @@ const Resume = () => {
 };
 
 export default Resume;
+

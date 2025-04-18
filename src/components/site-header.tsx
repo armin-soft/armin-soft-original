@@ -7,6 +7,7 @@ import { MobileMenu } from "./header/MobileMenu";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MenuToggle } from "./header/MenuToggle";
 import { useNavigation } from "@/hooks/use-navigation";
+import { LiveDateTime } from "./header/LiveDateTime";
 import { menuItems } from "@/hooks/use-navigation";
 
 export function SiteHeader() {
@@ -44,8 +45,9 @@ export function SiteHeader() {
           </motion.div>
 
           {/* Logo - Left side on desktop, center on mobile */}
-          <div className="md:order-first">
+          <div className="md:order-first flex items-center gap-4">
             <Logo />
+            <LiveDateTime />
           </div>
 
           {/* Empty div for layout balance on mobile */}

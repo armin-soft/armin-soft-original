@@ -7,6 +7,7 @@ import { MobileMenu } from "./header/MobileMenu";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MenuToggle } from "./header/MenuToggle";
 import { useNavigation } from "@/hooks/use-navigation";
+import { menuItems } from "@/hooks/use-navigation";
 
 export function SiteHeader() {
   const { isMenuOpen, scrolled, toggleMenu, currentPath } = useNavigation();

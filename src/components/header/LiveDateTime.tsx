@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock } from "lucide-react";
-import { Flower, Sun, Leaf, Snowflake, Sunrise, CloudSun, Sunset, Moon } from "lucide-react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { DateDisplay } from "./datetime/DateDisplay";
+import { TimeDisplay } from "./datetime/TimeDisplay";
 
 interface DateTimeData {
   Shamsi_Date: string;
@@ -13,110 +13,6 @@ interface DateTimeData {
   Time_Based: string;
   Time_Based_Emoji: string;
 }
-
-const SeasonIcon = ({ season }: { season: string }) => {
-  const getSeasonIcon = () => {
-    switch (season) {
-      case 'بهار':
-        return (
-          <div className="relative">
-            <Flower strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400/50 rounded-full" />
-          </div>
-        );
-      case 'تابستان':
-        return (
-          <div className="relative">
-            <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
-          </div>
-        );
-      case 'پاییز':
-        return (
-          <div className="relative">
-            <Leaf strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400/50 rounded-full" />
-          </div>
-        );
-      case 'زمستان':
-        return (
-          <div className="relative">
-            <Snowflake strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400/50 rounded-full" />
-          </div>
-        );
-      default:
-        return (
-          <div className="relative">
-            <Calendar strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400/50 rounded-full" />
-          </div>
-        );
-    }
-  };
-
-  return (
-    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-black/40 to-black/80 border border-white/10 shadow-lg flex items-center justify-center">
-      {getSeasonIcon()}
-    </div>
-  );
-};
-
-const TimeBasedIcon = ({ timeBased }: { timeBased: string }) => {
-  const getTimeIcon = () => {
-    switch (timeBased) {
-      case 'صبح':
-        return (
-          <div className="relative">
-            <Sunrise strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
-          </div>
-        );
-      case 'ظهر':
-        return (
-          <div className="relative">
-            <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full" />
-          </div>
-        );
-      case 'بعد از ظهر':
-        return (
-          <div className="relative">
-            <CloudSun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400/50 rounded-full" />
-          </div>
-        );
-      case 'عصر':
-      case 'غروب':
-        return (
-          <div className="relative">
-            <Sunset strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400/50 rounded-full" />
-          </div>
-        );
-      case 'شب':
-        return (
-          <div className="relative">
-            <Moon strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400/50 rounded-full" />
-          </div>
-        );
-      default:
-        return (
-          <div className="relative">
-            <Clock strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400/50 rounded-full" />
-          </div>
-        );
-    }
-  };
-
-  return (
-    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-black/40 to-black/80 border border-white/10 shadow-lg flex items-center justify-center">
-      {getTimeIcon()}
-    </div>
-  );
-};
 
 export function LiveDateTime() {
   const [dateTime, setDateTime] = useState<DateTimeData | null>(null);
@@ -166,40 +62,14 @@ export function LiveDateTime() {
     >
       <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300 shadow-lg">
         <div className="flex items-center gap-6 px-6 py-3">
-          <div className="flex items-center gap-3 border-l border-gray-700/50 pl-6">
-            <div className="p-1.5 rounded-full bg-arminred-500/10">
-              <Calendar className="h-3.5 w-3.5 text-arminred-500" />
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-gray-200">{dateTime.Shamsi_Date}</span>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-gray-300">{dateTime.Season}</span>
-                <SeasonIcon season={dateTime.Season} />
-              </div>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            <div className="p-1.5 rounded-full bg-arminred-500/10">
-              <Clock className="h-3.5 w-3.5 text-arminred-500" />
-            </div>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={dateTime.Time}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -5 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center gap-3"
-              >
-                <span className="text-sm font-medium text-gray-200 farsi-numbers">{dateTime.Time}</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-300">{dateTime.Time_Based}</span>
-                  <TimeBasedIcon timeBased={dateTime.Time_Based} />
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          <DateDisplay 
+            date={dateTime.Shamsi_Date}
+            season={dateTime.Season}
+          />
+          <TimeDisplay 
+            time={dateTime.Time}
+            timeBased={dateTime.Time_Based}
+          />
         </div>
       </Card>
     </motion.div>

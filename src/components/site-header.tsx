@@ -33,11 +33,6 @@ export function SiteHeader() {
             <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
           </div>
 
-          {/* Logo - Right side on desktop, center on mobile */}
-          <div className="md:order-3">
-            <Logo />
-          </div>
-
           {/* Navigation Menu - Center */}
           <motion.div
             initial={{ y: -10, opacity: 0 }}
@@ -47,6 +42,11 @@ export function SiteHeader() {
           >
             <DesktopNavigation currentPath={currentPath} />
           </motion.div>
+
+          {/* Logo - Left side on desktop, center on mobile */}
+          <div className="md:order-first">
+            <Logo />
+          </div>
 
           {/* Empty div for layout balance on mobile */}
           <div className="md:hidden w-10"></div>
@@ -62,3 +62,4 @@ export function SiteHeader() {
     </header>
   );
 }
+

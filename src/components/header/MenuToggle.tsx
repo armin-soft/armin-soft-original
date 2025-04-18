@@ -1,6 +1,7 @@
 
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface MenuToggleProps {
   isOpen: boolean;
@@ -12,26 +13,26 @@ export function MenuToggle({ isOpen, onClick }: MenuToggleProps) {
     <Button
       variant="ghost"
       size="icon"
-      className="mr-2 rounded-full relative"
+      className="relative rounded-full hover:bg-arminred-100/50 dark:hover:bg-arminred-950/30"
       onClick={onClick}
       aria-label={isOpen ? "بستن منو" : "باز کردن منو"}
     >
-      <div className="size-6 flex items-center justify-center">
-        <span
-          className={`absolute inset-0 transition-opacity ${
-            isOpen ? "opacity-0" : "opacity-100"
-          }`}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isOpen ? "close" : "menu"}
+          initial={{ opacity: 0, rotate: -90 }}
+          animate={{ opacity: 1, rotate: 0 }}
+          exit={{ opacity: 0, rotate: 90 }}
+          transition={{ duration: 0.2 }}
+          className="size-6 flex items-center justify-center"
         >
-          <Menu className="h-6 w-6" />
-        </span>
-        <span
-          className={`absolute inset-0 transition-opacity ${
-            !isOpen ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <X className="h-6 w-6 text-arminred-500" />
-        </span>
-      </div>
+          {isOpen ? (
+            <X className="h-5 w-5 text-arminred-600" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
+        </motion.div>
+      </AnimatePresence>
     </Button>
   );
 }

@@ -5,7 +5,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import SmoothScrollbar from "@/components/SmoothScrollbar";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 interface SiteLayoutProps {
   children: ReactNode;
@@ -33,13 +32,11 @@ export function SiteLayout({ children }: SiteLayoutProps) {
       <SiteHeader />
       {isMobile ? (
         <main className="flex-grow w-full pt-24 md:pt-28 animate-fade-in">
-          <Breadcrumbs />
           {children}
         </main>
       ) : (
         <SmoothScrollbar>
           <main className="flex-grow w-full pt-24 md:pt-28 animate-fade-in">
-            <Breadcrumbs />
             {children}
           </main>
         </SmoothScrollbar>

@@ -47,17 +47,8 @@ export function SiteHeader() {
             className="flex-1 flex justify-center items-center"
           >
             <div className="hidden md:flex items-center gap-8">
-              <div className="flex items-center gap-6">
-                {menuItems.slice(0, Math.ceil(menuItems.length / 2)).map((item) => (
-                  <DesktopNavigation key={item.path} currentPath={currentPath} />
-                ))}
-              </div>
               <Logo />
-              <div className="flex items-center gap-6">
-                {menuItems.slice(Math.ceil(menuItems.length / 2)).map((item) => (
-                  <DesktopNavigation key={item.path} currentPath={currentPath} />
-                ))}
-              </div>
+              <DesktopNavigation currentPath={currentPath} />
             </div>
             <div className="md:hidden">
               <Logo />

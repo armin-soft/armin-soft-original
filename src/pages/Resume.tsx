@@ -1,4 +1,3 @@
-
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { getPersonSchema } from "@/components/seo/schemas";
@@ -184,12 +183,6 @@ const Resume = () => {
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800">
                 <Link to="/contact">تماس با من</Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-white/10 hover:bg-white/5">
-                <a href="#" className="flex items-center">
-                  <Download className="ml-2 h-4 w-4" />
-                  دریافت رزومه
-                </a>
               </Button>
             </div>
           </div>

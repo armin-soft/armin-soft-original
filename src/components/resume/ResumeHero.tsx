@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Download, ArrowRight, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -62,10 +61,6 @@ export const ResumeHero = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <Button className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800">
-              <Download className="ml-2 h-4 w-4" />
-              دانلود رزومه
-            </Button>
             <Button variant="outline" className="border-white/10 hover:bg-white/5">
               درخواست همکاری
               <ArrowRight className="mr-2 h-4 w-4" />

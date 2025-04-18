@@ -1,9 +1,7 @@
-
 import React, { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Loader, CheckCircle, Star, Code, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./theme-toggle";
 import { motion } from "framer-motion";
 
 interface LoadingScreenProps {
@@ -53,10 +51,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
         fadeOut ? "opacity-0" : "opacity-100"
       )}
     >
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
-      
       <div className="max-w-md w-full px-4">
         <div className="text-center mb-8">
           <motion.div 

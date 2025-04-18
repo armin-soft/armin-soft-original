@@ -32,6 +32,12 @@ const App = () => {
     initGTM('GTM-XXXXXXX'); // جایگزین کردن با ID واقعی GTM
   }, []);
 
+  // Force dark mode on document element
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+    document.documentElement.style.colorScheme = 'dark';
+  }, []);
+
   // Force the loading screen to be shown for at least a small amount of time
   useEffect(() => {
     document.documentElement.style.overflow = isLoading ? "hidden" : "";

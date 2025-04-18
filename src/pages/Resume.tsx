@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Download,
   Briefcase,
@@ -15,10 +16,12 @@ import {
   Server,
   Database,
   Cpu,
-  ArrowRight,
+  ArrowUpRight,
 } from "lucide-react";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { getPersonSchema } from "@/components/seo/schemas";
+import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 const Resume = () => {
   const skills = [
@@ -77,133 +80,156 @@ const Resume = () => {
         schema={getPersonSchema()}
       />
       
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-arminred-500/20 rounded-full filter blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-10 right-10 w-56 h-56 bg-arminred-600/10 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
-          </div>
+      {/* Hero Section with Glass Effect */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-black via-gray-900 to-gray-800">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px)] bg-[size:3rem_1px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:1px_3rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         </div>
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">رزومه آرمین سافت</h1>
-            <p className="text-lg text-gray-300 mb-8">
+        <div className="container relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              آرمین سافت
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
               توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی
             </p>
             <Button className="bg-arminred-600 hover:bg-arminred-700">
               <Download className="ml-2 h-4 w-4" />
               دانلود رزومه
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Skills Section */}
-            <Card className="lg:col-span-1 bg-black/50 backdrop-blur-xl border-gray-800">
-              <CardContent className="p-6">
-                <h2 className="text-xl font-bold mb-6 flex items-center">
-                  <Star className="ml-2 h-5 w-5 text-arminred-500" />
-                  مهارت‌ها
-                </h2>
-                <div className="space-y-6">
-                  {skills.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center">
-                          {skill.icon}
-                          <span className="mr-2">{skill.name}</span>
-                        </div>
-                        <span className="text-sm text-muted-foreground farsi-numbers">{skill.level}%</span>
-                      </div>
-                      <Progress value={skill.level} className="h-2" />
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container">
+          <Tabs defaultValue="skills" className="w-full">
+            <TabsList className="w-full flex justify-center mb-8 bg-black/20 p-1 rounded-full">
+              <TabsTrigger value="skills" className="rounded-full">مهارت‌ها</TabsTrigger>
+              <TabsTrigger value="experience" className="rounded-full">تجربیات</TabsTrigger>
+              <TabsTrigger value="education" className="rounded-full">تحصیلات</TabsTrigger>
+              <TabsTrigger value="certificates" className="rounded-full">گواهینامه‌ها</TabsTrigger>
+            </TabsList>
 
-            {/* Experience Section */}
-            <div className="lg:col-span-2 space-y-8">
-              <Card className="bg-black/50 backdrop-blur-xl border-gray-800">
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-bold mb-6 flex items-center">
-                    <Briefcase className="ml-2 h-5 w-5 text-arminred-500" />
-                    تجربیات کاری
-                  </h2>
-                  <div className="space-y-8">
-                    {experiences.map((exp, index) => (
-                      <div key={index} className="relative pr-6 pb-8 group">
-                        <div className="absolute right-0 top-0 w-px h-full bg-gray-800 group-last:h-6"></div>
-                        <div className="absolute right-0 top-0 w-6 h-6 -translate-x-2 -translate-y-1">
-                          <div className="w-3 h-3 rounded-full bg-arminred-500 ring-4 ring-black"></div>
-                        </div>
-                        <div className="pr-4">
-                          <h3 className="text-lg font-semibold">{exp.title}</h3>
-                          <div className="flex items-center text-sm text-muted-foreground mt-1">
-                            <span>{exp.company}</span>
-                            <span className="mx-2">•</span>
-                            <span className="farsi-numbers">{exp.duration}</span>
+            <TabsContent value="skills">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all">
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-arminred-500/10 text-arminred-500">
+                              {skill.icon}
+                            </div>
+                            <h3 className="text-lg font-semibold">{skill.name}</h3>
                           </div>
-                          <p className="mt-2 text-muted-foreground">{exp.description}</p>
+                          <span className="text-sm text-gray-400 farsi-numbers">{skill.level}%</span>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                        <Progress value={skill.level} className="h-2 bg-gray-800" />
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
 
-              {/* Education Section */}
-              <Card className="bg-black/50 backdrop-blur-xl border-gray-800">
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-bold mb-6 flex items-center">
-                    <GraduationCap className="ml-2 h-5 w-5 text-arminred-500" />
-                    تحصیلات
-                  </h2>
-                  {education.map((edu, index) => (
-                    <div key={index} className="relative pr-6 pb-4">
-                      <div className="absolute right-0 top-0 w-px h-full bg-gray-800"></div>
-                      <div className="absolute right-0 top-0 w-6 h-6 -translate-x-2 -translate-y-1">
-                        <div className="w-3 h-3 rounded-full bg-arminred-500 ring-4 ring-black"></div>
-                      </div>
-                      <div className="pr-4">
-                        <h3 className="text-lg font-semibold">{edu.degree}</h3>
-                        <div className="flex items-center text-sm text-muted-foreground mt-1">
-                          <span>{edu.school}</span>
-                          <span className="mx-2">•</span>
-                          <span className="farsi-numbers">{edu.duration}</span>
+            <TabsContent value="experience">
+              <div className="space-y-6">
+                {experiences.map((exp, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all">
+                      <CardContent className="p-6">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
+                            <p className="text-gray-400 mb-1">{exp.company}</p>
+                            <Badge variant="outline" className="mb-3 farsi-numbers">
+                              {exp.duration}
+                            </Badge>
+                            <p className="text-gray-300">{exp.description}</p>
+                          </div>
+                          <Briefcase className="h-6 w-6 text-arminred-500" />
                         </div>
-                        <p className="mt-2 text-muted-foreground">{edu.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
 
-              {/* Certifications Section */}
-              <Card className="bg-black/50 backdrop-blur-xl border-gray-800">
-                <CardContent className="p-6">
-                  <h2 className="text-xl font-bold mb-6 flex items-center">
-                    <Award className="ml-2 h-5 w-5 text-arminred-500" />
-                    گواهینامه‌ها
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {certifications.map((cert, index) => (
-                      <div key={index} className="flex items-center space-x-2 space-x-reverse bg-black/30 p-3 rounded-lg border border-gray-800">
-                        <ArrowRight className="h-4 w-4 text-arminred-500" />
-                        <span>{cert}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+            <TabsContent value="education">
+              <div className="space-y-6">
+                {education.map((edu, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all">
+                      <CardContent className="p-6">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
+                            <p className="text-gray-400 mb-1">{edu.school}</p>
+                            <Badge variant="outline" className="mb-3 farsi-numbers">
+                              {edu.duration}
+                            </Badge>
+                            <p className="text-gray-300">{edu.description}</p>
+                          </div>
+                          <GraduationCap className="h-6 w-6 text-arminred-500" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="certificates">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {certifications.map((cert, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all group">
+                      <CardContent className="p-6">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-arminred-500/10 text-arminred-500">
+                              <Award className="h-5 w-5" />
+                            </div>
+                            <span>{cert}</span>
+                          </div>
+                          <ArrowUpRight className="h-5 w-5 text-gray-500 group-hover:text-arminred-500 transition-colors" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
     </SiteLayout>

@@ -8,47 +8,16 @@ import {
   NavigationMenuContent,
 } from "@/components/ui/navigation-menu";
 
-interface SubMenuItem {
-  name: string;
-  path: string;
-}
-
 interface NavigationItemProps {
   item: {
     name: string;
     path: string;
-    submenu?: SubMenuItem[];
+    submenu?: { name: string; path: string; }[];
   };
   currentPath: string;
 }
 
 export function NavigationItem({ item, currentPath }: NavigationItemProps) {
-  if (item.submenu) {
-    return (
-      <NavigationMenuItem>
-        <NavigationMenuTrigger className="px-2 md:px-3 py-1.5 md:py-2 text-sm md:text-base font-medium transition-colors relative hover:text-arminred-600 data-[state=open]:text-arminred-600 before:absolute before:bottom-0 before:right-0 before:w-0 before:h-0.5 before:bg-arminred-500 hover:before:w-full hover:before:transition-all hover:before:duration-300">
-          {item.name}
-        </NavigationMenuTrigger>
-        <NavigationMenuContent>
-          <ul className="grid w-[180px] md:w-[220px] gap-1 p-2 md:p-3 bg-background/95 backdrop-blur-xl shadow-xl border border-arminred-500/10 rounded-xl">
-            {item.submenu.map((subitem) => (
-              <li key={subitem.path}>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to={subitem.path}
-                    className="block select-none space-y-1 rounded-md p-2 md:p-3 leading-none no-underline outline-none transition-colors hover:bg-arminred-500/10 hover:text-arminred-600 focus:bg-accent focus:text-accent-foreground text-sm md:text-base"
-                  >
-                    {subitem.name}
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-            ))}
-          </ul>
-        </NavigationMenuContent>
-      </NavigationMenuItem>
-    );
-  }
-
   return (
     <NavigationMenuItem>
       <Link

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -34,7 +33,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     closeMenu();
   }, [location.pathname]);
@@ -42,14 +40,7 @@ export function SiteHeader() {
   const menuItems = [
     { name: "صفحه اصلی", path: "/" },
     { name: "رزومه", path: "/resume" },
-    { name: "خدمات", path: "/service", 
-      submenu: [
-        { name: "توسعه نرم‌افزار", path: "/service#software" },
-        { name: "امنیت و هک اخلاقی", path: "/service#security" },
-        { name: "هوش مصنوعی", path: "/service#ai" },
-        { name: "وب سرویس", path: "/service#web" },
-      ] 
-    },
+    { name: "خدمات", path: "/service" },
     { name: "نمونه کار", path: "/work-sample" },
     { name: "تماس", path: "/contact" },
     { name: "درباره", path: "/about" }

@@ -17,13 +17,13 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   title,
   description,
   canonical,
-  ogImage = "https://lovable.dev/opengraph-image-p98pqg.png",
-  keywords = "آرمین سافت, برنامه نویسی, امنیت وب, هک اخلاقی",
+  ogImage = "https://armin-soft.ir/og-image.png",
+  keywords = "آرمین سافت, برنامه نویس بک اند, طراحی سایت, برنامه نویسی سمت سرور, توسعه وب, پایتون, جاوا, پی اچ پی",
   ogType = "website",
   schema = getPersonSchema(),
 }) => {
-  const defaultTitle = "آرمین سافت | برنامه‌نویس و متخصص امنیت";
-  const fullTitle = title ? `${title} | آرمین سافت` : defaultTitle;
+  const defaultTitle = "آرمین سافت | برنامه نویس بک اند";
+  const fullTitle = title ? `آرمین سافت | ${title}` : defaultTitle;
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://armin-soft.ir';
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 

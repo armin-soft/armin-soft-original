@@ -1,4 +1,3 @@
-
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { getPersonSchema } from "@/components/seo/schemas";
@@ -12,102 +11,13 @@ import { EducationCard } from "@/components/resume/EducationCard";
 import { Download, ArrowRight, Code, Shield, Bot, Layout, Monitor, Smartphone, FileCode, Database, BookOpen, Server, Award } from "lucide-react";
 
 const Resume = () => {
-  const skills = [
-    // Security & AI
-    { name: "هک و امنیت", level: 99, icon: <Shield className="h-5 w-5 text-arminred-600" /> },
-    { name: "طراحی هوش مصنوعی", level: 90, icon: <Bot className="h-5 w-5 text-arminred-600" /> },
-    
-    // Design & Development
-    { name: "طراحی دیزاین", level: 18, icon: <Layout className="h-5 w-5 text-arminred-600" /> },
-    { name: "طراحی سایت", level: 100, icon: <Monitor className="h-5 w-5 text-arminred-600" /> },
-    { name: "طراحی وب سرویس", level: 95, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "طراحی اسکریپت", level: 100, icon: <FileCode className="h-5 w-5 text-arminred-600" /> },
-    { name: "طراحی نرم افزار", level: 70, icon: <Monitor className="h-5 w-5 text-arminred-600" /> },
-    { name: "طراحی اپلیکیشن", level: 59, icon: <Smartphone className="h-5 w-5 text-arminred-600" /> },
-    
-    // Web Technologies
-    { name: "اچ تی ام ال", level: 100, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "سی اس اس", level: 35, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "جاوا اسکریپت", level: 64, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "جی‌ کوئری", level: 60, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "پی اچ پی", level: 90, icon: <Database className="h-5 w-5 text-arminred-600" /> },
-    
-    // Programming Languages
-    { name: "سی پلاس پلاس", level: 51, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "سی پلاس", level: 52, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "سی شارپ", level: 57, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "سی", level: 63, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "سوئیفت", level: 63, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "جاوا", level: 68, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "لوا", level: 91, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "پایتون", level: 98, icon: <Code className="h-5 w-5 text-arminred-600" /> },
-    { name: "پرل", level: 98, icon: <BookOpen className="h-5 w-5 text-arminred-600" /> },
-    { name: "شل", level: 98, icon: <FileCode className="h-5 w-5 text-arminred-600" /> },
-  ];
-
-  const education = [
-    {
-      degree: "کارشناسی مهندسی نرم‌افزار",
-      school: "دانشگاه آزاد اسلامی",
-      location: "تهران، ایران",
-      period: "۱۳۹۶ - ۱۴۰۰",
-      description: "معدل: ۱۸.۵",
-    },
-    {
-      degree: "دوره تخصصی امنیت سایبری",
-      school: "آکادمی امنیت سایبری",
-      location: "آنلاین",
-      period: "۱۴۰۱",
-      description: "گواهینامه بین‌المللی CEH",
-    },
-  ];
-
-  const experience = [
-    {
-      title: "توسعه‌دهنده ارشد نرم‌افزار",
-      company: "شرکت فناوری پیشرو",
-      location: "تهران",
-      period: "۱۴۰۰ - اکنون",
-      achievements: [
-        "توسعه و پیاده‌سازی بیش از ۱۰ پروژه بزرگ مقیاس",
-        "بهینه‌سازی عملکرد سیستم‌ها تا ۴۰٪",
-        "مدیریت تیم ۵ نفره توسعه‌دهندگان",
-      ],
-    },
-    {
-      title: "متخصص امنیت و پنتستر",
-      company: "گروه امنیتی سپر",
-      location: "تهران",
-      period: "۱۳۹۸ - ۱۴۰۰",
-      achievements: [
-        "تست نفوذ و ارزیابی امنیتی بیش از ۲۰ سامانه",
-        "کشف و گزارش بیش از ۱۰۰ آسیب‌پذیری حیاتی",
-        "برگزاری دوره‌های آموزشی امنیت برای تیم‌های توسعه",
-      ],
-    },
-  ];
-
-  const certifications = [
-    {
-      title: "CEH (Certified Ethical Hacker)",
-      issuer: "EC-Council",
-      date: "۱۴۰۱",
-    },
-    {
-      title: "CISSP (Certified Information Systems Security Professional)",
-      issuer: "ISC²",
-      date: "۱۴۰۲",
-    },
-  ];
-
   return (
     <SiteLayout>
       <SEOHead 
         title="رزومه"
-        description="رزومه حرفه‌ای آرمین سافت - متخصص برنامه‌نویسی و امنیت با تجربه در زمینه‌های مختلف فناوری"
+        description="رزومه حرفه‌ای آرمین سافت - متخصص برنامه‌نویسی بک‌اند با تجربه در توسعه نرم‌افزار، مدیریت سرور و امنیت"
         canonical="/Resume"
-        keywords="رزومه آرمین سافت, سوابق کاری, تجربیات, مهارت‌ها, گواهینامه‌ها"
-        schema={getPersonSchema()}
+        keywords="رزومه برنامه نویس, سوابق کاری, تجربیات برنامه نویسی, مهارت‌های فنی, گواهینامه‌های تخصصی"
       />
       
       <ResumeHero />

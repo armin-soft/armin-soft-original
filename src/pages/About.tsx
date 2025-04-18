@@ -1,3 +1,4 @@
+
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,6 +17,8 @@ import {
   ExternalLink
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { PersonSchema } from "@/components/seo/schemas";
 
 const About = () => {
   const skills = [
@@ -29,6 +32,14 @@ const About = () => {
 
   return (
     <SiteLayout>
+      <SEOHead 
+        title="درباره من"
+        description="آرمین سافت، متخصص امنیت سایبری و برنامه‌نویس، با بیش از 5 سال تجربه در زمینه‌های مختلف فناوری اطلاعات"
+        canonical="/About"
+        keywords="آرمین سافت, درباره من, امنیت سایبری, هک اخلاقی, برنامه نویسی, متخصص امنیت"
+        schema={<PersonSchema />}
+      />
+      
       {/* Hero Section - Enhanced with parallax effect */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
         <div className="absolute inset-0">

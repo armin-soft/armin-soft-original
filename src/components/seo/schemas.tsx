@@ -1,0 +1,90 @@
+
+import React from "react";
+
+export const PersonSchema = () => {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "آرمین سافت",
+    "url": "https://arminsoft.ir",
+    "image": "https://lovable.dev/opengraph-image-p98pqg.png",
+    "sameAs": [
+      "https://twitter.com/ARMIN_SOFT",
+      "https://github.com/arminsoft",
+      "https://linkedin.com/in/arminsoft"
+    ],
+    "jobTitle": "متخصص برنامه‌نویسی و امنیت",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "آرمین سافت"
+    }
+  };
+
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(schemaData)}
+    </script>
+  );
+};
+
+export const ServiceSchema = () => {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "خدمات نرم‌افزاری و امنیت",
+    "provider": {
+      "@type": "Person",
+      "name": "آرمین سافت",
+      "url": "https://arminsoft.ir"
+    },
+    "description": "خدمات نرم‌افزاری، طراحی سایت، امنیت وب و هوش مصنوعی",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "IRR"
+    }
+  };
+
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(schemaData)}
+    </script>
+  );
+};
+
+export const ArticleSchema = ({ headline, description, datePublished, dateModified, image }: {
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  image: string;
+}) => {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": headline,
+    "description": description,
+    "image": image,
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "author": {
+      "@type": "Person",
+      "name": "آرمین سافت",
+      "url": "https://arminsoft.ir"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "آرمین سافت",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://lovable.dev/opengraph-image-p98pqg.png"
+      }
+    }
+  };
+
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(schemaData)}
+    </script>
+  );
+};

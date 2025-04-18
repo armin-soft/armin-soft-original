@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
+import { GTMPageTracker, initGTM } from "./components/seo/GTM";
 
 // Pages
 import Home from "./pages/Home";
@@ -26,6 +27,11 @@ const App = () => {
     setIsLoading(false);
   };
 
+  // راه‌اندازی Google Tag Manager
+  useEffect(() => {
+    initGTM('GTM-XXXXXXX'); // جایگزین کردن با ID واقعی GTM
+  }, []);
+
   // Force the loading screen to be shown for at least a small amount of time
   useEffect(() => {
     document.documentElement.style.overflow = isLoading ? "hidden" : "";
@@ -39,6 +45,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <GTMPageTracker />
         
         {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
         

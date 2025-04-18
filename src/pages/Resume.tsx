@@ -17,6 +17,8 @@ import {
   Cpu,
   ArrowRight,
 } from "lucide-react";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { PersonSchema } from "@/components/seo/schemas";
 
 const Resume = () => {
   const skills = [
@@ -67,6 +69,14 @@ const Resume = () => {
 
   return (
     <SiteLayout>
+      <SEOHead 
+        title="رزومه"
+        description="رزومه کاری و تحصیلی آرمین سافت، متخصص برنامه‌نویسی و امنیت سایبری با تجربیات متنوع در زمینه هوش مصنوعی و طراحی API"
+        canonical="/Resume"
+        keywords="رزومه آرمین سافت, تجربیات کاری, مهارت های برنامه نویسی, گواهینامه های امنیت, تحصیلات"
+        schema={<PersonSchema />}
+      />
+      
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -201,4 +211,3 @@ const Resume = () => {
 };
 
 export default Resume;
-

@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Download, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const HomeHero = () => {
   return (
@@ -68,31 +68,10 @@ export const HomeHero = () => {
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/resume" className="flex items-center gap-2">
-                دانلود رزومه
-                <Download className="h-5 w-5" />
-              </Link>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-white/50 flex flex-col items-center gap-2"
-            >
-              <span className="text-sm">برای دیدن بیشتر اسکرول کنید</span>
-              <ChevronLeft className="h-6 w-6 rotate-90" />
-            </motion.div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

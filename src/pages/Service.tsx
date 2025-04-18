@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";  // Add this import
 import { SiteLayout } from "@/components/site-layout";
 import { ServiceHero } from "@/components/service/ServiceHero";
 import { ServiceCard } from "@/components/service/ServiceCard";

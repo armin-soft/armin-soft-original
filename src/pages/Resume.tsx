@@ -1,235 +1,338 @@
 
 import { SiteLayout } from "@/components/site-layout";
+import { SEOHead } from "@/components/seo/SEOHead";
+import { getPersonSchema } from "@/components/seo/schemas";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+  Calendar,
+  Clock,
   Download,
-  Briefcase,
+  FileText,
   GraduationCap,
-  Award,
+  MapPin,
+  Medal,
+  School,
   Star,
+  Briefcase,
   Code,
   Shield,
   Bot,
   Server,
   Database,
-  Cpu,
-  ArrowUpRight,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+  BookOpen,
+  Award
 } from "lucide-react";
-import { SEOHead } from "@/components/seo/SEOHead";
-import { getPersonSchema } from "@/components/seo/schemas";
-import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Resume = () => {
-  const skills = [
-    { name: "برنامه‌نویسی", level: 95, icon: <Code className="h-5 w-5" /> },
-    { name: "هک و امنیت", level: 90, icon: <Shield className="h-5 w-5" /> },
-    { name: "هوش مصنوعی", level: 85, icon: <Bot className="h-5 w-5" /> },
-    { name: "طراحی API", level: 88, icon: <Server className="h-5 w-5" /> },
-    { name: "مدیریت دیتابیس", level: 92, icon: <Database className="h-5 w-5" /> },
-    { name: "اتوماسیون", level: 87, icon: <Cpu className="h-5 w-5" /> },
-  ];
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
 
-  const experiences = [
-    {
-      title: "توسعه‌دهنده ارشد",
-      company: "هوشمند پرداز",
-      duration: "۱۴۰۲ - اکنون",
-      description: "طراحی و توسعه نرم‌افزارهای هوشمند و سیستم‌های امنیتی پیشرفته"
-    },
-    {
-      title: "متخصص امنیت",
-      company: "امن‌افزار",
-      duration: "۱۴۰۰ - ۱۴۰۲",
-      description: "تست نفوذ و ارزیابی امنیتی سیستم‌ها"
-    },
-    {
-      title: "برنامه‌نویس",
-      company: "داده‌پردازان",
-      duration: "۱۳۹۸ - ۱۴۰۰",
-      description: "توسعه نرم‌افزارهای تحت وب و موبایل"
-    }
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
+
+  const skills = [
+    { name: "برنامه‌نویسی وب", level: 95, icon: <Code className="h-5 w-5 text-arminred-600" /> },
+    { name: "امنیت و هک", level: 90, icon: <Shield className="h-5 w-5 text-arminred-600" /> },
+    { name: "هوش مصنوعی", level: 85, icon: <Bot className="h-5 w-5 text-arminred-600" /> },
+    { name: "توسعه API", level: 88, icon: <Server className="h-5 w-5 text-arminred-600" /> },
+    { name: "مدیریت دیتابیس", level: 92, icon: <Database className="h-5 w-5 text-arminred-600" /> },
   ];
 
   const education = [
     {
       degree: "کارشناسی مهندسی نرم‌افزار",
-      school: "دانشگاه تهران",
-      duration: "۱۳۹۶ - ۱۴۰۰",
-      description: "تمرکز بر هوش مصنوعی و امنیت سایبری"
-    }
+      school: "دانشگاه آزاد اسلامی",
+      location: "تهران، ایران",
+      period: "۱۳۹۶ - ۱۴۰۰",
+      description: "معدل: ۱۸.۵",
+    },
+    {
+      degree: "دوره تخصصی امنیت سایبری",
+      school: "آکادمی امنیت سایبری",
+      location: "آنلاین",
+      period: "۱۴۰۱",
+      description: "گواهینامه بین‌المللی CEH",
+    },
+  ];
+
+  const experience = [
+    {
+      title: "توسعه‌دهنده ارشد نرم‌افزار",
+      company: "شرکت فناوری پیشرو",
+      location: "تهران",
+      period: "۱۴۰۰ - اکنون",
+      achievements: [
+        "توسعه و پیاده‌سازی بیش از ۱۰ پروژه بزرگ مقیاس",
+        "بهینه‌سازی عملکرد سیستم‌ها تا ۴۰٪",
+        "مدیریت تیم ۵ نفره توسعه‌دهندگان",
+      ],
+    },
+    {
+      title: "متخصص امنیت و پنتستر",
+      company: "گروه امنیتی سپر",
+      location: "تهران",
+      period: "۱۳۹۸ - ۱۴۰۰",
+      achievements: [
+        "تست نفوذ و ارزیابی امنیتی بیش از ۲۰ سامانه",
+        "کشف و گزارش بیش از ۱۰۰ آسیب‌پذیری حیاتی",
+        "برگزاری دوره‌های آموزشی امنیت برای تیم‌های توسعه",
+      ],
+    },
   ];
 
   const certifications = [
-    "CEH (Certified Ethical Hacker)",
-    "CISSP (Certified Information Systems Security Professional)",
-    "AWS Certified Solutions Architect",
-    "Microsoft Certified: Azure Developer Associate"
+    {
+      title: "CEH (Certified Ethical Hacker)",
+      issuer: "EC-Council",
+      date: "۱۴۰۱",
+    },
+    {
+      title: "CISSP (Certified Information Systems Security Professional)",
+      issuer: "ISC²",
+      date: "۱۴۰۲",
+    },
   ];
 
   return (
     <SiteLayout>
       <SEOHead 
         title="رزومه"
-        description="رزومه کاری و تحصیلی آرمین سافت، متخصص برنامه‌نویسی و امنیت سایبری با تجربیات متنوع در زمینه هوش مصنوعی و طراحی API"
+        description="رزومه حرفه‌ای آرمین سافت - متخصص امنیت و برنامه‌نویس با بیش از ۵ سال تجربه"
         canonical="/Resume"
-        keywords="رزومه آرمین سافت, تجربیات کاری, مهارت های برنامه نویسی, گواهینامه های امنیت, تحصیلات"
+        keywords="رزومه آرمین سافت, سوابق کاری, تجربیات, مهارت‌ها, گواهینامه‌ها"
         schema={getPersonSchema()}
       />
-      
-      {/* Hero Section with Glass Effect */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-black via-gray-900 to-gray-800">
+
+      {/* Hero Section */}
+      <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px)] bg-[size:3rem_1px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:1px_3rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </div>
-        <div className="container relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              آرمین سافت
-            </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی
-            </p>
-            <Button className="bg-arminred-600 hover:bg-arminred-700">
-              <Download className="ml-2 h-4 w-4" />
-              دانلود رزومه
-            </Button>
-          </motion.div>
+        
+        <div className="container relative z-10 px-4 md:px-6">
+          <div className="flex flex-col items-center text-center">
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <FileText className="h-16 w-16 text-arminred-500" />
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
+            >
+              رزومه حرفه‌ای
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-lg md:text-xl text-gray-400 max-w-2xl"
+            >
+              متخصص برنامه‌نویسی و امنیت با بیش از ۵ سال تجربه در صنعت فناوری اطلاعات
+            </motion.p>
+
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mt-8 flex flex-wrap justify-center gap-4"
+            >
+              <Button className="bg-arminred-600 hover:bg-arminred-700">
+                <Download className="ml-2 h-4 w-4" />
+                دانلود رزومه PDF
+              </Button>
+              <Button variant="outline">
+                درخواست همکاری
+                <ArrowRight className="mr-2 h-4 w-4" />
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container">
-          <Tabs defaultValue="skills" className="w-full">
-            <TabsList className="w-full flex justify-center mb-8 bg-black/20 p-1 rounded-full">
-              <TabsTrigger value="skills" className="rounded-full">مهارت‌ها</TabsTrigger>
-              <TabsTrigger value="experience" className="rounded-full">تجربیات</TabsTrigger>
-              <TabsTrigger value="education" className="rounded-full">تحصیلات</TabsTrigger>
-              <TabsTrigger value="certificates" className="rounded-full">گواهینامه‌ها</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="skills">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+          >
+            {/* Left Column - Skills & Certifications */}
+            <div className="space-y-8">
+              {/* Skills */}
+              <motion.div variants={item} className="space-y-6">
+                <h2 className="section-title flex items-center text-2xl font-bold">
+                  <Star className="ml-2 h-6 w-6 text-arminred-500" />
+                  مهارت‌های تخصصی
+                </h2>
                 {skills.map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all">
-                      <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-lg bg-arminred-500/10 text-arminred-500">
-                              {skill.icon}
-                            </div>
-                            <h3 className="text-lg font-semibold">{skill.name}</h3>
-                          </div>
-                          <span className="text-sm text-gray-400 farsi-numbers">{skill.level}%</span>
+                  <Card key={index} className="bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          {skill.icon}
+                          <span className="font-medium">{skill.name}</span>
                         </div>
-                        <Progress value={skill.level} className="h-2 bg-gray-800" />
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                        <span className="text-sm text-muted-foreground farsi-numbers">{skill.level}%</span>
+                      </div>
+                      <Progress value={skill.level} className="h-2" />
+                    </CardContent>
+                  </Card>
                 ))}
-              </div>
-            </TabsContent>
+              </motion.div>
 
-            <TabsContent value="experience">
-              <div className="space-y-6">
-                {experiences.map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all">
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
-                            <p className="text-gray-400 mb-1">{exp.company}</p>
-                            <Badge variant="outline" className="mb-3 farsi-numbers">
-                              {exp.duration}
-                            </Badge>
-                            <p className="text-gray-300">{exp.description}</p>
-                          </div>
-                          <Briefcase className="h-6 w-6 text-arminred-500" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="education">
-              <div className="space-y-6">
-                {education.map((edu, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                  >
-                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all">
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h3 className="text-xl font-bold text-white mb-2">{edu.degree}</h3>
-                            <p className="text-gray-400 mb-1">{edu.school}</p>
-                            <Badge variant="outline" className="mb-3 farsi-numbers">
-                              {edu.duration}
-                            </Badge>
-                            <p className="text-gray-300">{edu.description}</p>
-                          </div>
-                          <GraduationCap className="h-6 w-6 text-arminred-500" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="certificates">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Certifications */}
+              <motion.div variants={item} className="space-y-6">
+                <h2 className="section-title flex items-center text-2xl font-bold">
+                  <Award className="ml-2 h-6 w-6 text-arminred-500" />
+                  گواهینامه‌ها
+                </h2>
                 {certifications.map((cert, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Card className="bg-black/40 backdrop-blur border-gray-800 hover:border-arminred-500/50 transition-all group">
-                      <CardContent className="p-6">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-lg bg-arminred-500/10 text-arminred-500">
-                              <Award className="h-5 w-5" />
-                            </div>
-                            <span>{cert}</span>
-                          </div>
-                          <ArrowUpRight className="h-5 w-5 text-gray-500 group-hover:text-arminred-500 transition-colors" />
+                  <Card key={index} className="bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
+                    <CardContent className="p-6">
+                      <h3 className="font-bold mb-2">{cert.title}</h3>
+                      <div className="text-sm text-muted-foreground">
+                        <div className="flex items-center">
+                          <School className="ml-2 h-4 w-4" />
+                          {cert.issuer}
                         </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
+                        <div className="flex items-center mt-2">
+                          <Calendar className="ml-2 h-4 w-4" />
+                          {cert.date}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+              </motion.div>
+            </div>
+
+            {/* Center & Right Columns - Experience & Education */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Experience */}
+              <motion.div variants={item} className="space-y-6">
+                <h2 className="section-title flex items-center text-2xl font-bold">
+                  <Briefcase className="ml-2 h-6 w-6 text-arminred-500" />
+                  تجربیات کاری
+                </h2>
+                {experience.map((exp, index) => (
+                  <Card key={index} className="bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h3 className="text-lg font-bold">{exp.title}</h3>
+                          <div className="text-muted-foreground">
+                            <div className="flex items-center mt-2">
+                              <MapPin className="ml-2 h-4 w-4" />
+                              {exp.company} - {exp.location}
+                            </div>
+                            <div className="flex items-center mt-2">
+                              <Clock className="ml-2 h-4 w-4" />
+                              {exp.period}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul className="space-y-2 list-disc list-inside text-muted-foreground">
+                        {exp.achievements.map((achievement, i) => (
+                          <li key={i} className="text-sm">{achievement}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                ))}
+              </motion.div>
+
+              {/* Education */}
+              <motion.div variants={item} className="space-y-6">
+                <h2 className="section-title flex items-center text-2xl font-bold">
+                  <GraduationCap className="ml-2 h-6 w-6 text-arminred-500" />
+                  تحصیلات
+                </h2>
+                {education.map((edu, index) => (
+                  <Card key={index} className="bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-bold mb-2">{edu.degree}</h3>
+                      <div className="text-muted-foreground space-y-2">
+                        <div className="flex items-center">
+                          <School className="ml-2 h-4 w-4" />
+                          {edu.school}
+                        </div>
+                        <div className="flex items-center">
+                          <MapPin className="ml-2 h-4 w-4" />
+                          {edu.location}
+                        </div>
+                        <div className="flex items-center">
+                          <Calendar className="ml-2 h-4 w-4" />
+                          {edu.period}
+                        </div>
+                        <div className="flex items-center">
+                          <Medal className="ml-2 h-4 w-4" />
+                          {edu.description}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-gradient-to-b from-background to-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+        <div className="container mx-auto px-4 md:px-6 relative">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">آماده همکاری با شما هستم</h2>
+            <p className="text-gray-300 mb-8">
+              برای شروع همکاری و صحبت درباره پروژه‌های خود با من تماس بگیرید
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-arminred-600 hover:bg-arminred-700">
+                <Link to="/contact">
+                  تماس با من
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a href="#" className="flex items-center">
+                  <Download className="ml-2 h-4 w-4" />
+                  دریافت رزومه
+                </a>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
     </SiteLayout>

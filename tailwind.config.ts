@@ -1,28 +1,22 @@
 
-import { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
-import tailwindCssAnimations from "tailwindcss-animate";
-import type { PluginAPI } from "tailwindcss/types/config";
+import { type Config } from "tailwindcss";
+import defaultTheme from "tailwindcss/defaultTheme";
 
-const config = {
+export default {
   darkMode: ["class"],
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
+      fontFamily: {
+        sans: ["Vazirmatn", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         arminred: {
           50: "#fff1f2",
           100: "#ffe4e6",
-          200: "#fecdd3",
-          300: "#fda4af",
-          400: "#fb7185",
+          200: "#ffccd1",
+          300: "#ffa3ad",
+          400: "#ff6a7a",
           500: "#f43f5e",
           600: "#e11d48",
           700: "#be123c",
@@ -64,51 +58,26 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+      animation: {
+        "spin-slow": "spin 8s linear infinite",
+        "fade-in": "fadeIn 0.5s ease-in-out forwards",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        spin: {
+          to: {
+            transform: "rotate(360deg)",
+          },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "fade-in": {
+        fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "spin-slow": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        }
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 1s ease-out forwards",
-        "spin-slow": "spin-slow 15s linear infinite",
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "grid-white": "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
       },
     },
   },
-  plugins: [
-    tailwindCssAnimations,
-    plugin(({ addUtilities }: PluginAPI) => {
-      addUtilities({
-        ".farsi-numbers": {
-          "font-feature-settings": '"tnum", "ss01"',
-        },
-        ".text-gradient": {
-          "background-clip": "text",
-          "-webkit-text-fill-color": "transparent",
-        },
-      });
-    }),
-  ],
+  plugins: [],
 } satisfies Config;
-
-export default config;

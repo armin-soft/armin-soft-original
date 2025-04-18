@@ -1,26 +1,33 @@
 
-@layer components {
-  .glass-card {
-    @apply bg-black/60 backdrop-blur-md border border-white/10 shadow-lg;
-  }
-  
-  .button-primary {
-    @apply bg-arminred-600 hover:bg-arminred-700 text-white font-medium py-2 px-4 rounded-md transition-colors;
-  }
-  
-  .button-secondary {
-    @apply bg-white/10 hover:bg-white/20 text-white border border-gray-700 font-medium py-2 px-4 rounded-md transition-colors;
-  }
-  
-  .input-field {
-    @apply w-full p-3 rounded-md border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-arminred-500;
-  }
-  
-  .card {
-    @apply bg-gray-900 shadow-md border border-gray-800;
-  }
-  
-  .card-content {
-    @apply text-white;
-  }
+/* Custom button styles */
+.btn-gradient {
+  @apply bg-gradient-to-r from-arminred-600 to-arminred-800 text-white 
+         hover:from-arminred-700 hover:to-arminred-900 transition-all 
+         duration-300 shadow-lg hover:shadow-arminred-500/20;
+}
+
+/* Card styles */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg border-transparent 
+         hover:border-arminred-500/30 hover:-translate-y-1;
+}
+
+/* Section styles */
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+/* Hero section styles */
+.hero-gradient {
+  @apply bg-gradient-to-b from-black to-gray-900;
+}
+
+/* Loading animation */
+.loading-spin {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

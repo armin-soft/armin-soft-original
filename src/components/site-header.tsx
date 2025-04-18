@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Search, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
@@ -19,20 +19,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -114,12 +104,9 @@ export function SiteHeader() {
                               <NavigationMenuLink asChild>
                                 <Link
                                   to={subitem.path}
-                                  className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-arminred-500/10 hover:text-arminred-600 focus:bg-accent focus:text-accent-foreground group"
+                                  className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-arminred-500/10 hover:text-arminred-600 focus:bg-accent focus:text-accent-foreground"
                                 >
-                                  <div className="text-sm font-medium leading-none flex items-center justify-between">
-                                    <span>{subitem.name}</span>
-                                    <ArrowRight className="h-4 w-4 opacity-0 transition-all duration-300 transform translate-x-2 group-hover:opacity-100 group-hover:translate-x-0" />
-                                  </div>
+                                  {subitem.name}
                                 </Link>
                               </NavigationMenuLink>
                             </li>
@@ -147,33 +134,12 @@ export function SiteHeader() {
             </NavigationMenu>
             
             <div className="flex items-center gap-2 border-r border-gray-200 dark:border-gray-700 pr-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full relative transition-transform hover:scale-110"
-                aria-label="جستجو"
-                onClick={() => setSearchOpen(true)}
-              >
-                <Search className="h-5 w-5 text-foreground/70 hover:text-arminred-600 transition-colors" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-arminred-500 rounded-full"></span>
-              </Button>
-              
               <ThemeToggle />
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full mr-2 transition-transform hover:scale-110"
-              aria-label="جستجو"
-              onClick={() => setSearchOpen(true)}
-            >
-              <Search className="h-5 w-5 text-foreground/70 hover:text-arminred-600 transition-colors" />
-            </Button>
-            
             <ThemeToggle />
             
             <Button
@@ -218,7 +184,6 @@ export function SiteHeader() {
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center justify-between w-full px-4 py-3.5 rounded-lg transition-colors font-medium text-right hover:bg-arminred-500/5">
                     <span>{item.name}</span>
-                    <ChevronDown className="h-4 w-4 opacity-70" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-full mr-4 bg-background/95 backdrop-blur-xl border border-arminred-500/10" align="start">
@@ -254,76 +219,6 @@ export function SiteHeader() {
           ))}
         </nav>
       </div>
-
-      {/* Global Search */}
-      <CommandDialog open={searchOpen} onOpenChange={setSearchOpen} className="bg-background/80 backdrop-blur-xl">
-        <div className="border-b border-border/20 mb-2 pb-2">
-          <CommandInput placeholder="جستجو در سایت..." dir="rtl" className="text-lg" />
-        </div>
-        <CommandList dir="rtl">
-          <CommandEmpty>
-            <div className="py-6 text-center text-muted-foreground">
-              <Search className="h-10 w-10 mx-auto mb-2 opacity-20" />
-              نتیجه‌ای یافت نشد.
-            </div>
-          </CommandEmpty>
-          <CommandGroup heading="صفحات" className="text-sm font-medium text-muted-foreground">
-            {menuItems.map((item) => (
-              <CommandItem
-                key={item.path}
-                onSelect={() => {
-                  window.location.href = item.path;
-                  setSearchOpen(false);
-                }}
-                className="py-2.5 cursor-pointer"
-              >
-                <div className="flex items-center justify-between w-full">
-                  <span>{item.name}</span>
-                  <ArrowRight className="h-4 w-4 opacity-50" />
-                </div>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandGroup heading="خدمات" className="text-sm font-medium text-muted-foreground">
-            <CommandItem
-              onSelect={() => {
-                window.location.href = "/service#software";
-                setSearchOpen(false);
-              }}
-              className="py-2.5 cursor-pointer"
-            >
-              <div className="flex items-center justify-between w-full">
-                <span>توسعه نرم‌افزار</span>
-                <ArrowRight className="h-4 w-4 opacity-50" />
-              </div>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                window.location.href = "/service#security";
-                setSearchOpen(false);
-              }}
-              className="py-2.5 cursor-pointer"
-            >
-              <div className="flex items-center justify-between w-full">
-                <span>امنیت و هک اخلاقی</span>
-                <ArrowRight className="h-4 w-4 opacity-50" />
-              </div>
-            </CommandItem>
-            <CommandItem
-              onSelect={() => {
-                window.location.href = "/service#ai";
-                setSearchOpen(false);
-              }}
-              className="py-2.5 cursor-pointer"
-            >
-              <div className="flex items-center justify-between w-full">
-                <span>هوش مصنوعی و ربات‌ها</span>
-                <ArrowRight className="h-4 w-4 opacity-50" />
-              </div>
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
     </header>
   );
 }

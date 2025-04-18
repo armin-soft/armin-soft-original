@@ -1,4 +1,3 @@
-
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -40,7 +39,6 @@ const About = () => {
         schema={getPersonSchema()}
       />
       
-      {/* Hero Section - Enhanced with parallax effect */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
@@ -54,7 +52,7 @@ const About = () => {
             <div className="relative mb-8">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-arminred-600 to-arminred-800 p-1">
                 <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-white">
-                  <h2 className="text-4xl font-bold">AS</h2>
+                  <Cpu className="w-16 h-16 text-arminred-400" />
                 </div>
               </div>
               <div className="absolute -inset-4 border-2 border-dashed border-arminred-500/30 rounded-full animate-spin-slow"></div>
@@ -70,11 +68,9 @@ const About = () => {
         </div>
       </section>
 
-      {/* Main Content */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* About Me */}
             <div className="space-y-8">
               <div>
                 <h2 className="section-title mb-8">درباره من</h2>
@@ -114,7 +110,6 @@ const About = () => {
               </div>
             </div>
 
-            {/* Skills & Expertise */}
             <div>
               <h2 className="section-title mb-8">مهارت‌ها و تخصص‌ها</h2>
               <div className="grid gap-6">
@@ -138,7 +133,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
       <section className="py-16 bg-black/50">
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="section-title text-center mb-12">ارزش‌ها و باورها</h2>
@@ -172,7 +166,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-16 bg-gradient-to-b from-background to-black relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         <div className="container mx-auto px-4 md:px-6 relative">

@@ -1,58 +1,68 @@
+
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import axios from "axios";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { DateDisplay } from "./datetime/DateDisplay";
 import { TimeDisplay } from "./datetime/TimeDisplay";
 
 interface DateTimeData {
-  Shamsi_Date: string;
-  Season: string;
-  Season_Emoji: string;
-  Time: string;
-  Time_Based: string;
-  Time_Based_Emoji: string;
+  date: string;
+  season: string;
+  time: string;
+  timeBased: string;
 }
 
-export function LiveDateTime() {
-  const [dateTime, setDateTime] = useState<DateTimeData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+const getIranDateTime = (): DateTimeData => {
+  const now = new Date();
+  const iranFormatter = new Intl.DateTimeFormat('fa-IR', {
+    timeZone: 'Asia/Tehran',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
-  const fetchDateTime = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.armin-soft.ir/Date-Time/?License=d5LAyJxbYst0egh2qNCdc6kWq0gdckmj&Next=0&Mounth=0"
-      );
-      if (response.data.Result.Code === 200) {
-        setDateTime(response.data.Result);
-        setError(false);
-      }
-    } catch (err) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const timeFormatter = new Intl.DateTimeFormat('fa-IR', {
+    timeZone: 'Asia/Tehran',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  });
+
+  const date = iranFormatter.format(now);
+  const time = timeFormatter.format(now);
+  
+  // Determine season based on month
+  const month = new Date().getMonth() + 1;
+  let season = '';
+  if (month >= 1 && month <= 3) season = 'زمستان';
+  else if (month >= 4 && month <= 6) season = 'بهار';
+  else if (month >= 7 && month <= 9) season = 'تابستان';
+  else season = 'پاییز';
+
+  // Determine time of day
+  const hour = now.getHours();
+  let timeBased = '';
+  if (hour >= 5 && hour < 11) timeBased = 'صبح';
+  else if (hour >= 11 && hour < 13) timeBased = 'ظهر';
+  else if (hour >= 13 && hour < 16) timeBased = 'بعد از ظهر';
+  else if (hour >= 16 && hour < 18) timeBased = 'عصر';
+  else if (hour >= 18 && hour < 20) timeBased = 'غروب';
+  else timeBased = 'شب';
+
+  return { date, season, time, timeBased };
+};
+
+export function LiveDateTime() {
+  const [dateTime, setDateTime] = useState<DateTimeData>(getIranDateTime());
 
   useEffect(() => {
-    fetchDateTime();
-    const interval = setInterval(fetchDateTime, 30000); // Update every 30 seconds
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      setDateTime(getIranDateTime());
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
-
-  if (loading) {
-    return (
-      <div className="animate-pulse flex items-center space-x-2 space-x-reverse bg-black/30 backdrop-blur-md border-gray-800 rounded-full px-4 py-2">
-        <div className="w-4 h-4 rounded-full bg-gray-700" />
-        <div className="h-4 w-24 bg-gray-700 rounded" />
-      </div>
-    );
-  }
-
-  if (error || !dateTime) {
-    return null;
-  }
 
   return (
     <motion.div
@@ -63,12 +73,12 @@ export function LiveDateTime() {
       <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300 shadow-lg">
         <div className="flex items-center gap-6 px-6 py-3">
           <DateDisplay 
-            date={dateTime.Shamsi_Date}
-            season={dateTime.Season}
+            date={dateTime.date}
+            season={dateTime.season}
           />
           <TimeDisplay 
-            time={dateTime.Time}
-            timeBased={dateTime.Time_Based}
+            time={dateTime.time}
+            timeBased={dateTime.timeBased}
           />
         </div>
       </Card>

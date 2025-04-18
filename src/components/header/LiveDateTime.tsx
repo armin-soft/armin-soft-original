@@ -12,15 +12,25 @@ interface DateTimeData {
   timeBased: string;
 }
 
+const weekDays = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
+const months = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
+
 const getIranDateTime = (): DateTimeData => {
   const now = new Date();
-  const iranFormatter = new Intl.DateTimeFormat('fa-IR', {
+  const formatter = new Intl.DateTimeFormat('fa-IR', {
     timeZone: 'Asia/Tehran',
     year: 'numeric',
-    month: 'long',
+    month: 'numeric',
     day: 'numeric',
+    weekday: 'long',
   });
-
+  
+  const parts = formatter.formatToParts(now);
+  const weekday = parts.find(part => part.type === 'weekday')?.value || '';
+  const day = parts.find(part => part.type === 'day')?.value || '';
+  const month = parts.find(part => part.type === 'month')?.value || '';
+  const year = parts.find(part => part.type === 'year')?.value || '';
+  
   const timeFormatter = new Intl.DateTimeFormat('fa-IR', {
     timeZone: 'Asia/Tehran',
     hour: '2-digit',
@@ -29,18 +39,17 @@ const getIranDateTime = (): DateTimeData => {
     hour12: false,
   });
 
-  const date = iranFormatter.format(now);
   const time = timeFormatter.format(now);
   
-  // Determine season based on month
-  const month = new Date().getMonth() + 1;
+  // تعیین فصل بر اساس ماه
+  const monthNumber = parseInt(month);
   let season = '';
-  if (month >= 1 && month <= 3) season = 'زمستان';
-  else if (month >= 4 && month <= 6) season = 'بهار';
-  else if (month >= 7 && month <= 9) season = 'تابستان';
-  else season = 'پاییز';
+  if (monthNumber >= 1 && monthNumber <= 3) season = 'بهار';
+  else if (monthNumber >= 4 && monthNumber <= 6) season = 'تابستان';
+  else if (monthNumber >= 7 && monthNumber <= 9) season = 'پاییز';
+  else season = 'زمستان';
 
-  // Determine time of day
+  // تعیین زمان روز
   const hour = now.getHours();
   let timeBased = '';
   if (hour >= 5 && hour < 11) timeBased = 'صبح';
@@ -50,6 +59,8 @@ const getIranDateTime = (): DateTimeData => {
   else if (hour >= 18 && hour < 20) timeBased = 'غروب';
   else timeBased = 'شب';
 
+  const date = `${weekday} ${day} ${months[monthNumber - 1]} ${year}`;
+  
   return { date, season, time, timeBased };
 };
 

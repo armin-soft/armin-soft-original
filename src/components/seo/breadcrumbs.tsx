@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -77,9 +78,8 @@ export const Breadcrumbs = () => {
         })}
         
         {/* برای موتورهای جستجو Schema.org Breadcrumb */}
-        <script type="application/ld+json">
-          {JSON.stringify(schemaData)}
-        </script>
+        <script type="application/ld+json" 
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       </nav>
     </div>
   );

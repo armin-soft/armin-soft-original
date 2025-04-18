@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { getPersonSchema } from "./schemas";
 
 interface SEOHeadProps {
   title: string;
@@ -9,7 +10,7 @@ interface SEOHeadProps {
   ogImage?: string;
   keywords?: string;
   ogType?: string;
-  schema?: React.ReactNode;
+  schema?: string;
 }
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
@@ -19,11 +20,11 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   ogImage = "https://lovable.dev/opengraph-image-p98pqg.png",
   keywords = "آرمین سافت, برنامه نویسی, امنیت وب, هک اخلاقی",
   ogType = "website",
-  schema,
+  schema = getPersonSchema(),
 }) => {
   const defaultTitle = "آرمین سافت | برنامه‌نویس و متخصص امنیت";
   const fullTitle = title ? `${title} | آرمین سافت` : defaultTitle;
-  const baseUrl = window.location.origin;
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://armin-soft.ir';
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
   return (
@@ -48,7 +49,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:image" content={ogImage} />
 
       {/* Schema.org markup */}
-      {schema}
+      <script type="application/ld+json">{schema}</script>
     </Helmet>
   );
 };

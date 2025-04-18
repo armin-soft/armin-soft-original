@@ -18,7 +18,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { SEOHead } from "@/components/seo/SEOHead";
-import { PersonSchema } from "@/components/seo/schemas";
+import { getPersonSchema } from "@/components/seo/schemas";
 
 const Resume = () => {
   const skills = [
@@ -74,7 +74,7 @@ const Resume = () => {
         description="رزومه کاری و تحصیلی آرمین سافت، متخصص برنامه‌نویسی و امنیت سایبری با تجربیات متنوع در زمینه هوش مصنوعی و طراحی API"
         canonical="/Resume"
         keywords="رزومه آرمین سافت, تجربیات کاری, مهارت های برنامه نویسی, گواهینامه های امنیت, تحصیلات"
-        schema={<PersonSchema />}
+        schema={getPersonSchema()}
       />
       
       {/* Hero Section */}

@@ -1,7 +1,7 @@
 
 import React from "react";
 
-export const PersonSchema = () => {
+export const getPersonSchema = () => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -20,14 +20,10 @@ export const PersonSchema = () => {
     }
   };
 
-  return (
-    <script type="application/ld+json">
-      {JSON.stringify(schemaData)}
-    </script>
-  );
+  return JSON.stringify(schemaData);
 };
 
-export const ServiceSchema = () => {
+export const getServiceSchema = () => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -45,14 +41,10 @@ export const ServiceSchema = () => {
     }
   };
 
-  return (
-    <script type="application/ld+json">
-      {JSON.stringify(schemaData)}
-    </script>
-  );
+  return JSON.stringify(schemaData);
 };
 
-export const ArticleSchema = ({ headline, description, datePublished, dateModified, image }: {
+export const getArticleSchema = ({ headline, description, datePublished, dateModified, image }: {
   headline: string;
   description: string;
   datePublished: string;
@@ -82,9 +74,10 @@ export const ArticleSchema = ({ headline, description, datePublished, dateModifi
     }
   };
 
-  return (
-    <script type="application/ld+json">
-      {JSON.stringify(schemaData)}
-    </script>
-  );
+  return JSON.stringify(schemaData);
 };
+
+// These are the React component versions for backward compatibility
+export const PersonSchema = () => null;
+export const ServiceSchema = () => null;
+export const ArticleSchema = () => null;

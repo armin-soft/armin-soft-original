@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/seo/SEOHead";
-import { PersonSchema } from "@/components/seo/schemas";
+import { getPersonSchema } from "@/components/seo/schemas";
 
 const About = () => {
   const skills = [
@@ -37,7 +37,7 @@ const About = () => {
         description="آرمین سافت، متخصص امنیت سایبری و برنامه‌نویس، با بیش از 5 سال تجربه در زمینه‌های مختلف فناوری اطلاعات"
         canonical="/About"
         keywords="آرمین سافت, درباره من, امنیت سایبری, هک اخلاقی, برنامه نویسی, متخصص امنیت"
-        schema={<PersonSchema />}
+        schema={getPersonSchema()}
       />
       
       {/* Hero Section - Enhanced with parallax effect */}

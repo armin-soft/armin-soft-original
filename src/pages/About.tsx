@@ -1,10 +1,8 @@
-
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import {
-  Download,
   MapPin,
   Star,
   Code,

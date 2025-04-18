@@ -1,36 +1,35 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 97%;
-    --foreground: 0 0% 0%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover-foreground: 0 0% 10%;
 
     --primary: 0 72% 51%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 0 0% 94%;
+    --accent-foreground: 0 0% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
+    --border: 0 0% 86%;
+    --input: 0 0% 86%;
     --ring: 0 72% 50.2%;
 
     --radius: 0.5rem;
@@ -125,7 +124,7 @@
   }
   
   .glass-card {
-    @apply bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10 rounded-xl shadow-md;
+    @apply bg-white/80 dark:bg-black/20 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-xl shadow-md;
   }
   
   .animated-border {
@@ -142,6 +141,18 @@
 
   .responsive-grid {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .light-card {
+    @apply bg-white shadow-md dark:bg-transparent dark:shadow-none border border-gray-200 dark:border-white/10 rounded-xl;
+  }
+
+  .light-text {
+    @apply text-gray-800 dark:text-gray-100;
+  }
+
+  .muted-text {
+    @apply text-gray-600 dark:text-gray-400;
   }
 }
 
@@ -242,11 +253,27 @@ html {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* Responsive containers */
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+/* Enhanced light mode text styles */
+.text-enhanced-dark {
+  @apply text-gray-800 dark:text-white;
+}
+
+.text-enhanced-muted {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+/* Improved backgrounds for light mode */
+.bg-enhanced-light {
+  @apply bg-white dark:bg-transparent;
+}
+
+.bg-enhanced-card {
+  @apply bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800/50;
+}
+
+/* Improved contrast for light mode links */
+.link-enhanced {
+  @apply text-arminred-700 dark:text-arminred-400 hover:text-arminred-800 dark:hover:text-arminred-300;
 }
 
 /* Responsive spacing */

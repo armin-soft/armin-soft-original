@@ -2,7 +2,6 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<"dark" | "light">("light");
@@ -30,7 +29,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="rounded-full relative"
+      className="rounded-full relative bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
       aria-label={`تغییر به حالت ${theme === "dark" ? "روشن" : "تاریک"}`}
     >
       <div className="relative size-6 flex items-center justify-center">
@@ -39,7 +38,7 @@ export function ThemeToggle() {
             theme === "dark" ? "opacity-0" : "opacity-100"
           }`}
         >
-          <Moon className="h-5 w-5 text-slate-700" />
+          <Moon className="h-5 w-5 text-gray-700" />
         </span>
         <span
           className={`absolute inset-0 transition-opacity ${

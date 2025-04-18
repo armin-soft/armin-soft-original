@@ -10,7 +10,7 @@ export function Logo() {
       <div className="bg-gradient-to-r from-arminred-700 to-arminred-500 text-white px-2 py-1 md:px-3 md:py-1.5 rounded-lg shadow-md transition-all duration-300 group-hover:shadow-arminred-500/30">
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/90">آرمین</span>
       </div>
-      <span className="text-foreground transition-colors duration-300 group-hover:text-arminred-600">سافت</span>
+      <span className="text-gray-800 dark:text-white transition-colors duration-300 group-hover:text-arminred-600">سافت</span>
     </Link>
   );
 }

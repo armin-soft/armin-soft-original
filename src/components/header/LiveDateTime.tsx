@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, Sun, Moon, Sunset, Sunrise, CloudSun, Snowflake, Leaf, Flower } from "lucide-react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -15,51 +15,51 @@ interface DateTimeData {
 }
 
 const SeasonIcon = ({ season }: { season: string }) => {
-  const getSeasonColors = () => {
+  const getSeasonIcon = () => {
     switch (season) {
       case 'بهار':
-        return 'from-green-300 to-pink-200';
+        return <Flower className="h-4 w-4 text-pink-400" />;
       case 'تابستان':
-        return 'from-yellow-300 to-orange-300';
+        return <Sun className="h-4 w-4 text-yellow-400" />;
       case 'پاییز':
-        return 'from-orange-400 to-red-400';
+        return <Leaf className="h-4 w-4 text-orange-400" />;
       case 'زمستان':
-        return 'from-blue-200 to-slate-300';
+        return <Snowflake className="h-4 w-4 text-blue-400" />;
       default:
-        return 'from-gray-300 to-gray-400';
+        return <Sun className="h-4 w-4 text-gray-400" />;
     }
   };
 
   return (
-    <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${getSeasonColors()} shadow-lg flex items-center justify-center`}>
-      <div className="w-4 h-4 rounded-full bg-white/20 backdrop-blur-sm" />
+    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-white/10 to-white/5 shadow-lg flex items-center justify-center">
+      {getSeasonIcon()}
     </div>
   );
 };
 
 const TimeBasedIcon = ({ timeBased }: { timeBased: string }) => {
-  const getTimeColors = () => {
+  const getTimeIcon = () => {
     switch (timeBased) {
       case 'صبح':
-        return 'from-yellow-200 to-orange-200';
+        return <Sunrise className="h-4 w-4 text-yellow-400" />;
       case 'ظهر':
-        return 'from-yellow-400 to-orange-400';
+        return <Sun className="h-4 w-4 text-yellow-500" />;
       case 'بعد از ظهر':
-        return 'from-orange-300 to-red-300';
+        return <CloudSun className="h-4 w-4 text-orange-400" />;
       case 'عصر':
-        return 'from-purple-300 to-pink-300';
+        return <Sunset className="h-4 w-4 text-pink-400" />;
       case 'غروب':
-        return 'from-purple-400 to-red-400';
+        return <Sunset className="h-4 w-4 text-red-400" />;
       case 'شب':
-        return 'from-blue-400 to-purple-400';
+        return <Moon className="h-4 w-4 text-blue-400" />;
       default:
-        return 'from-gray-300 to-gray-400';
+        return <Clock className="h-4 w-4 text-gray-400" />;
     }
   };
 
   return (
-    <div className={`w-6 h-6 rounded-full bg-gradient-to-br ${getTimeColors()} shadow-lg flex items-center justify-center`}>
-      <div className="w-4 h-4 rounded-full bg-white/20 backdrop-blur-sm" />
+    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-white/10 to-white/5 shadow-lg flex items-center justify-center">
+      {getTimeIcon()}
     </div>
   );
 };

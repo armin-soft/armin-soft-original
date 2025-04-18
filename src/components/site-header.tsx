@@ -6,8 +6,7 @@ import "./header/header.css";
 import { MobileMenu } from "./header/MobileMenu";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MenuToggle } from "./header/MenuToggle";
-import { useNavigation, menuItems } from "@/hooks/use-navigation";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useNavigation } from "@/hooks/use-navigation";
 
 export function SiteHeader() {
   const { isMenuOpen, scrolled, toggleMenu, currentPath } = useNavigation();
@@ -28,42 +27,28 @@ export function SiteHeader() {
         className="container mx-auto px-4 md:px-6 w-full"
       >
         <div className="flex items-center justify-between w-full">
-          {/* Right Section */}
-          <motion.div 
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-4"
-          >
+          {/* Mobile Menu Toggle - Only visible on mobile */}
+          <div className="md:hidden">
             <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
-            <ChevronRight className="hidden md:block h-5 w-5 text-arminred-500" />
-          </motion.div>
+          </div>
 
-          {/* Center Section */}
+          {/* Logo - Right side on desktop, center on mobile */}
+          <div className="md:order-3">
+            <Logo />
+          </div>
+
+          {/* Navigation Menu - Center */}
           <motion.div
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="flex-1 flex justify-center items-center"
+            className="hidden md:flex flex-1 justify-center items-center"
           >
-            <div className="hidden md:flex items-center gap-8">
-              <Logo />
-              <DesktopNavigation currentPath={currentPath} />
-            </div>
-            <div className="md:hidden">
-              <Logo />
-            </div>
+            <DesktopNavigation currentPath={currentPath} />
           </motion.div>
 
-          {/* Left Section */}
-          <motion.div 
-            initial={{ x: 20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-4"
-          >
-            <ChevronLeft className="hidden md:block h-5 w-5 text-arminred-500" />
-          </motion.div>
+          {/* Empty div for layout balance on mobile */}
+          <div className="md:hidden w-10"></div>
         </div>
       </motion.div>
 

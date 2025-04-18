@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock, Sun, Moon, Sunset, Sunrise, CloudSun, Snowflake, Leaf, Flower } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
+import { Flower, Sun, Leaf, Snowflake, Sunrise, CloudSun, Sunset, Moon } from "lucide-react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -21,35 +21,35 @@ const SeasonIcon = ({ season }: { season: string }) => {
         return (
           <div className="relative">
             <Flower strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400/50 rounded-full" />
           </div>
         );
       case 'تابستان':
         return (
           <div className="relative">
             <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
           </div>
         );
       case 'پاییز':
         return (
           <div className="relative">
             <Leaf strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400/50 rounded-full" />
           </div>
         );
       case 'زمستان':
         return (
           <div className="relative">
             <Snowflake strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400/50 rounded-full" />
           </div>
         );
       default:
         return (
           <div className="relative">
-            <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+            <Calendar strokeWidth={1.5} className="h-4 w-4 text-white" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400/50 rounded-full" />
           </div>
         );
     }
@@ -69,49 +69,43 @@ const TimeBasedIcon = ({ timeBased }: { timeBased: string }) => {
         return (
           <div className="relative">
             <Sunrise strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-400/50 rounded-full" />
           </div>
         );
       case 'ظهر':
         return (
           <div className="relative">
             <Sun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-500 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full" />
           </div>
         );
       case 'بعد از ظهر':
         return (
           <div className="relative">
             <CloudSun strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-orange-400/50 rounded-full" />
           </div>
         );
       case 'عصر':
-        return (
-          <div className="relative">
-            <Sunset strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400 rounded-full" />
-          </div>
-        );
       case 'غروب':
         return (
           <div className="relative">
             <Sunset strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-red-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-pink-400/50 rounded-full" />
           </div>
         );
       case 'شب':
         return (
           <div className="relative">
             <Moon strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400/50 rounded-full" />
           </div>
         );
       default:
         return (
           <div className="relative">
             <Clock strokeWidth={1.5} className="h-4 w-4 text-white" />
-            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+            <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-gray-400/50 rounded-full" />
           </div>
         );
     }

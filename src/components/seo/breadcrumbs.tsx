@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -7,6 +6,9 @@ import { HomeIcon, ChevronLeft } from "lucide-react";
 export const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
+  
+  // Get base URL dynamically
+  const baseUrl = window.location.origin;
 
   // تعریف عناوین فارسی برای هر مسیر
   const pathTitles: Record<string, string> = {
@@ -26,7 +28,7 @@ export const Breadcrumbs = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "صفحه اصلی",
-        "item": "https://arminsoft.ir"
+        "item": baseUrl
       }
     ]
   };
@@ -37,7 +39,7 @@ export const Breadcrumbs = () => {
       "@type": "ListItem",
       "position": index + 2,
       "name": pathTitles[name] || name,
-      "item": `https://arminsoft.ir/${pathnames.slice(0, index + 1).join("/")}`
+      "item": `${baseUrl}/${pathnames.slice(0, index + 1).join("/")}`
     });
   });
 

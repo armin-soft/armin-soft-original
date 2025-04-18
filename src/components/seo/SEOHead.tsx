@@ -23,8 +23,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 }) => {
   const defaultTitle = "آرمین سافت | برنامه‌نویس و متخصص امنیت";
   const fullTitle = title ? `${title} | آرمین سافت` : defaultTitle;
-  const siteUrl = "https://arminsoft.ir";
-  const fullCanonical = canonical ? `${siteUrl}${canonical}` : siteUrl;
+  const baseUrl = window.location.origin;
+  const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
   return (
     <Helmet>

@@ -1,23 +1,22 @@
-
 import { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github, Globe, Server, Code, Computer, Smartphone, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WorkSample = () => {
   const [selectedTab, setSelectedTab] = useState("all");
 
-  // نمونه کارها (در یک پروژه واقعی این اطلاعات می‌تواند از API دریافت شود)
+  // نمونه کارها
   const projects = [
     {
       id: 1,
       title: "هوشمند پرداز",
       description: "سیستم مدیریت مالی و حسابداری با قابلیت اتصال به درگاه‌های پرداخت آنلاین",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=هوشمند+پرداز",
-      category: "desktop",
+      category: "software",
       technologies: ["C#", ".NET", "SQL Server"],
       link: "#",
       github: "",
@@ -28,7 +27,7 @@ const WorkSample = () => {
       title: "تلگرام بات مدیر",
       description: "ربات تلگرام پیشرفته با قابلیت مدیریت گروه‌ها، کانال‌ها و ارسال پیام‌های خودکار",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=تلگرام+بات+مدیر",
-      category: "bot",
+      category: "telegram-bot",
       technologies: ["Python", "Telegram API", "MongoDB"],
       link: "#",
       github: "https://github.com/ARMIN-SOFT/telegram-bot",
@@ -39,7 +38,7 @@ const WorkSample = () => {
       title: "آنالیز امنیتی شبکه",
       description: "نرم‌افزار تحلیل و بررسی آسیب‌پذیری‌های شبکه و ارائه راهکارهای امنیتی",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=آنالیز+امنیتی+شبکه",
-      category: "security",
+      category: "script",
       technologies: ["Python", "Kali Linux", "Nmap"],
       link: "#",
       github: "https://github.com/ARMIN-SOFT/security-analyzer",
@@ -50,7 +49,7 @@ const WorkSample = () => {
       title: "پنل مدیریت هوشمند",
       description: "پنل ادمین پیشرفته برای مدیریت کاربران، محتوا و تنظیمات سیستم",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=پنل+مدیریت+هوشمند",
-      category: "web",
+      category: "website",
       technologies: ["React", "Node.js", "MongoDB"],
       link: "#",
       github: "https://github.com/ARMIN-SOFT/admin-panel",
@@ -61,7 +60,7 @@ const WorkSample = () => {
       title: "اسکریپت ساز هوشمند",
       description: "ابزار طراحی و تولید اسکریپت‌های خودکار برای انجام فرآیندهای تکراری",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=اسکریپت+ساز+هوشمند",
-      category: "automation",
+      category: "script",
       technologies: ["JavaScript", "Node.js", "TypeScript"],
       link: "#",
       github: "https://github.com/ARMIN-SOFT/script-builder",
@@ -72,7 +71,7 @@ const WorkSample = () => {
       title: "پیام‌رسان امن",
       description: "اپلیکیشن پیام‌رسان با تمرکز بر امنیت و رمزنگاری پیشرفته",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=پیام‌رسان+امن",
-      category: "mobile",
+      category: "application",
       technologies: ["Flutter", "Firebase", "End-to-end Encryption"],
       link: "#",
       github: "",
@@ -83,7 +82,7 @@ const WorkSample = () => {
       title: "مدیریت پایگاه داده",
       description: "ابزار مدیریت و بهینه‌سازی پایگاه‌های داده با رابط کاربری گرافیکی",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=مدیریت+پایگاه+داده",
-      category: "desktop",
+      category: "webservice",
       technologies: ["Java", "MySQL", "PostgreSQL"],
       link: "#",
       github: "https://github.com/ARMIN-SOFT/db-manager",
@@ -94,7 +93,7 @@ const WorkSample = () => {
       title: "هوش مصنوعی تحلیلگر",
       description: "سیستم هوش مصنوعی برای تحلیل داده‌ها و پیش‌بینی روندها",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=هوش+مصنوعی+تحلیلگر",
-      category: "ai",
+      category: "script",
       technologies: ["Python", "TensorFlow", "Scikit-learn"],
       link: "#",
       github: "https://github.com/ARMIN-SOFT/ai-analyzer",
@@ -102,22 +101,21 @@ const WorkSample = () => {
     },
   ];
 
+  // دسته‌بندی‌های جدید با آیکون‌های مرتبط
+  const categories = [
+    { id: "all", label: "همه", icon: <Globe className="h-4 w-4" /> },
+    { id: "website", label: "سایت", icon: <Globe className="h-4 w-4" /> },
+    { id: "webservice", label: "وب سرویس", icon: <Server className="h-4 w-4" /> },
+    { id: "script", label: "اسکریپت", icon: <Code className="h-4 w-4" /> },
+    { id: "software", label: "نرم افزار", icon: <Computer className="h-4 w-4" /> },
+    { id: "application", label: "اپلیکیشن", icon: <Smartphone className="h-4 w-4" /> },
+    { id: "telegram-bot", label: "ربات تلگرام", icon: <Bot className="h-4 w-4" /> },
+  ];
+
   // فیلتر پروژه‌ها بر اساس تب انتخاب شده
   const filteredProjects = selectedTab === "all" 
     ? projects 
     : projects.filter(project => project.category === selectedTab);
-
-  // دسته‌بندی‌ها
-  const categories = [
-    { id: "all", label: "همه" },
-    { id: "desktop", label: "نرم‌افزار دسکتاپ" },
-    { id: "web", label: "وب" },
-    { id: "mobile", label: "موبایل" },
-    { id: "security", label: "امنیت" },
-    { id: "bot", label: "ربات و هوش مصنوعی" },
-    { id: "automation", label: "اتوماسیون" },
-    { id: "ai", label: "هوش مصنوعی" },
-  ];
 
   return (
     <SiteLayout>
@@ -213,8 +211,9 @@ const WorkSample = () => {
                 <TabsTrigger 
                   key={category.id}
                   value={category.id}
-                  className="rounded-full px-4 py-2 data-[state=active]:bg-arminred-600 data-[state=active]:text-white"
+                  className="rounded-full px-4 py-2 data-[state=active]:bg-arminred-600 data-[state=active]:text-white flex items-center gap-2"
                 >
+                  {category.icon}
                   {category.label}
                 </TabsTrigger>
               ))}
@@ -233,22 +232,42 @@ const WorkSample = () => {
                         alt={project.title} 
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                       />
+                      <div className="absolute top-3 left-3 bg-black/70 text-white text-xs py-1 px-2 rounded flex items-center gap-1">
+                        {categories.find(cat => cat.id === project.category)?.icon}
+                        {categories.find(cat => cat.id === project.category)?.label}
+                      </div>
                     </div>
                     <CardContent className="p-5">
                       <div className="flex justify-between items-start mb-3">
                         <h3 className="text-lg font-bold">{project.title}</h3>
-                        <span className="bg-accent text-accent-foreground text-xs py-1 px-2 rounded">
-                          {categories.find(cat => cat.id === project.category)?.label}
-                        </span>
                       </div>
                       <p className="text-muted-foreground text-sm line-clamp-2 mb-4">{project.description}</p>
                       
-                      <Button asChild variant="link" className="pr-0 text-arminred-600 hover:text-arminred-700">
-                        <a href={project.link} className="flex items-center group">
-                          بیشتر
-                          <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                        </a>
-                      </Button>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech, idx) => (
+                          <span key={idx} className="text-xs bg-arminred-500/10 text-arminred-700 dark:text-arminred-400 py-1 px-2 rounded-md">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <Button asChild variant="default" size="sm" className="bg-arminred-600 hover:bg-arminred-700">
+                          <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                            <ExternalLink className="ml-1 h-4 w-4" />
+                            مشاهده
+                          </a>
+                        </Button>
+                        
+                        {project.github && (
+                          <Button asChild variant="outline" size="sm">
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center">
+                              <Github className="ml-1 h-4 w-4" />
+                              کد منبع
+                            </a>
+                          </Button>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
                 ))}

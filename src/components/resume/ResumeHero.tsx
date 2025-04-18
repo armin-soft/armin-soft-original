@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Download, ArrowRight } from "lucide-react";
+import { Download, ArrowRight, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export const ResumeHero = () => {
               >
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-arminred-400 to-arminred-600 flex items-center justify-center">
                   <motion.div whileHover={{ scale: 1.2 }} className="text-white">
-                    CV
+                    <BadgeCheck className="w-8 h-8" />
                   </motion.div>
                 </div>
               </motion.div>

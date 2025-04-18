@@ -7,11 +7,11 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
 import { CTASection } from "@/components/home/CTASection";
 
-const Khaneh = () => {
+const Home = () => {
   return (
     <SiteLayout>
       <SEOHead 
-        title="خانه | برنامه نویس بک اند"
+        title="برنامه نویس بک اند"
         description="آرمین سافت، متخصص برنامه‌نویسی بک‌اند با تجربه در توسعه API، مدیریت دیتابیس و امنیت سرور"
         canonical="/"
         keywords="برنامه نویس بک اند, توسعه API, پایتون, جاوا, پی اچ پی, مدیریت سرور, امنیت وب, برنامه نویسی سمت سرور"
@@ -25,4 +25,4 @@ const Khaneh = () => {
   );
 };
 
-export default Khaneh;
+export default Home;

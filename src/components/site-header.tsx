@@ -7,6 +7,7 @@ import { MobileMenu } from "./header/MobileMenu";
 import { DesktopNavigation } from "./header/DesktopNavigation";
 import { MenuToggle } from "./header/MenuToggle";
 import { useNavigation, menuItems } from "@/hooks/use-navigation";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 
 export function SiteHeader() {
   const { isMenuOpen, scrolled, toggleMenu, currentPath } = useNavigation();
@@ -27,32 +28,50 @@ export function SiteHeader() {
         className="container mx-auto px-4 md:px-6 w-full"
       >
         <div className="flex items-center justify-between w-full">
+          {/* Right Section */}
           <motion.div 
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center"
+            className="flex items-center gap-4"
           >
-            <Logo />
+            <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
+            <ChevronRight className="hidden md:block h-5 w-5 text-arminred-500" />
           </motion.div>
 
-          <div className="hidden md:flex items-center gap-6">
-            <motion.div
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <DesktopNavigation currentPath={currentPath} />
-            </motion.div>
-          </div>
+          {/* Center Section */}
+          <motion.div
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex-1 flex justify-center items-center"
+          >
+            <div className="hidden md:flex items-center gap-8">
+              <div className="flex items-center gap-6">
+                {menuItems.slice(0, Math.ceil(menuItems.length / 2)).map((item) => (
+                  <DesktopNavigation key={item.path} currentPath={currentPath} />
+                ))}
+              </div>
+              <Logo />
+              <div className="flex items-center gap-6">
+                {menuItems.slice(Math.ceil(menuItems.length / 2)).map((item) => (
+                  <DesktopNavigation key={item.path} currentPath={currentPath} />
+                ))}
+              </div>
+            </div>
+            <div className="md:hidden">
+              <Logo />
+            </div>
+          </motion.div>
 
+          {/* Left Section */}
           <motion.div 
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center md:hidden gap-2"
+            className="flex items-center gap-4"
           >
-            <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
+            <ChevronLeft className="hidden md:block h-5 w-5 text-arminred-500" />
           </motion.div>
         </div>
       </motion.div>

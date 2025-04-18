@@ -1,43 +1,38 @@
 
-/* Glass effect for header */
 .glass-effect {
   backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
 }
 
-.dark .glass-effect {
-  background: rgba(0, 0, 0, 0.7);
-}
-
 .glass-effect:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.dark .glass-effect:hover {
   background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Logo glow effect */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e11d48, #f43f5e);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
 .logo-glow {
   filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.3));
 }
 
-/* Custom scrollbar for the navigation */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(244, 63, 94, 0.3);
-  border-radius: 3px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(244, 63, 94, 0.5);
-}

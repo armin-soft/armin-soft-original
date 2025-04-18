@@ -15,26 +15,26 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed top-0 right-0 left-0 z-50 transition-all duration-500 farsi-numbers",
+        "fixed top-0 right-0 left-0 z-50 transition-all duration-500 farsi-numbers w-full",
         scrolled
-          ? "py-2 bg-background/80 backdrop-blur-xl border-b border-arminred-500/10 shadow-lg"
+          ? "py-2 bg-background/95 backdrop-blur-md shadow-lg border-b border-arminred-500/10"
           : "py-4 bg-transparent"
       )}
     >
       <motion.div 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="container mx-auto px-4 md:px-6"
+        transition={{ duration: 0.3 }}
+        className="container mx-auto px-4 md:px-6 w-full"
       >
-        <nav className="flex items-center justify-between">
-          {/* Mobile Menu Toggle */}
+        <div className="flex items-center justify-between w-full">
+          {/* Mobile Menu Toggle - Only visible on mobile */}
           <div className="md:hidden">
             <MenuToggle isOpen={isMenuOpen} onClick={toggleMenu} />
           </div>
 
-          {/* Logo - Right side on desktop */}
-          <div className="md:order-last">
+          {/* Logo - Right side on desktop, center on mobile */}
+          <div className="md:order-3">
             <Logo />
           </div>
 
@@ -42,18 +42,17 @@ export function SiteHeader() {
           <motion.div
             initial={{ y: -10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-            className="hidden md:flex flex-1 justify-center items-center mx-8"
+            transition={{ delay: 0.3 }}
+            className="hidden md:flex flex-1 justify-center items-center"
           >
             <DesktopNavigation currentPath={currentPath} />
           </motion.div>
 
           {/* Empty div for layout balance on mobile */}
           <div className="md:hidden w-10"></div>
-        </nav>
+        </div>
       </motion.div>
 
-      {/* Mobile Menu with Animation */}
       <MobileMenu 
         isOpen={isMenuOpen}
         items={menuItems}

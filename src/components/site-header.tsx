@@ -1,5 +1,4 @@
 
-import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { Logo } from "./header/Logo";
 import { motion } from "framer-motion";
@@ -67,4 +66,3 @@ export function SiteHeader() {
     </header>
   );
 }
-

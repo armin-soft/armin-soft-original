@@ -1,3 +1,4 @@
+
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { getPersonSchema } from "@/components/seo/schemas";
@@ -9,6 +10,104 @@ import { SkillCard } from "@/components/resume/SkillCard";
 import { ExperienceCard } from "@/components/resume/ExperienceCard";
 import { EducationCard } from "@/components/resume/EducationCard";
 import { Download, ArrowRight, Code, Shield, Bot, Layout, Monitor, Smartphone, FileCode, Database, BookOpen, Server, Award } from "lucide-react";
+import { ReactNode } from "react";
+
+// Skills data
+const skills = [
+  {
+    name: "برنامه نویسی بک‌اند",
+    level: 95,
+    icon: <Server className="w-5 h-5 text-arminred-400" />
+  },
+  {
+    name: "طراحی API",
+    level: 90,
+    icon: <Code className="w-5 h-5 text-arminred-400" />
+  },
+  {
+    name: "امنیت وب",
+    level: 85,
+    icon: <Shield className="w-5 h-5 text-arminred-400" />
+  },
+  {
+    name: "پایگاه داده‌ها",
+    level: 88,
+    icon: <Database className="w-5 h-5 text-arminred-400" />
+  },
+  {
+    name: "DevOps",
+    level: 80,
+    icon: <Server className="w-5 h-5 text-arminred-400" />
+  },
+  {
+    name: "برنامه‌نویسی فرانت‌اند",
+    level: 75,
+    icon: <Layout className="w-5 h-5 text-arminred-400" />
+  },
+  {
+    name: "توسعه موبایل",
+    level: 70,
+    icon: <Smartphone className="w-5 h-5 text-arminred-400" />
+  }
+];
+
+// Experience data
+const experience = [
+  {
+    title: "توسعه‌دهنده ارشد بک‌اند",
+    company: "تکنو سافت",
+    location: "تهران",
+    period: "۱۴۰۱ - اکنون",
+    achievements: [
+      "توسعه و مدیریت API‌های RESTful برای سرویس‌های مختلف شرکت",
+      "بهینه‌سازی عملکرد سرور و کاهش زمان پاسخگویی به درخواست‌ها",
+      "پیاده‌سازی سیستم احراز هویت و مجوزدهی با استفاده از توکن‌های JWT",
+      "همکاری با تیم DevOps برای استقرار مداوم و خودکارسازی فرآیندها"
+    ]
+  },
+  {
+    title: "برنامه‌نویس بک‌اند",
+    company: "شبکه گستر",
+    location: "تهران",
+    period: "۱۳۹۸ - ۱۴۰۱",
+    achievements: [
+      "توسعه وب‌سرویس‌ها برای اپلیکیشن‌های موبایل و وب",
+      "طراحی و پیاده‌سازی معماری میکروسرویس",
+      "بهبود امنیت سیستم‌ها و جلوگیری از حملات متداول وب",
+      "راه‌اندازی و مدیریت سرورهای لینوکس و کانتینرها"
+    ]
+  },
+  {
+    title: "توسعه‌دهنده فول‌استک",
+    company: "دیتا پردازان",
+    location: "مشهد",
+    period: "۱۳۹۷ - ۱۳۹۸",
+    achievements: [
+      "توسعه اپلیکیشن‌های وب مبتنی بر React و Node.js",
+      "طراحی و پیاده‌سازی پایگاه‌های داده SQL و NoSQL",
+      "پیاده‌سازی طراحی رابط کاربری واکنش‌گرا",
+      "ارتباط با مشتریان و پیگیری نیازمندی‌های پروژه"
+    ]
+  }
+];
+
+// Education data
+const education = [
+  {
+    degree: "کارشناسی ارشد مهندسی نرم‌افزار",
+    school: "دانشگاه تهران",
+    location: "تهران",
+    period: "۱۳۹۵ - ۱۳۹۷",
+    description: "پایان‌نامه با موضوع امنیت در معماری میکروسرویس‌ها"
+  },
+  {
+    degree: "کارشناسی مهندسی کامپیوتر",
+    school: "دانشگاه فردوسی",
+    location: "مشهد",
+    period: "۱۳۹۱ - ۱۳۹۵",
+    description: "فارغ‌التحصیل با معدل ۱۸.۵ از ۲۰"
+  }
+];
 
 const Resume = () => {
   return (

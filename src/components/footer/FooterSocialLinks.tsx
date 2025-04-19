@@ -1,12 +1,11 @@
-
 import React from 'react';
 import { motion } from "framer-motion";
-import { Instagram, Github, Youtube, Whatsapp, Telegram, Facebook, MessageCircle } from "lucide-react";
+import { Instagram, Github, Youtube, Whatsapp, Telegram, Facebook, X } from "lucide-react";
 
 export function FooterSocialLinks() {
   const socialLinks = [
     { icon: <Instagram size={18} />, url: "https://instagram.com/ARMIN_SOFT", label: "اینستاگرام", color: "hover:bg-gradient-to-tr hover:from-yellow-500 hover:to-pink-600" },
-    { icon: <MessageCircle size={18} />, url: "https://x.com/@ARMIN_SOFT", label: "ایکس", color: "hover:bg-black" },
+    { icon: <X size={18} />, url: "https://x.com/@ARMIN_SOFT", label: "ایکس", color: "hover:bg-black" },
     { icon: <Whatsapp size={18} />, url: "https://wa.me/989358983854", label: "واتساپ", color: "hover:bg-green-500" },
     { icon: <Telegram size={18} />, url: "https://t.me/ARMIN_SOFT", label: "تلگرام", color: "hover:bg-blue-400" },
     { icon: <Facebook size={18} />, url: "https://facebook.com/@ARMINSOFT0", label: "فیسبوک", color: "hover:bg-blue-600" },

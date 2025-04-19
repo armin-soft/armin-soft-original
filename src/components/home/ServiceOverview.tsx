@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Code, Shield, Bot, Server, Database, Monitor, Cloud, Smartphone, ArrowRight } from "lucide-react";
@@ -10,56 +9,48 @@ export const ServiceOverview = () => {
       icon: <Code className="h-8 w-8" />,
       title: "توسعه نرم افزار",
       description: "طراحی و توسعه انواع نرم‌افزارهای تحت وب با جدیدترین تکنولوژی‌ها",
-      link: "/service",
       color: "from-blue-500/20 to-blue-600/5"
     },
     {
       icon: <Shield className="h-8 w-8" />,
       title: "امنیت و هک اخلاقی",
       description: "تست نفوذ، ارزیابی امنیتی و مشاوره در زمینه امنیت سایبری",
-      link: "/service",
       color: "from-arminred-500/20 to-arminred-600/5"
     },
     {
       icon: <Bot className="h-8 w-8" />,
       title: "هوش مصنوعی",
       description: "پیاده‌سازی سیستم‌های هوشمند و یادگیری ماشین در کسب و کار شما",
-      link: "/service",
       color: "from-purple-500/20 to-purple-600/5"
     },
     {
       icon: <Server className="h-8 w-8" />,
       title: "خدمات سرور",
       description: "مدیریت، بهینه‌سازی و امن‌سازی سرورها و زیرساخت‌های شبکه",
-      link: "/service",
       color: "from-green-500/20 to-green-600/5"
     },
     {
       icon: <Database className="h-8 w-8" />,
       title: "مدیریت دیتابیس",
       description: "طراحی، بهینه‌سازی و مدیریت انواع پایگاه‌های داده رابطه‌ای و NoSQL",
-      link: "/service",
       color: "from-amber-500/20 to-amber-600/5"
     },
     {
       icon: <Monitor className="h-8 w-8" />,
       title: "طراحی رابط کاربری",
       description: "طراحی رابط کاربری زیبا و کاربردی با تمرکز بر تجربه کاربری",
-      link: "/service",
       color: "from-cyan-500/20 to-cyan-600/5"
     },
     {
       icon: <Cloud className="h-8 w-8" />,
       title: "خدمات کلود",
       description: "پیاده‌سازی و مدیریت زیرساخت‌های ابری با AWS، Google Cloud و Azure",
-      link: "/service",
       color: "from-indigo-500/20 to-indigo-600/5"
     },
     {
       icon: <Smartphone className="h-8 w-8" />,
       title: "توسعه اپلیکیشن‌های موبایل",
       description: "طراحی و توسعه اپلیکیشن‌های iOS و اندروید با فلاتر و React Native",
-      link: "/service",
       color: "from-rose-500/20 to-rose-600/5"
     }
   ];
@@ -98,7 +89,7 @@ export const ServiceOverview = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
             >
-              <Link to={service.link} className="block h-full">
+              <Link to="/service" className="block h-full">
                 <Card className="p-6 h-full bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300 group relative overflow-hidden">
                   <div className="flex flex-col items-center text-center h-full relative z-10">
                     <div className={`mb-4 p-4 rounded-xl bg-gradient-to-br ${service.color} group-hover:from-arminred-500/20 group-hover:to-arminred-600/5 transition-colors duration-300`}>

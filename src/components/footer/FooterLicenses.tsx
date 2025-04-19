@@ -4,71 +4,27 @@ import { motion } from "framer-motion";
 
 export function FooterLicenses() {
   useEffect(() => {
-    // For Zarinpal badge
-    const loadZarinpalScript = () => {
-      // Remove any existing Zarinpal scripts to avoid duplicates
-      const existingScripts = document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]');
-      existingScripts.forEach(script => script.remove());
+    // اضافه کردن اسکریپت زرین‌پال به صورت مستقیم
+    const zarinpalScript = document.createElement('script');
+    zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
+    zarinpalScript.type = "text/javascript";
+    zarinpalScript.async = true;
 
-      // Create and append the Zarinpal script
-      const script = document.createElement('script');
-      script.src = 'https://www.zarinpal.com/webservice/TrustCode';
-      script.type = 'text/javascript';
-      script.async = true; // Make it async to not block rendering
-      script.onload = () => {
-        console.log('Zarinpal script loaded successfully');
-        if (window.ZarinpalTrust && typeof window.ZarinpalTrust.render === 'function') {
-          window.ZarinpalTrust.render();
-        }
-      };
-      script.onerror = () => {
-        console.error('Failed to load Zarinpal script');
-      };
-      document.body.appendChild(script);
-
-      // Manually trigger the render if ZarinpalTrust is loaded but not executed
-      // Try rendering multiple times to ensure it loads
-      const attemptRender = (attempts = 0) => {
-        if (window.ZarinpalTrust && typeof window.ZarinpalTrust.render === 'function') {
-          console.log('Rendering Zarinpal badge, attempt:', attempts + 1);
-          window.ZarinpalTrust.render();
-          return true;
-        } else if (attempts < 5) {
-          console.log('ZarinpalTrust not available yet, retrying... attempt:', attempts + 1);
-          setTimeout(() => attemptRender(attempts + 1), 1000);
-          return false;
-        } else {
-          console.error('Failed to render Zarinpal badge after multiple attempts');
-          return false;
-        }
-      };
-      
-      setTimeout(() => attemptRender(), 1000);
+    zarinpalScript.onload = () => {
+      console.log('اسکریپت زرین‌پال با موفقیت بارگذاری شد');
     };
 
-    loadZarinpalScript();
+    zarinpalScript.onerror = () => {
+      console.error('خطا در بارگذاری اسکریپت زرین‌پال');
+    };
 
-    // Ensure the badges are still loaded if something went wrong
-    const checkInterval = setInterval(() => {
-      const zarinpalBadge = document.getElementById('zarinpal-trust-badge');
-      const eNamadBadge = document.getElementById('jNdpnL31KtNsikcan5emQZWkglmgpsxg');
-      
-      if (!zarinpalBadge || !zarinpalBadge.innerHTML || zarinpalBadge.innerHTML === '') {
-        console.log('Reloading Zarinpal badge...');
-        loadZarinpalScript();
-      }
-      
-      // Check if eNamad needs reload too
-      if (!eNamadBadge || (eNamadBadge as HTMLElement).innerHTML === '') {
-        console.log('eNamad badge might not be loaded properly');
-      }
-    }, 3000);
+    document.body.appendChild(zarinpalScript);
 
     return () => {
-      // Clean up on unmount
-      clearInterval(checkInterval);
-      document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]')
-        .forEach(script => script.remove());
+      // حذف اسکریپت در هنگام unmount کامپوننت
+      if (document.body.contains(zarinpalScript)) {
+        document.body.removeChild(zarinpalScript);
+      }
     };
   }, []);
 

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
+import { Copyright } from "lucide-react";
 import { FooterContactInfo } from './footer/FooterContactInfo';
 import { FooterNavLinks } from './footer/FooterNavLinks';
 import { FooterSocialLinks } from './footer/FooterSocialLinks';
@@ -55,11 +56,17 @@ export function SiteFooter() {
           transition={{ delay: 0.8 }}
           className="border-t border-gray-800 mt-8 pt-6 text-center"
         >
-          <p className="text-gray-500 text-sm">
-            تمامی حقوق این وب‌سایت متعلق به آرمین سافت می‌باشد &copy; {currentYear}
-          </p>
+          <div className="flex items-center justify-center gap-2 text-gray-400">
+            <Copyright className="h-4 w-4" />
+            <p className="text-sm">
+              تمامی حقوق این وب‌سایت متعلق به 
+              <span className="font-semibold text-white mx-1">آرمین سافت</span> 
+              می‌باشد
+            </p>
+          </div>
         </motion.div>
       </div>
     </footer>
   );
 }
+

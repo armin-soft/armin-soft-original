@@ -1,9 +1,11 @@
+
 import { SiteLayout } from "@/components/site-layout";
 import { WorkHero } from "@/components/work/WorkHero";
 import { FeaturedProjects } from "@/components/work/FeaturedProjects";
 import { ProjectGrid } from "@/components/work/ProjectGrid";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const WorkSample = () => {
   const projects = [

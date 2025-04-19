@@ -12,25 +12,18 @@ interface DateTimeResponse {
   }
 }
 
-// Use base64 encoding to make it slightly harder to read the API key
-const encodeParams = () => {
-  return btoa(JSON.stringify({
-    l: 'd5LAyJxbYst0egh2qNCdc6kWq0gdckmj',
-    n: 0,
-    m: 0
-  }));
-};
-
 export async function getShamsiDate(): Promise<DateTimeResponse['Result']> {
   try {
-    // Add a random parameter to prevent caching
-    const timestamp = new Date().getTime();
-    const params = encodeParams();
-    
-    const response = await axios.get(`/api/dt/${params}?_=${timestamp}`);
+    const response = await axios.get('https://api.armin-soft.ir/Date-Time/', {
+      params: {
+        License: 'd5LAyJxbYst0egh2qNCdc6kWq0gdckmj',
+        Next: 0,
+        Mounth: 0
+      }
+    });
     return response.data.Result;
   } catch (error) {
-    console.error('Error fetching date:', error);
+    console.error('Error fetching Shamsi date:', error);
     return {
       Code: 500,
       Shamsi_Date: '',

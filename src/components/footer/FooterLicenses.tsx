@@ -1,10 +1,10 @@
-
 import React, { useEffect } from 'react';
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
   useEffect(() => {
+    // Existing Zarinpal script loading
     const zarinpalScript = document.createElement('script');
     zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
     zarinpalScript.type = "text/javascript";

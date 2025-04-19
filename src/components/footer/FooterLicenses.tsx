@@ -1,9 +1,19 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useRef } from 'react';
 import { Shield, Award, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
+  const zarinpalLoaded = useRef(false);
+
   const loadZarinpalScript = () => {
+    // اگر اسکریپت قبلاً بارگذاری شده باشد، فقط تابع render را فراخوانی می‌کنیم
+    if (zarinpalLoaded.current && window.ZarinpalTrust && typeof window.ZarinpalTrust.render === 'function') {
+      window.ZarinpalTrust.render();
+      return;
+    }
+    
+    // بررسی اینکه آیا اسکریپت قبلاً اضافه شده است
     const existingScript = document.querySelector('script[src="https://www.zarinpal.com/webservice/TrustCode"]');
     
     if (!existingScript) {
@@ -14,6 +24,14 @@ export function FooterLicenses() {
 
       zarinpalScript.onload = () => {
         console.log('اسکریپت زرین‌پال با موفقیت بارگذاری شد');
+        zarinpalLoaded.current = true;
+        
+        // بعد از بارگذاری اسکریپت، تابع render را فراخوانی می‌کنیم
+        if (window.ZarinpalTrust && typeof window.ZarinpalTrust.render === 'function') {
+          setTimeout(() => {
+            window.ZarinpalTrust.render();
+          }, 100); // افزودن تأخیر کوتاه برای اطمینان از آماده بودن اسکریپت
+        }
       };
 
       zarinpalScript.onerror = () => {
@@ -21,11 +39,14 @@ export function FooterLicenses() {
       };
 
       document.body.appendChild(zarinpalScript);
+    } else if (window.ZarinpalTrust && typeof window.ZarinpalTrust.render === 'function') {
+      // اگر اسکریپت قبلاً بارگذاری شده باشد، فقط تابع render را فراخوانی می‌کنیم
+      window.ZarinpalTrust.render();
     }
   };
 
   useEffect(() => {
-    // اضافه کردن اسکریپت زرین‌پال به صورت مستقیم
+    // بارگذاری اولیه اسکریپت زرین‌پال
     const zarinpalScript = document.createElement('script');
     zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
     zarinpalScript.type = "text/javascript";
@@ -33,6 +54,7 @@ export function FooterLicenses() {
 
     zarinpalScript.onload = () => {
       console.log('اسکریپت زرین‌پال با موفقیت بارگذاری شد');
+      zarinpalLoaded.current = true;
     };
 
     zarinpalScript.onerror = () => {
@@ -132,7 +154,14 @@ export function FooterLicenses() {
             <div className="relative flex flex-col items-center bg-black rounded-2xl p-4 space-y-3">
               <div className="relative group">
                 <div className="absolute -inset-2 bg-yellow-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div 
+                <a 
+                  href="https://www.zarinpal.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault(); // جلوگیری از انتقال به صفحه زرین‌پال
+                    loadZarinpalScript(); // اجرای اسکریپت زرین‌پال
+                  }}
                   id="zarinpal-trust-badge" 
                   className="h-20 w-20 min-h-[80px] min-w-[80px] object-contain relative z-10 bg-white rounded-lg p-1 flex items-center justify-center cursor-pointer"
                 >
@@ -141,7 +170,7 @@ export function FooterLicenses() {
                     alt="لوگو زرین‌پال" 
                     className="h-14 w-14 object-contain"
                   />
-                </div>
+                </a>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-yellow-500" />

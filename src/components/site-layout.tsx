@@ -28,15 +28,15 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-background text-foreground overflow-x-hidden">
+    <div className="flex flex-col min-h-screen w-full bg-background text-foreground overflow-hidden">
       <SiteHeader />
       {isMobile ? (
-        <main className="flex-grow w-full pt-24 md:pt-28 animate-fade-in">
+        <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
           {children}
         </main>
       ) : (
         <SmoothScrollbar>
-          <main className="flex-grow w-full pt-24 md:pt-28 animate-fade-in">
+          <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
             {children}
           </main>
         </SmoothScrollbar>

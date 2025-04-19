@@ -1,10 +1,11 @@
 
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResumeParallax } from './ResumeParallax';
+import { useBreakpoint } from "@/utils/responsive";
 
 export function ResumeHeader() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,6 +14,7 @@ export function ResumeHeader() {
     offset: ["start start", "end start"]
   });
 
+  const isDesktop = useBreakpoint('lg');
   const y = useTransform(scrollYProgress, [0, 1], [0, 350]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
@@ -25,17 +27,17 @@ export function ResumeHeader() {
       <ResumeParallax />
       
       <div className="container relative z-10 px-4 md:px-6 py-12 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             style={{ y, opacity, scale }}
-            className="flex flex-col space-y-8"
+            className="flex flex-col space-y-6 md:space-y-8 text-center lg:text-right"
           >
             <div className="space-y-2">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="bg-arminred-500/10 text-arminred-500 text-xs px-3 py-1 rounded-full w-fit"
+                className="bg-arminred-500/10 text-arminred-500 text-xs px-3 py-1 rounded-full w-fit mx-auto lg:mr-0 lg:ml-auto"
               >
                 برنامه‌نویس حرفه‌ای بک‌اند
               </motion.div>
@@ -44,7 +46,7 @@ export function ResumeHeader() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-100 to-gray-300"
+                className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-100 to-gray-300"
               >
                 آرمین سافت
               </motion.h1>
@@ -53,7 +55,7 @@ export function ResumeHeader() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-xl text-gray-400 mt-4"
+                className="text-base xs:text-lg md:text-xl text-gray-400 mt-4"
               >
                 متخصص توسعه نرم‌افزار، امنیت سایبری و هوش مصنوعی
               </motion.p>
@@ -63,7 +65,7 @@ export function ResumeHeader() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-3 mt-2"
+              className="flex flex-wrap gap-3 mt-2 justify-center lg:justify-start"
             >
               <Button asChild variant="outline" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 gap-2">
                 <a href="#" download>
@@ -84,7 +86,7 @@ export function ResumeHeader() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-3 mt-4"
+              className="flex flex-wrap gap-3 mt-4 justify-center lg:justify-start"
             >
               <SocialButton icon={<Twitter size={18} />} href="https://twitter.com/armin_soft" />
               <SocialButton icon={<Linkedin size={18} />} href="https://linkedin.com/in/armin-soft" />
@@ -94,55 +96,58 @@ export function ResumeHeader() {
             </motion.div>
           </motion.div>
           
-          <motion.div
-            style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
-            className="relative hidden lg:flex justify-center"
-          >
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="relative z-10"
+          {/* Profile image and tech badges - only shown on desktop and larger screens */}
+          {isDesktop && (
+            <motion.div
+              style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
+              className="relative flex justify-center"
             >
-              <div className="w-72 h-72 md:w-96 md:h-96 relative">
-                <div className="absolute inset-0 animate-spin-slow">
-                  <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full fill-none stroke-arminred-500/20">
-                    <circle cx="50" cy="50" r="40" strokeWidth="1" strokeDasharray="3 3" />
-                  </svg>
-                </div>
-                
-                {/* Resume image */}
-                <div className="absolute inset-6 overflow-hidden rounded-full border-2 border-arminred-500/20">
-                  <div className="w-full h-full bg-gradient-to-br from-black to-gray-900 flex items-center justify-center">
-                    <div className="text-6xl font-bold text-arminred-500">AS</div>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="relative z-10"
+              >
+                <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative">
+                  <div className="absolute inset-0 animate-spin-slow">
+                    <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full fill-none stroke-arminred-500/20">
+                      <circle cx="50" cy="50" r="40" strokeWidth="1" strokeDasharray="3 3" />
+                    </svg>
                   </div>
-                </div>
-                
-                {/* Floating elements */}
-                {['Python', 'Java', 'PHP', 'Node.js', 'SQL', 'NoSQL', 'API'].map((tech, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 + (i * 0.1) }}
-                    className="absolute"
-                    style={{
-                      top: `${20 + Math.sin(i * 1.5) * 35}%`,
-                      left: `${20 + Math.cos(i * 1.8) * 35}%`,
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  >
-                    <div className="bg-black/50 backdrop-blur-md text-xs px-2 py-1 rounded-full border border-gray-800">
-                      {tech}
+                  
+                  {/* Resume image */}
+                  <div className="absolute inset-6 overflow-hidden rounded-full border-2 border-arminred-500/20">
+                    <div className="w-full h-full bg-gradient-to-br from-black to-gray-900 flex items-center justify-center">
+                      <div className="text-5xl md:text-6xl font-bold text-arminred-500">AS</div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                  
+                  {/* Floating elements */}
+                  {['Python', 'Java', 'PHP', 'Node.js', 'SQL', 'NoSQL', 'API'].map((tech, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5 + (i * 0.1) }}
+                      className="absolute"
+                      style={{
+                        top: `${20 + Math.sin(i * 1.5) * 35}%`,
+                        left: `${20 + Math.cos(i * 1.8) * 35}%`,
+                        transform: 'translate(-50%, -50%)'
+                      }}
+                    >
+                      <div className="bg-black/50 backdrop-blur-md text-xs px-2 py-1 rounded-full border border-gray-800">
+                        {tech}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
         </div>
         
-        {/* Scroll indicator */}
+        {/* Scroll indicator - only visible on medium screens and above */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

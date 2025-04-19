@@ -1,8 +1,11 @@
 
 import { motion } from "framer-motion";
 import { MessageSquare, FileCode2, BarChart4, Send } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const ProcessSection = () => {
+  const isMobile = useIsMobile();
+  
   const steps = [
     {
       icon: <MessageSquare className="h-6 w-6" />,
@@ -31,9 +34,9 @@ export const ProcessSection = () => {
   ];
 
   return (
-    <section className="relative py-24 bg-gradient-to-b from-background to-black overflow-hidden">
+    <section className="relative py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background to-black overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
       </div>
       
       <div className="container relative z-10 mx-auto px-4 md:px-6">
@@ -42,17 +45,17 @@ export const ProcessSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+          <h2 className="text-2xl xs:text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
             فرآیند همکاری
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
             روندی شفاف و کارآمد برای تبدیل ایده شما به واقعیت
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -62,7 +65,7 @@ export const ProcessSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative"
             >
-              <div className="h-full rounded-xl bg-black/50 backdrop-blur-xl border border-gray-800 hover:border-arminred-500/30 transition-all duration-300 p-6 flex flex-col">
+              <div className="h-full rounded-xl bg-black/50 backdrop-blur-xl border border-gray-800 hover:border-arminred-500/30 transition-all duration-300 p-5 sm:p-6 flex flex-col">
                 <div className="relative z-10">
                   <div className={`w-12 h-12 mb-4 rounded-lg bg-gradient-to-br ${step.color} flex items-center justify-center text-white`}>
                     {step.icon}
@@ -72,14 +75,14 @@ export const ProcessSection = () => {
                     <span className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-sm ml-3">
                       {index + 1}
                     </span>
-                    <h3 className="text-xl font-bold">{step.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold">{step.title}</h3>
                   </div>
                   
                   <p className="text-gray-400 text-sm">{step.description}</p>
                 </div>
                 
                 {/* Only render arrows between steps on desktop */}
-                {index < steps.length - 1 && (
+                {!isMobile && index < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
                     <div className="w-8 h-8 text-gray-600">
                       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,6 +95,17 @@ export const ProcessSection = () => {
             </motion.div>
           ))}
         </div>
+        
+        {/* Responsive connection lines for mobile/tablet */}
+        {isMobile && (
+          <div className="flex justify-center mt-6">
+            <div className="flex flex-col items-center">
+              <div className="w-0.5 h-8 bg-gradient-to-b from-arminred-500/20 to-arminred-500/40"></div>
+              <div className="text-sm text-gray-400 py-2">مسیر روند همکاری</div>
+              <div className="w-0.5 h-8 bg-gradient-to-b from-arminred-500/40 to-arminred-500/20"></div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

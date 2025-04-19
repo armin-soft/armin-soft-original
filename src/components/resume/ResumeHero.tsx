@@ -1,6 +1,7 @@
+
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, ArrowRight, BadgeCheck, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
+import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResumeParallax } from './ResumeParallax';
@@ -43,7 +44,7 @@ export const ResumeHero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-100 to-gray-300"
+                className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-100 to-gray-300"
               >
                 آرمین سافت
               </motion.h1>
@@ -52,7 +53,7 @@ export const ResumeHero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-xl text-gray-400 mt-4"
+                className="text-base xs:text-lg md:text-xl text-gray-400 mt-4"
               >
                 متخصص توسعه نرم‌افزار، امنیت سایبری و هوش مصنوعی
               </motion.p>
@@ -74,7 +75,7 @@ export const ResumeHero = () => {
               <Button asChild variant="outline" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 gap-2">
                 <Link to="/contact">
                   تماس با من
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowLeft className="w-4 h-4" />
                 </Link>
               </Button>
             </motion.div>

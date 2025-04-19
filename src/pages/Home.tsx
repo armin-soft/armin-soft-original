@@ -7,6 +7,7 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
@@ -17,12 +18,23 @@ const Home = () => {
         canonical="/"
         keywords="برنامه نویس بک اند, توسعه API, پایتون, جاوا, پی اچ پی, مدیریت سرور, امنیت وب, برنامه نویسی سمت سرور"
       />
-      <HomeHero />
-      <HomeStats />
-      <ServiceOverview />
-      <ProcessSection />
-      <FeaturedProjects />
-      <CTASection />
+      
+      {/* Main content container */}
+      <div className="w-full min-h-screen">
+        <HomeHero />
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <HomeStats />
+          <ServiceOverview />
+          <ProcessSection />
+          <FeaturedProjects />
+          <CTASection />
+        </motion.div>
+      </div>
     </SiteLayout>
   );
 };

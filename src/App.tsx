@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
-import { GTMPageTracker, initGTM } from "./components/seo/GTM";
 
 // Pages
 import Home from "./pages/Home";
@@ -20,20 +19,12 @@ import ErrorPage from "./pages/ErrorPage";
 
 const queryClient = new QueryClient();
 
-// Define GTM ID - Replace with your actual GTM ID when in production
-const GTM_ID = 'GTM-XXXXXXX'; // Replace with your actual GTM ID
-
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
-
-  // Initialize Google Tag Manager
-  useEffect(() => {
-    initGTM(GTM_ID);
-  }, []);
 
   // Force dark mode on document element
   useEffect(() => {
@@ -54,7 +45,6 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <GTMPageTracker />
         
         {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
         

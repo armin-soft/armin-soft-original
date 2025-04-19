@@ -16,7 +16,9 @@ export const SkillCard = ({ name, level, icon, index }: SkillCardProps) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
     >
       <Card className="bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300">
         <CardContent className="p-6">

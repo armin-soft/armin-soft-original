@@ -1,9 +1,8 @@
 
 import { motion, useAnimation } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Code, Shield, Bot, Server, Database, Cpu, Smartphone, Globe, Wrench, Zap } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
+import { SkillCard } from "@/components/resume/SkillCard";
+import { Code, Shield, Bot, Server, Database, Cpu, Smartphone, Globe, Wrench, Zap } from "lucide-react";
 
 export const SkillsShowcase = () => {
   const skills = [
@@ -21,34 +20,34 @@ export const SkillsShowcase = () => {
 
   const controls = useAnimation();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const [progressValues, setProgressValues] = useState<number[]>(skills.map(() => 0));
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          controls.start("visible");
-          
-          // Animate progress bars
-          const timers = skills.map((skill, index) => {
-            return setTimeout(() => {
-              setProgressValues(prev => {
-                const newValues = [...prev];
-                newValues[index] = skill.level;
-                return newValues;
-              });
-            }, 200 + index * 100);
-          });
-          
-          return () => {
-            timers.forEach(timer => clearTimeout(timer));
-          };
-        }
-      },
-      { threshold: 0.2 }
-    );
+    // بهینه‌سازی کنترل‌های نمایشی با استفاده از IntersectionObserver
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !isInView) {
+        setIsInView(true);
+        controls.start("visible");
+        
+        // انیمیشن نوار پیشرفت با تاخیر برای هر مهارت
+        skills.forEach((skill, index) => {
+          setTimeout(() => {
+            setProgressValues(prev => {
+              const newValues = [...prev];
+              newValues[index] = skill.level;
+              return newValues;
+            });
+          }, 200 + index * 100);
+        });
+      }
+    };
+    
+    const observer = new IntersectionObserver(handleIntersection, { 
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px" // نمایش زودتر المان‌ها قبل از رسیدن به آنها
+    });
     
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
@@ -59,7 +58,7 @@ export const SkillsShowcase = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, [controls, skills]);
+  }, [controls, isInView, skills]);
 
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -67,7 +66,11 @@ export const SkillsShowcase = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-gradient-to-b from-background to-black overflow-hidden">
+    <section 
+      ref={sectionRef} 
+      className="relative py-32 bg-gradient-to-b from-background to-black overflow-hidden"
+      id="skills-section"
+    >
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial="hidden"
@@ -88,35 +91,13 @@ export const SkillsShowcase = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-6">
           {skills.map((skill, index) => (
-            <motion.div
+            <SkillCard 
               key={index}
-              initial="hidden"
-              animate={controls}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: {
-                  opacity: 1, 
-                  y: 0, 
-                  transition: { duration: 0.5, delay: index * 0.1 }
-                }
-              }}
-            >
-              <Card className="bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300 hover:transform hover:-translate-y-1">
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      {skill.icon}
-                      <span className="font-medium">{skill.name}</span>
-                    </div>
-                    <span className="text-sm text-muted-foreground farsi-numbers">{skill.level}%</span>
-                  </div>
-                  <Progress 
-                    value={progressValues[index]} 
-                    className="h-2 bg-white/10" 
-                  />
-                </div>
-              </Card>
-            </motion.div>
+              name={skill.name}
+              level={progressValues[index]}
+              icon={skill.icon}
+              index={index}
+            />
           ))}
         </div>
 

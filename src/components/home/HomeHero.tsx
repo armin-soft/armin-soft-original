@@ -1,8 +1,7 @@
-
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Shield, Bot, ArrowDown } from "lucide-react";
+import { ArrowRight, Code, Shield, Bot } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export const HomeHero = () => {
@@ -23,13 +22,6 @@ export const HomeHero = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const scrollToNext = () => {
-    const nextSection = document.getElementById("services-section");
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   const textVariants = {
     hidden: { opacity: 0 },
@@ -165,7 +157,7 @@ export const HomeHero = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              متخصص توسعه نرم‌افزار، امنیت وب و هوش مصنوعی با بیش از ۵ سال تجربه در صنعت فناوری اطلاعات
+              متخصص توسعه نرم‌افزار، امنیت وب و هوش مصنوعی با بیش از ۱۰ سال تجربه در صنعت فناوری اطلاعات
             </motion.p>
 
             <motion.div 
@@ -196,7 +188,7 @@ export const HomeHero = () => {
             className="flex flex-wrap justify-center gap-4 mt-12"
           >
             <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800 shadow-lg shadow-arminred-600/20">
-              <Link to="/service" className="flex items-center gap-2">
+              <Link to="/Contact" className="flex items-center gap-2">
                 <motion.span
                   initial={{ x: 5 }}
                   animate={{ x: 0 }}
@@ -214,27 +206,6 @@ export const HomeHero = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll down indicator */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer hidden md:flex flex-col items-center gap-2"
-        animate={{ 
-          y: [0, 10, 0],
-          opacity: scrolled ? 0 : 1
-        }}
-        transition={{ 
-          y: { 
-            repeat: Infinity, 
-            duration: 1.5,
-            ease: "easeInOut"
-          },
-          opacity: { duration: 0.3 }
-        }}
-        onClick={scrollToNext}
-      >
-        <span className="text-sm text-gray-400">مشاهده بیشتر</span>
-        <ArrowDown className="h-5 w-5 text-arminred-500" />
-      </motion.div>
     </section>
   );
 };

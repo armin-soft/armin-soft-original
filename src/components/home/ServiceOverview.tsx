@@ -10,14 +10,14 @@ export const ServiceOverview = () => {
       icon: <Code className="h-8 w-8" />,
       title: "توسعه نرم‌افزار",
       description: "طراحی و توسعه انواع نرم‌افزارهای تحت وب با جدیدترین تکنولوژی‌ها",
-      link: "/service#software",
+      link: "/Service",
       color: "from-blue-500/20 to-blue-600/5"
     },
     {
       icon: <Shield className="h-8 w-8" />,
       title: "امنیت و هک اخلاقی",
       description: "تست نفوذ، ارزیابی امنیتی و مشاوره در زمینه امنیت سایبری",
-      link: "/service#security",
+      link: "/Service",
       color: "from-arminred-500/20 to-arminred-600/5"
     },
     {

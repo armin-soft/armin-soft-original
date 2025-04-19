@@ -5,31 +5,11 @@ import { motion } from "framer-motion";
 
 export function FooterLicenses() {
   useEffect(() => {
-    // Zarinpal script
+    // Add Zarinpal script using the simpler approach
     const zarinpalScript = document.createElement('script');
     zarinpalScript.type = "text/javascript";
-    zarinpalScript.defer = true;
-    zarinpalScript.fetchPriority = "high"; // Corrected from fetchpriority to fetchPriority
     zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
-    zarinpalScript.setAttribute('data-rocket-defer', '');
-    zarinpalScript.setAttribute('data-rocket-status', 'executed');
     document.body.appendChild(zarinpalScript);
-
-    // Dynamically add Zarinpal badge
-    const zarinpalBadgeContainer = document.getElementById('zarinpal-trust-badge');
-    if (zarinpalBadgeContainer) {
-      const zarinpalBadgeLink = document.createElement('a');
-      zarinpalBadgeLink.href = "javascript:showZPTrust();";
-      zarinpalBadgeLink.title = "دروازه پرداخت معتبر";
-
-      const zarinpalBadgeImg = document.createElement('img');
-      zarinpalBadgeImg.src = "https://cdn.zarinpal.com/badges/trustLogo/1.png";
-      zarinpalBadgeImg.border = "0";
-      zarinpalBadgeImg.alt = "دروازه پرداخت معتبر";
-
-      zarinpalBadgeLink.appendChild(zarinpalBadgeImg);
-      zarinpalBadgeContainer.appendChild(zarinpalBadgeLink);
-    }
 
     return () => {
       if (zarinpalScript.parentNode) {
@@ -129,10 +109,16 @@ export function FooterLicenses() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="relative flex flex-col items-center bg-black rounded-2xl p-4 space-y-3">
-              <div 
-                id="zarinpal-trust-badge" 
-                className="h-20 w-20 min-h-[80px] min-w-[80px] object-contain relative z-10 bg-white rounded-lg p-1 flex items-center justify-center"
-              />
+              <div className="h-20 w-20 min-h-[80px] min-w-[80px] object-contain relative z-10 bg-white rounded-lg p-1 flex items-center justify-center">
+                <a href="javascript:showZPTrust();" title="دروازه پرداخت معتبر">
+                  <img 
+                    src="https://cdn.zarinpal.com/badges/trustLogo/1.png" 
+                    border="0" 
+                    alt="دروازه پرداخت معتبر"
+                    className="max-w-full max-h-full"
+                  />
+                </a>
+              </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-yellow-500" />
                 <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-300">

@@ -32,32 +32,22 @@ export function FooterLicenses() {
         
         <div className="flex items-center space-x-6 space-x-reverse">
           <div className="flex flex-col items-center space-y-2 group">
-            <img 
-              onClick={() => window.open('https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg', '_blank')}
-              src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg" 
-              alt="نماد تجارت الکترونیکی" 
-              style={{ cursor: 'pointer' }} 
-              id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-              referrerPolicy="origin"
-              className="h-20 w-20 object-contain"
-            />
+            <a 
+              referrerPolicy="origin" 
+              target="_blank" 
+              href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+            >
+              <img 
+                referrerPolicy="origin" 
+                src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg" 
+                alt="" 
+                style={{ cursor: 'pointer' }} 
+                id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                className="h-20 w-20 object-contain"
+              />
+            </a>
             <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
               نماد تجارت الکترونیکی
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center space-y-2 group">
-            <img 
-              onClick={() => window.open('https://logo.samandehi.ir/Verify.aspx?id=146772&p=rfthaodsgvkajyoejyoeuiwk', '_blank')}
-              src="https://logo.samandehi.ir/logo.aspx?id=146772&p=nbpdshwlwlbqyndtyndtodrf" 
-              alt="ساماندهی" 
-              style={{ cursor: 'pointer' }} 
-              id="jxlzwlaofukzjzpejzpenbqe"
-              referrerPolicy="origin"
-              className="h-20 w-20 object-contain"
-            />
-            <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
-              ساماندهی
             </span>
           </div>
 

@@ -1,9 +1,9 @@
+
 import React from 'react';
 import { motion } from "framer-motion";
 import { FooterContactInfo } from './footer/FooterContactInfo';
 import { FooterNavLinks } from './footer/FooterNavLinks';
 import { FooterSocialLinks } from './footer/FooterSocialLinks';
-import { FooterLicenses } from './footer/FooterLicenses';
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
@@ -36,8 +36,6 @@ export function SiteFooter() {
   return (
     <footer className="bg-black/95 text-white pt-16 pb-6 mt-16 farsi-numbers">
       <div className="container mx-auto px-4 md:px-6">
-        {/* Removed FooterNewsletter component */}
-
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -49,8 +47,6 @@ export function SiteFooter() {
           <FooterNavLinks linkGroups={footerLinks} />
           <FooterSocialLinks />
         </motion.div>
-
-        <FooterLicenses />
 
         <motion.div
           initial={{ opacity: 0 }}

@@ -38,6 +38,10 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
   };
 
   useEffect(() => {
+    // Let's declare all our event handlers here to ensure they're accessible for cleanup
+    let imageLoadHandlers: { img: HTMLImageElement, handler: () => void }[] = [];
+    let scriptLoadHandlers: { script: HTMLScriptElement, handler: () => void }[] = [];
+    
     const checkAllResourcesLoaded = () => {
       const allLoaded = resources.every(resource => resource.loaded);
       if (allLoaded) {
@@ -64,19 +68,20 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
       updateResourceStatus("تصاویر");
       checkAllResourcesLoaded();
     } else {
-      const imageLoadHandler = () => {
-        loadedImages++;
-        if (loadedImages === totalImages) {
-          updateResourceStatus("تصاویر");
-          checkAllResourcesLoaded();
-        }
-      };
-
       images.forEach(img => {
         if (img.complete) {
           loadedImages++;
         } else {
-          img.addEventListener('load', imageLoadHandler);
+          const handler = () => {
+            loadedImages++;
+            if (loadedImages === totalImages) {
+              updateResourceStatus("تصاویر");
+              checkAllResourcesLoaded();
+            }
+          };
+          
+          img.addEventListener('load', handler);
+          imageLoadHandlers.push({ img, handler });
         }
       });
 
@@ -108,31 +113,44 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
     let loadedScripts = 0;
     const totalScripts = scripts.length;
 
-    const scriptLoadHandler = () => {
-      loadedScripts++;
-      if (loadedScripts === totalScripts) {
-        updateResourceStatus("اسکریپت‌ها");
-        checkAllResourcesLoaded();
-      }
-    };
-
     scripts.forEach(script => {
       if (script.hasAttribute('async') || script.hasAttribute('defer')) {
-        script.addEventListener('load', scriptLoadHandler);
+        const handler = () => {
+          loadedScripts++;
+          if (loadedScripts === totalScripts) {
+            updateResourceStatus("اسکریپت‌ها");
+            checkAllResourcesLoaded();
+          }
+        };
+        
+        script.addEventListener('load', handler);
+        scriptLoadHandlers.push({ script, handler });
       } else {
-        scriptLoadHandler();
+        loadedScripts++;
       }
     });
+
+    if (loadedScripts === totalScripts) {
+      updateResourceStatus("اسکریپت‌ها");
+      checkAllResourcesLoaded();
+    }
 
     checkStyleSheets();
     const styleCheckInterval = setInterval(checkStyleSheets, 100);
 
     return () => {
-      images.forEach(img => img.removeEventListener('load', imageLoadHandler));
-      scripts.forEach(script => script.removeEventListener('load', scriptLoadHandler));
+      // Clean up event listeners
+      imageLoadHandlers.forEach(({ img, handler }) => {
+        img.removeEventListener('load', handler);
+      });
+      
+      scriptLoadHandlers.forEach(({ script, handler }) => {
+        script.removeEventListener('load', handler);
+      });
+      
       clearInterval(styleCheckInterval);
     };
-  }, [onLoadingComplete]);
+  }, [onLoadingComplete, resources]);
 
   return {
     progress,

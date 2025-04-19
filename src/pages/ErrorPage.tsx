@@ -1,15 +1,15 @@
-
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
+import { toPersianNumbers } from "@/utils/numberUtils";
 import { 
   AlertTriangle, Ban, Clock, CreditCard, Database, FileSearch, FileType, 
   FileX, HardDrive, Home, Link2, Lock, Package, Search, SearchX, 
   Server, ServerCrash, ServerOff, Shield, ShieldOff, ShieldX, Undo2, Wrench, XOctagon,
-  GitMerge, Trash2, GitFork // Added missing icons
+  GitMerge, Trash2, GitFork
 } from "lucide-react";
 
 const errorDetails = {
@@ -142,7 +142,7 @@ const errorDetails = {
   500: {
     title: "خطای داخلی سرور",
     icon: <ServerCrash className="h-16 w-16 text-arminred-400 transition-all" />,
-    description: "سرور با مشکلی مواجه شده است. لطفاً بعداً دوباره تلاش کنید.",
+    description: "سرور ��ا مشکلی مواجه شده است. لطفاً بعداً دوباره تلاش کنید.",
     color: "from-red-400/20 via-red-500/10 to-red-600/5"
   },
   501: {
@@ -214,7 +214,7 @@ const ErrorPage = () => {
     
     toast({
       title: error.title,
-      description: `خطای ${errorCode}: ${error.description}`,
+      description: `خطای ${toPersianNumbers(errorCode)}: ${error.description}`,
       variant: "destructive"
     });
   }, [errorCode, error]);
@@ -304,7 +304,7 @@ const ErrorPage = () => {
               variants={itemVariants}
               className="text-8xl font-bold bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent"
             >
-              {errorCode}
+              {toPersianNumbers(errorCode)}
             </motion.h1>
             
             <motion.div 
@@ -338,11 +338,6 @@ const ErrorPage = () => {
                   <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-6 text-right">
                     <h3 className="text-xl font-bold mb-3 text-arminred-400">جزئیات خطا</h3>
                     <p className="mb-2">{getErrorDetail()}</p>
-                    <div className="mt-4 p-3 bg-black/30 rounded-md text-gray-400 font-mono text-sm overflow-x-auto">
-                      <p className="mb-1">کد خطا: {errorCode}</p>
-                      <p className="mb-1">زمان: {new Date().toLocaleString('fa-IR')}</p>
-                      <p>مسیر: {window.location.pathname}</p>
-                    </div>
                   </div>
                 </motion.div>
               )}

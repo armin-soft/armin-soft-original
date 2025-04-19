@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { DateDisplay } from "./datetime/DateDisplay";
 import { TimeDisplay } from "./datetime/TimeDisplay";
 import { getShamsiDate } from "@/services/dateService";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface DateTimeData {
   date: string;
@@ -41,6 +42,7 @@ const getIranDateTime = async (): Promise<DateTimeData> => {
 };
 
 export function LiveDateTime() {
+  const isMobile = useIsMobile();
   const [dateTime, setDateTime] = useState<DateTimeData>({
     date: '',
     season: '',
@@ -62,11 +64,16 @@ export function LiveDateTime() {
     return () => clearInterval(timer);
   }, []);
 
+  // Hide on mobile
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="block" // Show on both mobile and desktop
+      className="hidden md:block" // Explicitly hide on mobile, show on desktop
     >
       <Card className="bg-black/30 backdrop-blur-md border-gray-800 hover:border-arminred-500/50 transition-all duration-300 shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 px-3 md:px-6 py-2 md:py-3">
@@ -86,3 +93,4 @@ export function LiveDateTime() {
     </motion.div>
   );
 }
+

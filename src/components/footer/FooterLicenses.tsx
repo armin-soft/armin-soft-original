@@ -1,17 +1,43 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Shield, Award, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
+  const zarinpalRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    // Remove any existing scripts to avoid duplicates
+    const existingScripts = document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]');
+    existingScripts.forEach(script => script.remove());
+
+    // Add the Zarinpal script
     const script = document.createElement('script');
     script.src = 'https://www.zarinpal.com/webservice/TrustCode';
     script.type = 'text/javascript';
     document.body.appendChild(script);
 
+    // Make sure the script has time to load and execute
+    const timer = setTimeout(() => {
+      if (zarinpalRef.current && window.ZarinpalTrust) {
+        console.log("Zarinpal script loaded, attempting to render badge");
+        try {
+          window.ZarinpalTrust.render();
+        } catch (e) {
+          console.error("Failed to render Zarinpal badge:", e);
+        }
+      } else {
+        console.log("Zarinpal container or script not ready:", { 
+          containerExists: !!zarinpalRef.current,
+          scriptExists: !!window.ZarinpalTrust
+        });
+      }
+    }, 1000);
+
     return () => {
-      document.body.removeChild(script);
+      clearTimeout(timer);
+      document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]')
+        .forEach(script => document.body.removeChild(script));
     };
   }, []);
 
@@ -107,7 +133,13 @@ export function FooterLicenses() {
             <div className="relative flex flex-col items-center bg-black rounded-2xl p-4 space-y-3">
               <div className="relative group">
                 <div className="absolute -inset-2 bg-yellow-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div id="zarinpal-trust-badge" className="h-20 w-20 object-contain relative z-10"></div>
+                <div 
+                  ref={zarinpalRef} 
+                  id="zarinpal-trust-badge" 
+                  data-ipt-type="square" 
+                  data-ipt-color="white" 
+                  className="h-20 w-20 object-contain relative z-10"
+                ></div>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-yellow-500" />
@@ -121,4 +153,13 @@ export function FooterLicenses() {
       </motion.div>
     </motion.div>
   );
+}
+
+// Add TypeScript declaration for Zarinpal
+declare global {
+  interface Window {
+    ZarinpalTrust?: {
+      render: () => void;
+    };
+  }
 }

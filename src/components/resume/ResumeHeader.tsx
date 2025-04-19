@@ -1,11 +1,12 @@
+
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, ArrowRight, BadgeCheck, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
+import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResumeParallax } from './ResumeParallax';
 
-export const ResumeHero = () => {
+export function ResumeHeader() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -74,7 +75,7 @@ export const ResumeHero = () => {
               <Button asChild variant="outline" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 gap-2">
                 <Link to="/contact">
                   تماس با من
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowLeft className="w-4 h-4" />
                 </Link>
               </Button>
             </motion.div>
@@ -166,7 +167,7 @@ export const ResumeHero = () => {
       </div>
     </div>
   );
-};
+}
 
 function SocialButton({ icon, href }: { icon: React.ReactNode; href: string }) {
   return (

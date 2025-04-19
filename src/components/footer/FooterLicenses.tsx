@@ -9,7 +9,7 @@ export function FooterLicenses() {
     const zarinpalScript = document.createElement('script');
     zarinpalScript.type = "text/javascript";
     zarinpalScript.defer = true;
-    zarinpalScript.fetchpriority = "high";
+    zarinpalScript.fetchPriority = "high"; // Corrected from fetchpriority to fetchPriority
     zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
     zarinpalScript.setAttribute('data-rocket-defer', '');
     zarinpalScript.setAttribute('data-rocket-status', 'executed');

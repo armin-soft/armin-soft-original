@@ -21,13 +21,13 @@ export function MapNavigation() {
     {
       name: "گوگل مپ",
       icon: <Map className="h-6 w-6" />,
-      url: "https://www.google.com/maps/place/ARMIN-SOFT/@35.4876278,51.6769236,17z/data=!3m1!4b1!4m6!3m5!1s0x3f91eb2b6c71c453:0x7908be7f77a9ab27!8m2!3d35.4876278!4d51.6769236!16s%2Fg%2F11nmrmzj6b?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoJLDEwMjExNjQwSAFQAw%3D%3D",
+      url: "https://www.google.com/maps/place/ARMIN-SOFT/@35.4876278,51.6769236,17z/data=!3m1!4b1!4m6!3m5!1s0x3f91eb2b6c71c453:0x7908be7f77a9ab27!8m2!3d35.4876278!4d51.6769236!16s%2Fg%2F11nmrmzj6b?entry=ttu&g_ep=EgoyMDI1MDQxNC4xIKXMDSoJLCMxMDIxMTY0MEgBUAM%3D",
       color: "bg-red-500 hover:bg-red-600"
     }
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 farsi-numbers">
       {mapLinks.map((mapLink, index) => (
         <motion.a 
           key={index}
@@ -49,7 +49,7 @@ export function MapNavigation() {
                   {mapLink.icon}
                 </div>
                 <h3 className="text-xl font-bold">مسیریابی با {mapLink.name}</h3>
-                <p className="mt-2 text-sm opacity-90">برای مشاهده موقعیت آرمین سافت در {mapLink.name} کلیک کنید</p>
+                <p className="mt-2 text-sm opacity-90">برای مشاهده دقیق موقعیت شرکت آرمین‌سافت در {mapLink.name} کلیک کنید</p>
               </div>
             </CardContent>
           </Card>

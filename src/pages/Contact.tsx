@@ -65,8 +65,8 @@ const Contact = () => {
             viewport={{ once: true }}
             className="text-center mb-10"
           >
-            <h2 className="text-2xl md:text-3xl font-bold">موقعیت مکانی</h2>
-            <p className="text-muted-foreground mt-2">برای ملاقات حضوری و مسیریابی، از لینک‌های زیر استفاده کنید</p>
+            <h2 className="text-2xl md:text-3xl font-bold">موقعیت مکانی شرکت آرمین‌سافت</h2>
+            <p className="text-muted-foreground mt-2">برای مشاهده دقیق محل شرکت از نقشه‌های زیر استفاده کنید</p>
           </motion.div>
           
           <div className="flex flex-col space-y-6">
@@ -81,14 +81,14 @@ const Contact = () => {
               className="rounded-lg overflow-hidden h-[400px] border-4 border-white shadow-xl"
             >
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.6633208828505!2d51.67436997677457!3d35.48762777270472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f91eb2b6c71c453%3A0x7908be7f77a9ab27!2sARMIN-SOFT!5e0!3m2!1sen!2s!4v1682250241209!5m2!1sen!2s" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.6633208828505!2d51.67436997677457!3d35.48762777270472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f91eb2b6c71c453%3A0x7908be7f77a9ab27!2sARMIN-SOFT!5e0!3m2!1sfa!2s!4v1682250241209!5m2!1sfa!2s" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
                 allowFullScreen 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
-                title="نقشه دفتر آرمین سافت"
+                title="نقشه موقعیت دفتر آرمین‌سافت"
               />
             </motion.div>
             

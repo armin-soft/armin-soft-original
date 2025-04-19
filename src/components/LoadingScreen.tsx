@@ -2,44 +2,95 @@
 import React, { useEffect, useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
-import { Bot, Code, Shield } from "lucide-react";
+import { Bot, Code, Shield, LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
 }
 
+interface ResourceStatus {
+  name: string;
+  loaded: boolean;
+}
+
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [resources, setResources] = useState<ResourceStatus[]>([
+    { name: "فونت‌ها", loaded: false },
+    { name: "تصاویر", loaded: false },
+    { name: "کامپوننت‌ها", loaded: false },
+    { name: "محتوا", loaded: false },
+    { name: "اسکریپت‌ها", loaded: false }
+  ]);
+  
+  const [currentLoadingItem, setCurrentLoadingItem] = useState("");
 
   useEffect(() => {
-    const loadingInterval = setInterval(() => {
-      setProgress((prevProgress) => {
-        const randomIncrement = Math.floor(Math.random() * 4) + 1;
-        const newProgress = Math.min(prevProgress + randomIncrement, 90);
-        return newProgress;
-      });
-    }, 150);
+    // Check if fonts are loaded
+    document.fonts.ready.then(() => {
+      updateResourceStatus("فونت‌ها");
+    });
 
-    setTimeout(() => {
-      clearInterval(loadingInterval);
-      setProgress(100);
-      setIsComplete(true);
-      
-      setTimeout(() => {
-        setFadeOut(true);
-        setTimeout(() => {
-          onLoadingComplete();
-        }, 500);
-      }, 800);
-    }, 3000);
+    // Check if images are loaded
+    const images = document.querySelectorAll('img');
+    let loadedImages = 0;
+    
+    const imageLoadHandler = () => {
+      loadedImages++;
+      if (loadedImages === images.length) {
+        updateResourceStatus("تصاویر");
+      }
+    };
+
+    images.forEach(img => {
+      if (img.complete) {
+        loadedImages++;
+      } else {
+        img.addEventListener('load', imageLoadHandler);
+      }
+    });
+
+    if (images.length === loadedImages) {
+      updateResourceStatus("تصاویر");
+    }
+
+    // Simulate other resource loading
+    setTimeout(() => updateResourceStatus("کامپوننت‌ها"), 800);
+    setTimeout(() => updateResourceStatus("محتوا"), 1500);
+    setTimeout(() => updateResourceStatus("اسکریپت‌ها"), 2000);
 
     return () => {
-      clearInterval(loadingInterval);
+      images.forEach(img => img.removeEventListener('load', imageLoadHandler));
     };
-  }, [onLoadingComplete]);
+  }, []);
+
+  const updateResourceStatus = (resourceName: string) => {
+    setResources(prev => {
+      const newResources = prev.map(resource => 
+        resource.name === resourceName ? { ...resource, loaded: true } : resource
+      );
+      
+      // Calculate new progress
+      const loadedCount = newResources.filter(r => r.loaded).length;
+      const newProgress = Math.round((loadedCount / newResources.length) * 100);
+      setProgress(newProgress);
+      setCurrentLoadingItem(resourceName);
+
+      // Check if all resources are loaded
+      if (loadedCount === newResources.length) {
+        setIsComplete(true);
+        setTimeout(() => {
+          setFadeOut(true);
+          setTimeout(onLoadingComplete, 500);
+        }, 800);
+      }
+
+      return newResources;
+    });
+  };
 
   return (
     <motion.div
@@ -93,13 +144,36 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
             آرمین سافت
           </motion.h1>
           <motion.p 
-            className="text-lg text-muted-foreground farsi-numbers"
+            className="text-lg text-muted-foreground farsi-numbers mb-2"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            در حال بارگذاری محتوا... {progress.toLocaleString('fa-IR')}٪
+            در حال بارگذاری {currentLoadingItem}... {progress.toLocaleString('fa-IR')}٪
           </motion.p>
+          
+          <div className="text-sm text-muted-foreground/60">
+            {resources.map((resource, index) => (
+              <motion.div 
+                key={resource.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 + (index * 0.1) }}
+                className="flex items-center justify-center gap-2"
+              >
+                {resource.loaded ? (
+                  <span className="text-green-500">✓</span>
+                ) : (
+                  <LoaderCircle className="w-4 h-4 animate-spin text-arminred-500" />
+                )}
+                <span className={cn(
+                  resource.loaded ? "text-green-500" : "text-muted-foreground"
+                )}>
+                  {resource.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Progress Bar */}

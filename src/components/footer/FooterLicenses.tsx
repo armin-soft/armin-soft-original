@@ -3,6 +3,27 @@ import { Shield, Award, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
+  const loadZarinpalScript = () => {
+    const existingScript = document.querySelector('script[src="https://www.zarinpal.com/webservice/TrustCode"]');
+    
+    if (!existingScript) {
+      const zarinpalScript = document.createElement('script');
+      zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
+      zarinpalScript.type = "text/javascript";
+      zarinpalScript.async = true;
+
+      zarinpalScript.onload = () => {
+        console.log('اسکریپت زرین‌پال با موفقیت بارگذاری شد');
+      };
+
+      zarinpalScript.onerror = () => {
+        console.error('خطا در بارگذاری اسکریپت زرین‌پال');
+      };
+
+      document.body.appendChild(zarinpalScript);
+    }
+  };
+
   useEffect(() => {
     // اضافه کردن اسکریپت زرین‌پال به صورت مستقیم
     const zarinpalScript = document.createElement('script');
@@ -103,6 +124,7 @@ export function FooterLicenses() {
           <motion.div 
             variants={itemVariants}
             className="group relative"
+            onClick={loadZarinpalScript}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -112,7 +134,7 @@ export function FooterLicenses() {
                 <div className="absolute -inset-2 bg-yellow-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div 
                   id="zarinpal-trust-badge" 
-                  className="h-20 w-20 min-h-[80px] min-w-[80px] object-contain relative z-10 bg-white rounded-lg p-1 flex items-center justify-center"
+                  className="h-20 w-20 min-h-[80px] min-w-[80px] object-contain relative z-10 bg-white rounded-lg p-1 flex items-center justify-center cursor-pointer"
                 >
                   <img 
                     src="https://cdn.zarinpal.com/badges/trustLogo/1.png" 

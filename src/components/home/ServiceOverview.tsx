@@ -10,56 +10,56 @@ export const ServiceOverview = () => {
       icon: <Code className="h-8 w-8" />,
       title: "توسعه نرم افزار",
       description: "طراحی و توسعه انواع نرم‌افزارهای تحت وب با جدیدترین تکنولوژی‌ها",
-      link: "/Service",
+      link: "/service",
       color: "from-blue-500/20 to-blue-600/5"
     },
     {
       icon: <Shield className="h-8 w-8" />,
       title: "امنیت و هک اخلاقی",
       description: "تست نفوذ، ارزیابی امنیتی و مشاوره در زمینه امنیت سایبری",
-      link: "/Service",
+      link: "/service",
       color: "from-arminred-500/20 to-arminred-600/5"
     },
     {
       icon: <Bot className="h-8 w-8" />,
       title: "هوش مصنوعی",
       description: "پیاده‌سازی سیستم‌های هوشمند و یادگیری ماشین در کسب و کار شما",
-      link: "/service#ai",
+      link: "/service",
       color: "from-purple-500/20 to-purple-600/5"
     },
     {
       icon: <Server className="h-8 w-8" />,
       title: "خدمات سرور",
       description: "مدیریت، بهینه‌سازی و امن‌سازی سرورها و زیرساخت‌های شبکه",
-      link: "/service#server",
+      link: "/service",
       color: "from-green-500/20 to-green-600/5"
     },
     {
       icon: <Database className="h-8 w-8" />,
       title: "مدیریت دیتابیس",
       description: "طراحی، بهینه‌سازی و مدیریت انواع پایگاه‌های داده رابطه‌ای و NoSQL",
-      link: "/service#database",
+      link: "/service",
       color: "from-amber-500/20 to-amber-600/5"
     },
     {
       icon: <Monitor className="h-8 w-8" />,
       title: "طراحی رابط کاربری",
       description: "طراحی رابط کاربری زیبا و کاربردی با تمرکز بر تجربه کاربری",
-      link: "/service#ui-ux",
+      link: "/service",
       color: "from-cyan-500/20 to-cyan-600/5"
     },
     {
       icon: <Cloud className="h-8 w-8" />,
       title: "خدمات کلود",
       description: "پیاده‌سازی و مدیریت زیرساخت‌های ابری با AWS، Google Cloud و Azure",
-      link: "/service#cloud",
+      link: "/service",
       color: "from-indigo-500/20 to-indigo-600/5"
     },
     {
       icon: <Smartphone className="h-8 w-8" />,
       title: "توسعه اپلیکیشن‌های موبایل",
       description: "طراحی و توسعه اپلیکیشن‌های iOS و اندروید با فلاتر و React Native",
-      link: "/service#mobile",
+      link: "/service",
       color: "from-rose-500/20 to-rose-600/5"
     }
   ];

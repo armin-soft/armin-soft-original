@@ -1,7 +1,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Instagram, Github, Youtube, MessageSquare, Facebook, X } from "lucide-react";
+import { Instagram, Github, Youtube, Facebook, X, MessageSquare } from "lucide-react";
 
 export function SocialLinks() {
   const socialLinks = [
@@ -12,7 +12,7 @@ export function SocialLinks() {
     { icon: <Facebook size={22} />, name: "فیسبوک", url: "https://facebook.com/@ARMINSOFT0", color: "bg-gradient-to-br from-blue-500 to-blue-700" },
     { icon: <Github size={22} />, name: "گیت‌هاب", url: "https://github.com/ARMIN-SOFT", color: "bg-gradient-to-br from-gray-700 to-gray-900" },
     { icon: <Youtube size={22} />, name: "یوتیوب", url: "https://www.youtube.com/@ARMIN_SOFT", color: "bg-gradient-to-br from-red-500 to-red-700" },
-    { icon: <MessageSquare size={22} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-gradient-to-br from-red-400 to-red-600" },
+    { icon: <Youtube size={22} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-gradient-to-br from-red-400 to-red-600" },
   ];
 
   // Animation variants

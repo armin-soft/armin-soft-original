@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -21,6 +21,8 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isErrorPage = location.pathname.startsWith('/error/') || location.pathname === '/404';
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -34,11 +36,11 @@ const App = () => {
 
   // Force the loading screen to be shown for at least a small amount of time
   useEffect(() => {
-    document.documentElement.style.overflow = isLoading ? "hidden" : "";
+    document.documentElement.style.overflow = isLoading && !isErrorPage ? "hidden" : "";
     return () => {
       document.documentElement.style.overflow = "";
     };
-  }, [isLoading]);
+  }, [isLoading, isErrorPage]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -46,9 +48,9 @@ const App = () => {
         <Toaster />
         <Sonner />
         
-        {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
+        {isLoading && !isErrorPage && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
         
-        {!isLoading && (
+        {(!isLoading || isErrorPage) && (
           <Routes>
             {/* Main Pages */}
             <Route path="/" element={<Home />} />

@@ -3,7 +3,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { toast } from "@/hooks/use-toast";
 import { toPersianNumbers } from "@/utils/numberUtils";
 import { 
   AlertTriangle, Ban, Clock, CreditCard, Database, FileSearch, FileType, 
@@ -211,13 +210,7 @@ const ErrorPage = () => {
   
   useEffect(() => {
     console.error(`خطای ${errorCode}: کاربر به صفحه با کد خطای ${errorCode} هدایت شد.`);
-    
-    toast({
-      title: error.title,
-      description: `خطای ${toPersianNumbers(errorCode)}: ${error.description}`,
-      variant: "destructive"
-    });
-  }, [errorCode, error]);
+  }, [errorCode]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

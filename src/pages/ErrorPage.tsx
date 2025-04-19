@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { SiteLayout } from "@/components/site-layout";
@@ -7,7 +8,8 @@ import { toast } from "@/hooks/use-toast";
 import { 
   AlertTriangle, Ban, Clock, CreditCard, Database, FileSearch, FileType, 
   FileX, HardDrive, Home, Link2, Lock, Package, Search, SearchX, 
-  Server, ServerCrash, ServerOff, Shield, ShieldOff, ShieldX, Undo2, Wrench, XOctagon 
+  Server, ServerCrash, ServerOff, Shield, ShieldOff, ShieldX, Undo2, Wrench, XOctagon,
+  GitMerge, Trash2, GitFork // Added missing icons
 } from "lucide-react";
 
 const errorDetails = {

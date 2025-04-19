@@ -14,10 +14,13 @@ export function ResumeHeader() {
     offset: ["start start", "end start"]
   });
 
-  const isDesktop = useBreakpoint('lg');
+  // Important: Always initialize all transforms regardless of condition
   const y = useTransform(scrollYProgress, [0, 1], [0, 350]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+  
+  // Check for desktop after all hooks are initialized
+  const isDesktop = useBreakpoint('lg');
 
   return (
     <div 
@@ -96,12 +99,12 @@ export function ResumeHeader() {
             </motion.div>
           </motion.div>
           
-          {/* Profile image and tech badges - only shown on desktop and larger screens */}
-          {isDesktop && (
-            <motion.div
-              style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
-              className="relative flex justify-center"
-            >
+          {/* Profile image and tech badges - render placeholder div when not on desktop */}
+          <motion.div
+            style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
+            className="relative flex justify-center"
+          >
+            {isDesktop ? (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -143,8 +146,11 @@ export function ResumeHeader() {
                   ))}
                 </div>
               </motion.div>
-            </motion.div>
-          )}
+            ) : (
+              // Empty placeholder div to maintain layout when not showing profile
+              <div className="hidden"></div>
+            )}
+          </motion.div>
         </div>
         
         {/* Scroll indicator - only visible on medium screens and above */}

@@ -1,5 +1,3 @@
-
-import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site-layout";
 import { ServiceHero } from "@/components/service/ServiceHero";
 import { ServiceCard } from "@/components/service/ServiceCard";
@@ -7,6 +5,7 @@ import { PlatformBadge } from "@/components/service/PlatformBadge";
 import { Code, Monitor, Server, Shield, Database, Bot, Lock, Globe, BriefcaseBusiness, Brain, Cpu, Smartphone, Cog } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const mainServices = [
   {

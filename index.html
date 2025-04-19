@@ -13,10 +13,6 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://armin-soft.ir/" />
     
-    <!-- Scripts for eNamad and Zarinpal - Pre-loading -->
-    <link rel="preconnect" href="https://trustseal.enamad.ir">
-    <link rel="preconnect" href="https://www.zarinpal.com">
-
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://armin-soft.ir/" />
@@ -56,14 +52,33 @@
       }
     </script>
     
-    <!-- فونت وزیر - با تنظیمات بهتر برای جلوگیری از مشکلات ردیابی -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" crossorigin="anonymous">
-    
-    <!-- فونت فارسی به صورت آفلاین -->
+    <!-- فونت وزیر - بارگذاری به صورت محلی برای جلوگیری از مشکلات ردیابی -->
     <style>
-      /* Fallback font styles in case Google Fonts fails to load */
+      @font-face {
+        font-family: 'Vazirmatn';
+        src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'Vazirmatn';
+        src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'Vazirmatn';
+        src: url('/fonts/Vazirmatn-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Fallback font styles */
       @font-face {
         font-family: 'VazirFallback';
         src: local('Tahoma'), local('Arial');

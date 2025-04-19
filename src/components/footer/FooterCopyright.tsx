@@ -9,39 +9,63 @@ export function FooterCopyright() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="mt-12 pt-8 border-t border-gray-800/50"
+      className="mt-12 pt-8"
     >
       <div className="container mx-auto px-4">
         <motion.div 
-          className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400"
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-xl border border-white/5 p-6"
           whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <div className="flex items-center gap-2">
-            <div className="p-2 rounded-full bg-arminred-500/10">
-              <Copyright className="h-4 w-4 text-arminred-500" />
-            </div>
-            <p className="farsi-numbers">
-              تمامی حقوق این وب‌سایت متعلق به{" "}
-              <motion.span 
-                className="text-white font-medium bg-clip-text text-transparent bg-gradient-to-r from-arminred-400 to-arminred-600"
-                whileHover={{ scale: 1.05 }}
+          <div className="flex items-center justify-center gap-4">
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-r from-arminred-500/10 via-arminred-500/5 to-transparent"
+              animate={{
+                opacity: [0.5, 0.8, 0.5],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            />
+            
+            <div className="relative flex items-center gap-3">
+              <motion.div 
+                className="p-2.5 rounded-xl bg-gradient-to-br from-arminred-500/20 to-arminred-500/10 border border-arminred-500/20"
+                whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2 }}
               >
-                آرمین سافت
-              </motion.span>
-              {" "}می‌باشد
-            </p>
+                <Copyright className="h-5 w-5 text-arminred-500" />
+              </motion.div>
+              
+              <p className="farsi-numbers text-base">
+                تمامی حقوق این وب‌سایت متعلق به{" "}
+                <motion.span 
+                  className="relative inline-block font-semibold"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-arminred-400 via-white to-arminred-500">
+                    آرمین سافت
+                  </span>
+                  <motion.span 
+                    className="absolute inset-0 bg-gradient-to-r from-arminred-500/20 to-arminred-500/10 blur-xl"
+                    animate={{
+                      opacity: [0.5, 0.8, 0.5]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  />
+                </motion.span>
+                {" "}می‌باشد
+              </p>
+            </div>
           </div>
-          
-          <motion.div 
-            className="flex items-center gap-2"
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="w-2 h-2 rounded-full bg-arminred-500 animate-pulse" />
-            <span className="farsi-numbers text-xs text-gray-500">۲۰۲۵</span>
-          </motion.div>
         </motion.div>
       </div>
     </motion.div>

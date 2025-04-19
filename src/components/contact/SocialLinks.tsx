@@ -1,19 +1,17 @@
-
 import React from "react";
 import { motion } from "framer-motion";
-import { Instagram, Twitter, MessageCircle, Facebook, Github, Youtube, AtSign } from "lucide-react";
+import { Instagram, Github, Youtube, MessageCircle, BrandX } from "lucide-react";
 
 export function SocialLinks() {
   const socialLinks = [
     { icon: <Instagram size={22} />, name: "اینستاگرام", url: "https://instagram.com/ARMIN_SOFT", color: "bg-gradient-to-br from-purple-600 to-pink-500" },
-    { icon: <Twitter size={22} />, name: "توییتر", url: "https://twitter.com/ARMIN_SOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
+    { icon: <BrandX size={22} />, name: "ایکس", url: "https://x.com/@ARMIN_SOFT", color: "bg-gradient-to-br from-gray-800 to-black" },
     { icon: <MessageCircle size={22} />, name: "واتساپ", url: "https://wa.me/989358983854", color: "bg-gradient-to-br from-green-400 to-green-600" },
-    { icon: <Facebook size={22} />, name: "فیسبوک", url: "https://www.facebook.com/ARMINSOFT0", color: "bg-gradient-to-br from-blue-500 to-blue-700" },
+    { icon: <MessageCircle size={22} />, name: "تلگرام", url: "https://t.me/ARMIN_SOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
+    { icon: <MessageCircle size={22} />, name: "فیسبوک", url: "https://facebook.com/@ARMINSOFT0", color: "bg-gradient-to-br from-blue-500 to-blue-700" },
     { icon: <Github size={22} />, name: "گیت‌هاب", url: "https://github.com/ARMIN-SOFT", color: "bg-gradient-to-br from-gray-700 to-gray-900" },
     { icon: <Youtube size={22} />, name: "یوتیوب", url: "https://www.youtube.com/@ARMIN_SOFT", color: "bg-gradient-to-br from-red-500 to-red-700" },
-    { icon: <MessageCircle size={22} />, name: "کانال تلگرام", url: "https://t.me/Channel_ARMINSOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
-    { icon: <MessageCircle size={22} />, name: "تلگرام", url: "https://t.me/ARMIN_SOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
-    { icon: <AtSign size={22} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-gradient-to-br from-red-400 to-red-600" },
+    { icon: <MessageCircle size={22} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-gradient-to-br from-red-400 to-red-600" },
   ];
 
   // Animation variants

@@ -7,27 +7,47 @@ export function FooterLicenses() {
   const zarinpalContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Single Zarinpal script loading
+    // Create a script element for Zarinpal
     const zarinpalScript = document.createElement('script');
     zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
     zarinpalScript.type = "text/javascript";
-    zarinpalScript.async = true;
+    
+    // Important: Set to false to prevent async loading which causes document.write errors
+    zarinpalScript.async = false;
+    
+    // Insert the script at the end of the head element instead of body
+    document.head.appendChild(zarinpalScript);
 
-    document.body.appendChild(zarinpalScript);
-
-    // This will ensure the Zarinpal badge is properly rendered
-    const renderInterval = setInterval(() => {
-      if (typeof window.ZarinpalTrust !== 'undefined' && zarinpalContainer.current) {
-        if (window.ZarinpalTrust.ready && !document.getElementById('zarinpalTrustBadge')) {
-          window.ZarinpalTrust.render();
-          clearInterval(renderInterval);
+    // Create a manual rendering function for Zarinpal badge
+    const renderZarinpalBadge = () => {
+      if (zarinpalContainer.current && typeof window.ZarinpalTrust !== 'undefined') {
+        // Only try to render if the container exists and is empty
+        if (window.ZarinpalTrust.ready && zarinpalContainer.current.children.length === 0) {
+          try {
+            window.ZarinpalTrust.render();
+          } catch (error) {
+            console.error('Error rendering Zarinpal badge:', error);
+          }
         }
       }
-    }, 300);
+    };
+
+    // Wait for the script to load before attempting to render the badge
+    zarinpalScript.onload = renderZarinpalBadge;
+    
+    // Also set up an interval as a fallback in case the onload doesn't trigger
+    const renderInterval = setInterval(() => {
+      renderZarinpalBadge();
+      // Once successfully rendered, clear the interval
+      if (zarinpalContainer.current?.children.length > 0) {
+        clearInterval(renderInterval);
+      }
+    }, 500);
 
     return () => {
-      if (document.body.contains(zarinpalScript)) {
-        document.body.removeChild(zarinpalScript);
+      // Cleanup function
+      if (document.head.contains(zarinpalScript)) {
+        document.head.removeChild(zarinpalScript);
       }
       clearInterval(renderInterval);
     };
@@ -81,8 +101,11 @@ export function FooterLicenses() {
           </div>
         </div>
         
-        {/* Zarinpal Trust Badge Container */}
-        <div ref={zarinpalContainer} className="zarinpal-badge" data-text="ZarinPal Trust Badge"></div>
+        {/* Zarinpal Trust Badge Container with better styling */}
+        <div 
+          ref={zarinpalContainer} 
+          className="zarinpal-badge min-h-[60px] min-w-[150px] flex items-center justify-center"
+        ></div>
       </motion.div>
     </motion.div>
   );

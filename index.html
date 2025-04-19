@@ -56,10 +56,21 @@
       }
     </script>
     
-    <!-- فونت وزیر -->
+    <!-- فونت وزیر - با تنظیمات بهتر برای جلوگیری از مشکلات ردیابی -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- فونت فارسی به صورت آفلاین -->
+    <style>
+      /* Fallback font styles in case Google Fonts fails to load */
+      @font-face {
+        font-family: 'VazirFallback';
+        src: local('Tahoma'), local('Arial');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

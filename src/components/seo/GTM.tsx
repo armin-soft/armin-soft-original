@@ -2,9 +2,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// We'll remove the global declaration since it's already defined in vite-env.d.ts
-// This avoids the duplicate declaration error
-
 export const GTMPageTracker: React.FC = () => {
   const location = useLocation();
   
@@ -26,6 +23,12 @@ export const GTMPageTracker: React.FC = () => {
 };
 
 export const initGTM = (gtmId: string): void => {
+  // Skip initialization if GTM ID is placeholder or invalid
+  if (!gtmId || gtmId === 'GTM-XXXXXXX') {
+    console.log('GTM initialization skipped: No valid GTM ID provided');
+    return;
+  }
+  
   // Check if GTM is already initialized
   if (document.getElementById('gtm-script')) {
     return;

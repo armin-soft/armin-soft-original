@@ -5,18 +5,31 @@ import { motion } from "framer-motion";
 export function FooterLicenses() {
   useEffect(() => {
     // Existing Zarinpal script loading
-    const zarinpalScript = document.createElement('script');
-    zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
-    zarinpalScript.type = "text/javascript";
-    zarinpalScript.async = true;
-
-    document.body.appendChild(zarinpalScript);
-
-    return () => {
-      if (document.body.contains(zarinpalScript)) {
-        document.body.removeChild(zarinpalScript);
+    const zarinpalScripts = [
+      {
+        src: "https://www.zarinpal.com/webservice/TrustCode", 
+        type: "text/javascript"
+      },
+      {
+        src: "https://www.zarinpal.com/webservice/TrustCode", 
+        type: "text/javascript"
       }
-    };
+    ];
+
+    zarinpalScripts.forEach(scriptConfig => {
+      const script = document.createElement('script');
+      script.src = scriptConfig.src;
+      script.type = scriptConfig.type;
+      script.async = true;
+
+      document.body.appendChild(script);
+
+      return () => {
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    });
   }, []);
 
   const containerVariants = {

@@ -1,156 +1,71 @@
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export interface ResourceStatus {
+interface ResourceLoadingProps {
+  onLoadingComplete: () => void;
+}
+
+interface Resource {
   name: string;
   loaded: boolean;
 }
 
-interface UseResourceLoadingProps {
-  onLoadingComplete: () => void;
-}
-
-export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProps) => {
+export function useResourceLoading({ onLoadingComplete }: ResourceLoadingProps) {
+  const [resources, setResources] = useState<Resource[]>([
+    { name: "استایل‌ها", loaded: false },
+    { name: "فونت‌ها", loaded: false },
+    { name: "کامپوننت‌ها", loaded: false },
+    { name: "سرویس‌ها", loaded: false },
+  ]);
+  
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [resources, setResources] = useState<ResourceStatus[]>([
-    { name: "فونت‌ها", loaded: false },
-    { name: "تصاویر", loaded: false },
-    { name: "استایل‌ها", loaded: false },
-    { name: "اسکریپت‌ها", loaded: false }
-  ]);
-  const [currentLoadingItem, setCurrentLoadingItem] = useState("");
-
-  const updateResourceStatus = (resourceName: string) => {
-    setResources(prev => {
-      const newResources = prev.map(resource => 
-        resource.name === resourceName ? { ...resource, loaded: true } : resource
-      );
-      
-      const loadedCount = newResources.filter(r => r.loaded).length;
-      const newProgress = Math.round((loadedCount / newResources.length) * 100);
-      setProgress(newProgress);
-      setCurrentLoadingItem(resourceName);
-
-      return newResources;
-    });
-  };
+  const [currentLoadingItem, setCurrentLoadingItem] = useState("در حال بارگذاری...");
 
   useEffect(() => {
-    // Let's declare all our event handlers here to ensure they're accessible for cleanup
-    let imageLoadHandlers: { img: HTMLImageElement, handler: () => void }[] = [];
-    let scriptLoadHandlers: { script: HTMLScriptElement, handler: () => void }[] = [];
-    
-    const checkAllResourcesLoaded = () => {
-      const allLoaded = resources.every(resource => resource.loaded);
-      if (allLoaded) {
+    let timer: ReturnType<typeof setTimeout>;
+    let currentIndex = 0;
+
+    const simulateLoading = () => {
+      if (currentIndex < resources.length) {
+        const newResources = [...resources];
+        newResources[currentIndex].loaded = true;
+        setResources(newResources);
+        setCurrentLoadingItem(newResources[currentIndex].name);
+        
+        // محاسبه پیشرفت
+        const loadedCount = newResources.filter(r => r.loaded).length;
+        const newProgress = Math.floor((loadedCount / resources.length) * 100);
+        setProgress(newProgress);
+        
+        currentIndex++;
+        // تاخیر تصادفی بین 300 تا 800 میلی‌ثانیه برای شبیه‌سازی بارگذاری
+        const delay = Math.random() * 500 + 300;
+        timer = setTimeout(simulateLoading, delay);
+      } else {
+        // همه منابع بارگذاری شده‌اند
+        setProgress(100);
         setIsComplete(true);
-        setTimeout(() => {
+        setCurrentLoadingItem("آماده شد!");
+        
+        // تاخیر کوتاه قبل از محو شدن
+        timer = setTimeout(() => {
           setFadeOut(true);
-          setTimeout(onLoadingComplete, 500);
+          
+          // صدا زدن onLoadingComplete بعد از انیمیشن محو شدن
+          timer = setTimeout(() => {
+            onLoadingComplete();
+          }, 500);
         }, 800);
       }
     };
 
-    // بررسی بارگذاری فونت‌ها
-    document.fonts.ready.then(() => {
-      updateResourceStatus("فونت‌ها");
-      checkAllResourcesLoaded();
-    });
+    // شروع بارگذاری
+    timer = setTimeout(simulateLoading, 500);
 
-    // بررسی بارگذاری تصاویر
-    const images = document.querySelectorAll('img');
-    let loadedImages = 0;
-    const totalImages = images.length;
-    
-    if (totalImages === 0) {
-      updateResourceStatus("تصاویر");
-      checkAllResourcesLoaded();
-    } else {
-      images.forEach(img => {
-        if (img.complete) {
-          loadedImages++;
-        } else {
-          const handler = () => {
-            loadedImages++;
-            if (loadedImages === totalImages) {
-              updateResourceStatus("تصاویر");
-              checkAllResourcesLoaded();
-            }
-          };
-          
-          img.addEventListener('load', handler);
-          imageLoadHandlers.push({ img, handler });
-        }
-      });
-
-      if (loadedImages === totalImages) {
-        updateResourceStatus("تصاویر");
-        checkAllResourcesLoaded();
-      }
-    }
-
-    // بررسی بارگذاری استایل‌ها
-    const styleSheets = document.styleSheets;
-    const checkStyleSheets = () => {
-      const loadedStyleSheets = Array.from(styleSheets).filter(sheet => {
-        try {
-          return sheet.cssRules.length > 0;
-        } catch (e) {
-          return false;
-        }
-      }).length;
-
-      if (loadedStyleSheets === styleSheets.length) {
-        updateResourceStatus("استایل‌ها");
-        checkAllResourcesLoaded();
-      }
-    };
-
-    // بررسی بارگذاری اسکریپت‌ها
-    const scripts = document.querySelectorAll('script');
-    let loadedScripts = 0;
-    const totalScripts = scripts.length;
-
-    scripts.forEach(script => {
-      if (script.hasAttribute('async') || script.hasAttribute('defer')) {
-        const handler = () => {
-          loadedScripts++;
-          if (loadedScripts === totalScripts) {
-            updateResourceStatus("اسکریپت‌ها");
-            checkAllResourcesLoaded();
-          }
-        };
-        
-        script.addEventListener('load', handler);
-        scriptLoadHandlers.push({ script, handler });
-      } else {
-        loadedScripts++;
-      }
-    });
-
-    if (loadedScripts === totalScripts) {
-      updateResourceStatus("اسکریپت‌ها");
-      checkAllResourcesLoaded();
-    }
-
-    checkStyleSheets();
-    const styleCheckInterval = setInterval(checkStyleSheets, 100);
-
-    return () => {
-      // Clean up event listeners
-      imageLoadHandlers.forEach(({ img, handler }) => {
-        img.removeEventListener('load', handler);
-      });
-      
-      scriptLoadHandlers.forEach(({ script, handler }) => {
-        script.removeEventListener('load', handler);
-      });
-      
-      clearInterval(styleCheckInterval);
-    };
-  }, [onLoadingComplete, resources]);
+    return () => clearTimeout(timer);
+  }, [onLoadingComplete]);
 
   return {
     progress,
@@ -159,4 +74,4 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
     resources,
     currentLoadingItem
   };
-};
+}

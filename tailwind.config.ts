@@ -1,27 +1,36 @@
+
 import { type Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
+  prefix: "",
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ["Vazirmatn", ...defaultTheme.fontFamily.sans],
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
       },
+    },
+    extend: {
       colors: {
         arminred: {
-          50: "#fff1f2",
-          100: "#ffe4e6",
-          200: "#ffccd1",
-          300: "#ffa3ad",
-          400: "#ff6a7a",
-          500: "#f43f5e",
-          600: "#e11d48",
-          700: "#be123c",
-          800: "#9f1239",
-          900: "#881337",
-          950: "#4c0519",
+          50: "#fef2f2",
+          100: "#fee2e2",
+          200: "#fecaca",
+          300: "#fca5a5",
+          400: "#f87171",
+          500: "#ef4444",
+          600: "#dc2626",
+          700: "#b91c1c",
+          800: "#991b1b",
+          900: "#7f1d1d",
+          950: "#450a0a",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,26 +66,32 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      animation: {
-        "spin-slow": "spin 8s linear infinite",
-        "fade-in": "fadeIn 0.5s ease-in-out forwards",
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["Vazirmatn", ...fontFamily.sans],
       },
       keyframes: {
-        spin: {
-          to: {
-            transform: "rotate(360deg)",
-          },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "grid-white": "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-      },
+      }
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;

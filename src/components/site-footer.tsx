@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from "framer-motion";
 import { Copyright } from "lucide-react";
@@ -59,9 +58,9 @@ export function SiteFooter() {
           <div className="flex items-center justify-center gap-2 text-gray-400">
             <Copyright className="h-4 w-4" />
             <p className="text-sm">
-              تمامی حقوق این وب‌سایت متعلق به 
+              تمامی حقوق این وب‌ سایت متعلق به 
               <span className="font-semibold text-white mx-1">آرمین سافت</span> 
-              می‌باشد
+              می‌ باشد
             </p>
           </div>
         </motion.div>
@@ -69,4 +68,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-

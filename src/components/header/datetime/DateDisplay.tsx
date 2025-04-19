@@ -14,7 +14,7 @@ export function DateDisplay({ date, season, seasonEmoji }: DateDisplayProps) {
         <Calendar className="h-3.5 w-3.5 text-arminred-500" />
       </div>
       <div className="flex items-center gap-3">
-        <span className="text-xs md:text-sm font-medium text-gray-200">{date}</span>
+        <span className="text-xs md:text-sm font-medium text-gray-200 farsi-numbers">{date}</span>
         <div className="flex items-center gap-2">
           <span className="text-xs md:text-sm font-medium text-gray-300">{season}</span>
           <span className="text-base md:text-lg">{seasonEmoji}</span>

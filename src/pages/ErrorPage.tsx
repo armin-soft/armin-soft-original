@@ -11,129 +11,160 @@ import { ErrorDetails } from "@/components/error/ErrorDetails";
 const errorDetails = {
   400: {
     title: "درخواست نامعتبر",
-    color: "from-amber-400/20 via-amber-500/10 to-amber-600/5"
+    color: "from-amber-400/20 via-amber-500/10 to-amber-600/5",
+    description: "این خطا معمولاً زمانی رخ می‌دهد که سرور نمی‌تواند درخواست ارسال شده را درک کند."
   },
   401: {
     title: "عدم احراز هویت",
-    color: "from-blue-400/20 via-blue-500/10 to-blue-600/5"
+    color: "from-blue-400/20 via-blue-500/10 to-blue-600/5",
+    description: "برای دسترسی به این منبع، شما نیاز به احراز هویت دارید."
   },
   402: {
     title: "نیاز به پرداخت",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "دسترسی به این منبع نیازمند پرداخت است."
   },
   403: {
     title: "دسترسی غیر مجاز",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "سرور درخواست شما را فهمید، اما از اجرای آن خودداری می‌کند."
   },
   404: {
     title: "صفحه یافت نشد",
-    color: "from-purple-400/20 via-purple-500/10 to-purple-600/5"
+    color: "from-purple-400/20 via-purple-500/10 to-purple-600/5",
+    description: "منبع درخواست شده در سرور یافت نشد."
   },
   405: {
     title: "روش غیرمجاز",
-    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5"
+    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5",
+    description: "روش استفاده شده برای دسترسی به منبع مجاز نیست."
   },
   406: {
     title: "غیرقابل قبول",
-    color: "from-pink-400/20 via-pink-500/10 to-pink-600/5"
+    color: "from-pink-400/20 via-pink-500/10 to-pink-600/5",
+    description: "سرور نمی‌تواند به درخواست شما با محتوایی که قابل قبول باشد، پاسخ دهد."
   },
   407: {
     title: "نیاز به احراز هویت پروکسی",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "برای دسترسی به منبع، باید از طریق یک پروکسی احراز هویت کنید."
   },
   408: {
     title: "زمان درخواست به پایان رسید",
-    color: "from-blue-400/20 via-blue-500/10 to-blue-600/5"
+    color: "from-blue-400/20 via-blue-500/10 to-blue-600/5",
+    description: "سرور منتظر درخواست کامل از سوی شما بود، اما زمان به پایان رسید."
   },
   409: {
     title: "تداخل",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "درخواست شما با وضعیت فعلی منبع در تضاد است."
   },
   410: {
     title: "از بین رفته",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "منبع مور�� نظر قبلاً وجود داشته اما دیگر در دسترس نیست."
   },
   411: {
     title: "طول مورد نیاز",
-    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5"
+    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5",
+    description: "درخواست شما بیش از حد طولانی است."
   },
   412: {
     title: "پیش‌شرط ناموفق",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "پیش‌شرطی برای اجرای درخواست شما ناموفق بود."
   },
   413: {
     title: "محتوای درخواست بیش از حد بزرگ",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "محتوای درخواست شما بیش از حد بزرگ است."
   },
   414: {
     title: "URI بیش از حد طولانی",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "URI درخواست شما بیش از حد طولانی است."
   },
   415: {
     title: "نوع رسانه پشتیبانی نشده",
-    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5"
+    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5",
+    description: "نوع رسانه درخواست شما پشتیبانی نمی‌شود."
   },
   416: {
     title: "محدوده درخواستی غیرقابل تحقق",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "محدوده درخواستی شما غیرقابل تحقق است."
   },
   417: {
     title: "انتظار ناموفق",
-    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5"
+    color: "from-yellow-400/20 via-yellow-500/10 to-yellow-600/5",
+    description: "انتظاری برای اجرای درخواست شما ناموفق بود."
   },
   422: {
     title: "موجودیت غیرقابل پردازش",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "موجودیت درخواست شما غیرقابل پردازش است."
   },
   423: {
     title: "قفل شده",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "درخواست شما قفل شده است."
   },
   424: {
     title: "وابستگی ناموفق",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "وابستگی درخواست شما ناموفق بود."
   },
   500: {
     title: "خطای داخلی سرور",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "یک مشکل داخلی در سرور رخ داده است."
   },
   501: {
     title: "پیاده‌سازی نشده",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "سرور قادر به پردازش این نوع درخواست نیست."
   },
   502: {
     title: "درگاه نامعتبر",
-    color: "from-red-400/20 via-red-500/10 to-red-600/5"
+    color: "from-red-400/20 via-red-500/10 to-red-600/5",
+    description: "سرور در حالت عملکرد به عنوان یک درگاه یا پروکسی، پاسخ نامعتبری دریافت کرد."
   },
   503: {
     title: "سرویس در دسترس نیست",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "سرور موقتاً در دسترس نیست. ممکن است بعداً دوباره در دسترس قرار گیرد."
   },
   504: {
     title: "زمان درگاه به پایان رسید",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "زمان درگاه به پایان رسید."
   },
   505: {
     title: "نسخه HTTP پشتیبانی نشده",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "نسخه HTTP درخواست شما پشتیبانی نمی‌شود."
   },
   506: {
     title: "گزینه‌های متناقض",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "گزینه‌های درخواست شما متناقض هستند."
   },
   507: {
     title: "فضای ناکافی",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "فضای درخواست شما ناکافی است."
   },
   510: {
     title: "گسترش نیافته",
-    color: "from-green-400/20 via-green-500/10 to-green-600/5"
+    color: "from-green-400/20 via-green-500/10 to-green-600/5",
+    description: "گسترش درخواست شما نیافته است."
   }
 };
 
 const defaultError = {
   title: "خطای ناشناخته",
-  color: "from-gray-400/20 via-gray-500/10 to-gray-600/5"
+  color: "from-gray-400/20 via-gray-500/10 to-gray-600/5",
+  description: "جزئیات بیشتری برای این خطا در دسترس نیست. لطفاً با پشتیبانی تماس بگیرید."
 };
 
 const ErrorPage = () => {

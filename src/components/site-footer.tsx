@@ -147,7 +147,7 @@ export function SiteFooter() {
             </Link>
             
             <p className="text-gray-400 text-sm leading-relaxed">
-              توسعه‌دهنده نرم‌افزار، مت��صص امنیت و هک اخلاقی با تمرکز بر ارائه راهکارهای هوشمند و امن.
+              توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی با تمرکز بر ارائه راهکارهای هوشمند و امن.
               هر آنچه در ذهن شماست، با آرمین سافت به واقعیت تبدیل می‌شود.
             </p>
             
@@ -235,36 +235,41 @@ export function SiteFooter() {
             </div>
             
             <div className="flex items-center space-x-6 space-x-reverse">
-              {licenses.map((license, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex flex-col items-center space-y-2 group"
-                >
-                  <img 
-                    src={license.image}
-                    alt={license.name}
-                    id={license.id}
-                    onClick={() => window.open(license.link, '_blank')}
-                    className="h-20 w-20 object-contain cursor-pointer"
-                    referrerPolicy="origin"
-                  />
-                  <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
-                    {license.name}
-                  </span>
-                </motion.div>
-              ))}
-              {/* ZarinPal Trust Badge */}
-              <div 
-                id="zarinpal-trust-badge"
-                className="flex flex-col items-center space-y-2 group"
-              >
-                <script 
-                  src="https://www.zarinpal.com/webservice/TrustCode" 
-                  type="text/javascript"
-                  async
+              <div className="flex flex-col items-center space-y-2 group">
+                <img 
+                  onClick={() => window.open('https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg', '_blank')}
+                  src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg" 
+                  alt="نماد تجارت الکترونیکی" 
+                  style={{ cursor: 'pointer' }} 
+                  id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                  referrerPolicy="origin"
+                  className="h-20 w-20 object-contain"
                 />
+                <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
+                  نماد تجارت الکترونیکی
+                </span>
+              </div>
+
+              <div className="flex flex-col items-center space-y-2 group">
+                <img 
+                  onClick={() => window.open('https://logo.samandehi.ir/Verify.aspx?id=146772&p=rfthaodsgvkajyoejyoeuiwk', '_blank')}
+                  src="https://logo.samandehi.ir/logo.aspx?id=146772&p=nbpdshwlwlbqyndtyndtodrf" 
+                  alt="ساماندهی" 
+                  style={{ cursor: 'pointer' }} 
+                  id="jxlzwlaofukzjzpejzpenbqe"
+                  referrerPolicy="origin"
+                  className="h-20 w-20 object-contain"
+                />
+                <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
+                  ساماندهی
+                </span>
+              </div>
+
+              <div className="flex flex-col items-center space-y-2 group">
+                <div id="zarinpal-trust-badge" className="h-20 w-20 object-contain"></div>
+                <span className="text-xs text-gray-400 group-hover:text-white transition-colors">
+                  زرین پال
+                </span>
               </div>
             </div>
           </div>

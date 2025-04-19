@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site-layout";
 
@@ -11,18 +10,18 @@ const Index = () => {
             به آرمین سافت خوش آمدید
           </h1>
           <p className="text-xl text-enhanced-muted mb-12 text-center">
-            مرکز خدمات نرم‌افزاری، طراحی سایت و امنیت وب
+            مرکز خدمات نرم افزاری، طراحی سایت و امنیت وب
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="bg-enhanced-card">
               <CardHeader>
                 <CardTitle className="text-enhanced-dark">طراحی سایت</CardTitle>
-                <CardDescription className="text-enhanced-muted">سایت‌های مدرن و پاسخگو</CardDescription>
+                <CardDescription className="text-enhanced-muted">سایت های مدرن و پاسخگو</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-enhanced-muted">
-                  طراحی و توسعه انواع وب‌سایت با جدیدترین تکنولوژی‌های روز دنیا
+                  طراحی و توسعه انواع وب سایت با جدیدترین تکنولوژی های روز دنیا
                 </p>
               </CardContent>
             </Card>

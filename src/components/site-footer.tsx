@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from "framer-motion";
 import { FooterContactInfo } from './footer/FooterContactInfo';
@@ -24,11 +23,11 @@ export function SiteFooter() {
     {
       title: "خدمات",
       links: [
-        { name: "طراحی نرم‌افزار", path: "/service#software" },
+        { name: "طراحی نرم افزار", path: "/service#software" },
         { name: "توسعه وب", path: "/service#web" },
         { name: "هوش مصنوعی", path: "/service#ai" },
         { name: "امنیت و هک اخلاقی", path: "/service#security" },
-        { name: "ربات‌های تلگرام", path: "/service#bots" },
+        { name: "ربات های تلگرام", path: "/service#bots" },
         { name: "مدیریت دیتابیس", path: "/service#database" },
       ]
     }
@@ -68,4 +67,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-

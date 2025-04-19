@@ -33,26 +33,14 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
       setProgress(newProgress);
       setCurrentLoadingItem(resourceName);
 
-      if (loadedCount === newResources.length) {
-        setIsComplete(true);
-        setTimeout(() => {
-          setFadeOut(true);
-          setTimeout(onLoadingComplete, 500);
-        }, 800);
-      }
-
       return newResources;
     });
   };
 
   useEffect(() => {
-    let scriptsLoaded = false;
-    let fontsLoaded = false;
-    let imagesLoaded = false;
-    let stylesLoaded = false;
-
     const checkAllResourcesLoaded = () => {
-      if (fontsLoaded && imagesLoaded && stylesLoaded && scriptsLoaded) {
+      const allLoaded = resources.every(resource => resource.loaded);
+      if (allLoaded) {
         setIsComplete(true);
         setTimeout(() => {
           setFadeOut(true);
@@ -61,50 +49,47 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
       }
     };
 
+    // بررسی بارگذاری فونت‌ها
     document.fonts.ready.then(() => {
-      fontsLoaded = true;
       updateResourceStatus("فونت‌ها");
       checkAllResourcesLoaded();
     });
 
+    // بررسی بارگذاری تصاویر
     const images = document.querySelectorAll('img');
     let loadedImages = 0;
     const totalImages = images.length;
     
-    const imageLoadHandler = () => {
-      loadedImages++;
-      if (loadedImages === totalImages) {
-        imagesLoaded = true;
-        updateResourceStatus("تصاویر");
-        checkAllResourcesLoaded();
-      }
-    };
-
     if (totalImages === 0) {
-      imagesLoaded = true;
       updateResourceStatus("تصاویر");
       checkAllResourcesLoaded();
     } else {
+      const imageLoadHandler = () => {
+        loadedImages++;
+        if (loadedImages === totalImages) {
+          updateResourceStatus("تصاویر");
+          checkAllResourcesLoaded();
+        }
+      };
+
       images.forEach(img => {
         if (img.complete) {
           loadedImages++;
-          if (loadedImages === totalImages) {
-            imagesLoaded = true;
-            updateResourceStatus("تصاویر");
-            checkAllResourcesLoaded();
-          }
         } else {
           img.addEventListener('load', imageLoadHandler);
         }
       });
+
+      if (loadedImages === totalImages) {
+        updateResourceStatus("تصاویر");
+        checkAllResourcesLoaded();
+      }
     }
 
+    // بررسی بارگذاری استایل‌ها
     const styleSheets = document.styleSheets;
-    let loadedStyleSheets = 0;
-    const totalStyleSheets = styleSheets.length;
-
     const checkStyleSheets = () => {
-      loadedStyleSheets = Array.from(styleSheets).filter(sheet => {
+      const loadedStyleSheets = Array.from(styleSheets).filter(sheet => {
         try {
           return sheet.cssRules.length > 0;
         } catch (e) {
@@ -112,13 +97,13 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
         }
       }).length;
 
-      if (loadedStyleSheets === totalStyleSheets) {
-        stylesLoaded = true;
+      if (loadedStyleSheets === styleSheets.length) {
         updateResourceStatus("استایل‌ها");
         checkAllResourcesLoaded();
       }
     };
 
+    // بررسی بارگذاری اسکریپت‌ها
     const scripts = document.querySelectorAll('script');
     let loadedScripts = 0;
     const totalScripts = scripts.length;
@@ -126,7 +111,6 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
     const scriptLoadHandler = () => {
       loadedScripts++;
       if (loadedScripts === totalScripts) {
-        scriptsLoaded = true;
         updateResourceStatus("اسکریپت‌ها");
         checkAllResourcesLoaded();
       }

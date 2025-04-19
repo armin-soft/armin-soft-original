@@ -53,7 +53,8 @@ const App = () => {
         {(!isLoading || isErrorPage) && (
           <Routes>
             {/* Main Pages */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to="/Home" replace />} />
+            <Route path="/Home" element={<Home />} />
             <Route path="/Resume" element={<Resume />} />
             <Route path="/Service" element={<Service />} />
             <Route path="/Work-Sample" element={<WorkSample />} />

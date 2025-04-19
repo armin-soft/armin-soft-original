@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
-import { LoaderCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ResourceStatus } from "@/hooks/useResourceLoading";
 
@@ -52,9 +51,13 @@ export const LoadingProgress: React.FC<LoadingProgressProps> = ({
               className="flex items-center justify-center gap-2"
             >
               {resource.loaded ? (
-                <span className="text-green-500">✓</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-green-500">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
               ) : (
-                <LoaderCircle className="w-4 h-4 animate-spin text-arminred-500" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 animate-spin text-arminred-500">
+                  <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                </svg>
               )}
               <span className={cn(
                 resource.loaded ? "text-green-500" : "text-muted-foreground"
@@ -77,7 +80,6 @@ export const LoadingProgress: React.FC<LoadingProgressProps> = ({
             value={progress} 
             className="h-3 mb-2 bg-secondary dark:bg-muted rounded-full overflow-hidden" 
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-arminred-500/10 to-arminred-600/10 animate-pulse rounded-full" />
         </div>
         <div className="flex justify-between text-sm text-muted-foreground farsi-numbers mt-2">
           <span>۰٪</span>

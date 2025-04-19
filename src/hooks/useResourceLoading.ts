@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export interface ResourceStatus {
   name: string;
@@ -22,7 +22,7 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
   ]);
   const [currentLoadingItem, setCurrentLoadingItem] = useState("");
 
-  const updateResourceStatus = (resourceName: string) => {
+  const updateResourceStatus = useCallback((resourceName: string) => {
     setResources(prev => {
       const newResources = prev.map(resource => 
         resource.name === resourceName ? { ...resource, loaded: true } : resource
@@ -35,15 +35,11 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
 
       return newResources;
     });
-  };
+  }, []);
 
-  useEffect(() => {
-    // Let's declare all our event handlers here to ensure they're accessible for cleanup
-    let imageLoadHandlers: { img: HTMLImageElement, handler: () => void }[] = [];
-    let scriptLoadHandlers: { script: HTMLScriptElement, handler: () => void }[] = [];
-    
-    const checkAllResourcesLoaded = () => {
-      const allLoaded = resources.every(resource => resource.loaded);
+  const checkAllResourcesLoaded = useCallback(() => {
+    setResources(current => {
+      const allLoaded = current.every(resource => resource.loaded);
       if (allLoaded) {
         setIsComplete(true);
         setTimeout(() => {
@@ -51,15 +47,27 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
           setTimeout(onLoadingComplete, 500);
         }, 800);
       }
-    };
+      return current;
+    });
+  }, [onLoadingComplete]);
 
-    // بررسی بارگذاری فونت‌ها
-    document.fonts.ready.then(() => {
+  // Handle font loading
+  useEffect(() => {
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        updateResourceStatus("فونت‌ها");
+        checkAllResourcesLoaded();
+      });
+    } else {
+      // Fallback for browsers not supporting document.fonts
       updateResourceStatus("فونت‌ها");
       checkAllResourcesLoaded();
-    });
+    }
+  }, [updateResourceStatus, checkAllResourcesLoaded]);
 
-    // بررسی بارگذاری تصاویر
+  // Handle image loading
+  useEffect(() => {
+    let imageLoadHandlers: { img: HTMLImageElement, handler: () => void }[] = [];
     const images = document.querySelectorAll('img');
     let loadedImages = 0;
     const totalImages = images.length;
@@ -91,24 +99,55 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
       }
     }
 
-    // بررسی بارگذاری استایل‌ها
-    const styleSheets = document.styleSheets;
-    const checkStyleSheets = () => {
-      const loadedStyleSheets = Array.from(styleSheets).filter(sheet => {
-        try {
-          return sheet.cssRules.length > 0;
-        } catch (e) {
-          return false;
-        }
-      }).length;
+    return () => {
+      imageLoadHandlers.forEach(({ img, handler }) => {
+        img.removeEventListener('load', handler);
+      });
+    };
+  }, [updateResourceStatus, checkAllResourcesLoaded]);
 
-      if (loadedStyleSheets === styleSheets.length) {
-        updateResourceStatus("استایل‌ها");
-        checkAllResourcesLoaded();
+  // Handle stylesheet loading
+  useEffect(() => {
+    const styleSheets = document.styleSheets;
+    
+    const checkStyleSheets = () => {
+      try {
+        const loadedStyleSheets = Array.from(styleSheets).filter(sheet => {
+          try {
+            return sheet.cssRules.length > 0;
+          } catch (e) {
+            return false;
+          }
+        }).length;
+
+        if (loadedStyleSheets > 0) {
+          updateResourceStatus("استایل‌ها");
+          checkAllResourcesLoaded();
+          return true;
+        }
+        return false;
+      } catch (e) {
+        console.error("Error checking stylesheets:", e);
+        return false;
       }
     };
 
-    // بررسی بارگذاری اسکریپت‌ها
+    if (checkStyleSheets()) return;
+    
+    const styleCheckInterval = setInterval(() => {
+      if (checkStyleSheets()) {
+        clearInterval(styleCheckInterval);
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(styleCheckInterval);
+    };
+  }, [updateResourceStatus, checkAllResourcesLoaded]);
+
+  // Handle script loading
+  useEffect(() => {
+    let scriptLoadHandlers: { script: HTMLScriptElement, handler: () => void }[] = [];
     const scripts = document.querySelectorAll('script');
     let loadedScripts = 0;
     const totalScripts = scripts.length;
@@ -135,22 +174,12 @@ export const useResourceLoading = ({ onLoadingComplete }: UseResourceLoadingProp
       checkAllResourcesLoaded();
     }
 
-    checkStyleSheets();
-    const styleCheckInterval = setInterval(checkStyleSheets, 100);
-
     return () => {
-      // Clean up event listeners
-      imageLoadHandlers.forEach(({ img, handler }) => {
-        img.removeEventListener('load', handler);
-      });
-      
       scriptLoadHandlers.forEach(({ script, handler }) => {
         script.removeEventListener('load', handler);
       });
-      
-      clearInterval(styleCheckInterval);
     };
-  }, [onLoadingComplete, resources]);
+  }, [updateResourceStatus, checkAllResourcesLoaded]);
 
   return {
     progress,

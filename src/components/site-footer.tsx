@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { FooterNewsletter } from './footer/FooterNewsletter';
 import { FooterContactInfo } from './footer/FooterContactInfo';
 import { FooterNavLinks } from './footer/FooterNavLinks';
 import { FooterSocialLinks } from './footer/FooterSocialLinks';
@@ -38,7 +37,7 @@ export function SiteFooter() {
   return (
     <footer className="bg-black/95 text-white pt-16 pb-6 mt-16 farsi-numbers">
       <div className="container mx-auto px-4 md:px-6">
-        <FooterNewsletter />
+        {/* Removed FooterNewsletter component */}
 
         <motion.div
           initial={{ y: 40, opacity: 0 }}
@@ -69,3 +68,4 @@ export function SiteFooter() {
     </footer>
   );
 }
+

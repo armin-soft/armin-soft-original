@@ -1,43 +1,24 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Shield, Award, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
-  const zarinpalRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     // Remove any existing scripts to avoid duplicates
     const existingScripts = document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]');
     existingScripts.forEach(script => script.remove());
 
-    // Add the Zarinpal script
+    // Add the Zarinpal script - direct approach
     const script = document.createElement('script');
     script.src = 'https://www.zarinpal.com/webservice/TrustCode';
     script.type = 'text/javascript';
     document.body.appendChild(script);
 
-    // Make sure the script has time to load and execute
-    const timer = setTimeout(() => {
-      if (zarinpalRef.current && window.ZarinpalTrust) {
-        console.log("Zarinpal script loaded, attempting to render badge");
-        try {
-          window.ZarinpalTrust.render();
-        } catch (e) {
-          console.error("Failed to render Zarinpal badge:", e);
-        }
-      } else {
-        console.log("Zarinpal container or script not ready:", { 
-          containerExists: !!zarinpalRef.current,
-          scriptExists: !!window.ZarinpalTrust
-        });
-      }
-    }, 1000);
-
     return () => {
-      clearTimeout(timer);
+      // Clean up on unmount
       document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]')
-        .forEach(script => document.body.removeChild(script));
+        .forEach(script => script.remove());
     };
   }, []);
 
@@ -90,6 +71,7 @@ export function FooterLicenses() {
         </div>
         
         <div className="flex items-center gap-8">
+          {/* eNamad Badge - Direct Implementation */}
           <motion.div 
             variants={itemVariants}
             className="group relative"
@@ -98,22 +80,10 @@ export function FooterLicenses() {
           >
             <div className="absolute -inset-0.5 bg-gradient-to-r from-arminred-600 to-arminred-800 rounded-2xl blur opacity-40 group-hover:opacity-60 transition duration-300"></div>
             <div className="relative flex flex-col items-center bg-black rounded-2xl p-4 space-y-3">
-              <a 
-                referrerPolicy="origin" 
-                target="_blank" 
-                href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-                className="relative group"
-              >
-                <div className="absolute -inset-2 bg-arminred-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <img 
-                  referrerPolicy="origin" 
-                  src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg" 
-                  alt="نماد اعتماد الکترونیکی" 
-                  style={{ cursor: 'pointer' }} 
-                  id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-                  className="h-20 w-20 object-contain relative z-10"
-                />
-              </a>
+              {/* Using direct HTML exactly as provided - without rel="noopener noreferrer" */}
+              <div className="relative group" dangerouslySetInnerHTML={{
+                __html: `<a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg' alt='نماد اعتماد الکترونیکی' style='cursor:pointer' id='jNdpnL31KtNsikcan5emQZWkglmgpsxg' class='h-20 w-20 object-contain'></a>`
+              }} />
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-500" />
                 <span className="text-xs text-gray-400 group-hover:text-white transition-colors duration-300">
@@ -123,6 +93,7 @@ export function FooterLicenses() {
             </div>
           </motion.div>
 
+          {/* Zarinpal Badge */}
           <motion.div 
             variants={itemVariants}
             className="group relative"
@@ -131,10 +102,10 @@ export function FooterLicenses() {
           >
             <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-600 to-yellow-800 rounded-2xl blur opacity-40 group-hover:opacity-60 transition duration-300"></div>
             <div className="relative flex flex-col items-center bg-black rounded-2xl p-4 space-y-3">
+              {/* Simple div for Zarinpal - will be populated by their script */}
               <div className="relative group">
                 <div className="absolute -inset-2 bg-yellow-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div 
-                  ref={zarinpalRef} 
                   id="zarinpal-trust-badge" 
                   data-ipt-type="square" 
                   data-ipt-color="white" 
@@ -155,7 +126,7 @@ export function FooterLicenses() {
   );
 }
 
-// Add TypeScript declaration for Zarinpal
+// TypeScript declaration for potential Zarinpal integration
 declare global {
   interface Window {
     ZarinpalTrust?: {

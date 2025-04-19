@@ -1,42 +1,62 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 import { Instagram, Twitter, MessageSquare, Facebook, Github, Youtube, AtSign, MessagesSquare } from "lucide-react";
 
 export function SocialLinks() {
   const socialLinks = [
-    { icon: <Instagram size={24} />, name: "اینستاگرام", url: "https://instagram.com/ARMIN_SOFT", color: "bg-gradient-to-br from-purple-600 to-pink-500" },
-    { icon: <Twitter size={24} />, name: "توییتر", url: "https://twitter.com/@ARMIN_SOFT", color: "bg-blue-500" },
-    { icon: <MessageSquare size={24} />, name: "واتساپ", url: "https://wa.me/989358983854", color: "bg-green-500" },
-    { icon: <Facebook size={24} />, name: "فیسبوک", url: "https://www.facebook.com/@ARMINSOFT0", color: "bg-blue-600" },
-    { icon: <Github size={24} />, name: "گیت‌هاب", url: "https://github.com/ARMIN-SOFT", color: "bg-gray-800" },
-    { icon: <Youtube size={24} />, name: "یوتیوب", url: "https://www.youtube.com/@ARMIN_SOFT", color: "bg-red-600" },
-    { icon: <MessagesSquare size={24} />, name: "کانال تلگرام", url: "https://t.me/Channel_ARMINSOFT", color: "bg-blue-400" },
-    { icon: <MessagesSquare size={24} />, name: "تلگرام", url: "https://t.me/ARMIN_SOFT", color: "bg-blue-400" },
-    { icon: <AtSign size={24} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-red-500" },
+    { icon: <Instagram size={22} />, name: "اینستاگرام", url: "https://instagram.com/ARMIN_SOFT", color: "bg-gradient-to-br from-purple-600 to-pink-500" },
+    { icon: <Twitter size={22} />, name: "توییتر", url: "https://twitter.com/@ARMIN_SOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
+    { icon: <MessageSquare size={22} />, name: "واتساپ", url: "https://wa.me/989358983854", color: "bg-gradient-to-br from-green-400 to-green-600" },
+    { icon: <Facebook size={22} />, name: "فیسبوک", url: "https://www.facebook.com/@ARMINSOFT0", color: "bg-gradient-to-br from-blue-500 to-blue-700" },
+    { icon: <Github size={22} />, name: "گیت‌هاب", url: "https://github.com/ARMIN-SOFT", color: "bg-gradient-to-br from-gray-700 to-gray-900" },
+    { icon: <Youtube size={22} />, name: "یوتیوب", url: "https://www.youtube.com/@ARMIN_SOFT", color: "bg-gradient-to-br from-red-500 to-red-700" },
+    { icon: <MessagesSquare size={22} />, name: "کانال تلگرام", url: "https://t.me/Channel_ARMINSOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
+    { icon: <MessagesSquare size={22} />, name: "تلگرام", url: "https://t.me/ARMIN_SOFT", color: "bg-gradient-to-br from-blue-400 to-blue-600" },
+    { icon: <AtSign size={22} />, name: "آپارات", url: "https://www.aparat.com/ARMIN_SOFT", color: "bg-gradient-to-br from-red-400 to-red-600" },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: { scale: 1, opacity: 1 }
+  };
+
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3">
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3"
+    >
       {socialLinks.map((social, index) => (
         <motion.a
           key={index}
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.2 }}
+          variants={itemVariants}
+          whileHover={{ scale: 1.05, y: -3 }}
+          whileTap={{ scale: 0.98 }}
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex flex-col items-center p-4 rounded-lg bg-accent hover:bg-accent/80 transition-all duration-300"
+          className="group flex flex-col items-center p-4 rounded-lg bg-card/50 hover:bg-card border border-white/5 hover:border-white/10 transition-all duration-300 shadow-sm hover:shadow-md"
         >
-          <div className={`w-12 h-12 rounded-full ${social.color} flex items-center justify-center text-white mb-2 transform group-hover:rotate-12 transition-transform duration-300`}>
+          <div className={`w-12 h-12 rounded-xl ${social.color} flex items-center justify-center text-white mb-3 shadow-md transform group-hover:rotate-6 transition-transform duration-300`}>
             {social.icon}
           </div>
-          <span className="text-sm font-medium">{social.name}</span>
+          <span className="text-sm font-medium group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r from-arminred-500 to-arminred-400 transition-all duration-300">{social.name}</span>
         </motion.a>
       ))}
-    </div>
+    </motion.div>
   );
 }

@@ -1,10 +1,57 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
-  // Removed Zarinpal trust badge integration due to script execution issues
+  const zarinpalContainer = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Create a script element for Zarinpal
+    const zarinpalScript = document.createElement('script');
+    zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
+    zarinpalScript.type = "text/javascript";
+    
+    // Important: Set to false to prevent async loading which causes document.write errors
+    zarinpalScript.async = false;
+    
+    // Insert the script at the end of the head element instead of body
+    document.head.appendChild(zarinpalScript);
+
+    // Create a manual rendering function for Zarinpal badge
+    const renderZarinpalBadge = () => {
+      if (zarinpalContainer.current && typeof window.ZarinpalTrust !== 'undefined') {
+        // Only try to render if the container exists and is empty
+        if (window.ZarinpalTrust.ready && zarinpalContainer.current.children.length === 0) {
+          try {
+            window.ZarinpalTrust.render();
+          } catch (error) {
+            console.error('Error rendering Zarinpal badge:', error);
+          }
+        }
+      }
+    };
+
+    // Wait for the script to load before attempting to render the badge
+    zarinpalScript.onload = renderZarinpalBadge;
+    
+    // Also set up an interval as a fallback in case the onload doesn't trigger
+    const renderInterval = setInterval(() => {
+      renderZarinpalBadge();
+      // Once successfully rendered, clear the interval
+      if (zarinpalContainer.current?.children.length > 0) {
+        clearInterval(renderInterval);
+      }
+    }, 500);
+
+    return () => {
+      // Cleanup function
+      if (document.head.contains(zarinpalScript)) {
+        document.head.removeChild(zarinpalScript);
+      }
+      clearInterval(renderInterval);
+    };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -53,7 +100,23 @@ export function FooterLicenses() {
             </p>
           </div>
         </div>
+        
+        {/* Zarinpal Trust Badge Container with better styling */}
+        <div 
+          ref={zarinpalContainer} 
+          className="zarinpal-badge min-h-[60px] min-w-[150px] flex items-center justify-center"
+        ></div>
       </motion.div>
     </motion.div>
   );
+}
+
+// Add TypeScript interface for ZarinpalTrust
+declare global {
+  interface Window {
+    ZarinpalTrust?: {
+      ready: boolean;
+      render: () => void;
+    };
+  }
 }

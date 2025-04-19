@@ -1,9 +1,21 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
+  useEffect(() => {
+    // Ensure Zarinpal trust badge script is loaded
+    const script = document.createElement('script');
+    script.src = 'https://www.zarinpal.com/webservice/TrustCode';
+    script.type = 'text/javascript';
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <motion.div
       initial={{ y: 40, opacity: 0 }}

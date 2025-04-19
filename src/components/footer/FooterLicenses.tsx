@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useRef } from 'react';
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
+  const zarinpalContainer = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    // Existing Zarinpal script loading
-    const zarinpalScripts = [
-      {
-        src: "https://www.zarinpal.com/webservice/TrustCode", 
-        type: "text/javascript"
-      },
-      {
-        src: "https://www.zarinpal.com/webservice/TrustCode", 
-        type: "text/javascript"
-      }
-    ];
+    // Single Zarinpal script loading
+    const zarinpalScript = document.createElement('script');
+    zarinpalScript.src = "https://www.zarinpal.com/webservice/TrustCode";
+    zarinpalScript.type = "text/javascript";
+    zarinpalScript.async = true;
 
-    zarinpalScripts.forEach(scriptConfig => {
-      const script = document.createElement('script');
-      script.src = scriptConfig.src;
-      script.type = scriptConfig.type;
-      script.async = true;
+    document.body.appendChild(zarinpalScript);
 
-      document.body.appendChild(script);
-
-      return () => {
-        if (document.body.contains(script)) {
-          document.body.removeChild(script);
+    // This will ensure the Zarinpal badge is properly rendered
+    const renderInterval = setInterval(() => {
+      if (typeof window.ZarinpalTrust !== 'undefined' && zarinpalContainer.current) {
+        if (window.ZarinpalTrust.ready && !document.getElementById('zarinpalTrustBadge')) {
+          window.ZarinpalTrust.render();
+          clearInterval(renderInterval);
         }
-      };
-    });
+      }
+    }, 300);
+
+    return () => {
+      if (document.body.contains(zarinpalScript)) {
+        document.body.removeChild(zarinpalScript);
+      }
+      clearInterval(renderInterval);
+    };
   }, []);
 
   const containerVariants = {
@@ -79,7 +80,20 @@ export function FooterLicenses() {
             </p>
           </div>
         </div>
+        
+        {/* Zarinpal Trust Badge Container */}
+        <div ref={zarinpalContainer} className="zarinpal-badge" data-text="ZarinPal Trust Badge"></div>
       </motion.div>
     </motion.div>
   );
+}
+
+// Add TypeScript interface for ZarinpalTrust
+declare global {
+  interface Window {
+    ZarinpalTrust?: {
+      ready: boolean;
+      render: () => void;
+    };
+  }
 }

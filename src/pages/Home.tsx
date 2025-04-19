@@ -4,10 +4,8 @@ import { SEOHead } from "@/components/seo/SEOHead";
 import { HomeHero } from "@/components/home/HomeHero";
 import { ServiceOverview } from "@/components/home/ServiceOverview";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { SkillsShowcase } from "@/components/home/SkillsShowcase";
 import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { ProcessSection } from "@/components/home/ProcessSection";
 
 const Home = () => {
@@ -24,8 +22,6 @@ const Home = () => {
       <ServiceOverview />
       <ProcessSection />
       <FeaturedProjects />
-      <SkillsShowcase />
-      <TestimonialsSection />
       <CTASection />
     </SiteLayout>
   );

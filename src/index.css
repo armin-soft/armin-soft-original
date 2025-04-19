@@ -158,6 +158,6 @@
 }
 
 /* Grid pattern from grid.svg */
-.bg-grid-white\\/\\[0\\.02\\] {
+.bg-grid-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' x='9.5' y='9.5' fill='white' opacity='0.15'/%3E%3C/svg%3E");
 }

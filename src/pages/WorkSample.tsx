@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowUpRight, ExternalLink, Github, Globe, Server, Code, Computer, Smartphone, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const WorkSample = () => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -112,7 +113,7 @@ const WorkSample = () => {
     { id: "telegram-bot", label: "ربات تلگرام", icon: <Bot className="h-4 w-4" /> },
   ];
 
-  // فیلتر پروژه‌ها بر اساس تب انتخاب شده
+  // فیلتر پروژه‌ها بر اساب تب انتخاب شده
   const filteredProjects = selectedTab === "all" 
     ? projects 
     : projects.filter(project => project.category === selectedTab);
@@ -120,76 +121,129 @@ const WorkSample = () => {
   return (
     <SiteLayout>
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-b from-black to-gray-900 overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center py-20 bg-gradient-to-br from-black via-gray-900 to-arminred-950 overflow-hidden">
         <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-arminred-500/20 rounded-full filter blur-3xl animate-pulse"></div>
             <div className="absolute bottom-10 right-10 w-56 h-56 bg-arminred-600/10 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
           </div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="container mx-auto px-4 md:px-6 relative z-10"
+        >
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">نمونه کارهای آرمین سافت</h1>
-            <p className="text-lg text-gray-300 mb-8">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-arminred-300"
+            >
+              نمونه کارهای آرمین سافت
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-lg md:text-xl text-gray-300 mb-8"
+            >
               مجموعه‌ای از پروژه‌های منتخب که نشان‌دهنده توانایی‌ها و تجربیات من در زمینه‌های مختلف فناوری است
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Featured Projects */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">پروژه‌های <span className="text-arminred-600">برجسته</span></h2>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              پروژه‌های <span className="text-arminred-600">برجسته</span>
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               نمونه کارهای شاخص آرمین سافت که نشان‌دهنده تخصص و خلاقیت در حوزه‌های مختلف فناوری است
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {projects.filter(project => project.featured).map((project) => (
-              <Card key={project.id} className="bg-card border-2 border-border overflow-hidden h-full flex flex-col hover:shadow-xl hover:border-arminred-500/30 transition-all duration-300">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                  <div className="absolute top-3 left-3 bg-black/70 text-white text-xs py-1 px-2 rounded">
-                    {categories.find(cat => cat.id === project.category)?.label}
-                  </div>
-                </div>
-                <CardContent className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold mb-2 hover:text-arminred-600 transition-colors">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                  
-                  <div className="mt-auto">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, idx) => (
-                        <span key={idx} className="text-xs bg-arminred-500/10 text-arminred-700 dark:text-arminred-400 py-1 px-2 rounded-md">
-                          {tech}
-                        </span>
-                      ))}
+            {projects.filter(project => project.featured).map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="group bg-card/50 backdrop-blur-sm border-2 border-border/50 overflow-hidden h-full flex flex-col hover:shadow-xl hover:shadow-arminred-500/5 hover:border-arminred-500/30 transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
+                    <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-sm text-white text-xs py-1 px-2 rounded-full flex items-center gap-1">
+                      {categories.find(cat => cat.id === project.category)?.icon}
+                      {categories.find(cat => cat.id === project.category)?.label}
                     </div>
-                    
-                    <div className="flex items-center gap-3">
-                      <Button asChild variant="default" size="sm" className="bg-arminred-600 hover:bg-arminred-700">
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <ExternalLink className="ml-1 h-4 w-4" />
-                          مشاهده
-                        </a>
-                      </Button>
-                      
-                      {project.github && (
-                        <Button asChild variant="outline" size="sm">
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                            <Github className="ml-1 h-4 w-4" />
-                            کد منبع
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-arminred-500 transition-colors">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
+                    <div className="mt-auto">
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech, idx) => (
+                          <span 
+                            key={idx} 
+                            className="text-xs bg-arminred-500/10 text-arminred-600 dark:text-arminred-400 py-1 px-2 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Button 
+                          asChild 
+                          variant="default" 
+                          size="sm" 
+                          className="bg-arminred-600 hover:bg-arminred-700 group"
+                        >
+                          <a 
+                            href={project.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="flex items-center gap-1"
+                          >
+                            <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                            مشاهده
                           </a>
                         </Button>
-                      )}
+                        {project.github && (
+                          <Button asChild variant="outline" size="sm" className="group">
+                            <a 
+                              href={project.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="flex items-center gap-1"
+                            >
+                              <Github className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                              کد منبع
+                            </a>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -198,12 +252,18 @@ const WorkSample = () => {
       {/* All Projects with Tabs */}
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">همه <span className="text-arminred-600">پروژه‌ها</span></h2>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              همه <span className="text-arminred-600">پروژه‌ها</span>
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               مجموعه‌ای از پروژه‌های مختلف در زمینه‌های برنامه‌نویسی، امنیت و هوش مصنوعی
             </p>
-          </div>
+          </motion.div>
 
           <Tabs defaultValue="all" className="mb-10" onValueChange={setSelectedTab}>
             <TabsList className="flex flex-wrap justify-center mb-8 bg-transparent">
@@ -221,55 +281,77 @@ const WorkSample = () => {
             
             <TabsContent value={selectedTab} className="mt-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.map((project) => (
-                  <Card 
-                    key={project.id} 
-                    className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-md transition-all duration-300"
+                {filteredProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    <div className="relative h-48 overflow-hidden">
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                      />
-                      <div className="absolute top-3 left-3 bg-black/70 text-white text-xs py-1 px-2 rounded flex items-center gap-1">
-                        {categories.find(cat => cat.id === project.category)?.icon}
-                        {categories.find(cat => cat.id === project.category)?.label}
+                    <Card className="group bg-card/50 backdrop-blur-sm border border-border/50 rounded-lg overflow-hidden hover:shadow-md hover:shadow-arminred-500/5 transition-all duration-300">
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60" />
+                        <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-sm text-white text-xs py-1 px-2 rounded-full flex items-center gap-1">
+                          {categories.find(cat => cat.id === project.category)?.icon}
+                          {categories.find(cat => cat.id === project.category)?.label}
+                        </div>
                       </div>
-                    </div>
-                    <CardContent className="p-5">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-lg font-bold">{project.title}</h3>
-                      </div>
-                      <p className="text-muted-foreground text-sm line-clamp-2 mb-4">{project.description}</p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.map((tech, idx) => (
-                          <span key={idx} className="text-xs bg-arminred-500/10 text-arminred-700 dark:text-arminred-400 py-1 px-2 rounded-md">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <Button asChild variant="default" size="sm" className="bg-arminred-600 hover:bg-arminred-700">
-                          <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                            <ExternalLink className="ml-1 h-4 w-4" />
-                            مشاهده
-                          </a>
-                        </Button>
-                        
-                        {project.github && (
-                          <Button asChild variant="outline" size="sm">
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                              <Github className="ml-1 h-4 w-4" />
-                              کد منبع
+                      <div className="p-5">
+                        <h3 className="text-lg font-bold mb-2 group-hover:text-arminred-500 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm line-clamp-2 mb-4">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.technologies.map((tech, idx) => (
+                            <span 
+                              key={idx} 
+                              className="text-xs bg-arminred-500/10 text-arminred-600 dark:text-arminred-400 py-1 px-2 rounded-full"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Button 
+                            asChild 
+                            variant="default" 
+                            size="sm" 
+                            className="bg-arminred-600 hover:bg-arminred-700 group"
+                          >
+                            <a 
+                              href={project.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="flex items-center gap-1"
+                            >
+                              <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                              مشاهده
                             </a>
                           </Button>
-                        )}
+                          {project.github && (
+                            <Button asChild variant="outline" size="sm" className="group">
+                              <a 
+                                href={project.github} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="flex items-center gap-1"
+                              >
+                                <Github className="h-4 w-4 transition-transform group-hover:-translate-y-0.5" />
+                                کد منبع
+                              </a>
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                    </Card>
+                  </motion.div>
                 ))}
               </div>
             </TabsContent>
@@ -280,7 +362,11 @@ const WorkSample = () => {
       {/* Call to Action */}
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center max-w-3xl mx-auto text-white">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center max-w-3xl mx-auto text-white"
+          >
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               پروژه بعدی <span className="text-arminred-500">شما</span> چیست؟
             </h2>
@@ -290,7 +376,7 @@ const WorkSample = () => {
             <Button asChild size="lg" className="bg-arminred-600 hover:bg-arminred-700">
               <Link to="/contact">شروع همکاری</Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
     </SiteLayout>

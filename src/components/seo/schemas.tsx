@@ -1,4 +1,3 @@
-
 import React from "react";
 
 export const getPersonSchema = () => {
@@ -13,7 +12,7 @@ export const getPersonSchema = () => {
       "https://github.com/arminsoft",
       "https://linkedin.com/in/arminsoft"
     ],
-    "jobTitle": "متخصص برنامه‌نویسی و امنیت",
+    "jobTitle": "متخصص برنامه‌نویسی و نرم افزار",
     "worksFor": {
       "@type": "Organization",
       "name": "آرمین سافت"

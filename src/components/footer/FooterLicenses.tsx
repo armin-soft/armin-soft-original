@@ -1,15 +1,14 @@
-
 import React, { useEffect } from 'react';
 import { Shield, Award, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function FooterLicenses() {
   useEffect(() => {
-    // Remove any existing scripts to avoid duplicates
+    // Remove any existing Zarinpal scripts to avoid duplicates
     const existingScripts = document.querySelectorAll('script[src="https://www.zarinpal.com/webservice/TrustCode"]');
     existingScripts.forEach(script => script.remove());
 
-    // Add the Zarinpal script - direct approach
+    // Create and append the Zarinpal script
     const script = document.createElement('script');
     script.src = 'https://www.zarinpal.com/webservice/TrustCode';
     script.type = 'text/javascript';
@@ -102,13 +101,10 @@ export function FooterLicenses() {
           >
             <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-600 to-yellow-800 rounded-2xl blur opacity-40 group-hover:opacity-60 transition duration-300"></div>
             <div className="relative flex flex-col items-center bg-black rounded-2xl p-4 space-y-3">
-              {/* Simple div for Zarinpal - will be populated by their script */}
               <div className="relative group">
                 <div className="absolute -inset-2 bg-yellow-500/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div 
                   id="zarinpal-trust-badge" 
-                  data-ipt-type="square" 
-                  data-ipt-color="white" 
                   className="h-20 w-20 object-contain relative z-10"
                 ></div>
               </div>
@@ -126,7 +122,7 @@ export function FooterLicenses() {
   );
 }
 
-// TypeScript declaration for potential Zarinpal integration
+// TypeScript declaration for Zarinpal integration
 declare global {
   interface Window {
     ZarinpalTrust?: {

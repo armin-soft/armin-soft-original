@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { toPersianNumbers } from "@/utils/numberUtils";
 
 interface ResourceLoadingProps {
   onLoadingComplete: () => void;

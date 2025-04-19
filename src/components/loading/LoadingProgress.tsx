@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { toPersianNumbers } from "@/utils/numberUtils";
 
 interface Resource {
   name: string;
@@ -21,7 +22,7 @@ export function LoadingProgress({ progress, currentLoadingItem, resources }: Loa
           {currentLoadingItem}
         </span>
         <span className="text-sm font-medium text-gray-300 farsi-numbers">
-          {progress}%
+          {toPersianNumbers(progress)}%
         </span>
       </div>
       

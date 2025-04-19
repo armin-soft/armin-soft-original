@@ -113,9 +113,9 @@ export function FooterLicenses() {
                 <a href="javascript:showZPTrust();" title="دروازه پرداخت معتبر">
                   <img 
                     src="https://cdn.zarinpal.com/badges/trustLogo/1.png" 
-                    border="0" 
                     alt="دروازه پرداخت معتبر"
                     className="max-w-full max-h-full"
+                    style={{ border: 0 }}
                   />
                 </a>
               </div>

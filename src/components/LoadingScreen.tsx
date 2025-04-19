@@ -27,11 +27,47 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
   
   const [currentLoadingItem, setCurrentLoadingItem] = useState("");
 
+  const updateResourceStatus = (resourceName: string) => {
+    setResources(prev => {
+      const newResources = prev.map(resource => 
+        resource.name === resourceName ? { ...resource, loaded: true } : resource
+      );
+      
+      // Calculate new progress
+      const loadedCount = newResources.filter(r => r.loaded).length;
+      const newProgress = Math.round((loadedCount / newResources.length) * 100);
+      setProgress(newProgress);
+      setCurrentLoadingItem(resourceName);
+
+      // Check if all resources are loaded
+      if (loadedCount === newResources.length) {
+        setIsComplete(true);
+        setTimeout(() => {
+          setFadeOut(true);
+          setTimeout(onLoadingComplete, 500);
+        }, 800);
+      }
+
+      return newResources;
+    });
+  };
+
   useEffect(() => {
     let scriptsLoaded = false;
     let fontsLoaded = false;
     let imagesLoaded = false;
     let stylesLoaded = false;
+
+    // Define checkAllResourcesLoaded function at the beginning of useEffect
+    const checkAllResourcesLoaded = () => {
+      if (fontsLoaded && imagesLoaded && stylesLoaded && scriptsLoaded) {
+        setIsComplete(true);
+        setTimeout(() => {
+          setFadeOut(true);
+          setTimeout(onLoadingComplete, 500);
+        }, 800);
+      }
+    };
 
     // بررسی بارگذاری فونت‌ها
     document.fonts.ready.then(() => {
@@ -57,6 +93,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
     if (totalImages === 0) {
       imagesLoaded = true;
       updateResourceStatus("تصاویر");
+      checkAllResourcesLoaded();
     } else {
       images.forEach(img => {
         if (img.complete) {
@@ -64,6 +101,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
           if (loadedImages === totalImages) {
             imagesLoaded = true;
             updateResourceStatus("تصاویر");
+            checkAllResourcesLoaded();
           }
         } else {
           img.addEventListener('load', imageLoadHandler);
@@ -114,17 +152,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
       }
     });
 
-    // بررسی اینکه آیا همه منابع بارگذاری شده‌اند
-    const checkAllResourcesLoaded = () => {
-      if (fontsLoaded && imagesLoaded && stylesLoaded && scriptsLoaded) {
-        setIsComplete(true);
-        setTimeout(() => {
-          setFadeOut(true);
-          setTimeout(onLoadingComplete, 500);
-        }, 800);
-      }
-    };
-
     // شروع بررسی استایل‌ها
     checkStyleSheets();
     const styleCheckInterval = setInterval(checkStyleSheets, 100);
@@ -136,31 +163,6 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
       clearInterval(styleCheckInterval);
     };
   }, []);
-
-  const updateResourceStatus = (resourceName: string) => {
-    setResources(prev => {
-      const newResources = prev.map(resource => 
-        resource.name === resourceName ? { ...resource, loaded: true } : resource
-      );
-      
-      // Calculate new progress
-      const loadedCount = newResources.filter(r => r.loaded).length;
-      const newProgress = Math.round((loadedCount / newResources.length) * 100);
-      setProgress(newProgress);
-      setCurrentLoadingItem(resourceName);
-
-      // Check if all resources are loaded
-      if (loadedCount === newResources.length) {
-        setIsComplete(true);
-        setTimeout(() => {
-          setFadeOut(true);
-          setTimeout(onLoadingComplete, 500);
-        }, 800);
-      }
-
-      return newResources;
-    });
-  };
 
   return (
     <motion.div

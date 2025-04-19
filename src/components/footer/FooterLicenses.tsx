@@ -114,19 +114,11 @@ export function FooterLicenses() {
                   id="zarinpal-trust-badge" 
                   className="h-20 w-20 min-h-[80px] min-w-[80px] object-contain relative z-10 bg-white rounded-lg p-1 flex items-center justify-center"
                 >
-                  {/* Fallback content in case Zarinpal script fails to load */}
-                  <div className="flex items-center justify-center text-black">
-                    <img 
-                      src="https://www.zarinpal.com/assets/images/logo-white.svg" 
-                      alt="زرین پال" 
-                      className="h-14 w-14 object-contain"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "https://www.zarinpal.com/assets/images/logo-white.svg";
-                        target.onerror = null;
-                      }}
-                    />
-                  </div>
+                  <img 
+                    src="https://cdn.zarinpal.com/badges/trustLogo/1.png" 
+                    alt="لوگو زرین‌پال" 
+                    className="h-14 w-14 object-contain"
+                  />
                 </div>
               </div>
               <div className="flex items-center gap-2">

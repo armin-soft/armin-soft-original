@@ -77,7 +77,7 @@ const education = [
   {
     id: "edu1",
     degree: "کارشناسی ارشد",
-    field: "مهندسی نرم‌افزار",
+    field: "مهندسی نرم افزار",
     school: "دانشگاه تهران",
     location: "تهران",
     period: "۱۳۹۵ - ۱۳۹۷",

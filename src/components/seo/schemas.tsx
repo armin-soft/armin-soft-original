@@ -27,7 +27,7 @@ export const getServiceSchema = () => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "خدمات نرم‌افزاری و امنیت",
+    "serviceType": "خدمات نرم افزاری و امنیت",
     "provider": {
       "@type": "Person",
       "name": "آرمین سافت",

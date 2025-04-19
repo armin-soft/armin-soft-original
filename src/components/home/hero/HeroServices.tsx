@@ -4,7 +4,7 @@ import { Code, Shield, Bot } from "lucide-react";
 
 export const HeroServices = () => {
   const services = [
-    { icon: <Code className="h-5 w-5" />, text: "توسعه نرم‌افزار" },
+    { icon: <Code className="h-5 w-5" />, text: "توسعه نرم افزار" },
     { icon: <Shield className="h-5 w-5" />, text: "امنیت سایبری" },
     { icon: <Bot className="h-5 w-5" />, text: "هوش مصنوعی" }
   ];

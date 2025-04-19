@@ -8,7 +8,7 @@ export const ServiceOverview = () => {
   const services = [
     {
       icon: <Code className="h-8 w-8" />,
-      title: "توسعه نرم‌افزار",
+      title: "توسعه نرم افزار",
       description: "طراحی و توسعه انواع نرم‌افزارهای تحت وب با جدیدترین تکنولوژی‌ها",
       link: "/Service",
       color: "from-blue-500/20 to-blue-600/5"

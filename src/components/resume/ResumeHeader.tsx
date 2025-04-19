@@ -60,7 +60,7 @@ export function ResumeHeader() {
                 transition={{ delay: 0.3 }}
                 className="text-base xs:text-lg md:text-xl text-gray-400 mt-4"
               >
-                متخصص توسعه نرم‌افزار، امنیت سایبری و هوش مصنوعی
+                متخصص توسعه نرم افزار، امنیت سایبری و هوش مصنوعی
               </motion.p>
             </div>
 

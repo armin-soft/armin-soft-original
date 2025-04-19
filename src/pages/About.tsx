@@ -81,7 +81,7 @@ const About = () => {
     {
       icon: <Shield className="h-10 w-10 text-arminred-600" />,
       title: "امنیت",
-      description: "اولویت دادن به امنیت در تمامی مراحل طراحی و توسعه نرم‌افزار"
+      description: "اولویت دادن به امنیت در تمامی مراحل طراحی و توسعه نرم افزار"
     },
     {
       icon: <Heart className="h-10 w-10 text-arminred-600" />,

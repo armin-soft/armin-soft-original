@@ -34,7 +34,7 @@ const WorkSample = () => {
     {
       id: 3,
       title: "آنالیز امنیتی شبکه",
-      description: "نرم‌افزار تحلیل و بررسی آسیب‌پذیری‌های شبکه و ارائه راهکارهای امنیتی",
+      description: "نرم افزار تحلیل و بررسی آسیب‌پذیری‌های شبکه و ارائه راهکارهای امنیتی",
       image: "https://placehold.co/600x400/222/e53e3e/png?text=آنالیز+امنیتی+شبکه",
       category: "script",
       technologies: ["Python", "Kali Linux", "Nmap"],

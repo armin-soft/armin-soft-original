@@ -20,7 +20,7 @@ export const FeaturedProjects = () => {
     },
     {
       title: "اپلیکیشن امنیت سایبری",
-      description: "توسعه نرم‌افزار تخصصی تست نفوذ و ارزیابی امنیتی با قابلیت شناسایی آسیب‌پذیری‌ها",
+      description: "توسعه نرم افزار تخصصی تست نفوذ و ارزیابی امنیتی با قابلیت شناسایی آسیب‌پذیری‌ها",
       tags: ["Python", "React", "Security", "API"],
       link: "/work-sample#project2",
       image: "./Assets/Image/placeholder.svg",

@@ -6,7 +6,7 @@ export const getPersonSchema = () => {
     "@type": "Person",
     "name": "آرمین سافت",
     "url": "https://arminsoft.ir",
-    "image": "https://lovable.dev/opengraph-image-p98pqg.png",
+    "image": "https://armin-soft.ir/og-image.png",
     "sameAs": [
       "https://twitter.com/ARMIN_SOFT",
       "https://github.com/arminsoft",
@@ -68,7 +68,7 @@ export const getArticleSchema = ({ headline, description, datePublished, dateMod
       "name": "آرمین سافت",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://lovable.dev/opengraph-image-p98pqg.png"
+        "url": "https://armin-soft.ir/og-image.png"
       }
     }
   };

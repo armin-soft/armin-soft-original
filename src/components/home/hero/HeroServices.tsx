@@ -1,31 +1,53 @@
 
 import { motion } from "framer-motion";
-import { Code, Shield, Bot } from "lucide-react";
+import { Code, Shield, Bot, Zap, Server, Smartphone } from "lucide-react";
 
 export const HeroServices = () => {
   const services = [
-    { icon: <Code className="h-5 w-5" />, text: "توسعه نرم افزار" },
-    { icon: <Shield className="h-5 w-5" />, text: "امنیت سایبری" },
-    { icon: <Bot className="h-5 w-5" />, text: "هوش مصنوعی" }
+    { icon: <Code className="h-4 w-4 md:h-5 md:w-5" />, text: "توسعه نرم افزار" },
+    { icon: <Shield className="h-4 w-4 md:h-5 md:w-5" />, text: "امنیت سایبری" },
+    { icon: <Bot className="h-4 w-4 md:h-5 md:w-5" />, text: "هوش مصنوعی" },
+    { icon: <Zap className="h-4 w-4 md:h-5 md:w-5" />, text: "بهینه‌سازی" },
+    { icon: <Server className="h-4 w-4 md:h-5 md:w-5" />, text: "خدمات ابری" },
+    { icon: <Smartphone className="h-4 w-4 md:h-5 md:w-5" />, text: "توسعه موبایل" }
   ];
+  
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.5,
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 }
+  };
 
   return (
     <motion.div 
-      className="flex flex-wrap justify-center gap-2 pt-2"
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.5 }}
+      className="flex flex-wrap justify-center gap-2 md:gap-3 pt-3"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
     >
       {services.map((service, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 + (index * 0.1) }}
-          className="bg-white/5 backdrop-blur border border-white/10 px-4 py-2 rounded-full flex items-center gap-2"
+          variants={itemVariants}
+          whileHover={{ 
+            scale: 1.05, 
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 0 15px rgba(239, 68, 68, 0.2)' 
+          }}
+          className="bg-white/5 backdrop-blur border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-2 transition-all duration-300 cursor-pointer"
         >
-          {service.icon}
-          <span className="text-sm text-gray-300">{service.text}</span>
+          <span className="text-arminred-500">{service.icon}</span>
+          <span className="text-xs md:text-sm text-gray-300">{service.text}</span>
         </motion.div>
       ))}
     </motion.div>

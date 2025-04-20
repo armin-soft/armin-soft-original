@@ -1,5 +1,6 @@
 
 import { motion } from "framer-motion";
+import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 import { MessageSquare, FileCode2, BarChart4, Send } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -48,7 +49,7 @@ export const ProcessSection = () => {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-2xl xs:text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            فرآیند همکاری
+            {usePersianNumbers("فرآیند همکاری")}
           </h2>
           <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
             روندی شفاف و کارآمد برای تبدیل ایده شما به واقعیت
@@ -73,7 +74,7 @@ export const ProcessSection = () => {
                   
                   <div className="flex items-center mb-3">
                     <span className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-sm ml-3">
-                      {index + 1}
+                      {usePersianNumbers(index + 1)}
                     </span>
                     <h3 className="text-lg sm:text-xl font-bold">{step.title}</h3>
                   </div>

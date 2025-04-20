@@ -1,4 +1,6 @@
+
 import { motion, useAnimation } from "framer-motion";
+import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 import { useEffect, useState, useRef } from "react";
 import { SkillCard } from "@/components/resume/SkillCard";
 import { Shield, Bot, Cpu, Smartphone, Wrench, Zap } from "lucide-react";
@@ -75,7 +77,7 @@ export const SkillsShowcase = () => {
             <span className="bg-arminred-500/10 text-arminred-500 text-xs font-medium px-2.5 py-1 rounded">مهارت‌ها</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            مهارت‌های تخصصی
+            {usePersianNumbers("مهارت‌های تخصصی")}
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             تخصص‌های حرفه‌ای در زمینه‌های مختلف فناوری اطلاعات

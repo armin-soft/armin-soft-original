@@ -25,6 +25,9 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   // اسکرول به بالای صفحه در هنگام تغییر مسیر
   useEffect(() => {
     window.scrollTo(0, 0);
+    // اطمینان از اینکه اسکرول فعال است
+    document.documentElement.style.overflow = "auto";
+    document.body.style.overflow = "auto";
   }, [pathname]);
 
   return (

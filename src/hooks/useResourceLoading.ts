@@ -57,6 +57,8 @@ export function useResourceLoading({ onLoadingComplete }: ResourceLoadingProps) 
           // صدا زدن onLoadingComplete بعد از انیمیشن محو شدن
           timer = setTimeout(() => {
             onLoadingComplete();
+            // اطمینان از اینکه اسکرول فعال می‌شود
+            document.documentElement.style.overflow = "auto";
           }, 500);
         }, 800);
       }

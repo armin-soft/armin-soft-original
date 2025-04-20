@@ -35,9 +35,14 @@ const App = () => {
 
   // Force the loading screen to be shown for at least a small amount of time
   useEffect(() => {
-    document.documentElement.style.overflow = isLoading && !isErrorPage ? "hidden" : "";
+    if (isLoading && !isErrorPage) {
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.documentElement.style.overflow = "auto";
+    }
+    
     return () => {
-      document.documentElement.style.overflow = "";
+      document.documentElement.style.overflow = "auto";
     };
   }, [isLoading, isErrorPage]);
 

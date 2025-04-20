@@ -22,7 +22,7 @@ const Home = () => {
       />
       
       {/* Main content container */}
-      <div className="w-full min-h-screen">
+      <div className="w-full min-h-screen overflow-visible">
         <HomeHero />
         
         <motion.div

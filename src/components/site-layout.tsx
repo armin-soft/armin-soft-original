@@ -3,6 +3,7 @@ import { ReactNode, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import SmoothScrollbar from "@/components/SmoothScrollbar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface SiteLayoutProps {
@@ -13,6 +14,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   // Using try-catch to handle case when SiteLayout is used outside Router context
   let pathname = '/';
   try {
+    // Only execute useLocation if we're inside a Router context
     pathname = useLocation().pathname;
   } catch (error) {
     console.log('SiteLayout: useLocation cannot be used outside Router context');
@@ -20,16 +22,25 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   
   const isMobile = useIsMobile();
 
+  // اسکرول به بالای صفحه در هنگام تغییر مسیر
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
-    <div className="relative flex flex-col min-h-screen w-full bg-background text-foreground">
+    <div className="flex flex-col min-h-screen w-full bg-background text-foreground overflow-hidden">
       <SiteHeader />
-      <main className="flex-1 w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
-        {children}
-      </main>
+      {isMobile ? (
+        <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
+          {children}
+        </main>
+      ) : (
+        <SmoothScrollbar>
+          <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
+            {children}
+          </main>
+        </SmoothScrollbar>
+      )}
       <SiteFooter />
     </div>
   );

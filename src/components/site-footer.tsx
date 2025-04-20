@@ -1,14 +1,13 @@
 
 import React from 'react';
 import { motion } from "framer-motion";
-import { Copyright } from "lucide-react";
 import { FooterContactInfo } from './footer/FooterContactInfo';
 import { FooterNavLinks } from './footer/FooterNavLinks';
 import { FooterSocialLinks } from './footer/FooterSocialLinks';
+import { FooterCopyright } from './footer/FooterCopyright';
+import { Separator } from "./ui/separator";
 
 export function SiteFooter() {
-  const currentYear = new Date().getFullYear();
-  
   const footerLinks = [
     {
       title: "دسترسی سریع",
@@ -35,14 +34,27 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="bg-black/95 text-white pt-16 pb-6 mt-16 farsi-numbers">
-      <div className="container mx-auto px-4 md:px-6">
+    <footer className="relative bg-gradient-to-b from-black/95 to-black text-white pt-16 pb-6 mt-16 farsi-numbers overflow-hidden">
+      <motion.div
+        className="absolute inset-0 bg-[url('/grid.svg')] bg-repeat opacity-10"
+        animate={{
+          opacity: [0.1, 0.15, 0.1],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+      
+      <div className="container mx-auto px-4 md:px-6 relative">
         <motion.div
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8"
+          className="grid grid-cols-1 md:grid-cols-12 gap-12"
         >
           <FooterContactInfo />
           <FooterNavLinks linkGroups={footerLinks} />
@@ -50,21 +62,16 @@ export function SiteFooter() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.8 }}
-          className="border-t border-gray-800 mt-8 pt-6 text-center"
+          transition={{ delay: 0.4 }}
+          className="mt-12"
         >
-          <div className="flex items-center justify-center gap-2 text-gray-400">
-            <Copyright className="h-4 w-4" />
-            <p className="text-sm">
-              تمامی حقوق این وب‌ سایت متعلق به 
-              <span className="font-semibold text-white mx-1">آرمین سافت</span> 
-              می‌ باشد
-            </p>
-          </div>
+          <Separator className="bg-gradient-to-r from-arminred-500/20 via-arminred-500/10 to-transparent" />
         </motion.div>
+
+        <FooterCopyright />
       </div>
     </footer>
   );

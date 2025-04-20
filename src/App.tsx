@@ -14,7 +14,6 @@ import Service from "./pages/Service";
 import WorkSample from "./pages/WorkSample";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
 
 const queryClient = new QueryClient();
@@ -99,8 +98,8 @@ const App = () => {
             <Route path="/507" element={<Navigate to="/error/507" replace />} />
             <Route path="/510" element={<Navigate to="/error/510" replace />} />
             
-            {/* 404 Catch All */}
-            <Route path="*" element={<NotFound />} />
+            {/* 404 Catch All - redirect to error/404 */}
+            <Route path="*" element={<Navigate to="/error/404" replace />} />
           </Routes>
         )}
       </TooltipProvider>

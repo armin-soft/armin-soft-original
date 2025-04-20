@@ -6,7 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
-// Remove duplicate import of ScrollToTop since it's already in SiteLayout
+import { WelcomeNotification } from "./components/notifications/WelcomeNotification";
+import { useWelcomeNotification } from "./hooks/useWelcomeNotification";
 
 // Pages
 import Home from "./pages/Home";
@@ -23,18 +24,17 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const isErrorPage = location.pathname.startsWith('/error/') || location.pathname === '/404';
+  const { showWelcome, setShowWelcome } = useWelcomeNotification();
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
-  // Force dark mode on document element
   useEffect(() => {
     document.documentElement.classList.add('dark');
     document.documentElement.style.colorScheme = 'dark';
   }, []);
 
-  // Force the loading screen to be shown for at least a small amount of time
   useEffect(() => {
     if (isLoading && !isErrorPage) {
       document.documentElement.style.overflow = "hidden";
@@ -52,7 +52,11 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {/* Remove duplicate ScrollToTop component here */}
+        
+        <WelcomeNotification 
+          show={showWelcome} 
+          onClose={() => setShowWelcome(false)} 
+        />
         
         {isLoading && !isErrorPage && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
         

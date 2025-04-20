@@ -6,54 +6,45 @@
 User-agent: *
 Allow: /
 
-# Important pages - Allow crawling of main sections
+# Main routes - Allow crawling of all main sections
+Allow: /
 Allow: /Resume
 Allow: /Service
 Allow: /Work-Sample
 Allow: /About
 Allow: /Contact
+Allow: /Home
 
-# Media files - Allow indexing of static assets
+# Static assets and resources
+Allow: /Assets/Image/
+Allow: /public/
 Allow: /*.jpg$
 Allow: /*.jpeg$
-Allow: /*.gif$
 Allow: /*.png$
 Allow: /*.webp$
 Allow: /*.svg$
-Allow: /*.pdf$
 Allow: /*.ico$
-
-# Document files
-Allow: /*.pdf$
-Allow: /*.doc$
-Allow: /*.docx$
-
-# Frontend assets
-Allow: /*.js$
 Allow: /*.css$
-Allow: /*.json$
-Allow: /*.xml$
+Allow: /*.js$
 
-# Block sensitive directories and files
-Disallow: /admin/
-Disallow: /private/
-Disallow: /tmp/
-Disallow: /includes/
-Disallow: /cgi-bin/
-Disallow: /wp-admin/
+# Block access to development and sensitive files/directories
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.vscode/
 Disallow: /.env
-Disallow: /.git
-Disallow: /.htaccess
-Disallow: /error_log
-Disallow: /README.md
+Disallow: /.env.*
 Disallow: /package.json
 Disallow: /package-lock.json
-Disallow: /node_modules/
+Disallow: /tsconfig.json
+Disallow: /vite.config.ts
+Disallow: /README.md
+Disallow: /components.json
+Disallow: /tailwind.config.ts
+Disallow: /postcss.config.js
+Disallow: /eslint.config.js
 
-# Sitemap location
-Sitemap: https://armin-soft.ir/sitemap.xml
-
-# Bot-specific rules
+# Search engine specific rules
 User-agent: Googlebot
 Crawl-delay: 1
 Allow: /
@@ -62,41 +53,17 @@ User-agent: Googlebot-Image
 Allow: /Assets/Image/
 Allow: /*.jpg$
 Allow: /*.jpeg$
-Allow: /*.gif$
 Allow: /*.png$
 Allow: /*.webp$
 Allow: /*.svg$
+Allow: /*.ico$
 
-User-agent: Yandexbot
-Crawl-delay: 2
-Allow: /
+# Sitemap
+Sitemap: https://armin-soft.ir/sitemap.xml
 
-User-agent: bingbot
-Crawl-delay: 1
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-# Block bad bots
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: PetalBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-# Clean Params - Helps avoid duplicate content
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
-
-# Host Directive
+# Host
 Host: https://armin-soft.ir
+
+# Clean URL Parameters
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&ref&fbclid&gclid
 

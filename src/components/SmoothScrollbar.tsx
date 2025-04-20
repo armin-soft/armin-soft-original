@@ -1,6 +1,7 @@
 
 import React from 'react';
-import CustomScrollbar from './CustomScrollbar';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
 
 interface SmoothScrollbarProps {
   children: React.ReactNode;
@@ -8,9 +9,13 @@ interface SmoothScrollbarProps {
 
 const SmoothScrollbar: React.FC<SmoothScrollbarProps> = ({ children }) => {
   return (
-    <CustomScrollbar>
+    <SimpleBar 
+      className="h-screen overflow-y-auto overflow-x-hidden" 
+      style={{ scrollBehavior: 'smooth' }}
+      autoHide={false}
+    >
       {children}
-    </CustomScrollbar>
+    </SimpleBar>
   );
 };
 

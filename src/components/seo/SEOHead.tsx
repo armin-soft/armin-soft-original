@@ -27,29 +27,35 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://armin-soft.ir';
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
 
-  return (
-    <Helmet>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={fullCanonical} />
+  try {
+    return (
+      <Helmet>
+        <title>{fullTitle}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={fullCanonical} />
 
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content={ogType} />
-      <meta property="og:url" content={fullCanonical} />
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content={ogType} />
+        <meta property="og:url" content={fullCanonical} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
 
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={fullCanonical} />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={fullCanonical} />
+        <meta name="twitter:title" content={fullTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
 
-      {/* Schema.org markup */}
-      <script type="application/ld+json">{schema}</script>
-    </Helmet>
-  );
+        {/* Schema.org markup */}
+        <script type="application/ld+json">{schema}</script>
+      </Helmet>
+    );
+  } catch (error) {
+    console.error("Error rendering SEOHead:", error);
+    // Return null or a fallback component when there's an error
+    return null;
+  }
 };

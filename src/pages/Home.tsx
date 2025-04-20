@@ -7,6 +7,8 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { SkillsShowcase } from "@/components/home/SkillsShowcase";
 import { motion } from "framer-motion";
 
 const Home = () => {
@@ -31,6 +33,8 @@ const Home = () => {
           <HomeStats />
           <ServiceOverview />
           <ProcessSection />
+          <SkillsShowcase />
+          <TestimonialsSection />
           <FeaturedProjects />
           <CTASection />
         </motion.div>

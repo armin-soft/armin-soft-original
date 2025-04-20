@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -22,6 +21,7 @@ import { ProjectCard } from "@/components/resume/ProjectCard";
 import { CertificateCard } from "@/components/resume/CertificateCard";
 import { SkillCard } from "@/components/resume/SkillCard";
 import { TechBadge, TechBadgeGroup } from "@/components/resume/TechBadge";
+import { toPersianNumbers } from "@/utils/numberUtils";
 
 // Data
 const experiences = [
@@ -223,7 +223,7 @@ const Resume = () => {
       <ResumeHeader />
 
       {/* بخش اصلی رزومه */}
-      <main className="relative bg-gradient-to-b from-black to-gray-900">
+      <main className="relative bg-gradient-to-b from-black to-gray-900 farsi-numbers">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         </div>
@@ -233,19 +233,19 @@ const Resume = () => {
           <div className="container px-4 mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <StatItem 
-                value={5}
+                value={toPersianNumbers(5)}
                 label="سال تجربه" 
                 icon={<BriefcaseBusiness className="h-6 w-6 text-arminred-500" />}
                 delay={0.1}
               />
               <StatItem 
-                value={75}
+                value={toPersianNumbers(75)}
                 label="پروژه موفق" 
                 icon={<Zap className="h-6 w-6 text-arminred-500" />}
                 delay={0.2}
               />
               <StatItem 
-                value={50}
+                value={toPersianNumbers(50)}
                 label="مشتری راضی" 
                 icon={<Award className="h-6 w-6 text-arminred-500" />}
                 delay={0.3}

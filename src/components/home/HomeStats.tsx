@@ -2,17 +2,18 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Users, Code2, Shield, Clock } from "lucide-react";
+import { toPersianNumbers } from "@/utils/numberUtils";
 
 export const HomeStats = () => {
   const stats = [
     {
       icon: <Users className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-arminred-500" />,
-      value: "۶۹+",
+      value: toPersianNumbers(69),
       label: "مشتری راضی",
     },
     {
       icon: <Code2 className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-arminred-500" />,
-      value: "۴۲+",
+      value: toPersianNumbers(42),
       label: "پروژه موفق",
     },
     {
@@ -22,7 +23,7 @@ export const HomeStats = () => {
     },
     {
       icon: <Clock className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-arminred-500" />,
-      value: "۱۰+",
+      value: toPersianNumbers(10),
       label: "سال تجربه",
     },
   ];

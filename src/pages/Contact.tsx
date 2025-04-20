@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -14,7 +13,6 @@ const Contact = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [0.8, 1]);
 
-  // تنظیم عنوان صفحه
   useEffect(() => {
     document.title = "تماس با آرمین سافت | ارتباط با ما";
   }, []);
@@ -23,9 +21,7 @@ const Contact = () => {
     <SiteLayout>
       <ContactHero />
 
-      {/* Contact Information */}
       <section className="py-16 md:py-24 farsi-numbers relative overflow-hidden">
-        {/* Background elements */}
         <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-40 left-20 w-64 h-64 rounded-full bg-arminred-500/30 filter blur-3xl" />
@@ -44,14 +40,11 @@ const Contact = () => {
             <ContactMethods />
           </motion.div>
 
-          {/* Contact Form and Social Links */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-            {/* Contact Form */}
             <div className="lg:col-span-3">
               <ContactForm />
             </div>
             
-            {/* Social Media Links */}
             <div className="lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -95,11 +88,9 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Navigation Links */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-muted/70 z-0" />
         
-        {/* Background decoration */}
         <div className="absolute inset-0 z-0">
           <svg className="absolute left-0 top-0 h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grid)" />
@@ -130,7 +121,6 @@ const Contact = () => {
           <div className="flex flex-col space-y-10">
             <MapNavigation />
             
-            {/* Google Map */}
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +142,6 @@ const Contact = () => {
               <div className="absolute inset-0 pointer-events-none border border-white/20 rounded-xl" />
             </motion.div>
             
-            {/* Extra information about location */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

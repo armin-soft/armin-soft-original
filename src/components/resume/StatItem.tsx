@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { toPersianNumbers } from '@/utils/numberUtils';
 
 interface StatItemProps {
   value: number | string;
@@ -19,8 +20,8 @@ export function StatItem({ value, label, icon, delay = 0 }: StatItemProps) {
   useEffect(() => {
     if (!isNumeric) return;
 
-    const duration = 1500; // animation duration in ms
-    const frameDuration = 1000 / 60; // 60fps frame duration
+    const duration = 1500;
+    const frameDuration = 1000 / 60;
     const totalFrames = Math.round(duration / frameDuration);
     
     let frame = 0;
@@ -67,7 +68,7 @@ export function StatItem({ value, label, icon, delay = 0 }: StatItemProps) {
         </div>
         
         <h3 className="text-3xl md:text-4xl font-bold mb-1 farsi-numbers">
-          {isNumeric ? countUpValue : value}
+          {isNumeric ? toPersianNumbers(countUpValue) : value}
           <span className="text-arminred-500">+</span>
         </h3>
         

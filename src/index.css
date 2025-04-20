@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -46,6 +47,10 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     direction: rtl;
     font-family: 'Vazirmatn', 'VazirFallback', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
   
   html,
@@ -211,6 +216,23 @@
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Scroll to top button animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+.scroll-top-bounce {
+  animation: bounce 2s infinite;
 }
 
 /* Grid pattern from grid.svg */

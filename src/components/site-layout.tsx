@@ -1,8 +1,10 @@
+
 import { ReactNode, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 interface SiteLayoutProps {
   children: ReactNode;
@@ -32,6 +34,7 @@ export function SiteLayout({ children }: SiteLayoutProps) {
         {children}
       </main>
       <SiteFooter />
+      <ScrollToTop />
     </div>
   );
 }

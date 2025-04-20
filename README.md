@@ -1,58 +1,46 @@
-# Welcome to your Lovable project
 
-## Project info
+# وب سایت آرمین سافت - WebSite ARMIN-SOFT
 
-**URL**: https://lovable.dev/projects/e09417c2-ea94-40be-9790-a7bdeb3d390b
+## اطلاعات پروژه
 
-## How can I edit this code?
+**توسعه دهنده**: آرمین سافت - ARMIN-SOFT
+**نسخه**: 1.0.0
 
-There are several ways of editing your application.
+## چگونه می‌توانم این کد را ویرایش کنم؟
 
-**Use Lovable**
+روش‌های مختلفی برای ویرایش برنامه وجود دارد:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e09417c2-ea94-40be-9790-a7bdeb3d390b) and start prompting.
+**استفاده از ویرایشگر**
 
-Changes made via Lovable will be committed automatically to this repo.
+به سادگی به ویرایشگر مراجعه کنید و شروع به درخواست کنید.
 
-**Use your preferred IDE**
+تغییرات انجام شده از طریق ویرایشگر به طور خودکار در مخزن کامیت خواهند شد.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+**استفاده از IDE دلخواه شما**
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+اگر می‌خواهید محلی با استفاده از IDE خود کار کنید، می‌توانید این مخزن را کلون کنید و تغییرات را push کنید. 
 
-Follow these steps:
+تنها نیاز، نصب Node.js و npm است - [نصب با nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+مراحل زیر را دنبال کنید:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# مرحله 1: کلون کردن مخزن با استفاده از آدرس Git پروژه
+git clone <آدرس Git شما>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# مرحله 2: ورود به پوشه پروژه
+cd <نام پروژه شما>
 
-# Step 3: Install the necessary dependencies.
+# مرحله 3: نصب وابستگی‌های مورد نیاز
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# مرحله 4: راه‌اندازی سرور توسعه با بارگذاری خودکار و پیش‌نمایش فوری
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## فناوری‌های مورد استفاده در این پروژه
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
+این پروژه با استفاده از:
 
 - Vite
 - TypeScript
@@ -60,14 +48,14 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+ساخته شده است.
 
-Simply open [Lovable](https://lovable.dev/projects/e09417c2-ea94-40be-9790-a7bdeb3d390b) and click on Share -> Publish.
+## چگونه این پروژه را مستقر کنم؟
 
-## Can I connect a custom domain to my Lovable project?
+کافی است به ویرایشگر مراجعه کرده و روی Publish کلیک کنید.
 
-Yes, you can!
+## آیا می‌توانم یک دامنه اختصاصی به پروژه خود متصل کنم؟
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+بله، می‌توانید!
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+برای اتصال دامنه، به Project > Settings > Domains مراجعه کنید و روی Connect Domain کلیک کنید.

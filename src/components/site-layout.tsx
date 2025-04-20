@@ -1,9 +1,7 @@
-
 import { ReactNode, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import SmoothScrollbar from "@/components/SmoothScrollbar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface SiteLayoutProps {
@@ -28,19 +26,11 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-background text-foreground overflow-hidden">
+    <div className="flex flex-col min-h-screen w-full bg-background text-foreground">
       <SiteHeader />
-      {isMobile ? (
-        <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
-          {children}
-        </main>
-      ) : (
-        <SmoothScrollbar>
-          <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
-            {children}
-          </main>
-        </SmoothScrollbar>
-      )}
+      <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
+        {children}
+      </main>
       <SiteFooter />
     </div>
   );

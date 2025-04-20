@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Code, Shield, Bot, Zap, Server, Smartphone } from "lucide-react";
+import { Code, Shield, Bot, Zap, Server, Smartphone, Database, Cloud } from "lucide-react";
 
 export const HeroServices = () => {
   const services = [
@@ -9,7 +9,9 @@ export const HeroServices = () => {
     { icon: <Bot className="h-4 w-4 md:h-5 md:w-5" />, text: "هوش مصنوعی" },
     { icon: <Zap className="h-4 w-4 md:h-5 md:w-5" />, text: "بهینه‌سازی" },
     { icon: <Server className="h-4 w-4 md:h-5 md:w-5" />, text: "خدمات ابری" },
-    { icon: <Smartphone className="h-4 w-4 md:h-5 md:w-5" />, text: "توسعه موبایل" }
+    { icon: <Smartphone className="h-4 w-4 md:h-5 md:w-5" />, text: "توسعه موبایل" },
+    { icon: <Database className="h-4 w-4 md:h-5 md:w-5" />, text: "مدیریت داده" },
+    { icon: <Cloud className="h-4 w-4 md:h-5 md:w-5" />, text: "رایانش ابری" }
   ];
   
   const containerVariants = {
@@ -41,8 +43,8 @@ export const HeroServices = () => {
           variants={itemVariants}
           whileHover={{ 
             scale: 1.05, 
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            boxShadow: '0 0 15px rgba(239, 68, 68, 0.2)' 
+            backgroundColor: 'rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 0 20px rgba(239, 68, 68, 0.25)' 
           }}
           className="bg-white/5 backdrop-blur border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full flex items-center gap-2 transition-all duration-300 cursor-pointer"
         >

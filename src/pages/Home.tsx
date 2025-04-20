@@ -8,8 +8,9 @@ import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -20,6 +21,7 @@ const Home = () => {
   });
   
   const [isLoaded, setIsLoaded] = useState(false);
+  const sectionsRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     // Simulate content loading
@@ -49,7 +51,7 @@ const Home = () => {
         style={{ scaleX }}
       />
       
-      <div className="w-full min-h-screen overflow-visible">
+      <div className="w-full min-h-screen overflow-visible" ref={sectionsRef}>
         <HomeHero />
         
         <motion.div
@@ -85,6 +87,15 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <SkillsShowcase />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <TestimonialsSection />
           </motion.div>
           
           <motion.div

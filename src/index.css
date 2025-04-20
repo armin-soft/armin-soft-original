@@ -1,71 +1,151 @@
 
-@import './styles/base.css';
-@import './styles/components.css';
-@import './styles/utilities.css';
-@import './styles/animations.css';
-@import './styles/scrollbar.css'; /* Make sure this is imported last for precedence */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Core styles that should remain in index.css */
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  width: 100vw;
-  min-height: 100vh;
+:root {
+  /* Removing default color scheme and forcing dark mode */
+  color-scheme: dark;
 }
 
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  width: 100vw;
-  min-height: 100vh;
-}
-
-/* Remove default scrollbar styles as they're now in scrollbar.css */
-/* We keep only the basic layout styles here */
-
-#root {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-}
-
-main {
-  flex: 1;
-  width: 100%;
-}
-
-section {
-  width: 100%;
-}
-
-.container {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+@layer base {
+  :root {
+    /* Main colors */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+    
+    /* Card colors */
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
+    
+    /* Popover colors */
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Primary colors - Uses arminred */
+    --primary: 358 86% 56%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary colors - Gray tones */
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Muted colors */
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    
+    /* Accent colors */
+    --accent: 12 6% 15%;
+    --accent-foreground: 0 0% 98%;
+    
+    /* Destructive colors */
+    --destructive: 358 86% 56%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Border radius & scales */
+    --radius: 0.5rem;
+    --font-scale: 1;
+    
+    /* Custom brand colors - arminred */
+    --arminred-50: 359 100% 97%;
+    --arminred-100: 359 100% 94%;
+    --arminred-200: 359 100% 88%;
+    --arminred-300: 359 100% 81%;
+    --arminred-400: 359 91% 72%;
+    --arminred-500: 358 86% 56%;
+    --arminred-600: 358 90% 48%;
+    --arminred-700: 358 92% 40%;
+    --arminred-800: 357 94% 33%;
+    --arminred-900: 356 86% 29%;
+    --arminred-950: 356 91% 15%;
   }
 }
 
-@media (min-width: 1024px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+@layer base {
+  * {
+    @apply border-border;
+    direction: rtl;
+  }
+  
+  body {
+    @apply text-foreground bg-gradient-to-b from-black to-gray-950 min-h-screen overflow-x-hidden;
+    font-family: 'Vazirmatn', 'VazirFallback', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* فارسی عددی */
+  .farsi-numbers {
+    font-feature-settings: "ss01";
+  }
+
+  /* Custom perspective effects */
+  .perspective-hover {
+    perspective: 800px;
+  }
+  
+  .perspective-hover:hover > * {
+    transform: translateZ(10px);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Animations for the dropdown menu */
+  .dropdown-animated {
+    animation: dropdownSlideIn 0.3s ease forwards;
+  }
+  
+  @keyframes dropdownSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Particle effect for buttons and hover states */
+  .particle {
+    @apply absolute rounded-full bg-arminred-400;
+    filter: blur(1px);
+  }
+  
+  .glow-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glow-effect::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at center, theme('colors.arminred.500') 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .glow-effect:hover::after {
+    opacity: 0.15;
+  }
+  
+  /* Custom scroll bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-black/20;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-arminred-800/50 rounded-full;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-arminred-700/70;
   }
 }

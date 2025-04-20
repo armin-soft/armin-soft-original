@@ -1,4 +1,3 @@
-
 import { motion, useAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -36,7 +35,6 @@ export const CTASection = () => {
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background to-transparent" />
         
-        {/* Animated shape */}
         <motion.div
           className="absolute top-20 right-20 w-64 h-64 rounded-full bg-arminred-500/5 filter blur-[80px]"
           animate={{
@@ -138,9 +136,11 @@ export const CTASection = () => {
                   <div className="p-2 rounded-full bg-arminred-500/10">
                     <Clock className="h-5 w-5 text-arminred-500" />
                   </div>
-                  <span className="text-sm text-gray-300">
-                    ۸ صبح تا ۸ شب
-                  </span>
+                  <div className="text-sm text-gray-300">
+                    <p>شنبه تا چهارشنبه: 9 الی 17</p>
+                    <p>پنجشنبه: 9 الی 14</p>
+                    <p className="text-red-400">جمعه: تعطیل</p>
+                  </div>
                 </div>
               </div>
             </motion.div>

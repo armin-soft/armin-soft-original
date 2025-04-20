@@ -7,7 +7,6 @@ import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
 import { motion } from "framer-motion";
 
@@ -21,7 +20,6 @@ const Home = () => {
         keywords="برنامه نویس بک اند, توسعه API, پایتون, جاوا, پی اچ پی, مدیریت سرور, امنیت وب, برنامه نویسی سمت سرور"
       />
       
-      {/* Main content container */}
       <div className="w-full min-h-screen overflow-visible">
         <HomeHero />
         
@@ -34,7 +32,6 @@ const Home = () => {
           <ServiceOverview />
           <ProcessSection />
           <SkillsShowcase />
-          <TestimonialsSection />
           <FeaturedProjects />
           <CTASection />
         </motion.div>

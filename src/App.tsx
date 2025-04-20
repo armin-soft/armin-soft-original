@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./components/LoadingScreen";
-import { ScrollToTop } from "@/components/ScrollToTop";
+// Remove duplicate import of ScrollToTop since it's already in SiteLayout
 
 // Pages
 import Home from "./pages/Home";
@@ -52,7 +52,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <ScrollToTop />
+        {/* Remove duplicate ScrollToTop component here */}
         
         {isLoading && !isErrorPage && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
         

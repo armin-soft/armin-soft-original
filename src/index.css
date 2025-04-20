@@ -1,15 +1,20 @@
+
 @import './styles/base.css';
 @import './styles/components.css';
 @import './styles/utilities.css';
 @import './styles/animations.css';
-@import './styles/scrollbar.css';
+@import './styles/scrollbar.css'; /* Make sure this is imported last for precedence */
 
 /* Core styles that should remain in index.css */
 html {
-  scroll-behavior: smooth;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100vw;
+  min-height: 100vh;
 }
 
-html,
 body {
   height: 100%;
   margin: 0;
@@ -18,27 +23,10 @@ body {
   overflow-y: auto;
   width: 100vw;
   min-height: 100vh;
-  scrollbar-width: auto;
-  scrollbar-color: var(--muted) transparent;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
-}
+/* Remove default scrollbar styles as they're now in scrollbar.css */
+/* We keep only the basic layout styles here */
 
 #root {
   min-height: 100vh;

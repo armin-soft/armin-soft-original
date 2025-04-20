@@ -31,7 +31,12 @@
 
 /* Smooth Scrolling for the whole page */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
+}
+
+/* Force scrollbar to be visible and custom styled */
+body {
+  overflow-y: scroll !important;
 }
 
 /* Hide scrollbar on mobile devices */

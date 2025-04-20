@@ -25,9 +25,9 @@ export function SiteLayout({ children }: SiteLayoutProps) {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen w-full bg-background text-foreground">
+    <div className="relative flex flex-col min-h-screen w-full bg-background text-foreground">
       <SiteHeader />
-      <main className="flex-grow w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
+      <main className="flex-1 w-full pt-20 md:pt-24 lg:pt-28 animate-fade-in">
         {children}
       </main>
       <SiteFooter />

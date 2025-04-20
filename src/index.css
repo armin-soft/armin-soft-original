@@ -46,16 +46,14 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     direction: rtl;
     font-family: 'Vazirmatn', 'VazirFallback', sans-serif;
-    overflow-y: auto;
     overflow-x: hidden;
   }
   
   html {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
-    width: 100vw;
-    overflow-x: hidden;
   }
 
   #root {

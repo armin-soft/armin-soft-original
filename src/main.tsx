@@ -1,18 +1,15 @@
 
-import { createRoot } from 'react-dom/client'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
-import { initTheme } from './lib/theme-script'
+import './styles/scrollbar.css'
 
-// Initialize theme before rendering
-initTheme();
-
-createRoot(document.getElementById("root")!).render(
-  <HelmetProvider>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </HelmetProvider>
-);
+  </React.StrictMode>,
+)

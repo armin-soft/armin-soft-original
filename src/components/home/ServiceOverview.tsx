@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Code, Shield, Bot, Server, Database, Monitor, Cloud, Smartphone, ArrowRight } from "lucide-react";
@@ -93,17 +94,7 @@ export const ServiceOverview = () => {
                 <Card className="p-6 h-full bg-black/50 backdrop-blur-xl border-gray-800 hover:border-arminred-500/50 transition-all duration-300 group relative overflow-hidden">
                   <div className="flex flex-col items-center text-center h-full relative z-10">
                     <div className={`mb-4 p-4 rounded-xl bg-gradient-to-br ${service.color} group-hover:from-arminred-500/20 group-hover:to-arminred-600/5 transition-colors duration-300`}>
-                      <motion.div
-                        animate={{ rotate: [0, 5, 0, -5, 0] }}
-                        transition={{
-                          duration: 5,
-                          repeat: Infinity,
-                          repeatType: "loop",
-                          ease: "easeInOut"
-                        }}
-                      >
-                        {service.icon}
-                      </motion.div>
+                      {service.icon}
                     </div>
                     <h3 className="text-xl font-bold mb-2 group-hover:text-arminred-500 transition-colors">
                       {service.title}

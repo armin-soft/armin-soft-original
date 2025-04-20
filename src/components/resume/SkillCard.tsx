@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 import { ReactNode } from "react";
 
 interface SkillCardProps {
@@ -27,7 +28,7 @@ export const SkillCard = ({ name, level, icon, index }: SkillCardProps) => {
               {icon}
               <span className="font-medium">{name}</span>
             </div>
-            <span className="text-sm text-muted-foreground farsi-numbers">{level}%</span>
+            <span className="text-sm text-muted-foreground farsi-numbers">{usePersianNumbers(level)}%</span>
           </div>
           <Progress value={level} className="h-2 bg-white/10" />
         </CardContent>

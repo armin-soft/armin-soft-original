@@ -1,9 +1,9 @@
+
 import { motion, useAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, MessageSquare, PhoneCall, Mail, Clock } from "lucide-react";
 import { useRef, useEffect } from "react";
-import { BusinessHours } from './BusinessHours';
 
 export const CTASection = () => {
   const controls = useAnimation();
@@ -113,8 +113,6 @@ export const CTASection = () => {
               }}
               className="pt-8 flex flex-col items-center space-y-6"
             >
-              <BusinessHours className="mb-8" />
-              
               <p className="text-gray-400">راه‌های ارتباطی مستقیم</p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-xl">

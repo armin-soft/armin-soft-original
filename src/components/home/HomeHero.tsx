@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { HeroBackground } from "./hero/HeroBackground";
 import { HeroServices } from "./hero/HeroServices";
-import { HeroLogo } from "./hero/HeroLogo";
 
 export const HomeHero = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -45,8 +44,6 @@ export const HomeHero = () => {
       
       <div className="container relative z-10 px-4 md:px-6 py-12 md:py-24">
         <div className="flex flex-col items-center text-center">
-          <HeroLogo />
-          
           <div className="space-y-6 max-w-4xl">
             <motion.h1 
               className="text-4xl md:text-7xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400"

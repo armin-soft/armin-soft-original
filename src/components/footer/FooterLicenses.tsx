@@ -40,7 +40,14 @@ function useZarinpalScript() {
 
     function tryInject() {
       if (windowWithZarinpal[TRUST_FN] && document.getElementById(LOGO_DIV_ID)) {
-        windowWithZarinpal[TRUST_FN]();
+        try {
+          windowWithZarinpal[TRUST_FN]();
+          console.log("✅ زرین‌پال اسکریپت با موفقیت اجرا شد");
+        } catch (error) {
+          console.error("❌ خطا در اجرای اسکریپت زرین‌پال:", error);
+        }
+      } else {
+        console.log("🔄 هنوز اسکریپت زرین‌پال یا المان لوگو آماده نیست");
       }
     }
 
@@ -52,21 +59,36 @@ function useZarinpalScript() {
       script.src = "https://www.zarinpal.com/webservice/TrustCode";
       script.type = "text/javascript";
       script.id = "zarinpal-trust-script";
+      script.async = true;
+      
       // بعد از بارگذاری، تابع دکمه را اجرا کن
       script.onload = () => {
-        tryInject();
+        console.log("🔄 اسکریپت زرین‌پال بارگذاری شد، تلاش برای اجرا...");
+        setTimeout(tryInject, 500); // کمی تاخیر برای اطمینان از اجرای کامل اسکریپت
       };
+      
       document.body.appendChild(script);
+      console.log("🔄 اسکریپت زرین‌پال به صفحه اضافه شد");
     } else {
       // اگر قبلا وجود داشته مستقیماً تابع را اجرا کنیم
+      console.log("🔄 اسکریپت زرین‌پال قبلا اضافه شده، تلاش مجدد برای اجرا...");
       tryInject();
     }
 
-    // همچنین بعد از هر رندر، با وقفه کوتاه مطمئن شو لوگو جاگذاری می‌شود
-    const injectInterval = setTimeout(tryInject, 250);
+    // چند بار با فاصله زمانی تلاش کن تا مطمئن شویم لوگو جاگذاری می‌شود
+    const injectIntervals: NodeJS.Timeout[] = [];
+    
+    // تلاش چندباره با فواصل مختلف برای اطمینان از بارگذاری
+    [500, 1000, 2000, 4000].forEach(timeout => {
+      const intervalId = setTimeout(() => {
+        tryInject();
+      }, timeout);
+      injectIntervals.push(intervalId);
+    });
 
     return () => {
-      clearTimeout(injectInterval);
+      // پاکسازی تایمرها هنگام خروج از کامپوننت
+      injectIntervals.forEach(intervalId => clearTimeout(intervalId));
     };
   }, []);
 }
@@ -139,7 +161,7 @@ export function FooterLicenses() {
               <div
                 id="zarinpalTrustLogo"
                 className="w-[94px] h-[82px] flex items-center justify-center"
-                style={{ minWidth: 86, minHeight: 83, margin: 0, padding: 0, background: "none" }}
+                style={{ cursor: "pointer" }}
               >
                 {/* اسکریپت TrustCode زرین‌پال در FooterLicenses به‌صورت داینامیک درج می‌شود */}
               </div>

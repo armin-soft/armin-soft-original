@@ -87,11 +87,13 @@
     
     <!-- Web App Manifest (Optional but recommended) -->
     <link rel="manifest" href="/manifest.json">
+
+    <!-- اسکریپت زرین‌پال مستقیماً در head تا سریع‌تر بارگذاری شود -->
+    <script type="text/javascript" src="https://www.zarinpal.com/webservice/TrustCode" id="zarinpal-trust-script" async></script>
   </head>
   <body>
     <div id="root"></div>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <!-- اسکریپت زرین‌پال حذف شد و صرفا در FooterLicenses اضافه خواهد شد -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

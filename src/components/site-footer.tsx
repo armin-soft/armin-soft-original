@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from "framer-motion";
 import { FooterContactInfo } from './footer/FooterContactInfo';
@@ -5,7 +6,6 @@ import { FooterNavLinks } from './footer/FooterNavLinks';
 import { FooterSocialLinks } from './footer/FooterSocialLinks';
 import { FooterCopyright } from './footer/FooterCopyright';
 import { Separator } from "./ui/separator";
-import { FooterLicenses } from "./footer/FooterLicenses";
 
 export function SiteFooter() {
   const footerLinks = [
@@ -71,8 +71,7 @@ export function SiteFooter() {
           <Separator className="bg-gradient-to-r from-arminred-500/20 via-arminred-500/10 to-transparent" />
         </motion.div>
 
-        {/* بخش مجوزها و تجارت الکترونیکی مدرن */}
-        <FooterLicenses />
+        {/* Removed FooterLicenses component as requested */}
 
         <FooterCopyright />
       </div>

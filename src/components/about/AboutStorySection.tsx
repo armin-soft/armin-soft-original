@@ -1,7 +1,5 @@
-
 import { motion } from "framer-motion";
 import { MapPin, ArrowRight, Download } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Link } from "react-router-dom";
@@ -20,7 +18,6 @@ export function AboutStorySection({ milestones }: { milestones: { year: string; 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div 
             className="space-y-8 order-2 lg:order-1"
-            // استایل‌های اسکرول و مقیاس حذف شدند تا وابسته به پراپس نشود
           >
             <div>
               <div className="inline-flex items-center mb-4">

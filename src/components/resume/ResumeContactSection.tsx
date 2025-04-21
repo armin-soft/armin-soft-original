@@ -2,7 +2,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function ResumeContactSection() {
@@ -34,12 +33,6 @@ export function ResumeContactSection() {
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-arminred-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                 <span className="relative z-10">تماس با من</span>
               </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 transition-all duration-300">
-              <a href="#" className="flex items-center gap-2">
-                <Download className="h-5 w-5" />
-                دانلود رزومه
-              </a>
             </Button>
           </div>
         </motion.div>

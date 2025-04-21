@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
+import { ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResumeParallax } from './ResumeParallax';
@@ -68,13 +68,6 @@ export function ResumeHeader() {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap gap-3 mt-2 justify-center lg:justify-start"
             >
-              <Button asChild variant="outline" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 gap-2">
-                <a href="#" download>
-                  <Download className="w-4 h-4" />
-                  دانلود رزومه
-                </a>
-              </Button>
-              
               <Button asChild variant="outline" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 gap-2">
                 <Link to="/contact">
                   تماس با من

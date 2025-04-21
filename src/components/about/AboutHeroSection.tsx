@@ -1,9 +1,8 @@
 
 import { motion } from "framer-motion";
-import { BadgeCheck, ArrowRight, Download } from "lucide-react";
+import { BadgeCheck, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Link } from "react-router-dom";
 import { AboutParticlesBackground } from "./AboutParticlesBackground";
 import { AboutHeroTags } from "./AboutHeroTags";
@@ -83,34 +82,6 @@ export function AboutHeroSection() {
                   <ArrowRight className="mr-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="lg" className="border border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 text-white">
-                    <a href="#" className="flex items-center">
-                      <Download className="ml-2 h-4 w-4" />
-                      دریافت رزومه
-                    </a>
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>دانلود رزومه</DialogTitle>
-                    <DialogDescription>
-                      لطفاً فرمت مورد نظر خود را برای دانلود رزومه انتخاب کنید.
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid grid-cols-2 gap-4 py-4">
-                    <Button className="bg-blue-600 hover:bg-blue-700">
-                      <Download className="ml-2 h-4 w-4" />
-                      دانلود PDF
-                    </Button>
-                    <Button className="bg-green-600 hover:bg-green-700">
-                      <Download className="ml-2 h-4 w-4" />
-                      دانلود Word
-                    </Button>
-                  </div>
-                </DialogContent>
-              </Dialog>
             </motion.div>
           </div>
         </div>

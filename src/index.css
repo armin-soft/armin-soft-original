@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -88,6 +89,10 @@
     transition: transform 0.3s ease;
   }
   
+  .perspective-3d {
+    perspective: 1000px;
+  }
+  
   /* Animations for the dropdown menu */
   .dropdown-animated {
     animation: dropdownSlideIn 0.3s ease forwards;
@@ -110,56 +115,64 @@
     filter: blur(1px);
   }
   
-  /* زرین‌پال استایل‌های کمکی */
-  #zarinpalTrustLogo {
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
-    transition: all 0.3s ease;
+  /* Advanced animations */
+  @keyframes particle-emit {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(var(--random-x, 100px), var(--random-y, -100px));
+      opacity: 0;
+    }
   }
-
-  #zarinpalTrustLogo::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    margin-top: -15px;
-    margin-left: -15px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: rgba(255, 255, 255, 0.9);
-    animation: zarinpal-spinner 1s linear infinite;
-    opacity: 0.8;
+  
+  .animate-particle-emit {
+    --random-x: random(70px, 130px);
+    --random-y: random(-130px, -70px);
+    animation: particle-emit 1s ease-out forwards;
   }
-
-  @keyframes zarinpal-spinner {
-    to {transform: rotate(360deg);}
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
-
-  /* پس از بارگذاری کامل، انیمیشن بارگذاری را حذف می‌کنیم */
-  #zarinpalTrustLogo.loaded::before {
-    display: none;
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
-
-  #zarinpalTrustLogo a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px 0 rgba(238, 42, 67, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px 5px rgba(238, 42, 67, 0.6);
+    }
   }
-
-  #zarinpalTrustLogo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  .animate-typing {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end);
+  }
+  
+  /* Radial gradient utility class */
+  .bg-radial-gradient-to-center {
+    background: radial-gradient(circle, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 100%);
   }
   
   .glow-effect {
@@ -198,5 +211,44 @@
   
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-arminred-700/70;
+  }
+  
+  /* Enhanced glass morphism */
+  .glassmorphism {
+    @apply bg-black/40 backdrop-blur-lg border border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  
+  /* Text stroke effect */
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Text gradient animation */
+  @keyframes textGradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animate-text-gradient {
+    background-size: 200% auto;
+    animation: textGradientShift 4s linear infinite;
+  }
+  
+  /* Advanced hover animations */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
   }
 }

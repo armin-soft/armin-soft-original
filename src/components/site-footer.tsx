@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from "framer-motion";
 import { FooterContactInfo } from './footer/FooterContactInfo';
@@ -83,20 +82,8 @@ export function SiteFooter() {
             <span className="text-base font-semibold text-white/90">
               مجوزها و تجارت الکترونیکی
             </span>
-            <a
-              referrerPolicy="origin"
-              target="_blank"
-              href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-              className="inline-block"
-            >
-              <img
-                referrerPolicy="origin"
-                src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-                alt="نماد اعتماد الکترونیکی"
-                style={{ cursor: "pointer" }}
-                id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-                className="h-12 w-auto"
-              />
+            <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg">
+              <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg" alt="" style={{ cursor: "pointer" }} code="jNdpnL31KtNsikcan5emQZWkglmgpsxg"></img>
             </a>
           </div>
         </motion.div>
@@ -106,4 +93,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-

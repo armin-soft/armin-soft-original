@@ -15,7 +15,7 @@ const licenses = [
   },
   {
     name: "زرین‌پال - پرداخت امن",
-    image: null, // به جای عکس، لوگوی اسکریپتی زرین‌پال جایگذاری می‌شود
+    image: null,
     link: "https://www.zarinpal.com",
     alt: "زرین‌پال پرداخت امن",
     type: "zarinpal",
@@ -24,22 +24,43 @@ const licenses = [
   }
 ];
 
-// هوک برای بارگذاری اسکریپت زرین‌پال فقط هنگام مشاهده این بخش
+// اجرای مجدد TrustCode زرین‌پال پس از render دقیق المان
 function useZarinpalScript() {
   useEffect(() => {
-    // بررسی وجود نداشتن اسکریپت قبلی
-    if (!document.getElementById("zarinpal-trust-script")) {
-      const script = document.createElement('script');
+    // نام تابع injectZarinpalTrustCode که زرین‌پال با اسکریپت معرفی می‌کند
+    const TRUST_FN = "injectZarinpalTrustCode";
+    const LOGO_DIV_ID = "zarinpalTrustLogo";
+
+    function tryInject() {
+      if (window[TRUST_FN] && document.getElementById(LOGO_DIV_ID)) {
+        window[TRUST_FN]();
+      }
+    }
+
+    let script = document.getElementById("zarinpal-trust-script");
+
+    if (!script) {
+      // اگر نبود اسکریپت را اضافه کن
+      script = document.createElement("script");
       script.src = "https://www.zarinpal.com/webservice/TrustCode";
       script.type = "text/javascript";
       script.id = "zarinpal-trust-script";
-      // فقط یک‌بار و فقط در همین بخش
+      // بعد از بارگذاری، تابع دکمه را اجرا کن
+      script.onload = () => {
+        tryInject();
+      };
       document.body.appendChild(script);
-      return () => {
-        // پاکسازی اگر کامپوننت آن‌مانت شد
-        script.remove();
-      }
+    } else {
+      // اگر قبلا وجود داشته مستقیماً تابع را اجرا کنیم
+      tryInject();
     }
+
+    // همچنین بعد از هر رندر، با وقفه کوتاه مطمئن شو لوگو جاگذاری می‌شود
+    const injectInterval = setTimeout(tryInject, 250);
+
+    return () => {
+      clearTimeout(injectInterval);
+    };
   }, []);
 }
 
@@ -77,7 +98,7 @@ export function FooterLicenses() {
             href={licenses[0].link}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.09, rotate: [0, 6, -4, 0] }}
+            whileHover={{ scale: 1.09, rotate: [0, 6] }}
             transition={{ duration: 0.5, type: "spring" }}
             className="relative flex flex-col items-center group cursor-pointer hover-scale"
           >

@@ -8,6 +8,7 @@ import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
@@ -23,6 +24,7 @@ const Home = () => {
   const opacitySection3 = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
   const opacitySection4 = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
   const opacitySection5 = useTransform(scrollYProgress, [0.7, 0.8], [0, 1]);
+  const opacitySection6 = useTransform(scrollYProgress, [0.8, 0.9], [0, 1]);
   
   return (
     <SiteLayout>
@@ -54,6 +56,10 @@ const Home = () => {
           </motion.div>
           
           <motion.div style={{ opacity: opacitySection5 }}>
+            <TestimonialsSection />
+          </motion.div>
+          
+          <motion.div style={{ opacity: opacitySection6 }}>
             <FeaturedProjects />
             <CTASection />
           </motion.div>

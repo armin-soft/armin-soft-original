@@ -1,5 +1,6 @@
-import React from 'react';
+
 import { useRef } from 'react';
+import React from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, ArrowLeft, Twitter, Github, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";

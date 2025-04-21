@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import { SocialLinks } from "@/components/contact/SocialLinks";
 import { MapNavigation } from "@/components/contact/MapNavigation";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { WorkingHoursCard } from "@/components/contact/WorkingHoursCard";
 
 const Contact = () => {
   const { scrollYProgress } = useScroll();
@@ -185,6 +186,10 @@ const Contact = () => {
                           <span className="text-muted-foreground">شنبه تا پنجشنبه ۹ الی ۱۸</span>
                         </span>
                       </motion.div>
+                    </div>
+                    
+                    <div className="mt-2">
+                      <WorkingHoursCard />
                     </div>
                     
                     <motion.a 

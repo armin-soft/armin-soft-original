@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
@@ -7,7 +6,7 @@ import { Link } from "react-router-dom";
 import { ResumeParallax } from './ResumeParallax';
 
 export const ResumeHero = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -87,7 +86,6 @@ export const ResumeHero = () => {
               className="flex flex-wrap gap-3 mt-4"
             >
               <SocialButton icon={<Twitter size={18} />} href="https://twitter.com/armin_soft" />
-              <SocialButton icon={<Linkedin size={18} />} href="https://linkedin.com/in/armin-soft" />
               <SocialButton icon={<Github size={18} />} href="https://github.com/armin-soft" />
               <SocialButton icon={<Mail size={18} />} href="mailto:info@armin-soft.ir" />
               <SocialButton icon={<Phone size={18} />} href="tel:+989358983854" />

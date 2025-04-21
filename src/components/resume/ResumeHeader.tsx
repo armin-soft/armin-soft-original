@@ -1,4 +1,3 @@
-
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
@@ -8,18 +7,16 @@ import { ResumeParallax } from './ResumeParallax';
 import { useBreakpoint } from "@/utils/responsive";
 
 export function ResumeHeader() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  // Important: Always initialize all transforms regardless of condition
   const y = useTransform(scrollYProgress, [0, 1], [0, 350]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
   
-  // Check for desktop after all hooks are initialized
   const isDesktop = useBreakpoint('lg');
 
   return (
@@ -92,14 +89,12 @@ export function ResumeHeader() {
               className="flex flex-wrap gap-3 mt-4 justify-center lg:justify-start"
             >
               <SocialButton icon={<Twitter size={18} />} href="https://twitter.com/armin_soft" />
-              <SocialButton icon={<Linkedin size={18} />} href="https://linkedin.com/in/armin-soft" />
               <SocialButton icon={<Github size={18} />} href="https://github.com/armin-soft" />
               <SocialButton icon={<Mail size={18} />} href="mailto:info@armin-soft.ir" />
               <SocialButton icon={<Phone size={18} />} href="tel:+989358983854" />
             </motion.div>
           </motion.div>
           
-          {/* Profile image and tech badges - render placeholder div when not on desktop */}
           <motion.div
             style={{ y: useTransform(scrollYProgress, [0, 1], [0, 200]) }}
             className="relative flex justify-center"
@@ -147,13 +142,11 @@ export function ResumeHeader() {
                 </div>
               </motion.div>
             ) : (
-              // Empty placeholder div to maintain layout when not showing profile
               <div className="hidden"></div>
             )}
           </motion.div>
         </div>
         
-        {/* Scroll indicator - only visible on medium screens and above */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, BadgeCheck } from "lucide-react";
 
@@ -23,20 +23,37 @@ const licenses = [
 ];
 
 export function FooterLicenses() {
+  const [zarinpalLoaded, setZarinpalLoaded] = useState(false);
+
   useEffect(() => {
-    // اصلاح: فقط چک می‌کنیم که اسکریپت در head وجود داشته باشد
-    const scriptExists = document.getElementById('zarinpal-trust-script');
-    
-    if (!scriptExists) {
-      // اگر اسکریپت وجود نداشت، آن را اضافه می‌کنیم
-      const script = document.createElement('script');
-      script.id = 'zarinpal-trust-script';
-      script.src = 'https://www.zarinpal.com/webservice/TrustCode';
-      script.type = 'text/javascript';
-      script.async = true;
-      document.head.appendChild(script);
-      console.log('✅ اسکریپت زرین‌پال به صفحه اضافه شد');
-    }
+    // تلاش برای ترک کردن و تحریک زمان لازم برای بارگیری اسکریپت زرین‌پال
+    const zarinpalCheckInterval = setInterval(() => {
+      const zarinpalDiv = document.getElementById('zarinpalTrustLogo');
+      
+      // بررسی میکنیم آیا محتوایی در div قرار گرفته است
+      if (zarinpalDiv && zarinpalDiv.childElementCount > 0) {
+        // زرین‌پال بارگذاری شده است
+        console.log('✅ لوگوی زرین‌پال با موفقیت بارگذاری شد');
+        zarinpalDiv.classList.add('loaded'); // حذف انیمیشن بارگذاری
+        setZarinpalLoaded(true);
+        clearInterval(zarinpalCheckInterval);
+      } else if (zarinpalDiv) {
+        // زرین‌پال آماده نیست، تلاش برای احیا
+        console.log('⚠️ تلاش برای بارگذاری لوگوی زرین‌پال...');
+        
+        // تلاش برای تحریک اسکریپت زرین‌پال با ایجاد یک رویداد
+        const zarinpalTriggerEvent = new Event('DOMContentLoaded', {
+          bubbles: true,
+          cancelable: true
+        });
+        document.dispatchEvent(zarinpalTriggerEvent);
+      }
+    }, 1000);
+
+    // پاکسازی interval هنگام unmount
+    return () => {
+      clearInterval(zarinpalCheckInterval);
+    };
   }, []);
 
   return (
@@ -56,6 +73,7 @@ export function FooterLicenses() {
         >
           <div className="w-full h-full bg-gradient-to-tr from-arminred-600/20 via-arminred-400/10 to-white/0 blur-lg opacity-35 rounded-3xl" />
         </motion.div>
+        
         {/* معرفی و عنوان */}
         <div className="z-10 flex flex-col gap-2 items-center lg:items-end min-w-[180px] self-center">
           <span className="flex items-center text-lg md:text-xl font-extrabold text-arminred-500 gap-2">
@@ -64,6 +82,7 @@ export function FooterLicenses() {
           </span>
           <span className="text-sm text-white/80 hidden md:block font-light">پشتیبانی رسمی و امانت در پرداخت آنلاین</span>
         </div>
+        
         {/* لوگوها/مجوزها */}
         <div className="z-10 flex flex-row flex-wrap gap-8 items-center justify-center">
           {/* ای‌نماد */}
@@ -94,19 +113,17 @@ export function FooterLicenses() {
             </span>
           </motion.a>
 
-          {/* زرین‌پال: فقط یک div با id مورد نیاز */}
+          {/* زرین‌پال */}
           <motion.div
             whileHover={{ scale: 1.08, y: -6 }}
             transition={{ duration: 0.5, type: "spring" }}
             className="relative flex flex-col items-center group"
           >
-            {/* محل قرارگیری لوگوی زرین‌پال که توسط اسکریپت درج می‌شود */}
+            {/* زرین‌پال - باکس برای اسکریپت زرین‌پال */}
             <div
               id="zarinpalTrustLogo"
-              className="w-[140px] h-[100px] flex items-center justify-center rounded-2xl bg-white/10 border-2 border-yellow-400/30 overflow-hidden shadow-lg group-hover:shadow-yellow-400/30"
-            >
-              {/* اسکریپت زرین‌پال محتوای این بخش را پر می‌کند */}
-            </div>
+              className={`w-[140px] h-[100px] flex items-center justify-center rounded-2xl bg-white/10 border-2 border-yellow-400/30 overflow-hidden shadow-lg group-hover:shadow-yellow-400/30 ${zarinpalLoaded ? 'loaded' : ''}`}
+            ></div>
             <span className="mt-2 text-xs font-semibold text-white/90 group-hover:text-yellow-300 transition-all whitespace-nowrap">
               پرداخت امن زرین‌پال
             </span>

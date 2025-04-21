@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from "framer-motion";
 import { FooterContactInfo } from './footer/FooterContactInfo';
@@ -82,11 +83,22 @@ export function SiteFooter() {
             <span className="text-base font-semibold text-white/90">
               مجوزها و تجارت الکترونیکی
             </span>
-            <span
-              dangerouslySetInnerHTML={{
-                __html: `<a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg' alt='' style='cursor:pointer' code='jNdpnL31KtNsikcan5emQZWkglmgpsxg'></a>`
-              }}
-            />
+            <a
+              href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+              target="_blank"
+              rel="noopener noreferrer"
+              referrerPolicy="origin"
+            >
+              <img
+                src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                alt="نماد اعتماد الکترونیکی"
+                style={{ cursor: "pointer" }}
+                code="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                referrerPolicy="origin"
+                width={100}
+                height={100}
+              />
+            </a>
           </div>
         </motion.div>
         {/* انتهای بخش مجوزها و تجارت الکترونیکی */}

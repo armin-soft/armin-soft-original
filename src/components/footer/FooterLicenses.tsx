@@ -1,88 +1,109 @@
 
 import { motion } from "framer-motion";
-import { ShieldCheck, FileCheck, BadgeCheck } from "lucide-react";
+import { ShieldCheck, BadgeCheck } from "lucide-react";
+
+const licenses = [
+  {
+    name: "نماد اعتماد الکترونیکی",
+    image: "https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg",
+    link: "https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg",
+    alt: "نماد اعتماد الکترونیکی",
+    type: "e-namad",
+    id: "ENAMAD",
+    tag: "ای‌نماد"
+  },
+  {
+    name: "زرین‌پال - پرداخت امن",
+    image: null, // به جای عکس، لوگوی اسکریپتی زرین‌پال جایگذاری می‌شود
+    link: "https://www.zarinpal.com",
+    alt: "زرین‌پال پرداخت امن",
+    type: "zarinpal",
+    id: "zarinpalTrust",
+    tag: "زرین‌پال"
+  }
+];
 
 export function FooterLicenses() {
-  // اطلاعات مربوط به مجوزها
-  const licenses = [
-    {
-      name: "نماد اعتماد الکترونیکی",
-      image: "https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg",
-      link: "https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg",
-      alt: "نماد اعتماد الکترونیکی",
-      type: "e-namad"
-    },
-    {
-      name: "ساماندهی رسانه‌های دیجیتال",
-      image: "/placeholder.svg", // اینجا می‌توانید لوگوی ساماندهی را جایگزین کنید
-      link: "#",
-      alt: "لوگوی ساماندهی",
-      type: "samandehi"
-    }
-  ];
-
   return (
     <motion.section
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      className="flex justify-center items-center w-full mt-8 mb-2"
+      transition={{ duration: 0.8, ease: "anticipate" }}
+      className="flex justify-center items-center w-full mt-12"
     >
-      <div className="relative flex flex-col md:flex-row gap-6 md:gap-10 items-center bg-gradient-to-br from-white/10 to-black/40 rounded-2xl px-5 py-4 border border-white/10 shadow-md glass backdrop-blur-lg">
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <motion.div
-            className="w-full h-full bg-gradient-to-tr from-arminred-600/10 via-arminred-500/10 to-arminred-100/0 blur-2xl opacity-50 rounded-2xl"
-            animate={{
-              scale: [1, 1.04, 1],
-              opacity: [0.45, 0.65, 0.5]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        </div>
-        {/* عنوان و آیکون */}
-        <div className="relative z-10 flex flex-col gap-2 items-center md:items-start min-w-[155px]">
-          <span className="flex items-center text-base md:text-lg font-extrabold text-arminred-500 gap-2">
-            <ShieldCheck className="w-6 h-6 text-arminred-500 animate-pulse-glow" />
-            مجوزهای رسمی
+      <div className="relative flex flex-col lg:flex-row gap-8 xl:gap-14 items-stretch bg-gradient-to-br from-black/70 via-arminred-900/30 to-black/95 rounded-3xl px-6 py-7 border border-white/10 shadow-2xl glass backdrop-blur-2xl overflow-hidden w-full max-w-4xl mx-auto">
+        {/* تزئین زمینه با انیمیشن */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none z-0"
+          animate={{ opacity: [0.22, 0.32, 0.22], scale: [1, 1.03, 1] }}
+          transition={{ duration: 7, repeat: Infinity, repeatType: "mirror" }}
+        >
+          <div className="w-full h-full bg-gradient-to-tr from-arminred-600/20 via-arminred-400/10 to-white/0 blur-lg opacity-35 rounded-3xl" />
+        </motion.div>
+        {/* معرفی و عنوان */}
+        <div className="z-10 flex flex-col gap-2 items-center lg:items-end min-w-[180px] self-center">
+          <span className="flex items-center text-lg md:text-xl font-extrabold text-arminred-500 gap-2">
+            <ShieldCheck className="w-8 h-8 animate-pulse-glow text-arminred-500 drop-shadow-xl" />
+            اعتبارسنجی تجارت و پرداخت مدرن
           </span>
-          <span className="text-xs text-white/80 hidden md:block">تضمین اعتبار و امنیت پرداخت</span>
+          <span className="text-sm text-white/80 hidden md:block font-light">پشتیبانی رسمی و امانت در پرداخت آنلاین</span>
         </div>
-        {/* لوگوها */}
-        <div className="relative z-10 flex gap-7 items-center">
-          {licenses.map((item, idx) => (
-            <motion.a
-              key={item.name}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.08, rotate: item.type === "e-namad" ? [0, 5, -2, 0] : 1 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="group flex flex-col items-center"
-            >
-              <div className="relative w-[72px] h-[72px] rounded-xl shadow-lg overflow-hidden bg-white/10 border border-arminred-500/20 hover:shadow-arminred-400/30 transition-all duration-200 hover:scale-105">
-                <img
-                  src={item.image}
-                  alt={item.alt}
-                  referrerPolicy="origin"
-                  width={72}
-                  height={72}
-                  className="object-contain w-full h-full"
-                  style={{ cursor: "pointer" }}
-                />
-                {item.type === "e-namad" && (
-                  <span className="absolute top-2 left-2 bg-arminred-500/80 rounded-full p-1 animate-pulse shadow-lg">
-                    <BadgeCheck className="w-5 h-5 text-white" />
-                  </span>
-                )}
+        {/* لوگوها/مجوزها */}
+        <div className="z-10 flex flex-row flex-wrap gap-8 items-center justify-center">
+          {/* ای‌نماد */}
+          <motion.a
+            href={licenses[0].link}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.09, rotate: [0, 6, -4, 0] }}
+            transition={{ duration: 0.5, type: "spring" }}
+            className="relative flex flex-col items-center group cursor-pointer hover-scale"
+          >
+            <div className="relative w-[84px] h-[84px] rounded-2xl bg-white/20 border-2 border-arminred-500/30 overflow-hidden shadow-lg group-hover:shadow-arminred-400/30 transition-all duration-200">
+              <img
+                src={licenses[0].image}
+                alt={licenses[0].alt}
+                referrerPolicy="origin"
+                width={84}
+                height={84}
+                className="object-contain w-full h-full pointer-events-none select-none"
+                style={{ cursor: "pointer" }}
+              />
+              <span className="absolute top-3 left-3 bg-arminred-500/90 rounded-full p-1.5 animate-pulse shadow-lg border-2 border-white/60">
+                <BadgeCheck className="w-6 h-6 text-white" />
+              </span>
+            </div>
+            <span className="mt-2 text-xs font-semibold text-white/90 group-hover:text-arminred-400 transition-all whitespace-nowrap">
+              {licenses[0].name}
+            </span>
+          </motion.a>
+
+          {/* زرین‌پال: لوگوی اسکریپتی */}
+          <motion.div
+            whileHover={{ scale: 1.08, y: -6 }}
+            transition={{ duration: 0.5, type: "spring" }}
+            className="relative flex flex-col items-center group"
+          >
+            <div className="relative w-[92px] h-[84px] rounded-2xl bg-white/20 border-2 border-yellow-400/60 overflow-hidden shadow-lg group-hover:shadow-yellow-400/30 transition-all duration-200 flex items-center justify-center">
+              {/* لوگوی زرین‌پال به‌صورت اسکریپتی */}
+              <div
+                id="zarinpalTrustLogo"
+                className="w-[94px] h-[82px] flex items-center justify-center"
+                style={{ minWidth: 86, minHeight: 83, margin: 0, padding: 0, background: "none" }}
+              >
+                {/* اسکریپت TrustCode زرین‌پال در index.html درج می‌شود و خودش لوگو را رندر خواهد کرد */}
               </div>
-              <span className="mt-2 text-xs font-semibold text-white/90 group-hover:text-arminred-400 transition">{item.name}</span>
-            </motion.a>
-          ))}
+              <span className="absolute top-3 left-3 bg-yellow-400/80 rounded-full p-1.5 animate-pulse shadow-lg border-2 border-white/50">
+                <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} fill="none" viewBox="0 0 24 24">
+                  <path fill="#fff" d="M16.34 6.22a1.25 1.25 0 0 1 1.77 0 1.25 1.25 0 0 1 0 1.77l-7.12 7.13-3.26-3.26a1.25 1.25 0 1 1 1.77-1.77l1.49 1.5 5.35-5.37Z"/>
+                </svg>
+              </span>
+            </div>
+            <span className="mt-2 text-xs font-semibold text-white/90 group-hover:text-yellow-300 transition-all whitespace-nowrap">
+              پرداخت امن زرین‌پال
+            </span>
+          </motion.div>
         </div>
       </div>
     </motion.section>

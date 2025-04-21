@@ -82,11 +82,14 @@ export function SiteFooter() {
             <span className="text-base font-semibold text-white/90">
               مجوزها و تجارت الکترونیکی
             </span>
-            <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg">
-              <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg" alt="" style={{ cursor: "pointer" }} code="jNdpnL31KtNsikcan5emQZWkglmgpsxg"></img>
-            </a>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: `<a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg' alt='' style='cursor:pointer' code='jNdpnL31KtNsikcan5emQZWkglmgpsxg'></a>`
+              }}
+            />
           </div>
         </motion.div>
+        {/* انتهای بخش مجوزها و تجارت الکترونیکی */}
 
         <FooterCopyright />
       </div>

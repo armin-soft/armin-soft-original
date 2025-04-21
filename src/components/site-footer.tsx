@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from "framer-motion";
 import { FooterContactInfo } from './footer/FooterContactInfo';
@@ -90,7 +91,7 @@ export function SiteFooter() {
             >
               <img
                 referrerPolicy="origin"
-                src="https://Trustseal.eNamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
                 alt="نماد اعتماد الکترونیکی"
                 style={{ cursor: "pointer" }}
                 id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
@@ -105,3 +106,4 @@ export function SiteFooter() {
     </footer>
   );
 }
+

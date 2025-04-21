@@ -24,7 +24,10 @@ interface ExperienceTimelineProps {
 export function ExperienceTimeline({ experiences }: ExperienceTimelineProps) {
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold mb-6 section-title">سوابق شغلی</h2>
+      <h2 className="text-2xl font-bold mb-6 relative inline-block section-title">
+        سوابق شغلی
+        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-arminred-500 to-transparent"></span>
+      </h2>
       
       <Timeline className="pr-2">
         {experiences.map((experience, index) => (

@@ -75,7 +75,10 @@ export function Technologies() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 section-title">تکنولوژی‌های تخصصی</h2>
+      <h2 className="text-2xl font-bold mb-6 relative inline-block section-title">
+        تکنولوژی‌های تخصصی
+        <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-arminred-500 to-transparent"></span>
+      </h2>
       
       <Tabs defaultValue="backend" className="w-full" onValueChange={setActiveTab}>
         <TabsList className="grid grid-cols-4 md:grid-cols-7 bg-black/50 backdrop-blur p-1 rounded-xl w-full">

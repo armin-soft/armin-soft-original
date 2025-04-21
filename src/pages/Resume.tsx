@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 // Components
-import { ResumeHeader } from "@/components/resume/ResumeHeader";
+import { ResumeHero } from "@/components/resume/ResumeHero";
 import { Technologies } from "@/components/resume/Technologies";
 import { ExperienceTimeline } from "@/components/resume/ExperienceTimeline";
 import { EducationTimeline } from "@/components/resume/EducationTimeline";
@@ -317,45 +317,146 @@ const Resume = () => {
       />
       
       {/* بخش هدر رزومه */}
-      <ResumeHeader />
+      <ResumeHero />
 
       <main className="relative bg-gradient-to-b from-black to-gray-900 farsi-numbers">
-
         {/* --- بخش اقدامات و خلاصه‌ها --- */}
         <section className="relative z-10 py-14 bg-gradient-to-b from-black to-gray-900">
           <div className="container px-4 mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div>
-                <h2 className="text-2xl font-bold mb-4 section-title">اقدامات</h2>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-2xl font-bold mb-6 relative inline-block section-title">
+                  اقدامات
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-arminred-500 to-transparent"></span>
+                </h2>
                 <div className="space-y-6 text-base leading-8 text-gray-300">
-                  <div>
-                    <span className="font-semibold text-arminred-500">موقعیت شغلی: </span>
-                    کارمند بخش نرم افزاری و امنیتی آمبرلا در کشور فرانسه در منطقه پاریس هستم.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-arminred-500">هک و امنیت: </span>
-                    بصورت تخصصی یک سرور یا ابزار را مورد بررسی قرار می‌دهم و در صورت کشف باگ به مدیران گزارش می‌کنم.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-arminred-500">تجربیات: </span>
-                    به عنوان توسعه‌دهنده بک‌اند کدنویسی می‌کنم و هیچ علاقه‌ای به فرانت‌اند ندارم.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-arminred-500">الگوی ذهنی: </span>
-                    هر آن چیزی که در ذهن شما خطور پیدا می‌کند با استفاده از هوش مصنوعی در پلتفرم‌های خاص طراحی می‌شود.
+                  <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="p-5 rounded-lg border border-gray-800 bg-black/50 backdrop-blur-sm hover:border-arminred-500/50 transition-all duration-300 group"
+                  >
+                    <span className="font-semibold text-arminred-500 flex items-center gap-2 mb-2">
+                      <BriefcaseBusiness className="w-4 h-4" />
+                      موقعیت شغلی:
+                    </span>
+                    <p className="group-hover:text-white transition-colors">
+                      کارمند بخش نرم افزاری و امنیتی آمبرلا در کشور فرانسه در منطقه پاریس هستم.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="p-5 rounded-lg border border-gray-800 bg-black/50 backdrop-blur-sm hover:border-arminred-500/50 transition-all duration-300 group"
+                  >
+                    <span className="font-semibold text-arminred-500 flex items-center gap-2 mb-2">
+                      <Shield className="w-4 h-4" />
+                      هک و امنیت:
+                    </span>
+                    <p className="group-hover:text-white transition-colors">
+                      بصورت تخصصی یک سرور یا ابزار را مورد بررسی قرار می‌دهم و در صورت کشف باگ به مدیران گزارش می‌کنم.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    viewport={{ once: true }}
+                    className="p-5 rounded-lg border border-gray-800 bg-black/50 backdrop-blur-sm hover:border-arminred-500/50 transition-all duration-300 group"
+                  >
+                    <span className="font-semibold text-arminred-500 flex items-center gap-2 mb-2">
+                      <Code className="w-4 h-4" />
+                      تجربیات:
+                    </span>
+                    <p className="group-hover:text-white transition-colors">
+                      به عنوان توسعه‌دهنده بک‌اند کدنویسی می‌کنم و هیچ علاقه‌ای به فرانت‌اند ندارم.
+                    </p>
+                  </motion.div>
+                  
+                  <motion.div 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    className="p-5 rounded-lg border border-gray-800 bg-black/50 backdrop-blur-sm hover:border-arminred-500/50 transition-all duration-300 group"
+                  >
+                    <span className="font-semibold text-arminred-500 flex items-center gap-2 mb-2">
+                      <Brain className="w-4 h-4" />
+                      الگوی ذهنی:
+                    </span>
+                    <p className="group-hover:text-white transition-colors">
+                      هر آن چیزی که در ذهن شما خطور پیدا می‌کند با استفاده از هوش مصنوعی در پلتفرم‌های خاص طراحی می‌شود.
+                    </p>
+                  </motion.div>
+                </div>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative hidden lg:block"
+              >
+                <div className="absolute top-0 right-0 w-96 h-96 bg-arminred-500/5 rounded-full filter blur-[100px] z-0"></div>
+                <div className="relative z-10 h-full flex items-center justify-center">
+                  <div className="grid grid-cols-2 gap-8 relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-arminred-500/20 to-transparent rounded-lg filter blur-[30px] z-0 opacity-60"></div>
+                    
+                    {/* Decorative tech elements */}
+                    {['Server', 'Security', 'Backend', 'API'].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 * index, duration: 0.5 }}
+                        viewport={{ once: true }}
+                        className="relative z-10 p-6 rounded-xl border border-gray-800 bg-black/70 backdrop-blur-xl shadow-lg hover:border-arminred-500/40 transition-all duration-300 group"
+                      >
+                        <div className="mb-3">
+                          {index === 0 && <Server className="w-10 h-10 text-arminred-500/80" />}
+                          {index === 1 && <Shield className="w-10 h-10 text-arminred-500/80" />}
+                          {index === 2 && <Code className="w-10 h-10 text-arminred-500/80" />}
+                          {index === 3 && <Database className="w-10 h-10 text-arminred-500/80" />}
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2 group-hover:text-arminred-500 transition-colors">{item}</h3>
+                        <div className="h-1 w-12 bg-gradient-to-r from-arminred-500 to-transparent rounded-full"></div>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </div>
-              <div>
-                {/* می‌توانید تصویر یا گرافیک متناسب اضافه کنید یا این بخش را خالی بگذارید */}
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* آمار و ارقام */}
         <section className="relative z-10 py-20">
-          <div className="container px-4 mx-auto">
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]"></div>
+          <div className="container px-4 mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                آمار و ارقام کلیدی
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-arminred-500 to-transparent rounded-full mx-auto"></div>
+            </motion.div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <StatItem 
                 value={toPersianNumbers(5)}
@@ -387,21 +488,47 @@ const Resume = () => {
 
         {/* سوابق شغلی و تحصیلی */}
         <section className="relative z-10 py-20 overflow-hidden">
-          <div className="container px-4 mx-auto">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]"></div>
+          </div>
+          
+          <div className="container px-4 mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                سوابق حرفه‌ای
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-arminred-500 to-transparent rounded-full mx-auto"></div>
+            </motion.div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
               <ExperienceTimeline experiences={experiences} />
               <div className="space-y-16">
                 <EducationTimeline education={education} />
                 
                 {/* بخش گواهی‌نامه‌ها */}
-                <div>
-                  <h2 className="text-2xl font-bold mb-6 section-title">گواهی‌نامه‌های تخصصی</h2>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-2xl font-bold mb-6 relative inline-block section-title">
+                    گواهی‌نامه‌های تخصصی
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-arminred-500 to-transparent"></span>
+                  </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {certificates.map((cert, index) => (
                       <CertificateCard key={index} {...cert} />
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -415,13 +542,32 @@ const Resume = () => {
           
           <div className="container px-4 mx-auto relative">
             <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                مهارت‌ها و تکنولوژی‌ها
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-arminred-500 to-transparent rounded-full mx-auto"></div>
+              <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+                مجموعه گسترده‌ای از مهارت‌های تخصصی در زمینه برنامه‌نویسی و امنیت سایبری
+              </p>
+            </motion.div>
+
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
               className="space-y-16"
             >
               <div className="space-y-10">
-                <h2 className="text-2xl font-bold mb-6 section-title">مهارت‌های تخصصی</h2>
+                <h3 className="text-xl font-semibold mb-6 relative inline-block">
+                  مهارت‌های تخصصی
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-arminred-500 to-transparent"></span>
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {skills.map((skill) => (
                     <SkillCard
@@ -443,22 +589,48 @@ const Resume = () => {
 
         {/* پروژه‌های اخیر */}
         <section className="relative z-10 py-20 overflow-hidden">
-          <div className="container px-4 mx-auto">
-            <h2 className="text-2xl font-bold mb-10 section-title">پروژه‌های برجسته</h2>
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]"></div>
+          </div>
+          
+          <div className="container px-4 mx-auto relative">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                پروژه‌های برجسته
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-arminred-500 to-transparent rounded-full mx-auto"></div>
+              <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+                نمونه‌های برتر پروژه‌هایی که با موفقیت طراحی و اجرا شده‌اند
+              </p>
+            </motion.div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project) => (
                 <ProjectCard key={project.index} {...project} />
               ))}
             </div>
             
-            <div className="mt-10 text-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-14 text-center"
+            >
               <Button asChild variant="outline" className="border-gray-700 hover:border-arminred-500/50 hover:bg-arminred-500/5 gap-2">
                 <Link to="/Work-Sample">
                   مشاهده همه نمونه کارها
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -470,7 +642,7 @@ const Resume = () => {
           
           <div className="container px-4 mx-auto relative">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
@@ -489,9 +661,10 @@ const Resume = () => {
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800 shadow-lg shadow-arminred-600/20">
-                  <Link to="/contact" className="flex items-center gap-2">
-                    تماس با من
+                <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800 shadow-lg shadow-arminred-600/20 group">
+                  <Link to="/contact" className="flex items-center gap-2 relative overflow-hidden">
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-arminred-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <span className="relative z-10">تماس با من</span>
                   </Link>
                 </Button>
                 

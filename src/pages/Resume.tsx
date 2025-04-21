@@ -157,46 +157,142 @@ const projects = [
 
 const skills = [
   {
-    name: "برنامه نویسی بک‌اند",
-    level: 95,
-    icon: <Server className="w-5 h-5 text-arminred-400" />,
+    name: "هک و امنیت",
+    level: 99,
+    icon: <Shield className="w-5 h-5 text-arminred-400" />,
     index: 0
   },
   {
-    name: "طراحی API",
+    name: "طراحی هوش مصنوعی",
     level: 90,
-    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    icon: <Brain className="w-5 h-5 text-arminred-400" />,
     index: 1
   },
   {
-    name: "امنیت وب",
-    level: 85,
-    icon: <Shield className="w-5 h-5 text-arminred-400" />,
+    name: "طراحی دیزاین",
+    level: 18,
+    icon: <Palette className="w-5 h-5 text-arminred-400" />,
     index: 2
   },
   {
-    name: "پایگاه داده‌ها",
-    level: 88,
-    icon: <Database className="w-5 h-5 text-arminred-400" />,
+    name: "طراحی سایت",
+    level: 100,
+    icon: <LayoutDashboard className="w-5 h-5 text-arminred-400" />,
     index: 3
   },
   {
-    name: "DevOps",
-    level: 80,
+    name: "طراحی وب سرویس",
+    level: 95,
     icon: <Server className="w-5 h-5 text-arminred-400" />,
     index: 4
   },
   {
-    name: "برنامه‌نویسی فرانت‌اند",
-    level: 75,
-    icon: <Layout className="w-5 h-5 text-arminred-400" />,
+    name: "طراحی اسکریپت",
+    level: 100,
+    icon: <FileCode className="w-5 h-5 text-arminred-400" />,
     index: 5
   },
   {
-    name: "هوش مصنوعی",
-    level: 82,
-    icon: <Bot className="w-5 h-5 text-arminred-400" />,
+    name: "طراحی نرم افزار",
+    level: 70,
+    icon: <Application className="w-5 h-5 text-arminred-400" />,
     index: 6
+  },
+  {
+    name: "طراحی اپلیکیشن",
+    level: 59,
+    icon: <Application className="w-5 h-5 text-arminred-400" />,
+    index: 7
+  },
+  {
+    name: "اچ تی ام ال",
+    level: 100,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 8
+  },
+  {
+    name: "سی اس اس",
+    level: 35,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 9
+  },
+  {
+    name: "جاوا اسکریپت",
+    level: 64,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 10
+  },
+  {
+    name: "جی‌ کوئری",
+    level: 60,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 11
+  },
+  {
+    name: "پی اچ پی",
+    level: 90,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 12
+  },
+  {
+    name: "سی پلاس پلاس",
+    level: 51,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 13
+  },
+  {
+    name: "سی پلاس",
+    level: 52,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 14
+  },
+  {
+    name: "سی شارپ",
+    level: 57,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 15
+  },
+  {
+    name: "سی",
+    level: 63,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 16
+  },
+  {
+    name: "سوئیفت",
+    level: 63,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 17
+  },
+  {
+    name: "جاوا",
+    level: 68,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 18
+  },
+  {
+    name: "لوا",
+    level: 91,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 19
+  },
+  {
+    name: "پایتون",
+    level: 98,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 20
+  },
+  {
+    name: "پرل",
+    level: 98,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 21
+  },
+  {
+    name: "شل",
+    level: 98,
+    icon: <Code className="w-5 h-5 text-arminred-400" />,
+    index: 22
   }
 ];
 
@@ -270,7 +366,7 @@ const Resume = () => {
                 
                 {/* بخش گواهی‌نامه‌ها */}
                 <div>
-                  <h2 className="text-2xl font-bold mb-6 section-title">گواهینامه‌های تخصصی</h2>
+                  <h2 className="text-2xl font-bold mb-6 section-title">گواهی‌نامه‌های تخصصی</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {certificates.map((cert, index) => (
                       <CertificateCard key={index} {...cert} />

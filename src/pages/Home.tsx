@@ -1,4 +1,3 @@
-
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { HomeHero } from "@/components/home/HomeHero";
@@ -9,6 +8,7 @@ import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
 import { motion } from "framer-motion";
+import { CollaborationSection } from "@/components/home/CollaborationSection";
 
 const Home = () => {
   return (
@@ -22,7 +22,7 @@ const Home = () => {
       
       <div className="w-full min-h-screen overflow-visible">
         <HomeHero />
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -30,6 +30,7 @@ const Home = () => {
         >
           <HomeStats />
           <ServiceOverview />
+          <CollaborationSection />
           <ProcessSection />
           <SkillsShowcase />
           <FeaturedProjects />

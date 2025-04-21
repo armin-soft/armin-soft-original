@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -320,11 +319,39 @@ const Resume = () => {
       {/* بخش هدر رزومه */}
       <ResumeHeader />
 
-      {/* بخش اصلی رزومه */}
       <main className="relative bg-gradient-to-b from-black to-gray-900 farsi-numbers">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-        </div>
+
+        {/* --- بخش اقدامات و خلاصه‌ها --- */}
+        <section className="relative z-10 py-14 bg-gradient-to-b from-black to-gray-900">
+          <div className="container px-4 mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-2xl font-bold mb-4 section-title">اقدامات</h2>
+                <div className="space-y-6 text-base leading-8 text-gray-300">
+                  <div>
+                    <span className="font-semibold text-arminred-500">موقعیت شغلی: </span>
+                    کارمند بخش نرم افزاری و امنیتی آمبرلا در کشور فرانسه در منطقه پاریس هستم.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-arminred-500">هک و امنیت: </span>
+                    بصورت تخصصی یک سرور یا ابزار را مورد بررسی قرار می‌دهم و در صورت کشف باگ به مدیران گزارش می‌کنم.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-arminred-500">تجربیات: </span>
+                    به عنوان توسعه‌دهنده بک‌اند کدنویسی می‌کنم و هیچ علاقه‌ای به فرانت‌اند ندارم.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-arminred-500">الگوی ذهنی: </span>
+                    هر آن چیزی که در ذهن شما خطور پیدا می‌کند با استفاده از هوش مصنوعی در پلتفرم‌های خاص طراحی می‌شود.
+                  </div>
+                </div>
+              </div>
+              <div>
+                {/* می‌توانید تصویر یا گرافیک متناسب اضافه کنید یا این بخش را خالی بگذارید */}
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* آمار و ارقام */}
         <section className="relative z-10 py-20">

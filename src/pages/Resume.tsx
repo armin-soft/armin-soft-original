@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -7,8 +8,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   Download, ArrowRight, Code, Shield, Bot, Layout, 
-  Monitor, Smartphone, FileCode, Database, BookOpen, 
-  Server, Award, Zap, BriefcaseBusiness, GraduationCap,
+  Monitor, Smartphone, FileCode, Database, Server, Award, Zap, BriefcaseBusiness, GraduationCap,
   Brain, Palette, LayoutDashboard, Terminal
 } from "lucide-react";
 

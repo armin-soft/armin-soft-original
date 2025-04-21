@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -8,7 +9,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { 
   Download, ArrowRight, Code, Shield, Bot, Layout, 
   Monitor, Smartphone, FileCode, Database, BookOpen, 
-  Server, Award, Zap, BriefcaseBusiness, GraduationCap 
+  Server, Award, Zap, BriefcaseBusiness, GraduationCap,
+  Brain, Palette, LayoutDashboard, Terminal
 } from "lucide-react";
 
 // Components
@@ -195,13 +197,13 @@ const skills = [
   {
     name: "طراحی نرم افزار",
     level: 70,
-    icon: <Application className="w-5 h-5 text-arminred-400" />,
+    icon: <Monitor className="w-5 h-5 text-arminred-400" />,
     index: 6
   },
   {
     name: "طراحی اپلیکیشن",
     level: 59,
-    icon: <Application className="w-5 h-5 text-arminred-400" />,
+    icon: <Smartphone className="w-5 h-5 text-arminred-400" />,
     index: 7
   },
   {

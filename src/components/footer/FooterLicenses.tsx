@@ -31,13 +31,20 @@ function useZarinpalScript() {
     const TRUST_FN = "injectZarinpalTrustCode";
     const LOGO_DIV_ID = "zarinpalTrustLogo";
 
+    // Add type definition for the global window object to include the zarinpal function
+    interface WindowWithZarinpal extends Window {
+      [TRUST_FN]?: () => void;
+    }
+    
+    const windowWithZarinpal = window as WindowWithZarinpal;
+
     function tryInject() {
-      if (window[TRUST_FN] && document.getElementById(LOGO_DIV_ID)) {
-        window[TRUST_FN]();
+      if (windowWithZarinpal[TRUST_FN] && document.getElementById(LOGO_DIV_ID)) {
+        windowWithZarinpal[TRUST_FN]();
       }
     }
 
-    let script = document.getElementById("zarinpal-trust-script");
+    let script = document.getElementById("zarinpal-trust-script") as HTMLScriptElement | null;
 
     if (!script) {
       // اگر نبود اسکریپت را اضافه کن

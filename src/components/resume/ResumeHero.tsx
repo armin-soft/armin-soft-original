@@ -1,7 +1,6 @@
-
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, ArrowLeft, Twitter, Github, Mail, Phone } from "lucide-react";
+import { Download, ArrowLeft, Twitter, Linkedin, Github, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ResumeParallax } from './ResumeParallax';

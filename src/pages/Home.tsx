@@ -8,22 +8,9 @@ import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 const Home = () => {
-  const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: scrollRef,
-    offset: ["start start", "end end"]
-  });
-  
-  const opacitySection1 = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-  const opacitySection2 = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
-  const opacitySection3 = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
-  const opacitySection4 = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
-  const opacitySection5 = useTransform(scrollYProgress, [0.7, 0.8], [0, 1]);
-  
   return (
     <SiteLayout>
       <SEOHead 
@@ -33,31 +20,21 @@ const Home = () => {
         keywords="برنامه نویس بک اند, توسعه API, پایتون, جاوا, پی اچ پی, مدیریت سرور, امنیت وب, برنامه نویسی سمت سرور"
       />
       
-      <div ref={scrollRef} className="w-full min-h-screen overflow-visible perspective-3d">
+      <div className="w-full min-h-screen overflow-visible">
         <HomeHero />
         
-        <div className="relative z-10">
-          <motion.div style={{ opacity: opacitySection1 }}>
-            <HomeStats />
-          </motion.div>
-          
-          <motion.div style={{ opacity: opacitySection2 }}>
-            <ServiceOverview />
-          </motion.div>
-          
-          <motion.div style={{ opacity: opacitySection3 }}>
-            <ProcessSection />
-          </motion.div>
-          
-          <motion.div style={{ opacity: opacitySection4 }}>
-            <SkillsShowcase />
-          </motion.div>
-          
-          <motion.div style={{ opacity: opacitySection5 }}>
-            <FeaturedProjects />
-            <CTASection />
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <HomeStats />
+          <ServiceOverview />
+          <ProcessSection />
+          <SkillsShowcase />
+          <FeaturedProjects />
+          <CTASection />
+        </motion.div>
       </div>
     </SiteLayout>
   );

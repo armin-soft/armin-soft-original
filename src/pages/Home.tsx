@@ -1,3 +1,4 @@
+
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { HomeHero } from "@/components/home/HomeHero";
@@ -7,7 +8,6 @@ import { CTASection } from "@/components/home/CTASection";
 import { HomeStats } from "@/components/home/HomeStats";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { SkillsShowcase } from "@/components/home/SkillsShowcase";
-import { ConsultSection } from "@/components/home/ConsultSection";
 import { motion } from "framer-motion";
 
 const Home = () => {
@@ -32,7 +32,6 @@ const Home = () => {
           <ServiceOverview />
           <ProcessSection />
           <SkillsShowcase />
-          <ConsultSection />
           <FeaturedProjects />
           <CTASection />
         </motion.div>

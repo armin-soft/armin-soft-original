@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, BadgeCheck } from "lucide-react";
 
@@ -23,7 +24,27 @@ const licenses = [
   }
 ];
 
+// هوک برای بارگذاری اسکریپت زرین‌پال فقط هنگام مشاهده این بخش
+function useZarinpalScript() {
+  useEffect(() => {
+    // بررسی وجود نداشتن اسکریپت قبلی
+    if (!document.getElementById("zarinpal-trust-script")) {
+      const script = document.createElement('script');
+      script.src = "https://www.zarinpal.com/webservice/TrustCode";
+      script.type = "text/javascript";
+      script.id = "zarinpal-trust-script";
+      // فقط یک‌بار و فقط در همین بخش
+      document.body.appendChild(script);
+      return () => {
+        // پاکسازی اگر کامپوننت آن‌مانت شد
+        script.remove();
+      }
+    }
+  }, []);
+}
+
 export function FooterLicenses() {
+  useZarinpalScript();
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
@@ -92,7 +113,7 @@ export function FooterLicenses() {
                 className="w-[94px] h-[82px] flex items-center justify-center"
                 style={{ minWidth: 86, minHeight: 83, margin: 0, padding: 0, background: "none" }}
               >
-                {/* اسکریپت TrustCode زرین‌پال در index.html درج می‌شود و خودش لوگو را رندر خواهد کرد */}
+                {/* اسکریپت TrustCode زرین‌پال در FooterLicenses به‌صورت داینامیک درج می‌شود */}
               </div>
               <span className="absolute top-3 left-3 bg-yellow-400/80 rounded-full p-1.5 animate-pulse shadow-lg border-2 border-white/50">
                 <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} fill="none" viewBox="0 0 24 24">

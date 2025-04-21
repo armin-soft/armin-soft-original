@@ -1,5 +1,4 @@
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, BadgeCheck } from "lucide-react";
 
@@ -23,39 +22,6 @@ const licenses = [
 ];
 
 export function FooterLicenses() {
-  const [zarinpalLoaded, setZarinpalLoaded] = useState(false);
-
-  useEffect(() => {
-    // تلاش برای ترک کردن و تحریک زمان لازم برای بارگیری اسکریپت زرین‌پال
-    const zarinpalCheckInterval = setInterval(() => {
-      const zarinpalDiv = document.getElementById('zarinpalTrustLogo');
-      
-      // بررسی میکنیم آیا محتوایی در div قرار گرفته است
-      if (zarinpalDiv && zarinpalDiv.childElementCount > 0) {
-        // زرین‌پال بارگذاری شده است
-        console.log('✅ لوگوی زرین‌پال با موفقیت بارگذاری شد');
-        zarinpalDiv.classList.add('loaded'); // حذف انیمیشن بارگذاری
-        setZarinpalLoaded(true);
-        clearInterval(zarinpalCheckInterval);
-      } else if (zarinpalDiv) {
-        // زرین‌پال آماده نیست، تلاش برای احیا
-        console.log('⚠️ تلاش برای بارگذاری لوگوی زرین‌پال...');
-        
-        // تلاش برای تحریک اسکریپت زرین‌پال با ایجاد یک رویداد
-        const zarinpalTriggerEvent = new Event('DOMContentLoaded', {
-          bubbles: true,
-          cancelable: true
-        });
-        document.dispatchEvent(zarinpalTriggerEvent);
-      }
-    }, 1000);
-
-    // پاکسازی interval هنگام unmount
-    return () => {
-      clearInterval(zarinpalCheckInterval);
-    };
-  }, []);
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
@@ -113,21 +79,23 @@ export function FooterLicenses() {
             </span>
           </motion.a>
 
-          {/* زرین‌پال */}
-          <motion.div
-            whileHover={{ scale: 1.08, y: -6 }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="relative flex flex-col items-center group"
-          >
-            {/* زرین‌پال - باکس برای اسکریپت زرین‌پال */}
+          {/* زرین‌پال: فقط یک div با id ویژه */}
+          <div className="flex flex-col items-center">
             <div
               id="zarinpalTrustLogo"
-              className={`w-[140px] h-[100px] flex items-center justify-center rounded-2xl bg-white/10 border-2 border-yellow-400/30 overflow-hidden shadow-lg group-hover:shadow-yellow-400/30 ${zarinpalLoaded ? 'loaded' : ''}`}
+              style={{
+                width: "140px",
+                height: "100px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
+              className="rounded-2xl bg-white/10 border-2 border-yellow-400/30 overflow-hidden shadow-lg"
             ></div>
             <span className="mt-2 text-xs font-semibold text-white/90 group-hover:text-yellow-300 transition-all whitespace-nowrap">
               پرداخت امن زرین‌پال
             </span>
-          </motion.div>
+          </div>
         </div>
       </div>
     </motion.section>

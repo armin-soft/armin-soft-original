@@ -111,6 +111,42 @@
     filter: blur(1px);
   }
   
+  /* زرین‌پال استایل‌های کمکی */
+  .zarinpal-fallback-logo {
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+  }
+
+  #zarinpalTrustLogo {
+    position: relative;
+  }
+
+  /* حالت بارگذاری برای لوگوی زرین‌پال */
+  #zarinpalTrustLogo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: rgba(255, 255, 255, 0.9);
+    animation: zarinpal-spinner 1s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes zarinpal-spinner {
+    to {transform: rotate(360deg);}
+  }
+
+  /* پس از بارگذاری کامل، انیمیشن بارگذاری را حذف می‌کنیم */
+  #zarinpalTrustLogo.loaded::before {
+    display: none;
+  }
+  
   .glow-effect {
     position: relative;
     overflow: hidden;

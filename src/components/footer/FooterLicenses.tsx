@@ -38,63 +38,138 @@ function useZarinpalScript() {
     
     const windowWithZarinpal = window as WindowWithZarinpal;
 
+    // ساخت یک المان dummy برای تست آماده بودن اسکریپت
+    function createDummyElement() {
+      const dummyId = "zarinpal-test-element";
+      
+      // اگر قبلاً ایجاد شده باشد، آن را حذف کنیم
+      const existingDummy = document.getElementById(dummyId);
+      if (existingDummy) {
+        existingDummy.remove();
+      }
+      
+      // ایجاد یک المان مخفی برای تست
+      const dummy = document.createElement("div");
+      dummy.id = dummyId;
+      dummy.style.display = "none";
+      dummy.setAttribute("data-zarinpal", "test");
+      document.body.appendChild(dummy);
+      
+      return dummy;
+    }
+
+    // تابع تزریق را چند بار تلاش کن
     function tryInject() {
-      if (windowWithZarinpal[TRUST_FN] && document.getElementById(LOGO_DIV_ID)) {
+      const logoElement = document.getElementById(LOGO_DIV_ID);
+      
+      if (!logoElement) {
+        console.log("⚠️ المان لوگوی زرین‌پال هنوز در DOM وجود ندارد");
+        return false;
+      }
+      
+      if (typeof windowWithZarinpal[TRUST_FN] === 'function') {
         try {
+          // یک المان تست به صفحه اضافه می‌کنیم
+          const testElement = createDummyElement();
+          
+          // تلاش می‌کنیم تابع را اجرا کنیم
           windowWithZarinpal[TRUST_FN]();
           console.log("✅ زرین‌پال اسکریپت با موفقیت اجرا شد");
+          
+          // نشانه‌گذاری المان به عنوان بارگذاری شده تا انیمیشن بارگذاری متوقف شود
+          logoElement.classList.add('loaded');
+          
+          // مخفی کردن لوگوی پشتیبان اگر نمایش داده شده
+          const fallbackLogo = document.querySelector('.zarinpal-fallback-logo') as HTMLImageElement;
+          if (fallbackLogo) {
+            fallbackLogo.style.display = 'none';
+          }
+          
+          // پاکسازی المان تست
+          setTimeout(() => testElement.remove(), 1000);
+          
+          return true;
         } catch (error) {
           console.error("❌ خطا در اجرای اسکریپت زرین‌پال:", error);
+          return false;
         }
       } else {
-        console.log("🔄 هنوز اسکریپت زرین‌پال یا المان لوگو آماده نیست");
+        console.log("⏳ تابع زرین‌پال هنوز آماده نیست");
+        return false;
       }
     }
 
-    let script = document.getElementById("zarinpal-trust-script") as HTMLScriptElement | null;
-
-    if (!script) {
-      // اگر نبود اسکریپت را اضافه کن
-      script = document.createElement("script");
-      script.src = "https://www.zarinpal.com/webservice/TrustCode";
-      script.type = "text/javascript";
-      script.id = "zarinpal-trust-script";
-      script.async = true;
-      
-      // بعد از بارگذاری، تابع دکمه را اجرا کن
-      script.onload = () => {
-        console.log("🔄 اسکریپت زرین‌پال بارگذاری شد، تلاش برای اجرا...");
-        setTimeout(tryInject, 500); // کمی تاخیر برای اطمینان از اجرای کامل اسکریپت
-      };
-      
-      document.body.appendChild(script);
-      console.log("🔄 اسکریپت زرین‌پال به صفحه اضافه شد");
-    } else {
-      // اگر قبلا وجود داشته مستقیماً تابع را اجرا کنیم
-      console.log("🔄 اسکریپت زرین‌پال قبلا اضافه شده، تلاش مجدد برای اجرا...");
-      tryInject();
-    }
-
-    // چند بار با فاصله زمانی تلاش کن تا مطمئن شویم لوگو جاگذاری می‌شود
-    const injectIntervals: NodeJS.Timeout[] = [];
-    
-    // تلاش چندباره با فواصل مختلف برای اطمینان از بارگذاری
-    [500, 1000, 2000, 4000].forEach(timeout => {
-      const intervalId = setTimeout(() => {
-        tryInject();
-      }, timeout);
-      injectIntervals.push(intervalId);
+    // یک MutationObserver برای نظارت بر تغییرات DOM
+    const observer = new MutationObserver(() => {
+      // فقط اگر المان لوگو وجود داشته باشد چک می‌کنیم
+      if (document.getElementById(LOGO_DIV_ID)) {
+        if (tryInject()) {
+          // اگر موفقیت‌آمیز بود، observer را متوقف می‌کنیم
+          observer.disconnect();
+        }
+      }
     });
 
+    // آغاز مشاهده تغییرات DOM
+    observer.observe(document.body, { 
+      childList: true, 
+      subtree: true 
+    });
+
+    // تلاش اولیه
+    if (!tryInject()) {
+      console.log("🔄 اولین تلاش نتیجه نداد، منتظر تغییرات DOM می‌مانیم");
+      
+      // تلاش‌های زمان‌بندی‌شده با فواصل افزایشی
+      const intervals = [1000, 2000, 3000, 5000];
+      const timers: NodeJS.Timeout[] = [];
+      
+      intervals.forEach((delay, index) => {
+        const timer = setTimeout(() => {
+          console.log(`⏱️ تلاش مجدد شماره ${index + 1} برای اجرای اسکریپت زرین‌پال...`);
+          if (tryInject()) {
+            // پاکسازی تایمرهای باقی‌مانده
+            timers.forEach(t => clearTimeout(t));
+            observer.disconnect();
+          }
+        }, delay);
+        
+        timers.push(timer);
+      });
+      
+      // پاکسازی تایمرها هنگام unmount
+      return () => {
+        observer.disconnect();
+        timers.forEach(timer => clearTimeout(timer));
+      };
+    }
+    
+    // پاکسازی observer هنگام unmount
     return () => {
-      // پاکسازی تایمرها هنگام خروج از کامپوننت
-      injectIntervals.forEach(intervalId => clearTimeout(intervalId));
+      observer.disconnect();
     };
   }, []);
 }
 
 export function FooterLicenses() {
   useZarinpalScript();
+  
+  // نمایش لوگوی پشتیبان اگر اسکریپت زرین‌پال بیش از حد طول بکشد
+  useEffect(() => {
+    const timeoutForFallback = setTimeout(() => {
+      const fallbackLogo = document.querySelector('.zarinpal-fallback-logo') as HTMLImageElement;
+      if (fallbackLogo) {
+        // بررسی می‌کنیم آیا اسکریپت زرین‌پال محتوایی اضافه کرده است
+        const trustLogoContainer = document.getElementById('zarinpalTrustLogo');
+        if (trustLogoContainer && trustLogoContainer.children.length <= 1) {
+          fallbackLogo.style.display = 'block';
+          console.log("🔄 استفاده از لوگوی پشتیبان زرین‌پال به دلیل تأخیر در بارگذاری");
+        }
+      }
+    }, 5000); // بعد از 5 ثانیه لوگوی پشتیبان را نشان می‌دهیم
+    
+    return () => clearTimeout(timeoutForFallback);
+  }, []);
   return (
     <motion.section
       initial={{ opacity: 0, y: 40 }}
@@ -164,6 +239,17 @@ export function FooterLicenses() {
                 style={{ cursor: "pointer" }}
               >
                 {/* اسکریپت TrustCode زرین‌پال در FooterLicenses به‌صورت داینامیک درج می‌شود */}
+                {/* لوگوی پشتیبان در صورت عدم بارگذاری اسکریپت */}
+                <img 
+                  src="https://www.zarinpal.com/assets/images/logo-white.svg"
+                  alt="زرین‌پال"
+                  className="w-[70px] h-auto zarinpal-fallback-logo"
+                  style={{ display: 'none' }}
+                  onError={(e) => {
+                    // اگر لوگو بارگذاری نشد، لوگوی پشتیبان را نشان می‌دهیم
+                    e.currentTarget.style.display = 'block';
+                  }}
+                />
               </div>
               <span className="absolute top-3 left-3 bg-yellow-400/80 rounded-full p-1.5 animate-pulse shadow-lg border-2 border-white/50">
                 <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} fill="none" viewBox="0 0 24 24">

@@ -5,6 +5,7 @@ import { FooterNavLinks } from './footer/FooterNavLinks';
 import { FooterSocialLinks } from './footer/FooterSocialLinks';
 import { FooterCopyright } from './footer/FooterCopyright';
 import { Separator } from "./ui/separator";
+import { FooterLicenses } from "./footer/FooterLicenses";
 
 export function SiteFooter() {
   const footerLinks = [
@@ -70,36 +71,8 @@ export function SiteFooter() {
           <Separator className="bg-gradient-to-r from-arminred-500/20 via-arminred-500/10 to-transparent" />
         </motion.div>
 
-        {/* بخش مجوزها و تجارت الکترونیکی */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="flex justify-center items-center mt-8 mb-2"
-        >
-          <div className="bg-gradient-to-br from-white/5 to-black/30 rounded-xl border border-white/10 p-3 flex items-center gap-6 shadow-md">
-            <span className="text-base font-semibold text-white/90">
-              مجوزها و تجارت الکترونیکی
-            </span>
-            <a
-              href="https://trustseal.enamad.ir/?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-              target="_blank"
-              rel="noopener noreferrer"
-              referrerPolicy="origin"
-            >
-              <img
-                src="https://trustseal.enamad.ir/logo.aspx?id=519095&Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
-                alt="نماد اعتماد الکترونیکی"
-                style={{ cursor: "pointer" }}
-                referrerPolicy="origin"
-                width={100}
-                height={100}
-              />
-            </a>
-          </div>
-        </motion.div>
-        {/* انتهای بخش مجوزها و تجارت الکترونیکی */}
+        {/* بخش مجوزها و تجارت الکترونیکی مدرن */}
+        <FooterLicenses />
 
         <FooterCopyright />
       </div>

@@ -71,8 +71,39 @@ export function SiteFooter() {
           <Separator className="bg-gradient-to-r from-arminred-500/20 via-arminred-500/10 to-transparent" />
         </motion.div>
 
+        {/* بخش مجوزها و تجارت الکترونیکی */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="flex justify-center items-center mt-8 mb-2"
+        >
+          <div className="bg-gradient-to-br from-white/5 to-black/30 rounded-xl border border-white/10 p-3 flex items-center gap-6 shadow-md">
+            <span className="text-base font-semibold text-white/90">
+              مجوزها و تجارت الکترونیکی
+            </span>
+            <a
+              referrerPolicy="origin"
+              target="_blank"
+              href="https://trustseal.enamad.ir/?id=519095&amp;Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+              className="inline-block"
+            >
+              <img
+                referrerPolicy="origin"
+                src="https://Trustseal.eNamad.ir/logo.aspx?id=519095&amp;Code=jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                alt="نماد اعتماد الکترونیکی"
+                style={{ cursor: "pointer" }}
+                id="jNdpnL31KtNsikcan5emQZWkglmgpsxg"
+                className="h-12 w-auto"
+              />
+            </a>
+          </div>
+        </motion.div>
+
         <FooterCopyright />
       </div>
     </footer>
   );
 }
+

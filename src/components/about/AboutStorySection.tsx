@@ -93,9 +93,7 @@ export function AboutStorySection({ milestones }: { milestones: { year: string; 
             >
               <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
               <div className="relative">
-                {/* تایملاین اصلی مسیری */}
-                {/* استفاده از کامپوننت یا کد تایملاین اصلی */}
-                {/* این المنت باید در صفحه اصلی جدا شود. برای ریفکتور بعدی */}
+                
               </div>
             </motion.div>
           </div>

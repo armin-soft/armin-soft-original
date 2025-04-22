@@ -6,19 +6,20 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 
 const skillCategories = {
   programming: [
-    { name: "PHP", level: 95, description: "Laravel, WordPress, Custom Frameworks" },
-    { name: "JavaScript", level: 92, description: "React, Vue.js, Node.js, Express" },
-    { name: "Python", level: 88, description: "Django, Flask, Data Analysis, AI" },
-    { name: "SQL", level: 90, description: "MySQL, PostgreSQL, Database Design" },
-    { name: "HTML/CSS", level: 94, description: "Semantic HTML, CSS3, Sass, Tailwind" },
-    { name: "TypeScript", level: 85, description: "Type Safety, React with TypeScript" }
+    { name: "پی‌اچ‌پی", level: 95, description: "لاراول، وردپرس، فریم‌ورک‌های سفارشی" },
+    { name: "جاوااسکریپت", level: 92, description: "ری‌اکت، ویو، نود، اکسپرس" },
+    { name: "پایتون", level: 88, description: "جنگو، فلسک، تحلیل داده، هوش مصنوعی" },
+    { name: "اس‌کیو‌ال", level: 90, description: "مای‌اس‌کیو‌ال، پستگرس، طراحی دیتابیس" },
+    { name: "اچ‌تی‌ام‌ال/سی‌اس‌اس", level: 94, description: "سمنتیک، سس، تیلویند" },
+    { name: "تایپ‌اسکریپت", level: 85, description: "امنیت تایپ، ری‌اکت با تایپ‌اسکریپت" }
   ],
   security: [
     { name: "تست نفوذ", level: 92, description: "آزمایش امنیتی وب اپلیکیشن‌ها و شبکه‌ها" },
-    { name: "امنیت وب", level: 90, description: "شناسایی و رفع آسیب‌پذیری‌های OWASP Top 10" },
+    { name: "امنیت وب", level: 90, description: "شناسایی و رفع آسیب‌پذیری‌های OWASP" },
     { name: "مهندسی معکوس", level: 85, description: "تحلیل کد و شناسایی ضعف‌های امنیتی" },
     { name: "امنیت API", level: 88, description: "تست و بهبود امنیت وب سرویس‌ها" },
     { name: "رمزنگاری", level: 84, description: "پیاده‌سازی و تحلیل الگوریتم‌های رمزنگاری" }
@@ -27,7 +28,7 @@ const skillCategories = {
     { name: "یادگیری ماشین", level: 82, description: "الگوریتم‌های ML و پیاده‌سازی مدل‌های پیش‌بینی" },
     { name: "پردازش زبان طبیعی", level: 85, description: "NLP و تحلیل متن و زبان" },
     { name: "شبکه‌های عصبی", level: 78, description: "طراحی و آموزش شبکه‌های عصبی" },
-    { name: "Computer Vision", level: 75, description: "پردازش تصویر و تشخیص الگو" }
+    { name: "بینایی ماشین", level: 75, description: "پردازش تصویر و تشخیص الگو" }
   ]
 };
 
@@ -50,6 +51,11 @@ export function AboutSkillsSection() {
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  const convertToPersianWithPercentage = (num: number) => {
+    const persianNumber = usePersianNumbers(num);
+    return `${persianNumber}٪`;
+  };
   
   return (
     <section className="py-28 relative overflow-hidden bg-black/90">
@@ -130,7 +136,9 @@ export function AboutSkillsSection() {
                             <CardContent className="p-5">
                               <div className="flex justify-between items-center mb-3">
                                 <h3 className="text-lg font-medium text-white">{skill.name}</h3>
-                                <Badge className="bg-arminred-500/20 text-arminred-400 border-0">{skill.level}%</Badge>
+                                <Badge className="bg-arminred-500/20 text-arminred-400 border-0">
+                                  {convertToPersianWithPercentage(skill.level)}
+                                </Badge>
                               </div>
                               <Progress 
                                 value={isLoading ? 0 : skill.level} 

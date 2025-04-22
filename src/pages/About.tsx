@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -15,10 +14,11 @@ import { AboutParallaxBackground } from "@/components/about/AboutParallaxBackgro
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const milestones = [
-  { year: "۱۳۹۷", title: "شروع فعالیت", description: "آغاز فعالیت حرفه‌ای در زمینه برنامه‌نویسی و امنیت" },
-  { year: "۱۳۹۹", title: "تاسیس آرمین سافت", description: "راه‌اندازی رسمی شرکت آرمین سافت" },
-  { year: "۱۴۰۰", title: "گسترش خدمات", description: "توسعه خدمات در زمینه هوش مصنوعی و اتوماسیون" },
-  { year: "۱۴۰۲", title: "موفقیت‌های بین‌المللی", description: "همکاری با شرکت‌های خارجی و گسترش فعالیت در سطح بین‌الملل" }
+  { 
+    year: "۱۴۰۲", 
+    title: "موفقیت‌های بین‌المللی", 
+    description: "همکاری با شرکت‌های خارجی و گسترش فعالیت در سطح بین‌الملل"
+  }
 ];
 
 export default function About() {
@@ -27,7 +27,6 @@ export default function About() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Animation timing for sequential loading
     setTimeout(() => setIsLoaded(true), 300);
   }, []);
 
@@ -41,10 +40,8 @@ export default function About() {
         schema={getPersonSchema()}
       />
       <div className="relative">
-        {/* Fixed abstract background */}
         <AboutParallaxBackground />
         
-        {/* Main content with scroll opacity effect for hero */}
         <motion.div style={{ opacity }} className="absolute inset-0 z-10 pointer-events-none">
           <div className="h-screen bg-gradient-to-b from-black/10 to-transparent" />
         </motion.div>
@@ -64,11 +61,6 @@ export default function About() {
             <AboutStatisticsSection />
             <AboutSkillsSection />
             <AboutValuesSection />
-            <div className="py-16">
-              <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-                <AboutAnimatedMilestones milestones={milestones} />
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

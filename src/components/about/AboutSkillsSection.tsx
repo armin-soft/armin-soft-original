@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code, Shield, Bot, Server, Database, Cpu } from "lucide-react";
+import { Code, Shield, Bot } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -120,8 +120,7 @@ export function AboutSkillsSection() {
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.4 }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br pointer-events-none opacity-20 rounded-3xl"></div>
-                      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5`}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {skillCategories[category].map((skill, index) => (
                           <Card 
                             key={skill.name} 

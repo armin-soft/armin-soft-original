@@ -17,18 +17,19 @@ export function AboutHeroSection() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
       <div className="container relative z-10 px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-          <div className="lg:col-span-3 flex flex-col items-center lg:items-start lg:text-right space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 items-center">
+          <div className="flex flex-col items-center lg:items-start lg:text-right space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
+              className="text-center lg:text-right"
             >
               <Badge className="bg-arminred-600/20 text-arminred-500 text-xs mb-4 py-1 animate-fade-in">بیش از ۵ سال تجربه</Badge>
               <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-300 to-gray-400 shadow-lg drop-shadow-2xl animate-fade-in">
                 آرمین سافت
               </h1>
-              <div className="bg-gradient-to-r from-arminred-600 to-arminred-400 h-1 w-32 rounded-full mb-6"></div>
+              <div className="bg-gradient-to-r from-arminred-600 to-arminred-400 h-1 w-32 rounded-full mx-auto lg:mr-0 mb-6"></div>
               <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed animate-fade-in">
                 توسعه‌دهنده نرم‌افزار، متخصص امنیت و هک اخلاقی، با تجربه در زمینه هوش مصنوعی و اتوماسیون
               </p>
@@ -40,7 +41,7 @@ export function AboutHeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start"
             >
               <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800 border-0 shadow-lg hover:shadow-arminred-500/20">
                 <Link to="/contact" className="flex items-center">

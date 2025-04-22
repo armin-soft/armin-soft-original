@@ -10,7 +10,7 @@ import { AboutValuesSection } from "@/components/about/AboutValuesSection";
 import { AboutExpertiseSection } from "@/components/about/AboutExpertiseSection";
 import { AboutTimelineSection } from "@/components/about/AboutTimelineSection";
 import { AboutStatisticsSection } from "@/components/about/AboutStatisticsSection";
-import { AboutParallaxBackground } from "@/components/about/background/AboutParallaxBackground";
+import { AboutParallaxBackground } from "@/components/about/AboutParallaxBackground";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const milestones = [

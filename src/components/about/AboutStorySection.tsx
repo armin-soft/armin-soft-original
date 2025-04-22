@@ -1,76 +1,154 @@
 
 import { motion } from "framer-motion";
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin, GraduationCap, Calendar, Heart, Star, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 
 export function AboutStorySection({ milestones }: { milestones: { year: string; title: string; description: string }[] }) {
+  const age = usePersianNumbers(24);
+  const experienceYears = usePersianNumbers(5);
+  
+  const stats = [
+    {
+      icon: <Star className="w-5 h-5 text-yellow-500" />,
+      value: "+۱۰۰",
+      label: "پروژه موفق"
+    },
+    {
+      icon: <Code className="w-5 h-5 text-blue-500" />,
+      value: "+۵۰",
+      label: "تکنولوژی"
+    },
+    {
+      icon: <Heart className="w-5 h-5 text-red-500" />,
+      value: "+۲۰۰",
+      label: "مشتری راضی"
+    }
+  ];
+
   return (
     <motion.section 
-      className="py-20 md:py-32 bg-gradient-to-b from-black to-black/95 relative overflow-hidden"
+      className="py-24 md:py-32 bg-gradient-to-b from-black to-gray-950 relative overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <div className="absolute inset-0 bg-grid-white/[0.01] bg-[size:30px_30px]" />
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px]" />
       <div className="container mx-auto px-4 md:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div 
             className="space-y-8 order-2 lg:order-1"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
           >
-            <div>
-              <div className="inline-flex items-center mb-4">
-                <div className="h-1 w-6 bg-arminred-500 rounded-full mr-3"></div>
+            <div className="space-y-6">
+              <div className="inline-flex items-center">
+                <div className="h-1 w-6 bg-gradient-to-r from-arminred-600 to-purple-600 rounded-full mr-3"></div>
                 <p className="text-arminred-500 font-medium">درباره من</p>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+              
+              <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
                 داستان و مسیر حرفه‌ای من
               </h2>
+
               <div className="prose prose-invert max-w-none space-y-6">
-                <p className="text-lg leading-relaxed farsi-numbers">
-                  من آرمین اسکندری، با نام حرفه‌ای <span className="text-arminred-600 font-semibold">آرمین سافت</span>، متولد ۲۸ خرداد ۱۳۷۸ در تهران، یک توسعه‌دهنده نرم‌افزار و متخصص امنیت سایبری هستم.
-                </p>
-                <p className="text-lg leading-relaxed farsi-numbers">
-                  با بیش از ۵ سال تجربه در زمینه‌های مختلف فناوری اطلاعات، تمرکز اصلی من بر توسعه نرم‌افزارهای تخصصی، امنیت و هک اخلاقی و طراحی سیستم‌های هوشمند است.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  همواره در تلاش بوده‌ام تا با ترکیب دانش تکنیکی و خلاقیت، راهکارهای نوآورانه برای مشکلات پیچیده ارائه دهم. سفر من در دنیای فناوری اطلاعات با علاقه شخصی به کامپیوتر و برنامه‌نویسی آغاز شد و امروز به یک حرفه پویا تبدیل شده است.
-                </p>
+                <motion.p 
+                  className="text-lg leading-relaxed farsi-numbers"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  من آرمین اسکندری، با نام حرفه‌ای <span className="text-arminred-600 font-semibold">آرمین سافت</span>، {age} ساله، یک توسعه‌دهنده نرم‌افزار و متخصص امنیت سایبری با {experienceYears} سال تجربه هستم.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8"
+                >
+                  {stats.map((stat, index) => (
+                    <Card key={index} className="bg-white/5 border-white/10 backdrop-blur-sm hover:border-arminred-500/30 transition-all duration-300">
+                      <CardContent className="p-4 text-center">
+                        <div className="mb-2 flex justify-center">{stat.icon}</div>
+                        <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                        <div className="text-sm text-gray-400">{stat.label}</div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </motion.div>
+
+                <motion.p 
+                  className="text-lg leading-relaxed"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  تمرکز اصلی من بر توسعه نرم‌افزارهای تخصصی، امنیت و هک اخلاقی و طراحی سیستم‌های هوشمند است. همواره در تلاش هستم تا با ترکیب دانش تکنیکی و خلاقیت، راهکارهای نوآورانه برای مشکلات پیچیده ارائه دهم.
+                </motion.p>
               </div>
             </div>
-            <div className="flex flex-col space-y-6">
-              <div className="flex items-center space-x-4 space-x-reverse bg-white/5 backdrop-blur-md rounded-xl p-5 border border-white/10 transition-all duration-300 hover:border-arminred-500/30 hover:shadow-lg hover:shadow-arminred-500/5">
-                <MapPin className="text-arminred-600 h-6 w-6" />
-                <div>
-                  <h3 className="font-semibold text-lg">محل سکونت</h3>
-                  <p className="text-muted-foreground">ایران، تهران، پاکدشت</p>
+
+            <motion.div 
+              className="flex flex-col space-y-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-center space-x-4 space-x-reverse bg-white/5 backdrop-blur-md rounded-xl p-5 border border-white/10 transition-all duration-300 hover:border-arminred-500/30 hover:shadow-lg hover:shadow-arminred-500/5">
+                  <MapPin className="text-arminred-600 h-6 w-6" />
+                  <div>
+                    <h3 className="font-semibold text-lg">محل سکونت</h3>
+                    <p className="text-muted-foreground">ایران، تهران، پاکدشت</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4 space-x-reverse bg-white/5 backdrop-blur-md rounded-xl p-5 border border-white/10 transition-all duration-300 hover:border-arminred-500/30 hover:shadow-lg hover:shadow-arminred-500/5">
+                  <Calendar className="text-arminred-600 h-6 w-6" />
+                  <div>
+                    <h3 className="font-semibold text-lg">تاریخ تولد</h3>
+                    <p className="text-muted-foreground farsi-numbers">۲۸ خرداد ۱۳۷۸</p>
+                  </div>
                 </div>
               </div>
+
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800 border-0 shadow-lg hover:shadow-arminred-500/20">
                   <Link to="/contact" className="flex items-center">
                     تماس با من
-                    <ArrowRight className="mr-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            className="order-1 lg:order-2 relative"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
+            <div className="relative p-1 bg-gradient-to-r from-arminred-500/20 to-purple-500/20 rounded-2xl backdrop-blur-xl">
+              <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-black/90 to-gray-900/90 p-6">
+                <div className="h-full w-full bg-grid-white/[0.02] bg-[size:20px_20px] relative">
+                  {/* محل قرارگیری تصویر یا انیمیشن */}
+                </div>
+              </div>
             </div>
           </motion.div>
-          <div className="order-1 lg:order-2">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
-              <div className="relative">
-                
-              </div>
-            </motion.div>
-          </div>
         </div>
       </div>
     </motion.section>

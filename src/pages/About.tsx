@@ -39,7 +39,6 @@ export default function About() {
         keywords="آرمین سافت, درباره من, امنیت سایبری, هک اخلاقی, برنامه نویسی, متخصص امنیت"
         schema={getPersonSchema()}
       />
-      
       <div className="relative">
         <AboutParallaxBackground />
         

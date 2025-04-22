@@ -57,20 +57,9 @@ export function TimeDisplay({ time, timeBased, timeBasedEmoji }: TimeDisplayProp
         
         <div className="flex items-center gap-2">
           <span className="text-xs md:text-sm font-medium text-gray-300">{timeBased}</span>
-          <motion.span 
-            className="text-base md:text-lg"
-            animate={{ 
-              y: [0, -1, 0, 1, 0],
-              rotate: [0, 5, 0, -5, 0]
-            }}
-            transition={{ 
-              duration: 2.5, 
-              repeat: Infinity,
-              repeatType: "loop" 
-            }}
-          >
+          <span className="text-base md:text-lg">
             {timeBasedEmoji}
-          </motion.span>
+          </span>
         </div>
       </div>
     </motion.div>

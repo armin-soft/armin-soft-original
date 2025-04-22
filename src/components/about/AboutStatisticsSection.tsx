@@ -1,38 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Users, Code, Award, Globe } from "lucide-react";
+import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 
-const statistics = [
-  { 
-    icon: <Users className="h-6 w-6 text-arminred-500" />, 
-    value: 30, 
-    label: "مشتریان", 
-    suffix: "+",
-    delay: 0 
-  },
-  { 
-    icon: <Code className="h-6 w-6 text-arminred-500" />, 
-    value: 50, 
-    label: "پروژه‌ها", 
-    suffix: "+",
-    delay: 0.1 
-  },
-  { 
-    icon: <Award className="h-6 w-6 text-arminred-500" />, 
-    value: 5, 
-    label: "سال تجربه", 
-    suffix: "+",
-    delay: 0.2 
-  },
-  { 
-    icon: <Globe className="h-6 w-6 text-arminred-500" />, 
-    value: 10, 
-    label: "کشورها", 
-    suffix: "+",
-    delay: 0.3 
-  },
-];
+// Intentionally left empty, as per user request
+const statistics: any[] = [];
 
 function CountUp({ end, duration = 2, suffix = "" }) {
   const [count, setCount] = useState(0);
@@ -77,6 +49,11 @@ export function AboutStatisticsSection() {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0.3, 0.4], [0.8, 1]);
   const opacity = useTransform(scrollYProgress, [0.3, 0.4], [0.6, 1]);
+
+  // If no statistics, we'll return null to not render anything
+  if (statistics.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-20 relative overflow-hidden">

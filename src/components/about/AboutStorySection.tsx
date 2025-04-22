@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { MapPin, GraduationCap, Calendar, Heart, Star, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -143,8 +142,16 @@ export function AboutStorySection({ milestones }: { milestones: { year: string; 
             <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
             <div className="relative p-1 bg-gradient-to-r from-arminred-500/20 to-purple-500/20 rounded-2xl backdrop-blur-xl">
               <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-black/90 to-gray-900/90 p-6">
-                <div className="h-full w-full bg-grid-white/[0.02] bg-[size:20px_20px] relative">
-                  {/* محل قرارگیری تصویر یا انیمیشن */}
+                <div className="h-full w-full relative group perspective-hover">
+                  <motion.img
+                    src="/lovable-uploads/51da6ad9-6b7e-4b6b-9b64-d1b13392fb2c.png"
+                    alt="آرمین سافت - خدمات برنامه نویسی و طراحی وب"
+                    className="w-full h-full object-contain rounded-lg transform transition-transform duration-500 group-hover:scale-105"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
             </div>

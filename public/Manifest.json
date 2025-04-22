@@ -1,0 +1,22 @@
+
+{
+  "name": "آرمین سافت - توسعه ‌دهنده حرفه‌ ای",
+  "short_name": "آرمین سافت",
+  "description": "وب‌سایت رسمی آرمین سافت - متخصص برنامه‌ نویسی،امنیت و هک اخلاقی",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FF3D4A",
+  "icons": [
+    {
+      "src": "/Assets/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Assets/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

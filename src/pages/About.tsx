@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site-layout";
 import { SEOHead } from "@/components/seo/SEOHead";
@@ -6,7 +7,6 @@ import { AboutHeroSection } from "@/components/about/AboutHeroSection";
 import { AboutStorySection } from "@/components/about/AboutStorySection";
 import { AboutSkillsSection } from "@/components/about/AboutSkillsSection";
 import { AboutValuesSection } from "@/components/about/AboutValuesSection";
-import { AboutAnimatedMilestones } from "@/components/about/AboutAnimatedMilestones";
 import { AboutExpertiseSection } from "@/components/about/AboutExpertiseSection";
 import { AboutTimelineSection } from "@/components/about/AboutTimelineSection";
 import { AboutStatisticsSection } from "@/components/about/AboutStatisticsSection";

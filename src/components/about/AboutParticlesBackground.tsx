@@ -6,7 +6,6 @@ const random = (min: number, max: number) =>
   Math.random() * (max - min) + min;
 
 export function AboutParticlesBackground() {
-  // هر بار رندر مقادیر رندوم مختلف به ذرات می‌دهد
   const particles = Array.from({ length: PARTICLE_COUNT }).map((_, i) => ({
     size: random(10, 28),
     top: random(5, 95),
@@ -53,7 +52,6 @@ export function AboutParticlesBackground() {
           }}
         />
       ))}
-      {/* Gradient Overlays */}
       <div className="absolute w-full h-3/4 top-0 bg-gradient-to-b from-arminred-500/5 to-transparent z-0 pointer-events-none"></div>
       <div className="absolute w-full h-full top-0 bg-gradient-to-b from-black/60 to-transparent z-0 pointer-events-none"></div>
     </div>

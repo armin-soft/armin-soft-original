@@ -1,68 +1,61 @@
 
-import { Timeline, TimelineItem } from "@/components/ui/timeline";
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
+import { Calendar, Award } from "lucide-react";
+import { Timeline, TimelineItem } from "@/components/ui/timeline";
 
-export function AboutAnimatedMilestones({
-  milestones,
-}: {
-  milestones: { year: string; title: string; description: string }[];
-}) {
+interface Milestone {
+  year: string;
+  title: string;
+  description: string;
+}
+
+interface AboutAnimatedMilestonesProps {
+  milestones: Milestone[];
+}
+
+export function AboutAnimatedMilestones({ milestones }: AboutAnimatedMilestonesProps) {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      variants={{
-        hidden: { opacity: 0, scale: 0.9, y: 40 },
-        visible: {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          transition: { duration: 0.8, staggerChildren: 0.21 }
-        }
-      }}
-      viewport={{ once: true }}
-      className="relative"
-    >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-arminred-600/10 to-purple-900/10 rounded-2xl blur-2xl -rotate-6"></div>
-      <div className="relative">
-        <Timeline className="space-y-10 pr-6">
-          {milestones.map((milestone, index) => (
-            <TimelineItem
-              key={index}
-              icon={
-                index === milestones.length - 1 ? (
-                  <Award className="h-3 w-3 text-arminred-500" />
-                ) : null
-              }
-              active={index === milestones.length - 1}
-              index={index}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: { duration: 0.49, delay: 0.15 + index * 0.15 }
-                }}
-                viewport={{ once: true }}
+    <div className="py-10 md:py-16">
+      <div className="container mx-auto px-4 md:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+            افتخارات و دستاوردها
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-arminred-600 to-purple-600 mx-auto mb-6"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            مهم‌ترین رویدادها و موفقیت‌ها در مسیر کاری من
+          </p>
+        </motion.div>
+
+        <div className="relative max-w-3xl mx-auto">
+          <Timeline>
+            {milestones.map((milestone, index) => (
+              <TimelineItem 
+                key={index} 
+                icon={index % 2 === 0 ? <Calendar className="h-3 w-3" /> : <Award className="h-3 w-3" />}
+                active={true}
+                index={index}
               >
-                <Card className="overflow-hidden bg-black/60 backdrop-blur-xl border border-white/10 hover:border-arminred-500/60 transition-all duration-500 shadow-lg hover:shadow-arminred-500/10">
-                  <CardContent className="p-5">
-                    <span className="text-arminred-500 text-base font-semibold block mb-2 farsi-numbers animate-pulse">
+                <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-5 hover:border-arminred-500/30 transition-all duration-300">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold text-white">{milestone.title}</h3>
+                    <div className="text-sm text-arminred-500 bg-arminred-900/30 px-2 py-1 rounded-full farsi-numbers">
                       {milestone.year}
-                    </span>
-                    <h3 className="text-lg font-bold text-white mb-2">{milestone.title}</h3>
-                    <p className="text-gray-400 text-sm">{milestone.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </TimelineItem>
-          ))}
-        </Timeline>
+                    </div>
+                  </div>
+                  <p className="text-gray-400">{milestone.description}</p>
+                </div>
+              </TimelineItem>
+            ))}
+          </Timeline>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

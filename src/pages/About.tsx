@@ -10,7 +10,7 @@ import { AboutValuesSection } from "@/components/about/AboutValuesSection";
 import { AboutExpertiseSection } from "@/components/about/AboutExpertiseSection";
 import { AboutTimelineSection } from "@/components/about/AboutTimelineSection";
 import { AboutStatisticsSection } from "@/components/about/AboutStatisticsSection";
-import { AboutParallaxBackground } from "@/components/about/AboutParallaxBackground";
+import { AboutParallaxBackground } from "@/components/about/background/AboutParallaxBackground";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const milestones = [
@@ -39,6 +39,7 @@ export default function About() {
         keywords="آرمین سافت, درباره من, امنیت سایبری, هک اخلاقی, برنامه نویسی, متخصص امنیت"
         schema={getPersonSchema()}
       />
+      
       <div className="relative">
         <AboutParallaxBackground />
         

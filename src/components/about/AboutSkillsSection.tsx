@@ -6,6 +6,8 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { Button } from "@/components/ui/button";
 import { usePersianNumbers } from "@/hooks/usePersianNumbers";
 
 const skillCategories = {
@@ -32,13 +34,7 @@ const skillCategories = {
   ]
 };
 
-const icons = {
-  programming: <Code className="h-5 w-5 text-arminred-600" />,
-  security: <Shield className="h-5 w-5 text-arminred-600" />,
-  ai: <Bot className="h-5 w-5 text-arminred-600" />
-};
-
-const bgColors = {
+const bgPatterns = {
   programming: "from-blue-500/10 to-purple-500/5",
   security: "from-arminred-500/10 to-orange-500/5",
   ai: "from-green-500/10 to-teal-500/5"
@@ -47,6 +43,7 @@ const bgColors = {
 export function AboutSkillsSection() {
   const [currentTab, setCurrentTab] = useState("programming");
   const [isLoading, setIsLoading] = useState(true);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
   
   useEffect(() => {
     setIsLoading(false);
@@ -70,7 +67,7 @@ export function AboutSkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+          <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
             مهارت‌ها و تخصص‌ها
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-arminred-600 to-purple-600 mx-auto mb-6"></div>
@@ -125,33 +122,62 @@ export function AboutSkillsSection() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.4 }}
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
                     >
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {skillCategories[category].map((skill, index) => (
-                          <Card 
-                            key={skill.name} 
-                            className="bg-white/5 border-white/10 hover:border-arminred-500/30 transition-all duration-300 overflow-hidden group"
+                      {skillCategories[category].map((skill, index) => (
+                        <HoverCard key={skill.name}>
+                          <HoverCardTrigger asChild>
+                            <motion.div
+                              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              transition={{ duration: 0.4, delay: index * 0.1 }}
+                              onHoverStart={() => setHoveredSkill(skill.name)}
+                              onHoverEnd={() => setHoveredSkill(null)}
+                            >
+                              <Card 
+                                className="bg-white/5 border-white/10 hover:border-arminred-500/30 transition-all duration-300 overflow-hidden group cursor-pointer"
+                              >
+                                <div className={`absolute inset-0 bg-gradient-to-br ${bgPatterns[category]} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                                <CardContent className="p-5">
+                                  <div className="flex justify-between items-center mb-3">
+                                    <h3 className="text-lg font-medium text-white">{skill.name}</h3>
+                                    <Badge className="bg-arminred-500/20 text-arminred-400 border-0">
+                                      {convertToPersianWithPercentage(skill.level)}
+                                    </Badge>
+                                  </div>
+                                  <Progress 
+                                    value={isLoading ? 0 : skill.level} 
+                                    className="h-2 mb-3 bg-gray-800"
+                                    style={{
+                                      transition: `width ${0.5 + index * 0.1}s ease-in-out`
+                                    }}
+                                  />
+                                  <p className="text-sm text-gray-400 mt-2">{skill.description}</p>
+                                </CardContent>
+                              </Card>
+                            </motion.div>
+                          </HoverCardTrigger>
+                          <HoverCardContent 
+                            className="w-80 bg-black/90 border border-white/10 backdrop-blur-xl"
+                            align="center"
                           >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${bgColors[category]} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                            <CardContent className="p-5">
-                              <div className="flex justify-between items-center mb-3">
-                                <h3 className="text-lg font-medium text-white">{skill.name}</h3>
-                                <Badge className="bg-arminred-500/20 text-arminred-400 border-0">
+                            <div className="flex flex-col gap-2">
+                              <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
+                              <p className="text-sm text-gray-400">{skill.description}</p>
+                              <Progress 
+                                value={skill.level} 
+                                className="h-1.5 bg-gray-800"
+                              />
+                              <div className="flex justify-between items-center mt-2">
+                                <span className="text-xs text-gray-400">سطح تسلط</span>
+                                <Badge variant="outline" className="text-arminred-400">
                                   {convertToPersianWithPercentage(skill.level)}
                                 </Badge>
                               </div>
-                              <Progress 
-                                value={isLoading ? 0 : skill.level} 
-                                className="h-2 mb-3 bg-gray-800"
-                                style={{
-                                  transition: `width ${0.5 + index * 0.1}s ease-in-out`
-                                }}
-                              />
-                              <p className="text-sm text-gray-400 mt-2">{skill.description}</p>
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
+                            </div>
+                          </HoverCardContent>
+                        </HoverCard>
+                      ))}
                     </motion.div>
                   </TabsContent>
                 ))}

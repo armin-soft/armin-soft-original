@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { MapPin, GraduationCap, Calendar, Heart, Star, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -142,9 +141,37 @@ export function AboutStorySection({ milestones }: { milestones: { year: string; 
           >
             <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
             <div className="relative p-1 bg-gradient-to-r from-arminred-500/20 to-purple-500/20 rounded-2xl backdrop-blur-xl">
-              <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-black/90 to-gray-900/90 p-6">
-                <div className="h-full w-full bg-grid-white/[0.02] bg-[size:20px_20px] relative">
-                  {/* محل قرارگیری تصویر یا انیمیشن */}
+              <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-black/90 to-gray-900/90 p-6 relative group perspective-hover">
+                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-arminred-500/30 rounded-tl-xl" />
+                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-purple-500/30 rounded-br-xl" />
+                
+                <div className="h-full w-full bg-grid-white/[0.02] bg-[size:20px_20px] relative group-hover:scale-105 transition-transform duration-500">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-black/50 backdrop-blur-sm">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                      viewport={{ once: true }}
+                      className="space-y-4"
+                    >
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-r from-arminred-500 to-purple-500 p-0.5 mx-auto">
+                        <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
+                          <Code className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-arminred-400 to-purple-400">
+                        توسعه‌دهنده خلاق
+                      </h3>
+                      
+                      <p className="text-gray-300 leading-relaxed max-w-md mx-auto">
+                        با تجربه در طراحی و توسعه راهکارهای نوآورانه و کاربردی
+                        برای کسب‌وکارهای مختلف
+                      </p>
+                    </motion.div>
+                  </div>
+
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-arminred-500/20 to-transparent pointer-events-none" />
                 </div>
               </div>
             </div>

@@ -18,40 +18,6 @@ export function AboutHeroSection() {
       </div>
       <div className="container relative z-10 px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-end">
-            <motion.div
-              initial={{ scale: 0.52, opacity: 0, rotate: -12 }}
-              animate={{ scale: [0.54, 1, 0.98], opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.92, ease: "easeOut" }}
-              className="relative mb-8 z-10 drop-shadow-lg"
-            >
-              <div className="p-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl animate-fade-in">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
-                >
-                  <div className="w-40 h-40 md:w-64 md:h-64 rounded-full bg-gradient-to-tr from-arminred-400 via-arminred-600 to-purple-800 p-1 shadow-2xl">
-                    <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center p-2">
-                      <motion.div 
-                        whileHover={{ scale: 1.24, rotate: 7 }} 
-                        transition={{ type: "spring", stiffness: 180 }}
-                        className="text-white drop-shadow-lg"
-                      >
-                        <BadgeCheck className="w-20 h-20 md:w-32 md:h-32 text-arminred-500 drop-shadow-[0_0_20px_rgba(239,68,68,0.86)] animate-pulse" />
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-              <motion.div
-                className="absolute -inset-7 border-2 border-dashed border-arminred-500/30 rounded-full animate-spin-slow"
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                aria-hidden="true"
-              />
-              <div className="absolute -inset-14 border border-arminred-500/10 rounded-full"></div>
-            </motion.div>
-          </div>
           <div className="lg:col-span-3 flex flex-col items-center lg:items-start lg:text-right space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 22 }}

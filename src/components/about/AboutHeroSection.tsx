@@ -1,4 +1,3 @@
-
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { BadgeCheck, ExternalLink, Heart, Code, Shield, ChevronDown, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -273,7 +272,6 @@ export function AboutHeroSection() {
               className="flex flex-col items-center cursor-pointer"
               onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
             >
-              <span className="text-gray-400 text-sm mb-2">برای مشاهده بیشتر اسکرول کنید</span>
               <ChevronDown className="w-6 h-6 text-arminred-500" />
             </motion.div>
           </motion.div>

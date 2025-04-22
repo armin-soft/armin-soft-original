@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, Twitter, Github, Mail, Phone } from "lucide-react";
@@ -133,29 +132,6 @@ export const ResumeHero = () => {
             </motion.div>
           </motion.div>
         </div>
-        
-        {/* Scroll indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="absolute left-1/2 bottom-10 transform -translate-x-1/2 hidden md:block"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="flex flex-col items-center"
-          >
-            <span className="text-sm text-gray-500 mb-2">اسکرول کنید</span>
-            <div className="w-5 h-9 border-2 border-gray-700 rounded-full relative">
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="absolute left-1/2 top-1 w-1 h-1 bg-arminred-500 rounded-full transform -translate-x-1/2"
-              />
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
     </div>
   );

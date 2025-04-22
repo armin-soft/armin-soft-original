@@ -1,6 +1,6 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { BadgeCheck, ChevronDown, ExternalLink, Heart, Code, Shield } from "lucide-react";
+import { BadgeCheck, ExternalLink, Heart, Code, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
@@ -110,29 +110,6 @@ export function AboutHeroSection() {
                 <ExternalLink className="w-5 h-5 mr-2 inline-block" />
               </Link>
             </Button>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
-            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-          >
-            <motion.span
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-gray-400 text-sm"
-            >
-              اسکرول کنید
-            </motion.span>
-            <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <ChevronDown className="w-6 h-6 text-gray-400" />
-            </motion.div>
           </motion.div>
         </div>
       </div>

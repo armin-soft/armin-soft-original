@@ -1,10 +1,11 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
-import { Code, Shield, Bot, Server, Database, Cpu, ArrowRight } from "lucide-react";
+import { Code, Shield, Bot, Server, Database, Cpu, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 
 // دیتای حوزه‌های تخصصی
 const expertiseAreas = [
@@ -18,7 +19,8 @@ const expertiseAreas = [
     borderColor: "border-blue-500/20",
     hoverColor: "group-hover:text-blue-400",
     shadowColor: "shadow-blue-500/10",
-    badges: ["React", "Node.js", "PHP", "Laravel"]
+    badges: ["ری‌اکت", "نود.جی‌اس", "پی‌اچ‌پی", "لاراول"],
+    detailBackgroundClass: "bg-gradient-to-br from-blue-950/50 to-indigo-900/50"
   },
   {
     icon: Shield,
@@ -30,7 +32,8 @@ const expertiseAreas = [
     borderColor: "border-arminred-500/20",
     hoverColor: "group-hover:text-arminred-400",
     shadowColor: "shadow-arminred-500/10",
-    badges: ["تست نفوذ", "OWASP", "فایروال", "رمزنگاری"]
+    badges: ["تست نفوذ", "اُواسپ", "فایروال", "رمزنگاری"],
+    detailBackgroundClass: "bg-gradient-to-br from-arminred-950/50 to-rose-900/50"
   },
   {
     icon: Bot,
@@ -42,7 +45,8 @@ const expertiseAreas = [
     borderColor: "border-emerald-500/20",
     hoverColor: "group-hover:text-emerald-400",
     shadowColor: "shadow-emerald-500/10",
-    badges: ["یادگیری ماشین", "NLP", "شبکه عصبی", "پایتون"]
+    badges: ["یادگیری ماشین", "پردازش زبان طبیعی", "شبکه عصبی", "پایتون"],
+    detailBackgroundClass: "bg-gradient-to-br from-emerald-950/50 to-teal-900/50"
   },
   {
     icon: Server,
@@ -54,7 +58,8 @@ const expertiseAreas = [
     borderColor: "border-amber-500/20",
     hoverColor: "group-hover:text-amber-400",
     shadowColor: "shadow-amber-500/10",
-    badges: ["Docker", "کوبرنتیز", "AWS", "DevOps"]
+    badges: ["داکر", "کوبرنتیز", "AWS", "دِوآپس"],
+    detailBackgroundClass: "bg-gradient-to-br from-amber-950/50 to-yellow-900/50"
   },
   {
     icon: Database,
@@ -66,7 +71,8 @@ const expertiseAreas = [
     borderColor: "border-purple-500/20",
     hoverColor: "group-hover:text-purple-400", 
     shadowColor: "shadow-purple-500/10",
-    badges: ["MySQL", "MongoDB", "PostgreSQL", "Redis"]
+    badges: ["مای‌اس‌کیو‌ال", "مونگو‌دی‌بی", "پوستگرس‌کیو‌ال", "ردیس"],
+    detailBackgroundClass: "bg-gradient-to-br from-purple-950/50 to-indigo-900/50"
   },
   {
     icon: Cpu,
@@ -78,15 +84,19 @@ const expertiseAreas = [
     borderColor: "border-cyan-500/20",
     hoverColor: "group-hover:text-cyan-400",
     shadowColor: "shadow-cyan-500/10",
-    badges: ["CI/CD", "اسکریپت‌نویسی", "تست خودکار", "مانیتورینگ"]
+    badges: ["CI/CD", "اسکریپت‌نویسی", "تست خودکار", "مانیتورینگ"],
+    detailBackgroundClass: "bg-gradient-to-br from-cyan-950/50 to-sky-900/50"
   }
 ];
 
 export function AboutExpertiseSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: false, amount: 0.2 });
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: false, margin: "0px 0px -200px 0px" });
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -94,7 +104,10 @@ export function AboutExpertiseSection() {
   
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [60, 0, 0, 60]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.9]);
+  
+  // پارالاکس برای کارت‌ها
+  const cardsY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   
   useEffect(() => {
     if (isInView) {
@@ -102,6 +115,12 @@ export function AboutExpertiseSection() {
     }
   }, [isInView]);
 
+  // اثر هاور روی کارت‌ها
+  const handleCardHover = (index: number | null) => {
+    setHoveredIndex(index);
+  };
+
+  // انیمیشن‌های ورودی
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -114,31 +133,60 @@ export function AboutExpertiseSection() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 40, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 100 }
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+  };
+
+  // انیمیشن‌های جزئیات کارت‌ها
+  const detailVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { 
+        type: "spring", 
+        stiffness: 200, 
+        damping: 20,
+        staggerChildren: 0.08
+      }
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: { duration: 0.2 }
+    }
+  };
+
+  const detailItemVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 150, damping: 15 }
     }
   };
 
   return (
-    <section className="py-28 md:py-36 relative overflow-hidden bg-black" id="expertise">
+    <section className="py-28 md:py-36 relative overflow-hidden bg-gradient-to-b from-black via-gray-950 to-black" id="expertise">
       <motion.div 
         style={{ opacity, y, scale }}
         className="relative z-10"
         ref={containerRef}
       >
-        {/* Decorative elements */}
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-arminred-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 rounded-full blur-3xl"></div>
+        {/* عناصر تزئینی */}
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-br from-arminred-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-blue-500/5 to-emerald-500/5 rounded-full blur-3xl"></div>
         
-        {/* Grid pattern background */}
+        {/* پترن پس‌زمینه */}
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:30px_30px] opacity-30"></div>
         
-        {/* Main content */}
+        {/* محتوای اصلی */}
         <div className="container px-4 md:px-6 max-w-6xl mx-auto relative z-10">
-          {/* Section header */}
+          {/* هدر بخش */}
           <div className="text-center mb-16 md:mb-24 relative">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -165,7 +213,7 @@ export function AboutExpertiseSection() {
               initial={{ opacity: 0, y: -10 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-300 mb-6"
+              className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-300 mb-6"
             >
               حوزه‌های تخصصی
             </motion.h2>
@@ -174,7 +222,7 @@ export function AboutExpertiseSection() {
               initial={{ scaleX: 0 }}
               animate={isVisible ? { scaleX: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="h-1 w-24 bg-gradient-to-r from-arminred-600 to-purple-600 mx-auto my-6 rounded-full overflow-hidden"
+              className="h-1 w-24 bg-gradient-to-r from-arminred-600 to-purple-600 mx-auto my-6 rounded-full"
             >
               <motion.div 
                 className="h-full w-full bg-white/50"
@@ -193,171 +241,240 @@ export function AboutExpertiseSection() {
             </motion.p>
           </div>
           
-          {/* Expertise cards grid */}
+          {/* گرید کارت‌های تخصصی */}
           <motion.div 
+            style={{ y: cardsY }}
             variants={containerVariants}
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8"
+            ref={cardsContainerRef}
           >
             {expertiseAreas.map((area, index) => (
               <motion.div
                 key={area.title}
                 variants={itemVariants}
-                whileHover={{ 
-                  y: -8, 
-                  transition: { duration: 0.3 } 
-                }}
-                onHoverStart={() => setActiveIndex(index)}
-                onHoverEnd={() => setActiveIndex(null)}
+                onHoverStart={() => handleCardHover(index)}
+                onHoverEnd={() => handleCardHover(null)}
+                onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                 className={cn(
-                  "group relative overflow-hidden rounded-2xl transition-all duration-500",
-                  "backdrop-blur-lg border border-white/10",
-                  "hover:border-transparent hover:shadow-2xl",
-                  area.shadowColor
+                  "group relative z-10 cursor-pointer perspective-card",
+                  "transition-all duration-500 transform-gpu",
+                  hoveredIndex !== null && hoveredIndex !== index ? "opacity-60 scale-95" : ""
                 )}
               >
-                {/* Animated gradient background */}
-                <div className={cn(
-                  "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                  `bg-gradient-to-br ${area.color}`
-                )} />
+                <div 
+                  className={cn(
+                    "relative h-full rounded-2xl overflow-hidden border border-white/10",
+                    "transition-all duration-500 transform-gpu",
+                    "hover:border-transparent",
+                    area.shadowColor,
+                    hoveredIndex === index ? "shadow-xl scale-[1.03]" : "shadow-md"
+                  )}
+                >
+                  {/* پس‌زمینه متحرک */}
+                  <motion.div 
+                    className={cn(
+                      "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                      `bg-gradient-to-br ${area.color}`
+                    )}
+                    animate={
+                      hoveredIndex === index 
+                        ? { opacity: 0.15, transition: { duration: 0.5 }} 
+                        : { opacity: 0, transition: { duration: 0.3 }}
+                    }
+                  />
+                  
+                  {/* بخش محتوا */}
+                  <div className="relative backdrop-blur-sm bg-black/50 hover:bg-black/40 transition-colors duration-300 h-full">
+                    {/* محتوای کارت */}
+                    <div className="p-8 h-full flex flex-col">
+                      <div className="flex justify-between items-start mb-6">
+                        {/* آیکون */}
+                        <motion.div
+                          whileHover={{ rotate: 360, scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                          className={cn(
+                            "p-4 rounded-xl",
+                            area.iconBg,
+                            "group-hover:bg-white/10 transition-colors duration-300"
+                          )}
+                        >
+                          <area.icon className={cn("h-7 w-7", area.textColor, area.hoverColor)} />
+                        </motion.div>
+                        
+                        {/* خطوط تزئینی گوشه */}
+                        <div className="relative h-10 w-10">
+                          <motion.div 
+                            className={cn(
+                              "absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 rounded-tr-md transition-colors duration-500",
+                              "border-white/10 group-hover:border-white/30"
+                            )}
+                            animate={
+                              hoveredIndex === index 
+                                ? { width: 40, height: 40, transition: { duration: 0.3 }} 
+                                : { width: 32, height: 32, transition: { duration: 0.3 }}
+                            }
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* عنوان */}
+                      <h3 className={cn(
+                        "text-xl md:text-2xl font-bold mb-3 transition-colors duration-300",
+                        "text-white/90 group-hover:text-white"
+                      )}>
+                        {area.title}
+                      </h3>
+                      
+                      {/* توضیحات */}
+                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 mb-6 flex-grow">
+                        {area.description}
+                      </p>
+                      
+                      {/* بج‌ها */}
+                      <div className="flex flex-wrap gap-2 mt-auto mb-5">
+                        {area.badges.map((badge) => (
+                          <HoverCard key={badge} openDelay={200} closeDelay={100}>
+                            <HoverCardTrigger asChild>
+                              <Badge 
+                                className={cn(
+                                  "bg-white/5 text-gray-300 border-0 hover:bg-white/10",
+                                  "transition-all duration-300 cursor-help"
+                                )}
+                              >
+                                {badge}
+                              </Badge>
+                            </HoverCardTrigger>
+                            <HoverCardContent className="w-auto bg-black/80 border-gray-800 backdrop-blur-md">
+                              <div className="text-sm text-gray-300">
+                                جزئیات بیشتر درباره {badge}
+                              </div>
+                            </HoverCardContent>
+                          </HoverCard>
+                        ))}
+                      </div>
+                      
+                      {/* دکمه */}
+                      <div className="mt-2">
+                        <Button 
+                          variant="ghost" 
+                          className={cn(
+                            "p-0 h-auto text-sm font-medium group/btn",
+                            area.textColor,
+                            "hover:bg-transparent hover:opacity-80"
+                          )}
+                        >
+                          <span>مشاهده جزئیات</span>
+                          <motion.div
+                            animate={{ x: hoveredIndex === index ? 5 : 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="inline-block mr-1"
+                          >
+                            <ChevronRight className="h-4 w-4 inline-block" />
+                          </motion.div>
+                        </Button>
+                      </div>
+                      
+                      {/* گوشه پایین سمت چپ */}
+                      <div className="absolute bottom-3 left-3">
+                        <motion.div 
+                          className={cn(
+                            "w-10 h-10 border-b-2 border-l-2 rounded-bl-md transition-colors duration-500",
+                            "border-white/10 group-hover:border-white/30"
+                          )}
+                          animate={
+                            hoveredIndex === index 
+                              ? { width: 40, height: 40, transition: { duration: 0.3 }} 
+                              : { width: 32, height: 32, transition: { duration: 0.3 }}
+                          }
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* افکت درخشش */}
+                  <motion.div 
+                    className={cn(
+                      "absolute inset-0 opacity-0 transition-opacity duration-500",
+                      hoveredIndex === index ? "opacity-20" : "opacity-0"
+                    )}
+                    style={{
+                      background: `radial-gradient(circle at 50% 50%, ${getComputedColor(area.textColor)}, transparent 70%)`
+                    }}
+                  />
+                </div>
                 
-                {/* Animated border */}
+                {/* جزئیات بیشتر */}
                 <AnimatePresence>
                   {activeIndex === index && (
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0 border-2 border-white/20 rounded-2xl"
+                    <motion.div
+                      variants={detailVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      className={cn(
+                        "absolute top-[calc(100%+1rem)] left-0 right-0 z-20 rounded-xl overflow-hidden",
+                        "border border-white/10 shadow-2xl", 
+                        area.detailBackgroundClass,
+                        "backdrop-blur-md p-6"
+                      )}
                     >
-                      <motion.div 
-                        className={`absolute h-full w-1 ${area.borderColor} left-0 top-0`}
-                        initial={{ height: "0%" }}
-                        animate={{ height: "100%" }}
-                        exit={{ height: "0%" }}
-                        transition={{ duration: 0.4 }}
-                      />
-                      <motion.div 
-                        className={`absolute h-1 w-full ${area.borderColor} left-0 bottom-0`}
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        exit={{ width: "0%" }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                      />
-                      <motion.div 
-                        className={`absolute h-full w-1 ${area.borderColor} right-0 top-0`}
-                        initial={{ height: "0%" }}
-                        animate={{ height: "100%" }}
-                        exit={{ height: "0%" }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                      />
-                      <motion.div 
-                        className={`absolute h-1 w-full ${area.borderColor} left-0 top-0`}
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        exit={{ width: "0%" }}
-                        transition={{ duration: 0.4, delay: 0.3 }}
-                      />
+                      <motion.div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 transform rotate-45 w-4 h-4 bg-white/5 border border-white/10" />
+                      
+                      <motion.h4 
+                        variants={detailItemVariants}
+                        className={cn("text-xl font-bold mb-4", area.textColor)}
+                      >
+                        جزئیات {area.title}
+                      </motion.h4>
+                      
+                      <motion.ul variants={detailItemVariants} className="space-y-2 text-gray-300 mb-4">
+                        <li className="flex items-center gap-2">
+                          <span className={cn("h-1.5 w-1.5 rounded-full", area.iconBg)}></span>
+                          <span>تکنولوژی‌های پیشرفته</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className={cn("h-1.5 w-1.5 rounded-full", area.iconBg)}></span>
+                          <span>راهکارهای بهینه‌سازی شده</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <span className={cn("h-1.5 w-1.5 rounded-full", area.iconBg)}></span>
+                          <span>خدمات سفارشی‌سازی شده</span>
+                        </li>
+                      </motion.ul>
+                      
+                      <motion.div variants={detailItemVariants}>
+                        <Button 
+                          size="sm" 
+                          className={cn(
+                            "bg-white/10 hover:bg-white/20 text-white",
+                            "border border-white/5"
+                          )}
+                        >
+                          اطلاعات بیشتر
+                        </Button>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-                
-                {/* Card content */}
-                <div className="p-8 relative z-10 h-full flex flex-col">
-                  {/* Icon */}
-                  <motion.div
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className={cn(
-                      "mb-6 p-4 rounded-xl inline-block",
-                      area.iconBg,
-                      "group-hover:bg-white/10 transition-colors duration-300"
-                    )}
-                  >
-                    <area.icon className={cn("h-8 w-8", area.textColor, area.hoverColor)} />
-                  </motion.div>
-                  
-                  {/* Title */}
-                  <h3 className={cn(
-                    "text-xl md:text-2xl font-bold mb-3 transition-colors duration-300",
-                    "text-white group-hover:text-white"
-                  )}>
-                    {area.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 mb-6 flex-grow">
-                    {area.description}
-                  </p>
-                  
-                  {/* Badges */}
-                  <div className="flex flex-wrap gap-2 mt-auto mb-4">
-                    {area.badges.map((badge) => (
-                      <Badge 
-                        key={badge} 
-                        className={cn(
-                          "bg-white/5 text-gray-300 border-0 hover:bg-white/10",
-                          "transition-all duration-300"
-                        )}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </div>
-                  
-                  {/* Action button */}
-                  <div className="mt-2">
-                    <Button 
-                      variant="ghost" 
-                      className={cn(
-                        "p-0 h-auto text-sm font-medium group/btn",
-                        area.textColor,
-                        "hover:bg-transparent hover:opacity-80"
-                      )}
-                    >
-                      <span>مشاهده جزئیات</span>
-                      <motion.div
-                        initial={{ x: 0 }}
-                        whileHover={{ x: 5 }}
-                        className="inline-block ml-1"
-                      >
-                        <ArrowRight className="h-4 w-4 inline-block" />
-                      </motion.div>
-                    </Button>
-                  </div>
-                  
-                  {/* Decorative corner elements */}
-                  <div className="absolute top-3 right-3 w-10 h-10 border-t-2 border-r-2 border-white/10 group-hover:border-white/30 rounded-tr-md transition-colors duration-500" />
-                  <div className="absolute bottom-3 left-3 w-10 h-10 border-b-2 border-l-2 border-white/10 group-hover:border-white/30 rounded-bl-md transition-colors duration-500" />
-                </div>
-                
-                {/* Glow effect */}
-                <motion.div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                  style={{
-                    background: `radial-gradient(circle at 50% 50%, ${getComputedColor(area.textColor)}, transparent 70%)`
-                  }}
-                />
               </motion.div>
             ))}
           </motion.div>
           
-          {/* CTA Section */}
+          {/* بخش CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.8 }}
-            className="mt-16 text-center"
+            className="mt-20 text-center"
           >
             <Button 
               className="bg-gradient-to-r from-arminred-600 to-arminred-700 hover:from-arminred-700 hover:to-arminred-800 relative overflow-hidden group px-6 py-6 text-white"
             >
               <span className="relative z-10 flex items-center text-lg">
                 مشاهده نمونه پروژه‌ها
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="mr-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </span>
               <motion.span 
                 className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"
@@ -373,7 +490,7 @@ export function AboutExpertiseSection() {
   );
 }
 
-// Helper function to get computed color from Tailwind class
+// تابع کمکی برای گرفتن رنگ محاسبه شده از کلاس تِیلویند
 function getComputedColor(colorClass: string): string {
   switch(colorClass) {
     case 'text-blue-500': return '#3b82f6';

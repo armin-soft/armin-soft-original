@@ -64,7 +64,7 @@ export function AboutStorySection({ milestones }: { milestones: { year: string; 
                   transition={{ duration: 0.5, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  من آرمین اسکندری، با نام حرفه‌ای <span className="text-arminred-600 font-semibold">آرمین سافت</span>، {age} ساله، یک توسعه‌دهنده نرم‌افزار و متخصص امنیت سایبری با {experienceYears} سال تجربه هستم.
+                  من آرمین اسکندری، با نام حرفه‌ای <span className="text-arminred-600 font-semibold">آرمین سافت</span>, {age} ساله، یک توسعه‌دهنده نرم‌افزار و متخصص امنیت سایبری با {experienceYears} سال تجربه هستم.
                 </motion.p>
 
                 <motion.div
@@ -139,19 +139,29 @@ export function AboutStorySection({ milestones }: { milestones: { year: string; 
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-2xl blur-3xl transform -rotate-6"></div>
-            <div className="relative p-1 bg-gradient-to-r from-arminred-500/20 to-purple-500/20 rounded-2xl backdrop-blur-xl">
-              <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-black/90 to-gray-900/90 p-6">
+            <div className="absolute inset-0 bg-gradient-to-r from-arminred-600/20 to-purple-600/20 rounded-3xl blur-3xl transform -rotate-6 scale-105"></div>
+            <div className="relative p-1.5 bg-gradient-to-r from-arminred-500/20 to-purple-500/20 rounded-3xl backdrop-blur-xl border border-white/10 shadow-2xl">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-black/90 to-gray-900/90 p-8">
                 <div className="h-full w-full relative group perspective-hover">
                   <motion.img
                     src="/lovable-uploads/51da6ad9-6b7e-4b6b-9b64-d1b13392fb2c.png"
                     alt="آرمین سافت - خدمات برنامه نویسی و طراحی وب"
-                    className="w-full h-full object-contain rounded-lg transform transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover rounded-xl transform transition-all duration-500 
+                             group-hover:scale-105 group-hover:rotate-1 shadow-2xl"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent 
+                                opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-arminred-500/10 to-purple-500/10 
+                                mix-blend-overlay opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-arminred-500/30 to-purple-500/30 
+                                rounded-xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 -z-10"></div>
+                  <div className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-arminred-500/50 
+                                rounded-tr-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-purple-500/50 
+                                rounded-bl-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 </div>
               </div>
             </div>
